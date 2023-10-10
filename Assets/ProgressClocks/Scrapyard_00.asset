@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df76910f1f8ab4744b08b4b027868184, type: 3}
+  m_Name: Scrapyard_00
+  m_EditorClassIdentifier: 
+  _name: Get a Job
+  _actionAttribute: 0
+  _segments: 4
+  _fill: 4
+  filled:
+    m_PersistentCalls:
+      m_Calls: []
+  _description: If you need Cred you can always work at the scrapyard.
