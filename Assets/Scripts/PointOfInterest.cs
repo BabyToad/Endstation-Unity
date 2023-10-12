@@ -74,12 +74,8 @@ public class PointOfInterest : MonoBehaviour
 
     private void OnEnable()
     {
-
-
-
         LoadClockSprites(_clocks[_activeClock].Segments);
         DisplayClock(_clocks[_activeClock].Fill);
-
 
         if (_selected)
         {
@@ -89,7 +85,6 @@ public class PointOfInterest : MonoBehaviour
         {
             DeSelect();
         }
-
     }
     private void Start()
     {
@@ -193,6 +188,7 @@ public class PointOfInterest : MonoBehaviour
     {
         _activeClock++;
         LoadClockSprites(_clocks[_activeClock].Segments);
+        _clocks[_activeClock].Fill = 0;
         DisplayClock(_clocks[_activeClock].Fill);
     }
 

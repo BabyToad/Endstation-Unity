@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Scrapyard_01
   _actionAttribute: 1
   _segments: 8
-  _fill: 3
+  _fill: 0
   filled:
     m_PersistentCalls:
       m_Calls: []
