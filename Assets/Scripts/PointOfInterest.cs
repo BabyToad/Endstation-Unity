@@ -74,6 +74,7 @@ public class PointOfInterest : MonoBehaviour
 
     private void OnEnable()
     {
+
         LoadClockSprites(_clocks[_activeClock].Segments);
         DisplayClock(_clocks[_activeClock].Fill);
 
@@ -113,18 +114,16 @@ public class PointOfInterest : MonoBehaviour
     {
         if (!_mouseIsOverUI)
         {
-            Debug.Log("Click");
             Ray mouseClick = Camera.main.ScreenPointToRay(MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>());
             RaycastHit hit;
             Physics.Raycast(mouseClick, out hit);
+            DeSelect();
+
             if (hit.transform == this.transform)
             {
                 Select();
             }
-            else
-            {
-                DeSelect();
-            }
+            
         }
     }
 
@@ -138,13 +137,16 @@ public class PointOfInterest : MonoBehaviour
     public void Select()
     {
         _vcam.Priority = 100;
-        _masterCanvas.enabled = true;
+        _masterCanvas.gameObject.SetActive(true);
+        Debug.Log("Selected " + this.name);
+
     }
 
     public void DeSelect()
     {
         _vcam.Priority = 1;
-        _masterCanvas.enabled = false;
+        _masterCanvas.gameObject.SetActive(false);
+        Debug.Log("Deselected "+ this.name);
     }
     private bool IsMouseOverUI() 
     {
@@ -223,6 +225,8 @@ public class PointOfInterest : MonoBehaviour
             {
                 NextClock();
             }
+
+            Debug.Log(MasterSingleton.Instance.Guild.SelectedExplorer.Name + " used the Action at " + this.name);
 
             MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
         }
