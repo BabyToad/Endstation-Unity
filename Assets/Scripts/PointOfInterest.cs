@@ -96,7 +96,7 @@ public class PointOfInterest : MonoBehaviour
     {
         _mouseIsOverUI = IsMouseOverUI();
 
-        if (_masterCanvas.enabled)
+        if (_masterCanvas.gameObject.activeSelf)
         {
             
             if (MasterSingleton.Instance.Guild.SelectedExplorer != null)
