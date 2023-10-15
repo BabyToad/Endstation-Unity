@@ -9,14 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df76910f1f8ab4744b08b4b027868184, type: 3}
-  m_Name: Scrapyard_00
+  m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
+  m_Name: Test Event
   m_EditorClassIdentifier: 
-  _name: Get a Job
-  _actionAttribute: 0
-  _segments: 4
-  _fill: 0
-  filled:
-    m_PersistentCalls:
-      m_Calls: []
-  _description: If you need Cred you can always work at the scrapyard.
+  _name: Test Event
+  _bodyText: lorem ipsum body text
+  _upperButtonText: Confirm
+  _lowerButtonText: Confirm
+  _sprite: {fileID: 0}

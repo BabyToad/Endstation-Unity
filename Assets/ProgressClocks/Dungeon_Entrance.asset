@@ -18,5 +18,17 @@ MonoBehaviour:
   _fill: 4
   filled:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 25f6c20205d781d4fbd0d71ecc6d1192, type: 2}
+        m_TargetAssemblyTypeName: NarrativeEvent, Assembly-CSharp
+        m_MethodName: Trigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _description: You have heard of a Dungeon. Maybe you can find it?

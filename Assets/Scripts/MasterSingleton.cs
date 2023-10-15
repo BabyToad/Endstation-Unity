@@ -10,11 +10,14 @@ public class MasterSingleton : MonoBehaviour
     public Dungeon Dungeon { get => _dungeon; set => _dungeon = value; }
     public UIManager UIManger { get => _uIManger; set => _uIManger = value; }
     public InputManager InputManager { get => _inputManager; set => _inputManager = value; }
+    public EventCanvas EventCanvas { get => _eventCanvas; set => _eventCanvas = value; }
 
     [SerializeField]
     PhaseManager _phaseManager;
     [SerializeField]
     UIManager _uIManger;
+    [SerializeField]
+    EventCanvas _eventCanvas;
     [SerializeField]
     InputManager _inputManager;
     [SerializeField]

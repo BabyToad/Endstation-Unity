@@ -32,11 +32,7 @@ public class ProgressClock : ScriptableObject
     public Explorer.Attribute ActionAttribute { get => _actionAttribute; set => _actionAttribute = value; }
     public string Description { get => _description; set => _description = value; }
 
-    private void Start()
-    {
-        
-
-    }
+    
     
     public void ChangeFill(int value)
     {
