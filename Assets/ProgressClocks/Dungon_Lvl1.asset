@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dungon_Lvl1
   m_EditorClassIdentifier: 
   _name: Dungeon Level 1
+  _isCountdown: 0
   _actionAttribute: 0
   _segments: 6
   _fill: 0
