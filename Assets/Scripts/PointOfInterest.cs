@@ -56,11 +56,13 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField]
     CinemachineVirtualCamera _vcam;
     [SerializeField]
-    Canvas _masterCanvas;
+    Canvas _masterCanvas, _worldCanvas;
     [SerializeField]
     Text _activeExplorerText;
     [SerializeField]
     Text _description;
+
+    CinemachineBrain _cmbrain;
 
     bool _selected;
 
@@ -68,7 +70,7 @@ public class PointOfInterest : MonoBehaviour
 
     //Clock
     [SerializeField]
-    Image _clockImage;
+    Image _clockImage, _worldClockImage;
     [SerializeField]
     List<Sprite> _clockSprites;
 
@@ -92,7 +94,7 @@ public class PointOfInterest : MonoBehaviour
     private void Start()
     {
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += Select_performed;
-        
+        _cmbrain = Camera.main.GetComponent<CinemachineBrain>();
     }
 
     private void Update()
@@ -110,6 +112,16 @@ public class PointOfInterest : MonoBehaviour
             {
                 _activeExplorerText.text = "";
             }
+        }
+
+
+        if (_cmbrain.ActiveVirtualCamera.Name == "WorldCam" && !_cmbrain.IsBlending)
+        {
+            DisplayWorldUI(true);
+        }
+        else
+        {
+            DisplayWorldUI(false);
         }
     }
 
@@ -150,6 +162,7 @@ public class PointOfInterest : MonoBehaviour
     {
         _vcam.Priority = 1;
         _masterCanvas.gameObject.SetActive(false);
+
         Debug.Log("Deselected "+ this.name);
     }
     private bool IsMouseOverUI() 
@@ -182,6 +195,12 @@ public class PointOfInterest : MonoBehaviour
                 _clockSprites.Add(sprite);
             }
         }
+    }
+
+    void DisplayWorldUI(bool value)
+    {
+        _worldClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+        _worldCanvas.gameObject.SetActive(value);
     }
 
     void DisplayClock(int fill)
