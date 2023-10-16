@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Guild : MonoBehaviour
@@ -16,17 +17,21 @@ public class Guild : MonoBehaviour
     [SerializeField]
     float _rep;
     [SerializeField]
-    float _upkeep = 2;
+    float _upkeepPerExplorer = 1;
 
     [SerializeField]
     int _recruitCost = 3;
 
+
+    public delegate void EndCycle();
+    public static event EndCycle OnEndCycle;
 
     int _downtimeActions = 2;
 
     public Explorer SelectedExplorer { get => _selectedExplorer; set => _selectedExplorer = value; }
     public float Cred { get => _cred; set => _cred = value; }
     public ToggleGroup RosterTG { get => _rosterTG; set => _rosterTG = value; }
+
     private void Awake()
     {
         RosterTG = GetComponent<ToggleGroup>();
@@ -36,9 +41,8 @@ public class Guild : MonoBehaviour
     private void Start()
     {
 
-        AddCred(9);
+        AddCred(6);
 
-        RecruitExplorer();
         RecruitExplorer();
         RecruitExplorer();
     }
@@ -104,13 +108,16 @@ public class Guild : MonoBehaviour
         }
     }
 
-    public void EndCycle()
+    public void EndCycleButton()
     {
         for (int i = 0; i < _roster.Count; i++)
         {
             _roster[i].Rest();
         }
-        AddCred(-_upkeep);
+        AddCred(-_upkeepPerExplorer * _roster.Count);
+
+        OnEndCycle();
+
         // tick clocks
     }
 

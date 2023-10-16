@@ -74,6 +74,8 @@ public class PointOfInterest : MonoBehaviour
 
     private void OnEnable()
     {
+        Guild.OnEndCycle += CountDownClock; 
+        
 
         LoadClockSprites(_clocks[_activeClock].Segments);
         DisplayClock(_clocks[_activeClock].Fill);
@@ -90,6 +92,7 @@ public class PointOfInterest : MonoBehaviour
     private void Start()
     {
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += Select_performed;
+        
     }
 
     private void Update()
@@ -130,6 +133,7 @@ public class PointOfInterest : MonoBehaviour
     private void OnDisable()
     {
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= Select_performed;
+        Guild.OnEndCycle -= CountDownClock;
 
     }
 
@@ -196,7 +200,7 @@ public class PointOfInterest : MonoBehaviour
 
     public void UseAction()
     {
-        if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted)
+        if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted || !_clocks[_activeClock].IsCountdown)
         {
             int diceResult = MasterSingleton.Instance.Guild.SelectedExplorer.RollDice(_clocks[_activeClock].ActionAttribute);
 
@@ -230,11 +234,26 @@ public class PointOfInterest : MonoBehaviour
 
             MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
         }
+        else if (_clocks[_activeClock].IsCountdown)
+        {
+            Debug.LogWarning("This is a Countdown Clock.");
+        }
         else
         {
             Debug.LogWarning("Explorer is exhausted.");
         }
         
+    }
+
+    void CountDownClock()
+    {
+        if (_clocks[_activeClock].IsCountdown)
+        {
+            _clocks[_activeClock].ChangeFill(1);
+            _clockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+
+        }
+
     }
 }
 

@@ -8,7 +8,10 @@ public class ProgressClock : ScriptableObject
 {
     [SerializeField]
     string _name;
-    
+
+    [SerializeField]
+    bool _isCountdown;
+
     [SerializeField]
     Explorer.Attribute _actionAttribute;
 
@@ -31,9 +34,8 @@ public class ProgressClock : ScriptableObject
     public int Fill { get => _fill; set => _fill = value; }
     public Explorer.Attribute ActionAttribute { get => _actionAttribute; set => _actionAttribute = value; }
     public string Description { get => _description; set => _description = value; }
+    public bool IsCountdown { get => _isCountdown; set => _isCountdown = value; }
 
-    
-    
     public void ChangeFill(int value)
     {
         _fill += value;
