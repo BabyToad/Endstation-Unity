@@ -127,6 +127,12 @@ public class Guild : MonoBehaviour
         MasterSingleton.Instance.UIManger.UpdateCredDisplay(_cred);
     }
 
+
+    public static void AddEventCred(float credAmount)
+    {
+        MasterSingleton.Instance.Guild.Cred += credAmount;
+        MasterSingleton.Instance.UIManger.UpdateCredDisplay(MasterSingleton.Instance.Guild.Cred);
+    }
     public void AddRep(float repAmount)
     {
         _rep += repAmount;
