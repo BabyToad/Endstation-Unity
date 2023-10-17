@@ -56,11 +56,13 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField]
     CinemachineVirtualCamera _vcam;
     [SerializeField]
-    Canvas _masterCanvas;
+    Canvas _masterCanvas, _worldCanvas;
     [SerializeField]
     Text _activeExplorerText;
     [SerializeField]
     Text _description;
+
+    CinemachineBrain _cmbrain;
 
     bool _selected;
 
@@ -68,18 +70,17 @@ public class PointOfInterest : MonoBehaviour
 
     //Clock
     [SerializeField]
-    Image _clockImage;
+    Image _clockImage, _worldClockImage;
     [SerializeField]
     List<Sprite> _clockSprites;
 
     private void OnEnable()
     {
-
-
+        Guild.OnEndCycle += CountDownClock; 
+        
 
         LoadClockSprites(_clocks[_activeClock].Segments);
         DisplayClock(_clocks[_activeClock].Fill);
-
 
         if (_selected)
         {
@@ -89,18 +90,18 @@ public class PointOfInterest : MonoBehaviour
         {
             DeSelect();
         }
-
     }
     private void Start()
     {
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += Select_performed;
+        _cmbrain = Camera.main.GetComponent<CinemachineBrain>();
     }
 
     private void Update()
     {
         _mouseIsOverUI = IsMouseOverUI();
 
-        if (_masterCanvas.enabled)
+        if (_masterCanvas.gameObject.activeSelf)
         {
             
             if (MasterSingleton.Instance.Guild.SelectedExplorer != null)
@@ -112,30 +113,39 @@ public class PointOfInterest : MonoBehaviour
                 _activeExplorerText.text = "";
             }
         }
+
+
+        if (_cmbrain.ActiveVirtualCamera.Name == "WorldCam" && !_cmbrain.IsBlending)
+        {
+            DisplayWorldUI(true);
+        }
+        else
+        {
+            DisplayWorldUI(false);
+        }
     }
 
     private void Select_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (!_mouseIsOverUI)
         {
-            Debug.Log("Click");
             Ray mouseClick = Camera.main.ScreenPointToRay(MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>());
             RaycastHit hit;
             Physics.Raycast(mouseClick, out hit);
+            DeSelect();
+
             if (hit.transform == this.transform)
             {
                 Select();
             }
-            else
-            {
-                DeSelect();
-            }
+            
         }
     }
 
     private void OnDisable()
     {
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= Select_performed;
+        Guild.OnEndCycle -= CountDownClock;
 
     }
 
@@ -143,13 +153,17 @@ public class PointOfInterest : MonoBehaviour
     public void Select()
     {
         _vcam.Priority = 100;
-        _masterCanvas.enabled = true;
+        _masterCanvas.gameObject.SetActive(true);
+        Debug.Log("Selected " + this.name);
+
     }
 
     public void DeSelect()
     {
         _vcam.Priority = 1;
-        _masterCanvas.enabled = false;
+        _masterCanvas.gameObject.SetActive(false);
+
+        Debug.Log("Deselected "+ this.name);
     }
     private bool IsMouseOverUI() 
     {
@@ -183,6 +197,12 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
+    void DisplayWorldUI(bool value)
+    {
+        _worldClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+        _worldCanvas.gameObject.SetActive(value);
+    }
+
     void DisplayClock(int fill)
     {
         _clockImage.sprite = _clockSprites[fill];
@@ -193,12 +213,13 @@ public class PointOfInterest : MonoBehaviour
     {
         _activeClock++;
         LoadClockSprites(_clocks[_activeClock].Segments);
+        _clocks[_activeClock].Fill = 0;
         DisplayClock(_clocks[_activeClock].Fill);
     }
 
     public void UseAction()
     {
-        if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted)
+        if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted || !_clocks[_activeClock].IsCountdown)
         {
             int diceResult = MasterSingleton.Instance.Guild.SelectedExplorer.RollDice(_clocks[_activeClock].ActionAttribute);
 
@@ -228,13 +249,30 @@ public class PointOfInterest : MonoBehaviour
                 NextClock();
             }
 
+            Debug.Log(MasterSingleton.Instance.Guild.SelectedExplorer.Name + " used the Action at " + this.name);
+
             MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
+        }
+        else if (_clocks[_activeClock].IsCountdown)
+        {
+            Debug.LogWarning("This is a Countdown Clock.");
         }
         else
         {
             Debug.LogWarning("Explorer is exhausted.");
         }
         
+    }
+
+    void CountDownClock()
+    {
+        if (_clocks[_activeClock].IsCountdown)
+        {
+            _clocks[_activeClock].ChangeFill(1);
+            _clockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+
+        }
+
     }
 }
 
