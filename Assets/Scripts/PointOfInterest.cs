@@ -56,7 +56,7 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField]
     CinemachineVirtualCamera _vcam;
     [SerializeField]
-    Canvas _masterCanvas, _worldCanvas;
+    Canvas _activeCanvas, _worldCanvas;
     [SerializeField]
     Text _activeExplorerText;
     [SerializeField]
@@ -101,7 +101,7 @@ public class PointOfInterest : MonoBehaviour
     {
         _mouseIsOverUI = IsMouseOverUI();
 
-        if (_masterCanvas.gameObject.activeSelf)
+        if (_activeCanvas.gameObject.activeSelf)
         {
             
             if (MasterSingleton.Instance.Guild.SelectedExplorer != null)
@@ -153,7 +153,7 @@ public class PointOfInterest : MonoBehaviour
     public void Select()
     {
         _vcam.Priority = 100;
-        _masterCanvas.gameObject.SetActive(true);
+        _activeCanvas.gameObject.SetActive(true);
         Debug.Log("Selected " + this.name);
 
     }
@@ -161,7 +161,7 @@ public class PointOfInterest : MonoBehaviour
     public void DeSelect()
     {
         _vcam.Priority = 1;
-        _masterCanvas.gameObject.SetActive(false);
+        _activeCanvas.gameObject.SetActive(false);
 
         Debug.Log("Deselected "+ this.name);
     }

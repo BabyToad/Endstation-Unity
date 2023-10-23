@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
+  m_Name: NE_Dungeon_Lvl1
+  m_EditorClassIdentifier: 
+  _name: Dungeon Level 1
+  _bodyText: As you delve deeper into the ancient giants' stony remains, the air
+    becomes heavy with the scent of earth and moss. Shafts of ethereal light pierce
+    through the ceiling, casting intricate patterns on the cavern walls adorned with
+    faded murals depicting the giants' history. Amidst the eerie silence, distant
+    echoes of a forgotten era resound, as you encounter chambers filled with oversized
+    relics and forgotten artifacts. But beware, for the shadows here hold secrets,
+    and the very stones beneath your feet seem to harbor memories of a time long
+    gone.
+  _upperButtonText: Attune to the Memories
+  _uCred: 2
+  _uStress: 4
+  _uHp: 0
+  _lowerButtonText: Search the Relics
+  _lCred: 2
+  _lStress: 2
+  _lHp: -1
+  _sprite: {fileID: 0}

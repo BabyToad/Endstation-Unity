@@ -20,6 +20,12 @@ MonoBehaviour:
     an ominous yet irresistible allure, daring you to step into the depths of a bygone
     age where untold mysteries, untold treasures, and perhaps the dormant spirits
     of these giants await your discovery.
-  _upperButtonText: Enter
-  _lowerButtonText: 
+  _upperButtonText: Enter with force
+  _uCred: 0
+  _uStress: 2
+  _uHp: -1
+  _lowerButtonText: Enter carefully
+  _lCred: 0
+  _lStress: 4
+  _lHp: 0
   _sprite: {fileID: 21300000, guid: c71d30c7da6980c4aab86302a01627dc, type: 3}
