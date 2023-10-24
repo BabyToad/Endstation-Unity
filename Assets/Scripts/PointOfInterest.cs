@@ -270,6 +270,11 @@ public class PointOfInterest : MonoBehaviour
         {
             _clocks[_activeClock].ChangeFill(1);
             _clockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+            
+            if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
+            {
+                NextClock();
+            }
 
         }
 
