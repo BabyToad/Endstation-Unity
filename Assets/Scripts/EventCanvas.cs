@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -14,7 +15,11 @@ public class EventCanvas : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI _bodyText;
     [SerializeField]
+    Button _upperButton;
+    [SerializeField]
     TextMeshProUGUI _upperButtonText;
+    [SerializeField]
+    Button _lowerButton;
     [SerializeField]
     TextMeshProUGUI _lowerButtonText;
 
@@ -41,9 +46,25 @@ public class EventCanvas : MonoBehaviour
     {
         _upperButtonText.text = text;
     }
+
+    public void ShowLowerButton(bool value)
+    {
+        _lowerButton.gameObject.SetActive(value);
+    }
     public void SetLowerButtonText(string text)
     {
-        _lowerButtonText.gameObject.SetActive(false);
-
+        _lowerButtonText.text = text;
     }
+
+    public void AddUpperButtonAction(UnityAction action)
+    {
+        _upperButton.onClick.RemoveAllListeners();
+        _upperButton.onClick.AddListener(action);
+    }
+    public void AddLowerButtonAction(UnityAction action)
+    {
+        _lowerButton.onClick.RemoveAllListeners();
+        _lowerButton.onClick.AddListener(action);
+    }
+
 }
