@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9bbeb16132259db4ca20cbd532ffbbce
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 221227
+  packageName: 'Altos: Volumetric Clouds, Dynamic Sky / Skybox, Sun, Moon, Stars,
+    Day Night'
+  packageVersion: 6.1.5
+  assetPath: Packages/com.occasoftware.altos/Shaders/Skybox/SkyObjectShader.shader
+  uploadId: 609085

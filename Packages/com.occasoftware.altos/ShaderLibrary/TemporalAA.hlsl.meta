@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b5091c5e3bbb7624d8a622f14605d386
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 221227
+  packageName: 'Altos: Volumetric Clouds, Dynamic Sky / Skybox, Sun, Moon, Stars,
+    Day Night'
+  packageVersion: 6.1.5
+  assetPath: Packages/com.occasoftware.altos/ShaderLibrary/TemporalAA.hlsl
+  uploadId: 609085

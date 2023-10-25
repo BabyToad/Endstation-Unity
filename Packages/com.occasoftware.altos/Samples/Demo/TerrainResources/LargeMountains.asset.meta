@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 69dd2b9a29ec14443b2cfbdac51caf43
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 15600000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 221227
+  packageName: 'Altos: Volumetric Clouds, Dynamic Sky / Skybox, Sun, Moon, Stars,
+    Day Night'
+  packageVersion: 6.1.5
+  assetPath: Packages/com.occasoftware.altos/Samples/Demo/TerrainResources/LargeMountains.asset
+  uploadId: 609085

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 96e6e08ee24baca4f9029b30213c2b6a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11700000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 221227
+  packageName: 'Altos: Volumetric Clouds, Dynamic Sky / Skybox, Sun, Moon, Stars,
+    Day Night'
+  packageVersion: 6.1.5
+  assetPath: Packages/com.occasoftware.altos/Textures/Noise Textures/VolumeTextures/Perlin/Perlin64.asset
+  uploadId: 609085

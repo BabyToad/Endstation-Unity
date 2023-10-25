@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 16e4aed2d6a49f84a99fed00b487ffca
+ShaderIncludeImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 221227
+  packageName: 'Altos: Volumetric Clouds, Dynamic Sky / Skybox, Sun, Moon, Stars,
+    Day Night'
+  packageVersion: 6.1.5
+  assetPath: Packages/com.occasoftware.altos/ShaderLibrary/Types.hlsl
+  uploadId: 609085

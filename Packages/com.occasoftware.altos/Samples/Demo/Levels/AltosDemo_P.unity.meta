@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b4fa8ad56abe1e5428585eee1a09b69a
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 221227
+  packageName: 'Altos: Volumetric Clouds, Dynamic Sky / Skybox, Sun, Moon, Stars,
+    Day Night'
+  packageVersion: 6.1.5
+  assetPath: Packages/com.occasoftware.altos/Samples/Demo/Levels/AltosDemo_P.unity
+  uploadId: 609085
