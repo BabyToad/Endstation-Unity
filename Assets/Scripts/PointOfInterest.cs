@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using TMPro;
 using Cinemachine;
 
 public class PointOfInterest : MonoBehaviour
@@ -58,9 +58,9 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField]
     Canvas _activeCanvas, _worldCanvas;
     [SerializeField]
-    Text _activeExplorerText;
+    TextMeshProUGUI _activeExplorerText;
     [SerializeField]
-    Text _description;
+    TextMeshProUGUI _description;
 
     CinemachineBrain _cmbrain;
 
