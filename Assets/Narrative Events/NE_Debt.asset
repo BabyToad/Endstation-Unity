@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: NE_Debt
   m_EditorClassIdentifier: 
   _name: Debt
-  _bodyText: You gotta give the Butcher his share.
+  _bodyText: It is time to service your debt. Uriah Pharazon waits for you in his
+    spire of the Guild of Creditors.
   _upperButtonText: Pay 4 Cred.
   _uCred: -4
   _uStress: 0
