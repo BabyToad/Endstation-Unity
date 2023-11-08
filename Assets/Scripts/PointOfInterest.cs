@@ -74,6 +74,10 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField]
     List<Sprite> _clockSprites;
 
+
+    //UI Selection
+    GraphicRaycaster _graphicsRaycasterWorldCanvas;
+
     private void OnEnable()
     {
         Guild.OnEndCycle += CountDownClock; 
@@ -95,11 +99,14 @@ public class PointOfInterest : MonoBehaviour
     {
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += Select_performed;
         _cmbrain = Camera.main.GetComponent<CinemachineBrain>();
+        _graphicsRaycasterWorldCanvas = _worldCanvas.GetComponent<GraphicRaycaster>();
     }
 
     private void Update()
     {
         _mouseIsOverUI = IsMouseOverUI();
+
+        
 
         if (_activeCanvas.gameObject.activeSelf)
         {
@@ -140,6 +147,8 @@ public class PointOfInterest : MonoBehaviour
             }
             
         }
+
+        GraphicRaycast();
     }
 
     private void OnDisable()
@@ -170,6 +179,23 @@ public class PointOfInterest : MonoBehaviour
         return EventSystem.current.IsPointerOverGameObject();
     }
 
+    void GraphicRaycast()
+    {
+        Debug.Log("Raycast!");
+        PointerEventData m_PointerEventData = new PointerEventData(EventSystem.current);
+        //Set the Pointer Event Position to that of the mouse position
+        m_PointerEventData.position = MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>();
+
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        _graphicsRaycasterWorldCanvas.Raycast(m_PointerEventData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            Debug.Log("Hit " + result.gameObject.name);
+        }
+    }
+    
     void LoadClockSprites(int segments)
     {
         _clockSprites.Clear();
