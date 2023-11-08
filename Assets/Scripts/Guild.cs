@@ -31,6 +31,7 @@ public class Guild : MonoBehaviour
     public Explorer SelectedExplorer { get => _selectedExplorer; set => _selectedExplorer = value; }
     public float Cred { get => _cred; set => _cred = value; }
     public ToggleGroup RosterTG { get => _rosterTG; set => _rosterTG = value; }
+    public List<Explorer> Roster { get => _roster; set => _roster = value; }
 
     private void Awake()
     {

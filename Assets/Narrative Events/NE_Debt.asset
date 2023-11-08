@@ -17,10 +17,12 @@ MonoBehaviour:
     spire of the Guild of Creditors.
   _upperButtonText: Pay 4 Cred.
   _uCred: -4
-  _uStress: 0
+  _uStress: 1
   _uHp: 0
+  _uAllExplorers: 1
   _lowerButtonText: 
   _lCred: 0
   _lStress: 0
   _lHp: 0
+  _lAllExplorers: 1
   _sprite: {fileID: 0}

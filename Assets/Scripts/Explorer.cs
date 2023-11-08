@@ -85,6 +85,10 @@ public class Explorer
 
     public int RollDice(int dice)
     {
+        if (_stress >= 9)
+        {
+            dice--;
+        }
         int result = 0;
         for (int i = 0; i < dice; i++)
         {
