@@ -74,7 +74,9 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField]
     List<Sprite> _clockSprites;
 
-
+    [SerializeField]
+    MoreMountains.Feedbacks.MMF_Player _actionFeedback, _actionFailedFeedback; 
+    
     //UI Selection
     GraphicRaycaster _graphicsRaycasterWorldCanvas;
 
@@ -278,6 +280,8 @@ public class PointOfInterest : MonoBehaviour
             Debug.Log(MasterSingleton.Instance.Guild.SelectedExplorer.Name + " used the Action at " + this.name);
 
             MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
+
+            _actionFeedback.PlayFeedbacks();
         }
         else if (_clocks[_activeClock].IsCountdown)
         {
