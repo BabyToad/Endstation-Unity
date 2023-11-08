@@ -14,6 +14,10 @@ public class UIManager : MonoBehaviour
     Button _startExpedition, _endExpedition, _explore, _recover, _indulgeVice, _recruitExplorer;
     [SerializeField]
     Text _cred, _reputation;
+    [SerializeField]
+    Canvas _explorerCanvas;
+    [SerializeField]
+    List<PointOfInterest> _pointsOfInterestList;
 
     public void DowntimeUI(bool value)
     {
@@ -48,4 +52,19 @@ public class UIManager : MonoBehaviour
         _reputation.text = newValue.ToString();
     }
 
+    public void DisplayExplorerCanvas(bool value)
+    {
+        _explorerCanvas.enabled = value;
+    }
+
+    public void DisplayPointOfInterestSelectedUI(bool value)
+    {
+        for (int i = 0; i < _pointsOfInterestList.Count; i++)
+        {
+            if (_pointsOfInterestList[i].IsSelected)
+            {
+                _pointsOfInterestList[i].DisplaySelectUI(value);
+            }
+        }
+    }
 }

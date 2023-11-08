@@ -9,6 +9,7 @@ using Cinemachine;
 public class PointOfInterest : MonoBehaviour
 {
 
+
     [System.Serializable]
     class Action
     {
@@ -64,7 +65,7 @@ public class PointOfInterest : MonoBehaviour
 
     CinemachineBrain _cmbrain;
 
-    bool _selected;
+    bool _isSelected;
 
     bool _mouseIsOverUI;
 
@@ -80,6 +81,8 @@ public class PointOfInterest : MonoBehaviour
     //UI Selection
     GraphicRaycaster _graphicsRaycasterWorldCanvas;
 
+    public bool IsSelected { get => _isSelected; set => _isSelected = value; }
+
     private void OnEnable()
     {
         Guild.OnEndCycle += CountDownClock; 
@@ -88,7 +91,7 @@ public class PointOfInterest : MonoBehaviour
         LoadClockSprites(_clocks[_activeClock].Segments);
         DisplayClock(_clocks[_activeClock].Fill);
 
-        if (_selected)
+        if (IsSelected)
         {
             Select();
         }
@@ -164,16 +167,17 @@ public class PointOfInterest : MonoBehaviour
     public void Select()
     {
         _vcam.Priority = 100;
-        _activeCanvas.gameObject.SetActive(true);
-        Debug.Log("Selected " + this.name);
+        DisplaySelectUI(true);
 
+        IsSelected = true;
+        Debug.Log("Selected " + this.name);
     }
 
     public void DeSelect()
     {
         _vcam.Priority = 1;
-        _activeCanvas.gameObject.SetActive(false);
-
+        DisplaySelectUI(false);
+        IsSelected = false;
         Debug.Log("Deselected "+ this.name);
     }
     private bool IsMouseOverUI() 
@@ -237,6 +241,11 @@ public class PointOfInterest : MonoBehaviour
         _description.text = _clocks[_activeClock].Description;
     }
 
+    public void DisplaySelectUI(bool value)
+    {
+        _activeCanvas.gameObject.SetActive(value);
+    }
+
     void NextClock()
     {
         _activeClock++;
@@ -247,7 +256,7 @@ public class PointOfInterest : MonoBehaviour
 
     public void UseAction()
     {
-        if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted || !_clocks[_activeClock].IsCountdown)
+        if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !_clocks[_activeClock].IsCountdown)
         {
             int diceResult = MasterSingleton.Instance.Guild.SelectedExplorer.RollDice(_clocks[_activeClock].ActionAttribute);
 

@@ -63,6 +63,9 @@ public class NarrativeEvent : ScriptableObject
         MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(_uStress);
         MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(_uHp);
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);
+        MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(true);
+        MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(true);
+
     }
 
     void LowerEventMechanics()
@@ -72,6 +75,9 @@ public class NarrativeEvent : ScriptableObject
         MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(_lStress);
         MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(_lHp);
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);
+        MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(true);
+        MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(true);
+
     }
 
     public void Trigger()
@@ -92,9 +98,8 @@ public class NarrativeEvent : ScriptableObject
         {
             MasterSingleton.Instance.EventCanvas.ShowLowerButton(false);
         }
-
-
-
+        MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(false);
+        MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(false);
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(true);
     }
 }
