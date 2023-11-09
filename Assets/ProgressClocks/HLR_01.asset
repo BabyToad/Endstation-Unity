@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df76910f1f8ab4744b08b4b027868184, type: 3}
   m_Name: HLR_01
   m_EditorClassIdentifier: 
-  _name: Getting to know the Doctor
+  _name: Visiting the Doctor
   _isCountdown: 0
   _actionAttribute: 0
   _segments: 4
@@ -32,4 +32,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _description: You'll be here often. Better get to know the guy.
+  _description: Rest and recover, while the doctor tends to your injuries.

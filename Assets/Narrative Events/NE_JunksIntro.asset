@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
+  m_Name: NE_JunksIntro
+  m_EditorClassIdentifier: 
+  _name: Junks
+  _bodyText: "A small creature strolls out of the main building, it waddles on tiny
+    feets, the sound is a bit funny. Still, the creature holds itself with grace,
+    accompanied by a classy kimono, in its right hand is a pipe. While it walks it
+    takes occasionally a little drag out of it. The creature comes to a stop in front
+    of you, stretches out it\u2019s little hand for a greeting. \u201CBanjam, my
+    choom!\u201D You take it\u2019s hand, returning his greeting. \u201CIt\u2019s
+    nice to see a new face in here. My name\u2019s Junks, I\u2019m the main otter
+    of this house, yup yup.\u201D He takes another deep drag out of his pipe, blowing
+    it right into your face. Your senses get clouded, it smells woody and herbal
+    a little note of lemon follows. Holy shit, this stuff seems strong. \u201CThis
+    place here, my little choom, is a place where you can leave behind all of your
+    worries.\u201D The otter in front of you makes a dramatic gesture. \u201CYou
+    seem to be very stressed. I can see the eyebags under ya eyes and your energy
+    seems very, ya know, sucked dry.\u201D Junks wiggles his eyebrows towards you."
+  _upperButtonText: Have a smoke.
+  _uCred: 0
+  _uStress: -2
+  _uHp: 0
+  _uAllExplorers: 0
+  _lowerButtonText: Relax in the Hot Springs.
+  _lCred: 0
+  _lStress: -2
+  _lHp: 0
+  _lAllExplorers: 0
+  _sprite: {fileID: 21300000, guid: 522634fef87f8844094bbcc73b241201, type: 3}
