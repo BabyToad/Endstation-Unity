@@ -15,8 +15,8 @@ MonoBehaviour:
   _name: Debt
   _bodyText: It is time to service your debt. Uriah Pharazon waits for you in the
     spires of the Guild of Creditors.
-  _upperButtonText: Pay 4 Cred.
-  _uCred: -4
+  _upperButtonText: Pay 3 Cred.
+  _uCred: -3
   _uStress: 1
   _uHp: 0
   _uAllExplorers: 1
