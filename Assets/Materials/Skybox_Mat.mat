@@ -12,7 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _SUNDISK_HIGH_QUALITY
+  - _SUNDISK_SIMPLE
   m_InvalidKeywords:
   - _METALLIC_SETUP
   m_LightmapFlags: 4
@@ -72,7 +72,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Exposure: 1.06
+    - _Exposure: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -83,8 +83,8 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _SunDisk: 2
-    - _SunSize: 0.033
+    - _SunDisk: 1
+    - _SunSize: 0.186
     - _SunSizeConvergence: 3.85
     - _UVSec: 0
     - _WorkflowMode: 1
@@ -92,7 +92,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
-    - _SkyTint: {r: 0.66460484, g: 0.9716981, b: 0.91701025, a: 1}
+    - _GroundColor: {r: 1, g: 0.5711466, b: 0, a: 1}
+    - _SkyTint: {r: 0.28500003, g: 1, b: 0.8756522, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
