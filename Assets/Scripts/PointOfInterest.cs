@@ -8,8 +8,8 @@ using Cinemachine;
 
 public class PointOfInterest : MonoBehaviour
 {
-
-
+    [SerializeField]
+    bool _active;
     [System.Serializable]
     class Action
     {
@@ -62,6 +62,8 @@ public class PointOfInterest : MonoBehaviour
     TextMeshProUGUI _activeExplorerText;
     [SerializeField]
     TextMeshProUGUI _description;
+    [SerializeField]
+    TextMeshProUGUI _consequences;
 
     CinemachineBrain _cmbrain;
 
@@ -106,6 +108,7 @@ public class PointOfInterest : MonoBehaviour
         _cmbrain = Camera.main.GetComponent<CinemachineBrain>();
         _graphicsRaycasterWorldCanvas = _worldCanvas.GetComponent<GraphicRaycaster>();
         RegisterWithUIHandler();
+        SetActive(_active);
     }
 
     private void Update()
@@ -162,9 +165,7 @@ public class PointOfInterest : MonoBehaviour
             {
                 Select();
             }
-            
         }
-
         GraphicRaycast();
     }
 
@@ -251,8 +252,54 @@ public class PointOfInterest : MonoBehaviour
     {
         _clockImage.sprite = _clockSprites[fill];
         _description.text = _clocks[_activeClock].Description;
+        _consequences.text = "Attribute: " + _clocks[_activeClock].ActionAttribute.ToString() + "\n" + ActionToStringDescription();
     }
 
+    public void SetActive(bool value)
+    {
+        _active = value;
+        _activeCanvas.transform.parent.gameObject.SetActive(value);
+        _worldCanvas.transform.parent.gameObject.SetActive(value);
+        
+        if (value)
+        {
+            RegisterWithUIHandler();
+        }
+    }
+
+    string ActionToStringDescription()
+    {
+        string description ="";
+        if (_mainAction.Fail.Cred > 0 || _mainAction.Partial.Cred > 0 )
+        {
+            description += "Cred+ ";
+        }
+        if (_mainAction.Fail.Cred < 0 || _mainAction.Partial.Cred < 0 )
+        {
+            description += "Cred- ";
+        }
+
+        if (_mainAction.Fail.Stress > 0 || _mainAction.Partial.Stress > 0 )
+        {
+            description += "Stress+ ";
+        }
+        if (_mainAction.Fail.Stress < 0 || _mainAction.Partial.Stress < 0 )
+        {
+            description += "Stress- ";
+        }
+
+        if (_mainAction.Fail.Hp > 0 || _mainAction.Partial.Hp > 0 )
+        {
+            description += "HP+ ";
+        }
+        if (_mainAction.Fail.Hp < 0 || _mainAction.Partial.Hp < 0 )
+        {
+            description += "HP- ";
+        }
+
+        return description;
+    
+    }
     public void DisplaySelectUI(bool value)
     {
         _activeCanvas.gameObject.SetActive(value);

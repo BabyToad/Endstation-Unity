@@ -27,6 +27,8 @@ public class NarrativeEvent : ScriptableObject
     int _uHp;
     [SerializeField]
     bool _uAllExplorers = false;
+    [SerializeField]
+    string _uUnlockPoI;
     UnityAction _upperAction;
 
     [Header("Second Choice")]
@@ -76,6 +78,11 @@ public class NarrativeEvent : ScriptableObject
         {
             MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(_uStress);
             MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(_uHp);
+        }
+
+        if (_uUnlockPoI != "")
+        {
+            GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().SetActive(true);
         }
         
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);
