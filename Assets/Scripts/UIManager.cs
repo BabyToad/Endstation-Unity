@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     List<PointOfInterest> _pointsOfInterestList;
 
+    public List<PointOfInterest> PointsOfInterestList { get => _pointsOfInterestList; set => _pointsOfInterestList = value; }
+
     public void DowntimeUI(bool value)
     {
         
@@ -59,11 +61,11 @@ public class UIManager : MonoBehaviour
 
     public void DisplayPointOfInterestSelectedUI(bool value)
     {
-        for (int i = 0; i < _pointsOfInterestList.Count; i++)
+        for (int i = 0; i < PointsOfInterestList.Count; i++)
         {
-            if (_pointsOfInterestList[i].IsSelected)
+            if (PointsOfInterestList[i].IsSelected)
             {
-                _pointsOfInterestList[i].DisplaySelectUI(value);
+                PointsOfInterestList[i].DisplaySelectUI(value);
             }
         }
     }

@@ -139,4 +139,24 @@ public class Guild : MonoBehaviour
         _rep += repAmount;
         MasterSingleton.Instance.UIManger.UpdateReputationDisplay(_rep);
     }
+
+    public bool IsRosterExhausted()
+    {
+        bool isExhausted = false;
+
+        for (int i = 0; i < _roster.Count; i++)
+        {
+            if (_roster[i].Exhausted)
+            {
+                isExhausted = true;
+            }
+            else
+            {
+                isExhausted = false;
+                return isExhausted;
+            }
+        }
+
+        return isExhausted;
+    }
 }

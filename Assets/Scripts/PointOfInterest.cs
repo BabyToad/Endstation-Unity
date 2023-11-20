@@ -105,6 +105,7 @@ public class PointOfInterest : MonoBehaviour
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += Select_performed;
         _cmbrain = Camera.main.GetComponent<CinemachineBrain>();
         _graphicsRaycasterWorldCanvas = _worldCanvas.GetComponent<GraphicRaycaster>();
+        RegisterWithUIHandler();
     }
 
     private void Update()
@@ -137,6 +138,17 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
+    void RegisterWithUIHandler()
+    {
+        if (!MasterSingleton.Instance.UIManger.PointsOfInterestList.Contains(this))
+        {
+            MasterSingleton.Instance.UIManger.PointsOfInterestList.Add(this);
+        }
+        else
+        {
+            Debug.LogWarning("UIManager Points of Interest List already contains " + this.name);
+        }
+    }
     private void Select_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (!_mouseIsOverUI)
@@ -258,6 +270,9 @@ public class PointOfInterest : MonoBehaviour
     {
         if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !_clocks[_activeClock].IsCountdown)
         {
+
+
+
             int diceResult = MasterSingleton.Instance.Guild.SelectedExplorer.RollDice(_clocks[_activeClock].ActionAttribute);
 
             if (diceResult <= 3)
@@ -281,14 +296,25 @@ public class PointOfInterest : MonoBehaviour
 
             }
 
+            MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
+
+            
+
             if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
             {
                 NextClock();
             }
+            else
+            {
+                if (MasterSingleton.Instance.Guild.IsRosterExhausted())
+                {
+                    DeSelect();
+                }
+            }
 
             Debug.Log(MasterSingleton.Instance.Guild.SelectedExplorer.Name + " used the Action at " + this.name);
 
-            MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
+          
 
             _actionFeedback.PlayFeedbacks();
         }
