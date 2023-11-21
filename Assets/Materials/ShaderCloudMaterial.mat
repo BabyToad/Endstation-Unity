@@ -56,26 +56,33 @@ Material:
     - _Cloud_Noise_Scale: 0.015
     - _Cloud_Speed: 10
     - _Curavture_Radius: 130055.4
-    - _Dense_Spots_Noise_Scale: 0.01
+    - _Dense_Spots_Noise_Scale: 0.02
     - _Dense_Spots_Noise_Strengh: 0.5
     - _Dense_Spots_Nosie_Speed: 2
-    - _Edge_Fade: 164.2
+    - _Edge_Fade: 150
     - _Edge_Frensel_Opacity: 1.78
     - _Edge_Frensel_Power: 16.1
-    - _Emission_Strengh: 0
-    - _Fade_Density: 50
-    - _Fluffyness: 1
+    - _Emission_Strengh: 1
+    - _Fade_Density: 65
+    - _Fluffyness: 5
+    - _GradientMax: 0
+    - _GradientMin: 2000
     - _Noise_Scale: 0.05
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smooth_Edge_1: -0.45
     - _Smooth_Edge_2: 1.5
     - _Smooth_Peeks: 0
-    - _Smooth_Valleys: 0
+    - _Smooth_Valleys: 10
     m_Colors:
     - _Cloud_Shape: {r: 0.2, g: 1.3, b: -1, a: 1}
-    - _Peek_Colour: {r: 0.85534585, g: 1, b: 0.9792874, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 0}
+    - _Color_1: {r: 1, g: 0.84141093, b: 0, a: 0}
+    - _GradientColorMax: {r: 0.83647794, g: 0.9288804, b: 1, a: 0}
+    - _GradientColorMin: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientMax: {r: -100, g: 100, b: 0, a: 0}
+    - _Peek_Colour: {r: 1, g: 1, b: 1, a: 1}
     - _Rotate_Projection: {r: 1, g: 0, b: 0, a: 100}
-    - _Valley_Colour: {r: 0, g: 0.31159163, b: 1, a: 1}
+    - _Valley_Colour: {r: 0, g: 0.7884278, b: 1, a: 1}
     - _Vally_Colour: {r: 0.51397294, g: 0.6603774, b: 0.6259293, a: 1}
   m_BuildTextureStacks: []
