@@ -147,7 +147,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _GradientEnd: 0
-    - _GradientMax: 45
+    - _GradientMax: 60
     - _GradientMin: 0
     - _GradientPower: 1.24
     - _HideRimUnderShadow: 0
@@ -204,7 +204,7 @@ Material:
     - __dirty: 1
     m_Colors:
     - _BaseColor: {r: 0.5566038, g: 0.4798209, b: 0.1820339, a: 1}
-    - _BottomColor: {r: 0.6132076, g: 0.34544578, b: 0.14848103, a: 0}
+    - _BottomColor: {r: 0.4245283, g: 0.27490386, b: 0.0740922, a: 0}
     - _Color: {r: 0.99215686, g: 0.7747643, b: 0.70443135, a: 1}
     - _Color_1: {r: 1, g: 0.520872, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
@@ -219,7 +219,7 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 2, g: 2, b: 2, a: 1}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
-    - _TopColor: {r: 1, g: 0.8432064, b: 0.646, a: 0}
+    - _TopColor: {r: 0.7147619, g: 0.8113208, b: 0.62379855, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4537207872612741198
 MonoBehaviour:
