@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
+  m_Name: NE_JunksIntro
+  m_EditorClassIdentifier: 
+  _name: Junks
+  _bodyText: "After crossing a long bridge, you reach a floating island, it seems
+    far away, hidden from the busy city. The island is enveloped by fluffy clouds,
+    which seem to be kissing the sky. Sunlight streams trough them, the atmosphere
+    feels warm, like home. In front of you is a massive building, decorated by green
+    plants and matured moss. A huge chunk of smoke streams out of the building it
+    smells a bit\u2026 sweet. <br> While you stare at the wonders of nature, you
+    hear small footsteps coming from behind you. A small creature strolls out of
+    the main building, waddling on tiny feet, the sound is a bit funny. Still, the
+    creature holds itself with grace, accompanied by a classy gown, in its right
+    hand is a pipe. While it walks it takes the occasional drag from it. <br> The
+    creature comes to a stop in front of you, stretches out it\u2019s little hand
+    for a greeting. \u201CBanjam, my choom!\u201D You take its hand, returning his
+    greeting. \u201CIt\u2019s nice to see a new face around here. My name\u2019s
+    Junks, I\u2019m the main otter of this house, yup yup.\u201D He takes another
+    deep drag from his pipe, blowing it right into your face. Your senses get clouded,
+    it smells woody and herbal a little note of lemon follows. Holy smokes! This
+    stuff seems strong. <br> \u201CThis place here, my little choom, is a place where
+    you can leave behind all of your worries.\u201D The otter in front of you makes
+    a dramatic gesture. \u201CFollow me, my fellow choom, time for you to rest, what
+    would ya want to do first?\u201D Junks wiggles his eyebrows towards you before
+    he enters the building."
+  _upperButtonText: "\u201CHave a smoke with Junks.\u201D"
+  _uCred: 0
+  _uStress: -2
+  _uHp: 0
+  _uAllExplorers: 0
+  _uUnlockPoI: 
+  _lowerButtonText: "\u201CRelax in the hot springs.\u201D"
+  _lCred: 0
+  _lStress: -2
+  _lHp: 0
+  _lAllExplorers: 0
+  _sprite: {fileID: 21300000, guid: 9a8eb5434a98fbf44a5f1ff727527ab9, type: 3}

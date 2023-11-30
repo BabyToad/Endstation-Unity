@@ -219,6 +219,14 @@ public class PointOfInterest : MonoBehaviour
     {
         _clockSprites.Clear();
 
+        if (segments == 0)
+        {
+            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/0Clock"))
+            {
+                _clockSprites.Add(sprite);
+            }
+        }
+
         if (segments == 4)
         {
             foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/4Clock"))
@@ -378,7 +386,7 @@ public class PointOfInterest : MonoBehaviour
 
     void CountDownClock()
     {
-        if (_clocks[_activeClock].IsCountdown)
+        if (_clocks[_activeClock].IsCountdown && _active)
         {
             _clocks[_activeClock].ChangeFill(1);
             _clockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
