@@ -141,6 +141,8 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
+    
+
     void RegisterWithUIHandler()
     {
         if (!MasterSingleton.Instance.UIManger.PointsOfInterestList.Contains(this))
@@ -179,11 +181,15 @@ public class PointOfInterest : MonoBehaviour
 
     public void Select()
     {
-        _vcam.Priority = 100;
-        DisplaySelectUI(true);
+        if (_active)
+        {
+            _vcam.Priority = 100;
+            DisplaySelectUI(true);
 
-        IsSelected = true;
-        Debug.Log("Selected " + this.name);
+            IsSelected = true;
+            Debug.Log("Selected " + this.name);
+        }
+        
     }
 
     public void DeSelect()

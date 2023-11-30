@@ -16,8 +16,15 @@ public class ExplorerCanvas : MonoBehaviour
     Button _selectExplorer;
     [SerializeField]
     Image _background, _backgroundSelected;
+    [SerializeField]
+    Color _normalColor, _selectedColor, _exhaustedColor, _selectedExhaustedColor;
     public Button SelectExplorer { get => _selectExplorer; set => _selectExplorer = value; }
 
+    private void Awake()
+    {
+        _normalColor = _background.color;
+        _selectedColor = _backgroundSelected.color;
+    }
     public void SetName(string name)
     {
         _name.text = name;
@@ -44,30 +51,19 @@ public class ExplorerCanvas : MonoBehaviour
         _resolve.text = "Resolve: " + resolve;
     }
 
-    public void HighlightBackground(bool value)
-    {
-        if (value)
-        {
-            _background.color = Color.grey;
-
-        }
-        else
-        {
-            _background.color = Color.white;
-        }
-    }
+    
 
     public void DisplayExhaustion(bool value)
     {
         if (value)
         {
-            _background.color = Color.red;
-            _backgroundSelected.color = new Color(0.5f, 0, 0, 1);
+            _background.color = _exhaustedColor;
+            _backgroundSelected.color = _selectedExhaustedColor;
         }
         else
         {
-            _background.color = Color.white;
-            _backgroundSelected.color = new Color(0.5f, 0.85f, 1, 1);
+            _background.color = _normalColor;
+            _backgroundSelected.color = _selectedColor;
 
         }
     }
