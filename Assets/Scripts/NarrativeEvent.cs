@@ -11,8 +11,7 @@ public class NarrativeEvent : ScriptableObject
     EventCanvas _eventCanvas;
 
     int _id;
-    [SerializeField]
-    string _name;
+    
     [SerializeField]
     string _bodyText;
 
@@ -44,7 +43,8 @@ public class NarrativeEvent : ScriptableObject
     bool _lAllExplorers = false;
     UnityAction _lowerAction;
 
-
+    [SerializeField]
+    string _name;
     [SerializeField]
     Sprite _sprite;
 
@@ -117,6 +117,7 @@ public class NarrativeEvent : ScriptableObject
 
     public void Trigger()
     {
+        MasterSingleton.Instance.EventCanvas.SetEventName(_name);
         MasterSingleton.Instance.EventCanvas.SetBodyText(_bodyText);
         MasterSingleton.Instance.EventCanvas.SetEventImage(_sprite);
         

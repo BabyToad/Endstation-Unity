@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Uriah1
   m_EditorClassIdentifier: 
-  _name: Uriah Intro
   _bodyText: "After you passed the inner city, you reach a massive building. The
     design of the building looks expensive and classy, a big contrast to your guild
     base. A lot of different species are passing by, some do enter the dome others
@@ -36,4 +35,5 @@ MonoBehaviour:
   _lStress: 0
   _lHp: 0
   _lAllExplorers: 0
+  _name: Uriah
   _sprite: {fileID: 21300000, guid: 14c511b7a8b0f5a4cb896c72a29da1c9, type: 3}

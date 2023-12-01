@@ -13,6 +13,8 @@ public class EventCanvas : MonoBehaviour
     [SerializeField]
     Image _image;
     [SerializeField]
+    TextMeshProUGUI _nameText;
+    [SerializeField]
     TextMeshProUGUI _bodyText;
     [SerializeField]
     Button _upperButton;
@@ -36,6 +38,11 @@ public class EventCanvas : MonoBehaviour
     public void SetEventImage(Sprite sprite)
     {
         _image.sprite = sprite;
+    }
+
+    public void SetEventName(string name)
+    {
+        _nameText.text = name;
     }
 
     public void SetBodyText(string text)

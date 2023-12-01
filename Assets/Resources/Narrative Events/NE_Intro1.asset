@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Intro1
   m_EditorClassIdentifier: 
-  _name: Welcome to Endstation
   _bodyText: I am the Guild Master. Go to the Dungeon!
   _upperButtonText: Venture forth.
   _uCred: 0
@@ -25,4 +24,5 @@ MonoBehaviour:
   _lStress: 0
   _lHp: 0
   _lAllExplorers: 0
+  _name: Guild Master
   _sprite: {fileID: 0}

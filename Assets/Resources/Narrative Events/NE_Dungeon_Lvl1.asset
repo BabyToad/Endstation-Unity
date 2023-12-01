@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Dungeon_Lvl1
   m_EditorClassIdentifier: 
-  _name: Dungeon Level 1
   _bodyText: As you delve deeper into the ancient giants' stony remains, the air
     becomes heavy with the scent of earth and moss. Shafts of ethereal light pierce
     through the ceiling, casting intricate patterns on the cavern walls adorned with
@@ -25,8 +24,12 @@ MonoBehaviour:
   _uCred: 2
   _uStress: 4
   _uHp: 0
+  _uAllExplorers: 0
+  _uUnlockPoI: 
   _lowerButtonText: Search the Relics
   _lCred: 2
   _lStress: 2
   _lHp: -1
+  _lAllExplorers: 0
+  _name: Old Gods
   _sprite: {fileID: 0}

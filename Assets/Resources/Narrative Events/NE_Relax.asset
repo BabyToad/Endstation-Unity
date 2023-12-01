@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Relax
   m_EditorClassIdentifier: 
-  _name: Overindulgence
   _bodyText: Tonight you have overdone it a little. What happened?
   _upperButtonText: Lost some Cred, but made some friends.
   _uCred: -1
   _uStress: -2
   _uHp: 0
+  _uAllExplorers: 0
+  _uUnlockPoI: 
   _lowerButtonText: Won a dangerous bet.
   _lCred: 0
   _lStress: -2
   _lHp: -1
+  _lAllExplorers: 0
+  _name: Junks
   _sprite: {fileID: 0}
