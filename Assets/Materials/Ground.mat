@@ -99,6 +99,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Side_Texture:
+        m_Texture: {fileID: 2800000, guid: f16aa8b0975189f43aaf2449dd8dca56, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -108,11 +112,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_1:
-        m_Texture: {fileID: 2800000, guid: 43a9ef64b9f58134cb452e6235d7f67c, type: 3}
+        m_Texture: {fileID: 2800000, guid: c12ef0102d08e32459d11a84a400d5cb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D_2:
         m_Texture: {fileID: 2800000, guid: 87ce03bd447ccce48bbff87ac0d8355f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Top_Texture:
+        m_Texture: {fileID: 2800000, guid: f16aa8b0975189f43aaf2449dd8dca56, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Triplanar_9dad84bd4bab47ae9ab5751003d89d25_Texture_1_Texture2D:
@@ -143,7 +151,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Blend: 0.5
+    - _Blend: 1
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -158,12 +166,13 @@ Material:
     - _DstBlendAlpha: 0
     - _EmissionForce: 0
     - _EnvironmentReflections: 1
+    - _Float: 1.5
     - _Framerate: 5
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _GradientEnd: 0
-    - _GradientMax: 60
+    - _GradientMax: 60.08
     - _GradientMin: 0
     - _GradientPower: 1.24
     - _HideRimUnderShadow: 0
@@ -192,6 +201,7 @@ Material:
     - _ShadowSize: 0.5
     - _ShadowStrength: 1
     - _SharpRimLight: 1
+    - _Side_Tiling: 0.02
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularFalloff: 1
@@ -204,6 +214,10 @@ Material:
     - _StepAmount: 2
     - _StepWidth: 0.25
     - _Surface: 0
+    - _Tiling: 0.04
+    - _Tiling_1: 0.04
+    - _Tiling_2: 0.04
+    - _Top_Tiling: 0.15
     - _UseGradient: 0
     - _UseRampTexture: 0
     - _UseRimLight: 0
@@ -220,7 +234,7 @@ Material:
     - __dirty: 1
     m_Colors:
     - _BaseColor: {r: 0.5566038, g: 0.4798209, b: 0.1820339, a: 1}
-    - _BottomColor: {r: 0.4245283, g: 0.27490386, b: 0.0740922, a: 0}
+    - _BottomColor: {r: 0.20943931, g: 0.20143583, b: 0.45754716, a: 1}
     - _Color: {r: 0.99215686, g: 0.7747643, b: 0.70443135, a: 1}
     - _Color_1: {r: 1, g: 0.520872, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
@@ -234,8 +248,10 @@ Material:
     - _ShadowColor: {r: 1, g: 0, b: 0.11576597, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 2, g: 2, b: 2, a: 1}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
-    - _TopColor: {r: 0.7147619, g: 0.8113208, b: 0.62379855, a: 1}
+    - _TopColor: {r: 0.98225087, g: 0.66538745, b: 0.61049575, a: 1}
+    - _Top_Color: {r: 0.6795426, g: 0.35640025, b: 0.37123778, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4537207872612741198
 MonoBehaviour:
