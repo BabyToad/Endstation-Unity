@@ -37,7 +37,16 @@ public class EventCanvas : MonoBehaviour
 
     public void SetEventImage(Sprite sprite)
     {
-        _image.sprite = sprite;
+        if (sprite == null)
+        {
+            _image.sprite = sprite;
+            _image.color = Color.clear;
+        }
+        else
+        {
+            _image.sprite = sprite;
+            _image.color = Color.white;
+        }
     }
 
     public void SetEventName(string name)
