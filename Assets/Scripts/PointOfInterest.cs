@@ -235,21 +235,21 @@ public class PointOfInterest : MonoBehaviour
 
         if (segments == 4)
         {
-            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/4Clock"))
+            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New4Clock"))
             {
                 _clockSprites.Add(sprite);
             }
         }
         if (segments == 6)
         {
-            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/6Clock"))
+            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New6Clock"))
             {
                 _clockSprites.Add(sprite);
             }
         }
         if (segments == 8)
         {
-            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/8Clock"))
+            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New8Clock"))
             {
                 _clockSprites.Add(sprite);
             }

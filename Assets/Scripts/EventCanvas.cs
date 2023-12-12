@@ -51,7 +51,11 @@ public class EventCanvas : MonoBehaviour
 
     public void SetEventName(string name)
     {
-        _nameText.text = name;
+        if (_nameText != null)
+        {
+            _nameText.text = name;
+
+        }
     }
 
     public void SetBodyText(string text)
