@@ -1,10 +1,9 @@
-using System.Collections;
+using Cinemachine;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using TMPro;
-using Cinemachine;
 
 public class PointOfInterest : MonoBehaviour
 {
@@ -38,7 +37,7 @@ public class PointOfInterest : MonoBehaviour
 
             }
         }
-        
+
         [SerializeField]
         Result _fail, _partial, _success;
 
@@ -46,7 +45,7 @@ public class PointOfInterest : MonoBehaviour
         public Result Partial { get => _partial; set => _partial = value; }
         public Result Success { get => _success; set => _success = value; }
 
-       
+
     }
     [SerializeField]
     Action _mainAction;
@@ -73,9 +72,13 @@ public class PointOfInterest : MonoBehaviour
 
     //Clock
     [SerializeField]
-    Image _clockImage, _worldClockImage;
+    Image _activeClockImage, _activeClockFrame, _activeClockBackground, _worldClockImage, _worldClockFrame, _worldClockBackground;
     [SerializeField]
     List<Sprite> _clockSprites;
+    Sprite _clockFrameSprite, _clockBackgroundSprite;
+
+    [SerializeField]
+    Color _baseColor, _filledColor, _countdownColor;
 
     [SerializeField]
     MoreMountains.Feedbacks.MMF_Player _actionFeedback, _actionFailedFeedback; 
@@ -92,7 +95,7 @@ public class PointOfInterest : MonoBehaviour
 
         LoadClockSprites(_clocks[_activeClock].Segments);
         DisplayClock(_clocks[_activeClock].Fill);
-
+        
         if (IsSelected)
         {
             Select();
@@ -227,46 +230,87 @@ public class PointOfInterest : MonoBehaviour
 
         if (segments == 0)
         {
-            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/0Clock"))
+            _clockFrameSprite = Resources.Load<Sprite>("UI/Progress Clocks/New0Clock/Frame/0Frame");
+            
+            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New0Clock"))
             {
                 _clockSprites.Add(sprite);
             }
+            _clockSprites.Reverse();
         }
 
         if (segments == 4)
         {
+            _clockFrameSprite = Resources.Load<Sprite>("UI/Progress Clocks/New4Clock/Frame/4Frame");
+
             foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New4Clock"))
             {
                 _clockSprites.Add(sprite);
             }
+            
         }
         if (segments == 6)
         {
+            _clockFrameSprite = Resources.Load<Sprite>("UI/Progress Clocks/New6Clock/Frame/6Frame");
+
             foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New6Clock"))
             {
                 _clockSprites.Add(sprite);
             }
+
         }
         if (segments == 8)
         {
+            _clockFrameSprite = Resources.Load<Sprite>("UI/Progress Clocks/New8Clock/Frame/8Frame");
             foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New8Clock"))
             {
                 _clockSprites.Add(sprite);
             }
         }
+        _clockBackgroundSprite = _clockSprites[0];
+        _clockSprites.Reverse();
     }
 
     void DisplayWorldUI(bool value)
     {
         _worldClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+        _worldClockBackground.sprite = _clockBackgroundSprite;
+        _worldClockFrame.sprite = _clockFrameSprite;
+        RecolorClock();
+
         _worldCanvas.gameObject.SetActive(value);
     }
 
     void DisplayClock(int fill)
     {
-        _clockImage.sprite = _clockSprites[fill];
+        _activeClockImage.sprite = _clockSprites[fill];
+        _activeClockFrame.sprite = _clockFrameSprite;
+        _activeClockBackground.sprite = _clockBackgroundSprite;
+        _worldClockImage.sprite = _clockSprites[fill];
+        _worldClockBackground.sprite = _clockBackgroundSprite;
+        _worldClockFrame.sprite = _clockFrameSprite;
         _description.text = _clocks[_activeClock].Description;
+        RecolorClock();
         _consequences.text = "Attribute: " + _clocks[_activeClock].ActionAttribute.ToString() + "\n" + ActionToStringDescription();
+    }
+
+    void RecolorClock()
+    {
+        if (0 == _clocks[_activeClock].Segments)
+        {
+            _worldClockImage.color = _filledColor;
+            _activeClockImage.color = _filledColor;
+        }
+        else if (_clocks[_activeClock].IsCountdown)
+        {
+            _worldClockImage.color = _countdownColor;
+            _activeClockImage.color = _countdownColor;
+        }
+        else
+        {
+            _worldClockImage.color = _baseColor;
+            _activeClockImage.color = _baseColor;
+        }
     }
 
     public void SetActive(bool value)
@@ -339,20 +383,23 @@ public class PointOfInterest : MonoBehaviour
             if (diceResult <= 3)
             {
                 _clocks[_activeClock].ChangeFill(1);
-                _clockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+                _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+                _activeClockFrame.sprite = _clockFrameSprite;
                 _mainAction.Fail.Apply();
             }
             else if (diceResult <= 5)
             {
                 _clocks[_activeClock].ChangeFill(2);
-                _clockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+                _activeClockFrame.sprite = _clockFrameSprite;
+                _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
                 _mainAction.Partial.Apply();
 
             }
             else if (diceResult == 6)
             {
                 _clocks[_activeClock].ChangeFill(3);
-                _clockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+                _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+                _activeClockFrame.sprite = _clockFrameSprite;
                 _mainAction.Success.Apply();
 
             }
@@ -395,7 +442,7 @@ public class PointOfInterest : MonoBehaviour
         if (_clocks[_activeClock].IsCountdown && _active)
         {
             _clocks[_activeClock].ChangeFill(1);
-            _clockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
             
             if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
             {
