@@ -96,7 +96,7 @@ public class PointOfInterest : MonoBehaviour
 
     [Header("Feedbacks")]
     [SerializeField]
-    MoreMountains.Feedbacks.MMF_Player _actionFeedback, _actionFailedFeedback; 
+    MoreMountains.Feedbacks.MMF_Player _applyRollFeedback, _actionFailedFeedback; 
     
     //UI Selection
     GraphicRaycaster _graphicsRaycasterWorldCanvas;
@@ -428,6 +428,7 @@ public class PointOfInterest : MonoBehaviour
     IEnumerator DiceRoll(int result)
     {
         _animSprites.Shuffle();
+
         foreach (Sprite sprite in _animSprites)
         {
             _diceImage.sprite = sprite;
@@ -436,8 +437,10 @@ public class PointOfInterest : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         _diceImage.sprite = _diceSprites[result - 1];
 
-
+        
         ApplyRoll(result);
+        _applyRollFeedback.PlayFeedbacks();
+
         ExhaustSelectedExplorer();
         yield return new WaitForSeconds(.4f);
         _clocks[_activeClock].CompletionCheck();
