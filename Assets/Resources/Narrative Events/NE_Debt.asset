@@ -27,3 +27,21 @@ MonoBehaviour:
   _lAllExplorers: 1
   _name: Uriah
   _sprite: {fileID: 21300000, guid: 4d227c2ec8d8d2a43a8dcf5c48d2b1f9, type: 3}
+  _overrideAction: 0
+  _pointOfInterest: 
+  _newAction:
+    _fail:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _partial:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _success:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0

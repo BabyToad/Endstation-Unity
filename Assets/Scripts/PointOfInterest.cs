@@ -4,13 +4,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PointOfInterest : MonoBehaviour
 {
     [SerializeField]
     bool _active;
     [System.Serializable]
-    class Action
+    public class Action
     {
         [System.Serializable]
         public class Result
@@ -34,8 +35,9 @@ public class PointOfInterest : MonoBehaviour
                 MasterSingleton.Instance.Guild.AddCred(Cred);
                 MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(Stress);
                 MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(Hp);
-
             }
+
+            
         }
 
         [SerializeField]
@@ -44,8 +46,6 @@ public class PointOfInterest : MonoBehaviour
         public Result Fail { get => _fail; set => _fail = value; }
         public Result Partial { get => _partial; set => _partial = value; }
         public Result Success { get => _success; set => _success = value; }
-
-
     }
     [SerializeField]
     Action _mainAction;
@@ -53,8 +53,16 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField]
     List<ProgressClock> _clocks;
     int _activeClock;
+
+    bool _rollingDice = false;
+
+    [Header("Cam Reference")]
     [SerializeField]
     CinemachineVirtualCamera _vcam;
+    CinemachineBrain _cmbrain;
+
+
+    [Header("UI References")]
     [SerializeField]
     Canvas _activeCanvas, _worldCanvas;
     [SerializeField]
@@ -63,23 +71,30 @@ public class PointOfInterest : MonoBehaviour
     TextMeshProUGUI _description;
     [SerializeField]
     TextMeshProUGUI _consequences;
+    [SerializeField]
+    Image _diceImage;
+    [SerializeField]
+    List<Sprite> _diceSprites;
+    [SerializeField]
 
-    CinemachineBrain _cmbrain;
+    List<Sprite> _animSprites;
 
     bool _isSelected;
 
     bool _mouseIsOverUI;
 
-    //Clock
-    [SerializeField]
-    Image _activeClockImage, _activeClockFrame, _activeClockBackground, _worldClockImage, _worldClockFrame, _worldClockBackground;
+    [Header("Clock UI References")]
     [SerializeField]
     List<Sprite> _clockSprites;
+    [SerializeField]
+    Image _activeClockImage, _activeClockFrame, _activeClockBackground, _worldClockImage, _worldClockFrame, _worldClockBackground;
+    
     Sprite _clockFrameSprite, _clockBackgroundSprite;
 
     [SerializeField]
     Color _baseColor, _filledColor, _countdownColor;
 
+    [Header("Feedbacks")]
     [SerializeField]
     MoreMountains.Feedbacks.MMF_Player _actionFeedback, _actionFailedFeedback; 
     
@@ -90,9 +105,9 @@ public class PointOfInterest : MonoBehaviour
 
     private void OnEnable()
     {
-        Guild.OnEndCycle += CountDownClock; 
-        
+        Guild.OnEndCycle += CountDownClock;
 
+        LoadDiceSprites();
         LoadClockSprites(_clocks[_activeClock].Segments);
         DisplayClock(_clocks[_activeClock].Fill);
         
@@ -143,9 +158,6 @@ public class PointOfInterest : MonoBehaviour
             DisplayWorldUI(false);
         }
     }
-
-    
-
     void RegisterWithUIHandler()
     {
         if (!MasterSingleton.Instance.UIManger.PointsOfInterestList.Contains(this))
@@ -180,7 +192,6 @@ public class PointOfInterest : MonoBehaviour
         Guild.OnEndCycle -= CountDownClock;
 
     }
-
 
     public void Select()
     {
@@ -269,6 +280,19 @@ public class PointOfInterest : MonoBehaviour
         }
         _clockBackgroundSprite = _clockSprites[0];
         _clockSprites.Reverse();
+    }
+
+    void LoadDiceSprites()
+    {
+        if (_diceSprites != null)
+        {
+            _diceSprites.Clear();
+        }
+        foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Dice"))
+        {
+            _diceSprites.Add(sprite);
+            _animSprites.Add(sprite);
+        }
     }
 
     void DisplayWorldUI(bool value)
@@ -373,68 +397,85 @@ public class PointOfInterest : MonoBehaviour
 
     public void UseAction()
     {
-        if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !_clocks[_activeClock].IsCountdown)
+        if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !_clocks[_activeClock].IsCountdown && MasterSingleton.Instance.Guild.SelectedExplorer.Name != "" && !_rollingDice)
         {
-
-
-
             int diceResult = MasterSingleton.Instance.Guild.SelectedExplorer.RollDice(_clocks[_activeClock].ActionAttribute);
 
-            if (diceResult <= 3)
-            {
-                _clocks[_activeClock].ChangeFill(1);
-                _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
-                _activeClockFrame.sprite = _clockFrameSprite;
-                _mainAction.Fail.Apply();
-            }
-            else if (diceResult <= 5)
-            {
-                _clocks[_activeClock].ChangeFill(2);
-                _activeClockFrame.sprite = _clockFrameSprite;
-                _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
-                _mainAction.Partial.Apply();
-
-            }
-            else if (diceResult == 6)
-            {
-                _clocks[_activeClock].ChangeFill(3);
-                _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
-                _activeClockFrame.sprite = _clockFrameSprite;
-                _mainAction.Success.Apply();
-
-            }
-
-            MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
-
-            
-
-            if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
-            {
-                NextClock();
-            }
-            else
-            {
-                if (MasterSingleton.Instance.Guild.IsRosterExhausted())
-                {
-                    DeSelect();
-                }
-            }
+            StartDiceRoll(diceResult);
 
             Debug.Log(MasterSingleton.Instance.Guild.SelectedExplorer.Name + " used the Action at " + this.name);
-
-          
-
-            _actionFeedback.PlayFeedbacks();
         }
         else if (_clocks[_activeClock].IsCountdown)
         {
             Debug.LogWarning("This is a Countdown Clock.");
         }
+        else if (_rollingDice)
+        {
+            Debug.LogWarning("Already rolling Dice.");
+        }
         else
         {
             Debug.LogWarning("Explorer is exhausted.");
         }
-        
+    }
+
+    void StartDiceRoll(int result)
+    {
+        _rollingDice = true;
+        StartCoroutine(DiceRoll(result));
+    }
+
+    IEnumerator DiceRoll(int result)
+    {
+        _animSprites.Shuffle();
+        foreach (Sprite sprite in _animSprites)
+        {
+            _diceImage.sprite = sprite;
+            yield return new WaitForSeconds(.1f);
+        }
+        yield return new WaitForSeconds(.1f);
+        _diceImage.sprite = _diceSprites[result - 1];
+
+
+        ApplyRoll(result);
+        ExhaustSelectedExplorer();
+        yield return new WaitForSeconds(.4f);
+        _clocks[_activeClock].CompletionCheck();
+        LoadNewClockCheck();
+
+        DeselectDueToExhaustionCheck();
+
+        _rollingDice = false;
+    }
+
+    void ApplyRoll(int diceResult)
+    {
+
+        if (diceResult <= 3)
+        {
+            _clocks[_activeClock].ChangeFill(1);
+            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+            _activeClockFrame.sprite = _clockFrameSprite;
+            _mainAction.Fail.Apply();
+        }
+        else if (diceResult <= 5)
+        {
+            _clocks[_activeClock].ChangeFill(2);
+            _activeClockFrame.sprite = _clockFrameSprite;
+            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+            _mainAction.Partial.Apply();
+
+        }
+        else if (diceResult == 6)
+        {
+            _clocks[_activeClock].ChangeFill(3);
+            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+            _activeClockFrame.sprite = _clockFrameSprite;
+            _mainAction.Success.Apply();
+        }
+
+
+
     }
 
     void CountDownClock()
@@ -448,9 +489,43 @@ public class PointOfInterest : MonoBehaviour
             {
                 NextClock();
             }
-
         }
+    }
 
+    void ExhaustSelectedExplorer()
+    {
+        MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
+    }
+
+    void DeselectDueToExhaustionCheck()
+    {
+        if (MasterSingleton.Instance.Guild.IsRosterExhausted() && MasterSingleton.Instance.StateManager.CurrentState == GameplayStateManager.GameplayState.FreePlay)
+        {
+            StartCoroutine(DeselectAfter(1f));
+        }
+    }
+
+    IEnumerator DeselectAfter(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        DeSelect();
+    }
+
+    void LoadNewClockCheck()
+    {
+        if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
+        {
+            NextClock();
+        }
+    }
+
+    
+
+   
+
+    public void OverideAction(Action newAction)
+    {
+        _mainAction = newAction;
     }
 }
 

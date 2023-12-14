@@ -694,7 +694,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6703894219244710106}
   - component: {fileID: 6193896989133250826}
-  - component: {fileID: 2420729796694795005}
   m_Layer: 0
   m_Name: PhaseManager
   m_TagString: Untagged
@@ -729,29 +728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99256dec37ff52b46a705876a4ae5445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _phase: 0
---- !u!95 &2420729796694795005
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2616451024668919159}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4078a8f8b2150574ea63ee054c4058be, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  _currentState: 0
 --- !u!1 &2926912932422786542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,7 +1264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc0bbe083808c748885a2d9ab9673b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _phaseManager: {fileID: 6193896989133250826}
+  _stateManager: {fileID: 6193896989133250826}
   _uIManger: {fileID: 8243203303499463913}
   _eventCanvas: {fileID: 6566226269012123159}
   _inputManager: {fileID: 7296332294805646395}

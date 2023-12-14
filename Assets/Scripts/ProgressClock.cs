@@ -40,9 +40,11 @@ public class ProgressClock : ScriptableObject
     {
         _fill += value;
         _fill = Mathf.Clamp(_fill, 0, _segments);
+        Debug.Log("Changed fill to" + _fill + ". Added " + value);
+    }
 
-        //_spriteRenderer.sprite = _sprites[_fill];
-            
+    public void CompletionCheck()
+    {
         if (_fill == _segments)
         {
             filled.Invoke();

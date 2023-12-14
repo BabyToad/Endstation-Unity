@@ -48,6 +48,13 @@ public class NarrativeEvent : ScriptableObject
     [SerializeField]
     Sprite _sprite;
 
+    [SerializeField]
+    bool _overrideAction;
+    [SerializeField]
+    string _pointOfInterest;
+    [SerializeField]
+    PointOfInterest.Action _newAction;
+
     private void OnEnable()
     {
         _upperAction += UpperEventMechanics;
@@ -84,10 +91,16 @@ public class NarrativeEvent : ScriptableObject
         {
             GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().SetActive(true);
         }
-        
+
+        if (_overrideAction)
+        {
+            GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().OverideAction(_newAction);
+        }
+
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);
         MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(true);
         MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(true);
+        MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.FreePlay;
 
     }
 
@@ -108,15 +121,23 @@ public class NarrativeEvent : ScriptableObject
             MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(_lStress);
             MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(_lHp);
         }
-        
+
+        if (_overrideAction)
+        {
+            GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().OverideAction(_newAction);
+        }
+
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);
         MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(true);
         MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(true);
+        MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.FreePlay;
 
     }
 
     public void Trigger()
     {
+        MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.NarrativeEvent;
+
         MasterSingleton.Instance.EventCanvas.SetEventName(_name);
         MasterSingleton.Instance.EventCanvas.SetBodyText(_bodyText);
         MasterSingleton.Instance.EventCanvas.SetEventImage(_sprite);
