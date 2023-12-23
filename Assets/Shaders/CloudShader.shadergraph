@@ -350,6 +350,9 @@
         },
         {
             "m_Id": "7b5cdc725c9a4c19babb19540a0096a3"
+        },
+        {
+            "m_Id": "716b32438763477ba60950fbfbe71db4"
         }
     ],
     "m_GroupDatas": [
@@ -3940,6 +3943,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "343d9cc4a40b456d8bf48e4e2980a6a2",
+    "m_Id": 0,
+    "m_DisplayName": "Direction",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Direction",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.SubtractNode",
     "m_ObjectId": "347cf30f27b743308e516e957b477d73",
     "m_Group": {
@@ -6188,8 +6214,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1663.333251953125,
-            "y": 1261.3333740234375,
+            "x": 1591.333251953125,
+            "y": 1281.3333740234375,
             "width": 209.3333740234375,
             "height": 318.6666259765625
         }
@@ -6582,6 +6608,41 @@
         "multiplication",
         "times",
         "x"
+    ],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.MainLightDirectionNode",
+    "m_ObjectId": "716b32438763477ba60950fbfbe71db4",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Main Light Direction",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 1663.333251953125,
+            "y": 1200.0,
+            "width": 161.3333740234375,
+            "height": 78.666748046875
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "343d9cc4a40b456d8bf48e4e2980a6a2"
+        }
+    ],
+    "synonyms": [
+        "sun"
     ],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
@@ -7664,9 +7725,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1887.333251953125,
-            "y": 1278.666748046875,
-            "width": 120.666748046875,
+            "x": 1860.6666259765625,
+            "y": 1281.3333740234375,
+            "width": 120.6666259765625,
             "height": 150.6666259765625
         }
     },
