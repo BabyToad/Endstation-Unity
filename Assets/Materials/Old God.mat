@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground 2
+  m_Name: Old God
   m_Shader: {fileID: -6465566751694194690, guid: f8cd22dc42525f245865d428e2d4ab73, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
