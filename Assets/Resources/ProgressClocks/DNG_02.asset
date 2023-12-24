@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df76910f1f8ab4744b08b4b027868184, type: 3}
   m_Name: DNG_02
   m_EditorClassIdentifier: 
-  _name: Old Gods Bones
+  _name: The Dungeon
   _isCountdown: 0
   _actionAttribute: 0
   _segments: 8
-  _fill: 0
+  _fill: 8
   filled:
     m_PersistentCalls:
       m_Calls:
@@ -32,6 +32,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _description: The first level of the "Old Gods" dungeon reveals itself as an enigmatic
-    labyrinth, with massive petrified roots snaking across the floor and intertwining
-    like veins in the heart of the earth.
+  _description: The first challenge reveals itself as an enigmatic labyrinth, with
+    massive petrified roots snaking across the floor and intertwining like veins
+    in the heart of the earth.

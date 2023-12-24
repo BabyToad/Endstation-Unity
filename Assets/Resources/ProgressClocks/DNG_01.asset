@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Journey to the Old Gods
   _isCountdown: 0
-  _actionAttribute: 2
-  _segments: 4
+  _actionAttribute: 1
+  _segments: 6
   _fill: 0
   filled:
     m_PersistentCalls:

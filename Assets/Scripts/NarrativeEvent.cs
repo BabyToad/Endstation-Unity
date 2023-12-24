@@ -11,9 +11,11 @@ public class NarrativeEvent : ScriptableObject
     EventCanvas _eventCanvas;
 
     int _id;
-    
     [SerializeField]
+
     string _bodyText;
+    [SerializeField]
+    TextAsset _text;
 
     [Header("First Choice")]
     [SerializeField]
@@ -59,6 +61,11 @@ public class NarrativeEvent : ScriptableObject
     {
         _upperAction += UpperEventMechanics;
         _lowerAction += LowerEventMechanics;
+        if (_text != null)
+        {
+            _bodyText = _text.text;
+
+        }
     }
 
     private void OnDisable()

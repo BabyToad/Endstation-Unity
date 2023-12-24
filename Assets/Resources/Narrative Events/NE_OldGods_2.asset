@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
+  m_Name: NE_OldGods_2
+  m_EditorClassIdentifier: 
+  _bodyText: As you navigate the labyrinthine depths within the petrified remnants
+    of these titans, the atmosphere thickens with the redolence of ancient earth
+    and the musty embrace of aged moss. Streams of otherworldly luminescence pierce
+    the translucent canopy above, painting elaborate tapestries of light upon the
+    cavernous walls adorned with faded frescoes chronicling the storied saga of these
+    monumental beings. Within this eerie expanse, the echoes of a time erased by
+    history reverberate faintly, haunting the silence as chambers reveal themselves,
+    adorned with relics and artifacts of colossal proportions, forgotten by the ebb
+    of time. The path forward remains shrouded in uncertainty, where the past intertwines
+    with the present in enigmatic whispers.
+  _text: {fileID: 4900000, guid: 408ea930f74cc3b4b941cda864709a97, type: 3}
+  _upperButtonText: Attune to the Memories
+  _uCred: 2
+  _uStress: 4
+  _uHp: 0
+  _uAllExplorers: 0
+  _uUnlockPoI: 
+  _lowerButtonText: Search the Relics
+  _lCred: 2
+  _lStress: 2
+  _lHp: -1
+  _lAllExplorers: 0
+  _name: Old Gods
+  _sprite: {fileID: 0}
+  _overrideAction: 0
+  _pointOfInterest: 
+  _newAction:
+    _fail:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _partial:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _success:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
