@@ -173,7 +173,7 @@ Material:
     - _GlossyReflections: 0
     - _GradientEnd: 0
     - _GradientMax: 80
-    - _GradientMin: 3.9
+    - _GradientMin: 1.6
     - _GradientPower: 1.24
     - _HideRimUnderShadow: 0
     - _MainSmoothness: 0
