@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Journey to the Old Gods
   _isCountdown: 0
   _actionAttribute: 1
-  _segments: 6
+  _segments: 8
   _fill: 0
   filled:
     m_PersistentCalls:

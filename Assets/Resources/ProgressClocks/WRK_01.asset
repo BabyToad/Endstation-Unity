@@ -20,7 +20,7 @@ MonoBehaviour:
   filled:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: b16b69f0de7158946ae384cf69776fd7, type: 2}
+      - m_Target: {fileID: 11400000, guid: da01a14458f40194c9480b8bf73ba8ec, type: 2}
         m_TargetAssemblyTypeName: NarrativeEvent, Assembly-CSharp
         m_MethodName: Trigger
         m_Mode: 1
@@ -32,4 +32,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _description: 'Lifting and carrying heavy gear for other more fortunate than yourself. '
+  _description: 

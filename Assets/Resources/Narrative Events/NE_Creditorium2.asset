@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
+  m_Name: NE_Creditorium2
+  m_EditorClassIdentifier: 
+  _bodyText: "\uFFFDBanjam, my chum I see servicing your debt is going well. That\uFFFDs
+    what I want to hear! A person who can handle their money has a safe and stable
+    future, hoho!\uFFFD A cloud of smoke escapes his mouth, while he nods satisfied.
+    This habit of his almost, reminds you of the otter back at the Warm Whiskers
+    Oasis. Overall, you can't help but notice some similarities between those two
+    individuals.\nThe shark walks back towards his fancy office chair, taking a seat.
+    \uFFFDI must admit that I\uFFFDm not very\uFFFD how should I say it\uFFFD I\uFFFDm
+    not very keen on your way of living. You seem like a person who can handle their
+    own. Why would you choose to be an adventurer, if there are better ways to support
+    yourself? For me it\uFFFDs a waste of time and don\uFFFDt tell me it\uFFFDs a
+    dream of yours. That sounds foolish.\uFFFD His delighted voice changed back to
+    his rumbling, while he studies your reaction. "
+  _text: {fileID: 4900000, guid: 061afd543b9235e40a251dbc7bc31161, type: 3}
+  _upperButtonText: Tell him it's not a dream, if you succeed.
+  _uCred: -3
+  _uStress: 1
+  _uHp: 0
+  _uAllExplorers: 0
+  _uUnlockPoI: 
+  _lowerButtonText: Ignore his question and keep your dream to yourself.
+  _lCred: -3
+  _lStress: 1
+  _lHp: 0
+  _lAllExplorers: 0
+  _name: 
+  _sprite: {fileID: 21300000, guid: 4d227c2ec8d8d2a43a8dcf5c48d2b1f9, type: 3}
+  _overrideAction: 0
+  _pointOfInterest: 
+  _newAction:
+    _fail:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _partial:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _success:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0

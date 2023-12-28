@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Debt
   m_EditorClassIdentifier: 
-  _bodyText: It is time to service your debt. Uriah Pharazon waits for you in the
-    spires of the Guild of Creditors.
+  _bodyText: It is time to service your debt. Uriah waits for you in the spires of
+    the Guild of Creditors.
+  _text: {fileID: 0}
   _upperButtonText: Pay 3 Cred.
   _uCred: -3
   _uStress: 1

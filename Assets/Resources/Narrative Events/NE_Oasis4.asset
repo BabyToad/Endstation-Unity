@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
+  m_Name: NE_Oasis4
+  m_EditorClassIdentifier: 
+  _bodyText: "After crossing a long bridge, you reach a floating isle, secluded from
+    the busy city. The island is enveloped by fluffy clouds, drifting up from the
+    immense sea below. A huge chunk of smoke steams out of the building it smells
+    a bit\uFFFD sweet, and with a hint of spices.\nWhile you stare at the wonders
+    of nature, you hear small footsteps approaching you. A small creature strolls
+    out of the main rotunda, waddling on tiny feet, the sound is a bit funny. Still,
+    the creature holds itself with grace, accompanied by a classy gown. In its right
+    hand it balances a pipe, from which it inhales spicy sweet smoke.\nThe creature
+    comes to a stop in front of you, stretches out it\uFFFDs little hand for a greeting.\n\uFFFDBanjam,
+    my choom!\uFFFD You take its hand, returning his greeting. \uFFFDIt\uFFFDs nice
+    to see a new face around here. My name\uFFFDs Junks, I\uFFFDm the main otter
+    of this house, yup yup.\uFFFD\nHe takes another deep drag from his pipe, blowing
+    it right into your face. Your senses get clouded, now it smells woody and herbal.
+    A little note of lemon follows. Holy smokes! This stuff seems strong.\n\uFFFDThis
+    place here, my little choom, is a place where you can leave behind all of your
+    worries. Welcome to the Warm Whiskers Oasis.\uFFFD The otter in front of you
+    makes a inviting gesture. \uFFFDFollow me, choomba, time for you to rest, what
+    would ya want to do first?\uFFFD Junks wiggles his eyebrows towards you before
+    he enters the building."
+  _text: {fileID: 4900000, guid: 1881c2ea5a46c4e478c7d289ff3c020e, type: 3}
+  _upperButtonText: Remember the present.
+  _uCred: 0
+  _uStress: -2
+  _uHp: 0
+  _uAllExplorers: 0
+  _uUnlockPoI: 
+  _lowerButtonText: Dream about the future.
+  _lCred: 0
+  _lStress: -2
+  _lHp: 0
+  _lAllExplorers: 0
+  _name: Junks
+  _sprite: {fileID: 21300000, guid: 9a8eb5434a98fbf44a5f1ff727527ab9, type: 3}
+  _overrideAction: 0
+  _pointOfInterest: 
+  _newAction:
+    _fail:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _partial:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _success:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
