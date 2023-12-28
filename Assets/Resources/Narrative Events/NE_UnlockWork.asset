@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bodyText: I heard of this place for work. It doens't pay much, but better than
     nothing.
+  _text: {fileID: 0}
   _upperButtonText: Show me.
   _uCred: 0
   _uStress: 0
   _uHp: 0
   _uAllExplorers: 0
-  _uUnlockPoI: Work POI
+  _uUnlockPoI: RootsWork POI
   _lowerButtonText: 
   _lCred: 0
   _lStress: 0
@@ -27,3 +28,21 @@ MonoBehaviour:
   _lAllExplorers: 0
   _name: Guild Master
   _sprite: {fileID: 0}
+  _overrideAction: 0
+  _pointOfInterest: 
+  _newAction:
+    _fail:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _partial:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _success:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
