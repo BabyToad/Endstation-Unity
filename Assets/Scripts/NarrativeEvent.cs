@@ -106,6 +106,7 @@ public class NarrativeEvent : ScriptableObject
 
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);
         MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(true);
+        MasterSingleton.Instance.UIManger.DisplayOverworldUI(true);
         MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(true);
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.FreePlay;
 
@@ -136,6 +137,7 @@ public class NarrativeEvent : ScriptableObject
 
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);
         MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(true);
+        MasterSingleton.Instance.UIManger.DisplayOverworldUI(true);
         MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(true);
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.FreePlay;
 
@@ -164,6 +166,7 @@ public class NarrativeEvent : ScriptableObject
         }
         MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(false);
         MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(false);
+        MasterSingleton.Instance.UIManger.DisplayOverworldUI(false);
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(true);
     }
 }

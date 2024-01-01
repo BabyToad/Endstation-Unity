@@ -25,9 +25,13 @@ public class EventCanvas : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI _lowerButtonText;
 
+    [SerializeField]
+    Scrollbar _scrollbar;
+
     private void Start()
     {
         ShowEventCanvas(false);
+        ResizeScrollBar();
     }
 
     public void ShowEventCanvas(bool value)
@@ -87,4 +91,8 @@ public class EventCanvas : MonoBehaviour
         _lowerButton.onClick.AddListener(action);
     }
 
+    public void ResizeScrollBar()
+    {
+        _scrollbar.size = 0;
+    }
 }

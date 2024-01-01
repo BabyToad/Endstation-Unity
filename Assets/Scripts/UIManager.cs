@@ -7,12 +7,13 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     // Start is called before the first frame update
-
-
-
     [SerializeField]
     Button _startExpedition, _endExpedition, _explore, _recover, _indulgeVice, _recruitExplorer;
     [SerializeField]
+
+    Canvas _overworldUI;
+    [SerializeField]
+
     Text _cred, _reputation;
     [SerializeField]
     Canvas _explorerCanvas;
@@ -45,6 +46,10 @@ public class UIManager : MonoBehaviour
         _explore.interactable = value;
     }
 
+    public void DisplayOverworldUI(bool value)
+    {
+        _overworldUI.enabled = value;
+    }
     public void UpdateCredDisplay(float newValue)
     {
         _cred.text = newValue.ToString();
