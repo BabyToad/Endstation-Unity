@@ -2597,9 +2597,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PointOfInterest, Assembly-CSharp
-        m_MethodName: UseAction
+      - m_Target: {fileID: 1779712622087443044}
+        m_TargetAssemblyTypeName: Guild, Assembly-CSharp
+        m_MethodName: EndCycleButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
