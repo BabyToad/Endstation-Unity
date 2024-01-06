@@ -486,6 +486,7 @@ public class PointOfInterest : MonoBehaviour
         if (_clocks[_activeClock].IsCountdown && _active)
         {
             _clocks[_activeClock].ChangeFill(1);
+            _clocks[_activeClock].CompletionCheck();
             _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
             
             if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
