@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    Button _startExpedition, _endExpedition, _explore, _recover, _indulgeVice, _recruitExplorer;
+    Button _endCycle;
     [SerializeField]
 
     Canvas _overworldUI;
@@ -22,33 +22,13 @@ public class UIManager : MonoBehaviour
 
     public List<PointOfInterest> PointsOfInterestList { get => _pointsOfInterestList; set => _pointsOfInterestList = value; }
 
-    public void DowntimeUI(bool value)
-    {
-        
-        _startExpedition.interactable = value;
-        _recover.interactable = value;
-        _indulgeVice.interactable = value;
-        _recruitExplorer.interactable = value;
-
-        _endExpedition.interactable = !value;
-        _explore.interactable = !value;
-    }
-
-    public void ExpeditionUI(bool value)
-    {
-
-        _startExpedition.interactable = !value;
-        _recover.interactable = !value;
-        _indulgeVice.interactable = !value;
-        _recruitExplorer.interactable = !value;
-
-        _endExpedition.interactable = value;
-        _explore.interactable = value;
-    }
+    
 
     public void DisplayOverworldUI(bool value)
     {
         _overworldUI.enabled = value;
+       
+       HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
     }
     public void UpdateCredDisplay(float newValue)
     {
@@ -73,5 +53,10 @@ public class UIManager : MonoBehaviour
                 PointsOfInterestList[i].DisplaySelectUI(value);
             }
         }
+    }
+
+    public void HighlightEndCycle(bool value)
+    {
+        _endCycle.GetComponent<Animator>().SetBool("RosterIsExhausted", value);
     }
 }

@@ -397,7 +397,15 @@ public class PointOfInterest : MonoBehaviour
 
     public void UseAction()
     {
-        if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !_clocks[_activeClock].IsCountdown && MasterSingleton.Instance.Guild.SelectedExplorer.Name != "" && !_rollingDice)
+        if (_clocks[_activeClock].Segments == _clocks[_activeClock].Fill)
+        {
+            ExhaustSelectedExplorer();
+            _clocks[_activeClock].CompletionCheck();
+            LoadNewClockCheck();
+
+            DeselectDueToExhaustionCheck();
+        }
+        else if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !_clocks[_activeClock].IsCountdown && MasterSingleton.Instance.Guild.SelectedExplorer.Name != "" && !_rollingDice)
         {
             int diceResult = MasterSingleton.Instance.Guild.SelectedExplorer.RollDice(_clocks[_activeClock].ActionAttribute);
 
@@ -417,6 +425,8 @@ public class PointOfInterest : MonoBehaviour
         {
             Debug.LogWarning("Explorer is exhausted.");
         }
+
+        MasterSingleton.Instance.UIManger.HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
     }
 
     void StartDiceRoll(int result)

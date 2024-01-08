@@ -24,6 +24,10 @@ public class Explorer
     int _resolve;
     [SerializeField]
     bool _exhausted;
+    [SerializeField]
+    bool _isTrauma;
+    [SerializeField]
+    bool _isInjured;
 
     public enum Attribute
     {
@@ -59,6 +63,8 @@ public class Explorer
     public string Name { get => _name; set => _name = value; }
     public ExplorerCanvas ExplorerCanvas { get => _explorerCanvas; set => _explorerCanvas = value; }
     public bool Exhausted { get => _exhausted; set => _exhausted = value; }
+    public bool IsTrauma { get => _isTrauma; set => _isTrauma = value; }
+    public bool IsInjured { get => _isInjured; set => _isInjured = value; }
 
     public void AddExplorerToUI()
     {
@@ -69,9 +75,9 @@ public class Explorer
         _explorerCanvas.SetName(Name);
         _explorerCanvas.SetHealth(Health);
         _explorerCanvas.SetStress(Stress);
-        _explorerCanvas.SetInsight(Insight.ToString());
-        _explorerCanvas.SetProwess(Prowess.ToString());
-        _explorerCanvas.SetResolve(Resolve.ToString());
+        _explorerCanvas.SetInsight(Insight, IsInjured, IsTrauma);
+        _explorerCanvas.SetProwess(Prowess, IsInjured, IsTrauma);
+        _explorerCanvas.SetResolve(Resolve, IsInjured, IsTrauma);
 
         Toggle toggle = _explorerCanvas.GetComponent<Toggle>();
 
@@ -79,13 +85,41 @@ public class Explorer
         toggle.group = _guild.RosterTG;
 
         toggle.onValueChanged.AddListener(SelectExplorer);
+    }
 
-       
+    void UpdateExplorerCanvasStats()
+    {
+        int insight, prowess, resolve;
+        insight = ApplyDicePenaltyAndReturn(Insight);
+        prowess = ApplyDicePenaltyAndReturn(Prowess); 
+        resolve = ApplyDicePenaltyAndReturn(Resolve); 
+
+
+        _explorerCanvas.SetInsight(insight, IsInjured, IsTrauma);
+        _explorerCanvas.SetProwess(prowess, IsInjured, IsTrauma);
+        _explorerCanvas.SetResolve(resolve, IsInjured, IsTrauma);
+    }
+
+    int ApplyDicePenaltyAndReturn(int stat)
+    {
+        if (_isTrauma)
+        {
+            stat--;
+        }
+        if (_isInjured)
+        {
+            stat--;
+        }
+        return Mathf.Clamp(stat, 0, 5);
     }
 
     public int RollDice(int dice)
     {
-        if (_stress >= 9)
+        if (_isTrauma)
+        {
+            dice--;
+        }
+        if (_isInjured)
         {
             dice--;
         }
@@ -133,13 +167,35 @@ public class Explorer
     public void AddHealth(int health)
     {
         Health += health;
-        Health = Mathf.Clamp(Health, 0, 5);
+        int maxHealth = 3;
+        Health = Mathf.Clamp(Health, 0, maxHealth);
+        
+        if (_health == 0)
+        {
+            _isInjured = true;
+        }
+        else
+        {
+            _isInjured = false;
+        }
+        UpdateExplorerCanvasStats();
         _explorerCanvas.SetHealth(Health);
     }
     public void AddStress(int stress)
     {
         Stress += stress;
-        Stress = Mathf.Clamp(Stress, 0, 9);
+        int maxStress = 9;
+        Stress = Mathf.Clamp(Stress, 0, maxStress);
+        
+        if (_stress == maxStress)
+        {
+            _isTrauma = true;
+        }
+        else
+        {
+            _isTrauma = false;
+        }
+        UpdateExplorerCanvasStats();
         _explorerCanvas.SetStress(Stress);
     }
 
