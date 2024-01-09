@@ -39,7 +39,9 @@ Material:
     m_Floats:
     - _Detail_Strengh: 100
     - _Gradient_Offset: 9.1
+    - _Metallic: 0
     - _Normal_Strength: 1
+    - _Smoothness: 0
     - _Spread: 10.58
     m_Colors:
     - _Bot_Color: {r: 0.3207547, g: 0.17035286, b: 0.14676042, a: 1}
