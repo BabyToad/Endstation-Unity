@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bodyText: I heard of this place for work. It doens't pay much, but better than
     nothing.
-  _text: {fileID: 0}
-  _upperButtonText: Show me.
+  _text: {fileID: 4900000, guid: ece487d291bc56749b4b96ad3e161bd6, type: 3}
+  _upperButtonText: Check out the Roots.
   _uCred: 0
   _uStress: 0
   _uHp: 0
