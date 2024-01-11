@@ -46,8 +46,11 @@ public class EventCanvas : MonoBehaviour
     }
     public void ShowEventCanvas(bool value)
     {
+        ResizeScrollBar();
+
         _mainCanvas.gameObject.SetActive(value);
-        
+
+
     }
 
     public void SetEventImage(Sprite sprite)
@@ -105,5 +108,9 @@ public class EventCanvas : MonoBehaviour
     public void ResizeScrollBar()
     {
         _scrollbar.size = 0;
+    }
+    public void ResetScrollBar()
+    {
+        _scrollbar.value = 1;
     }
 }

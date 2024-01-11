@@ -202,6 +202,38 @@ public class PointOfInterest : MonoBehaviour
 
             IsSelected = true;
             Debug.Log("Selected " + this.name);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
+
+
+            switch(this.name)
+            {
+                case "Endstation POI" :
+                Debug.Log("play endstation layer");
+                
+                break;
+
+                case "Old Gods POI" :
+                Debug.Log("play temple layer");
+                AudioManager.instance.SetGlobalParameter("_state", 1.0f);
+                break;
+
+                case "Creditorium POI" :
+                Debug.Log("play creditorium layer");
+
+                break;
+
+                case "Oasis POI" :
+                Debug.Log("play oasis layer");
+                
+                break;
+            }
+
+/* 
+            if(this.name=="Old Gods POI")
+            {
+                Debug.Log("play temple layer");
+                AudioManager.instance.SetGlobalParameter("_state", 1.0f);
+            } */
         }
         
     }
@@ -212,6 +244,7 @@ public class PointOfInterest : MonoBehaviour
         DisplaySelectUI(false);
         IsSelected = false;
         Debug.Log("Deselected "+ this.name);
+        AudioManager.instance.SetGlobalParameter("_state", 0.0f);
     }
     private bool IsMouseOverUI() 
     {
@@ -397,7 +430,15 @@ public class PointOfInterest : MonoBehaviour
 
     public void UseAction()
     {
-        if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !_clocks[_activeClock].IsCountdown && MasterSingleton.Instance.Guild.SelectedExplorer.Name != "" && !_rollingDice)
+        if (_clocks[_activeClock].Segments == _clocks[_activeClock].Fill)
+        {
+            ExhaustSelectedExplorer();
+            _clocks[_activeClock].CompletionCheck();
+            LoadNewClockCheck();
+
+            DeselectDueToExhaustionCheck();
+        }
+        else if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !_clocks[_activeClock].IsCountdown && MasterSingleton.Instance.Guild.SelectedExplorer.Name != "" && !_rollingDice)
         {
             int diceResult = MasterSingleton.Instance.Guild.SelectedExplorer.RollDice(_clocks[_activeClock].ActionAttribute);
 
@@ -417,6 +458,8 @@ public class PointOfInterest : MonoBehaviour
         {
             Debug.LogWarning("Explorer is exhausted.");
         }
+
+        MasterSingleton.Instance.UIManger.HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
     }
 
     void StartDiceRoll(int result)
@@ -428,6 +471,8 @@ public class PointOfInterest : MonoBehaviour
     IEnumerator DiceRoll(int result)
     {
         _animSprites.Shuffle();
+
+        AudioManager.instance.PlayOneShot(FMODEvents.instance._dice);
 
         foreach (Sprite sprite in _animSprites)
         {
@@ -486,6 +531,7 @@ public class PointOfInterest : MonoBehaviour
         if (_clocks[_activeClock].IsCountdown && _active)
         {
             _clocks[_activeClock].ChangeFill(1);
+            _clocks[_activeClock].CompletionCheck();
             _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
             
             if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)

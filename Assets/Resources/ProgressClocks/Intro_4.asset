@@ -20,7 +20,7 @@ MonoBehaviour:
   filled:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 4affab75b972075468936f661cf8f160, type: 2}
+      - m_Target: {fileID: 11400000, guid: ac15e114317ec194d841a41622808f66, type: 2}
         m_TargetAssemblyTypeName: NarrativeEvent, Assembly-CSharp
         m_MethodName: Trigger
         m_Mode: 1
@@ -32,4 +32,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _description: Need a way to make some extra Cred?
+  _description: Tseya, the stargazer, is waiting for you.
