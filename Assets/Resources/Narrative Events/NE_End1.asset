@@ -12,9 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_End1
   m_EditorClassIdentifier: 
-  _bodyText: I am the Doctor
+  _bodyText: "Today the Endstation seems crowded. Many adventurers streaming in and
+    out, some exhausted from their trips into the unkown, others excited for a new
+    challenge. Your Tseya is sitting on the stoop of her tower, her little feet dangling
+    down. She waves you towards her. \"Banjam, my child. A bird has whispered me
+    you have been spending some time with Junks. He is a nice hairy friend, isn\uFFFDt
+    he? Junks has been around for a long time, not as long as me though, hoho!\",
+    the old woman chuckles. \r\n\"I hope you were able to take a good rest at his
+    place, it's quite comforting right? Though, I can't wait till we can gossip about
+    the drama, hehe.\" You are not sure what she is hinting at.\r\nShe rocks her
+    feet back and forth, while a group of passing adventurers greet her with a respectful
+    bow. You wonder how someone like her is such a key figure in this place. Her
+    gaze wanders towards you, cracking a smile. \"I hope you will find out more about
+    our little world and the connections. Here, let me heal you. Oh, and while you
+    wait, do you want something to eat?\" She proffers an antique tray, balancing
+    a whole potters shop worth of porcelain containing hot tea and other refreshments."
   _text: {fileID: 4900000, guid: 1698947b68cd7fc47b5a6f689eeac566, type: 3}
-  _upperButtonText: Have some biscuit.
+  _upperButtonText: Have some biscuits.
   _uCred: 0
   _uStress: 0
   _uHp: 1
