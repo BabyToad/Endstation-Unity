@@ -26,8 +26,8 @@ public class Guild : MonoBehaviour
     NarrativeEvent _bankruptNE;
     bool _isBankrupt;
 
-    public delegate void EndCycle();
-    public static event EndCycle OnEndCycle;
+    public delegate void NewCycle();
+    public static event NewCycle OnNewCycle;
 
 
     int _downtimeActions = 2;
@@ -45,8 +45,8 @@ public class Guild : MonoBehaviour
     private void Start()
     {
         AddCred(6);
-        RecruitExplorer();
-        RecruitExplorer();
+        RecruitExplorer(3, 1, 1);
+        RecruitExplorer(1, 2, 2);
     }
 
     private void Update()
@@ -60,7 +60,7 @@ public class Guild : MonoBehaviour
     {
         if (_cred >= 3)
         {
-            Explorer explorer = new Explorer(name, 3, Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3), this);
+            Explorer explorer = new Explorer(name, 3, Random.Range(1, 3), Random.Range(1, 3), Random.Range(1, 3), this);         
             _roster.Add(explorer);
             AddCred(-_recruitCost);
             Debug.Log("Recruited and Explorer. Spend " + _recruitCost + " Cred.");
@@ -71,6 +71,21 @@ public class Guild : MonoBehaviour
         }
     }
 
+
+    public void RecruitExplorer(int insight, int prowess, int resolve)
+    {
+        if (_cred >= 3)
+        {
+            Explorer explorer = new Explorer(Resources.Load<ExplorerNameList>("NameList").GenerateName(), 3, insight, prowess, resolve, this);
+            _roster.Add(explorer);
+            AddCred(-_recruitCost);
+            Debug.Log("Recruited and Explorer. Spend " + _recruitCost + " Cred.");
+        }
+        else
+        {
+            Debug.LogWarning("Need at least " + _recruitCost + " Cred to recruit an Explorer.");
+        }
+    }
     public void RecruitExplorer()
     {
         string name = Resources.Load<ExplorerNameList>("NameList").GenerateName();
@@ -128,10 +143,16 @@ public class Guild : MonoBehaviour
             poi.DeSelect();
         }
        
-        OnEndCycle();
         AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
         AudioManager.instance.PlayOneShot(FMODEvents.instance._endTurn);
+        MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.Cutscene;
         // tick clocks
+    }
+
+    public void StartNewCycle()
+    {
+        OnNewCycle();
+        MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.FreePlay;
     }
 
     public void AddCred(float credAmount)

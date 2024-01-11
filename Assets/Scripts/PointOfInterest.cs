@@ -105,7 +105,7 @@ public class PointOfInterest : MonoBehaviour
 
     private void OnEnable()
     {
-        Guild.OnEndCycle += CountDownClock;
+        Guild.OnNewCycle += CountDownClock;
 
         LoadDiceSprites();
         LoadClockSprites(_clocks[_activeClock].Segments);
@@ -189,7 +189,7 @@ public class PointOfInterest : MonoBehaviour
     private void OnDisable()
     {
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= Select_performed;
-        Guild.OnEndCycle -= CountDownClock;
+        Guild.OnNewCycle -= CountDownClock;
 
     }
 
