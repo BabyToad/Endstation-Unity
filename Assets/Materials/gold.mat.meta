@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/gold.mat.meta
 guid: 5858d1c3304855e4ba4f3e7749a503bd
 NativeFormatImporter:
+========
+guid: 1581f1a6c8d822c49b236c038de6f895
+DefaultImporter:
+>>>>>>>> origin/Danae-branch:Assets/Sound/Desktop/Master.strings.bank.meta
   externalObjects: {}
   mainObjectFileID: 2100000
   userData: 

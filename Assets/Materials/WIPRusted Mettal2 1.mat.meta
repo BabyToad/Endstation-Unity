@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/WIPRusted Mettal2 1.mat.meta
 guid: e3cd59a5e95898b41a19170bdcdf9530
 NativeFormatImporter:
+========
+guid: e6f96dd1e74c7f34aa6f7bc62df27b7f
+DefaultImporter:
+>>>>>>>> origin/Danae-branch:Assets/Sound/Desktop/Master.bank.meta
   externalObjects: {}
   mainObjectFileID: 2100000
   userData: 

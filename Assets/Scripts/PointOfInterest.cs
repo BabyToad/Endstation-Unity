@@ -202,6 +202,7 @@ public class PointOfInterest : MonoBehaviour
 
             IsSelected = true;
             Debug.Log("Selected " + this.name);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
         }
         
     }
@@ -438,6 +439,8 @@ public class PointOfInterest : MonoBehaviour
     IEnumerator DiceRoll(int result)
     {
         _animSprites.Shuffle();
+
+        AudioManager.instance.PlayOneShot(FMODEvents.instance._dice);
 
         foreach (Sprite sprite in _animSprites)
         {
