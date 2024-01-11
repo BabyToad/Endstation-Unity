@@ -1187,6 +1187,7 @@ MonoBehaviour:
   _rep: 0
   _upkeepPerExplorer: 0
   _recruitCost: 3
+  _bankruptNE: {fileID: 11400000, guid: f7032e3fb61d58a4c8e37a581527972e, type: 2}
 --- !u!114 &358191904597890477
 MonoBehaviour:
   m_ObjectHideFlags: 0

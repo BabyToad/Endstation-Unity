@@ -85,7 +85,7 @@ public class NarrativeEvent : ScriptableObject
             for (int i = 0; i < MasterSingleton.Instance.Guild.Roster.Count; i++)
             {
                 MasterSingleton.Instance.Guild.Roster[i].AddStress(_uStress);
-                MasterSingleton.Instance.Guild.Roster[i].AddStress(_uHp);
+                MasterSingleton.Instance.Guild.Roster[i].AddHealth(_uHp);
             }
         }
         else
@@ -128,7 +128,7 @@ public class NarrativeEvent : ScriptableObject
             for (int i = 0; i < MasterSingleton.Instance.Guild.Roster.Count; i++)
             {
                 MasterSingleton.Instance.Guild.Roster[i].AddStress(_lStress);
-                MasterSingleton.Instance.Guild.Roster[i].AddStress(_lHp);
+                MasterSingleton.Instance.Guild.Roster[i].AddHealth(_lHp);
             }
         }
         else
@@ -159,6 +159,7 @@ public class NarrativeEvent : ScriptableObject
 
     public void Trigger()
     {
+        Debug.Log("Triggered "  + name);
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.NarrativeEvent;
         MasterSingleton.Instance.EventCanvas.SetEventName(_name);
         MasterSingleton.Instance.EventCanvas.SetBodyText(_bodyText);

@@ -22,9 +22,13 @@ public class Guild : MonoBehaviour
     [SerializeField]
     int _recruitCost = 3;
 
+    [SerializeField]
+    NarrativeEvent _bankruptNE;
+    bool _isBankrupt;
 
     public delegate void EndCycle();
     public static event EndCycle OnEndCycle;
+
 
     int _downtimeActions = 2;
 
@@ -36,16 +40,21 @@ public class Guild : MonoBehaviour
     private void Awake()
     {
         RosterTG = GetComponent<ToggleGroup>();
-
     }
 
     private void Start()
     {
-
         AddCred(6);
+        RecruitExplorer();
+        RecruitExplorer();
+    }
 
-        RecruitExplorer();
-        RecruitExplorer();
+    private void Update()
+    {
+        if (MasterSingleton.Instance.StateManager.CurrentState == GameplayStateManager.GameplayState.FreePlay && _isBankrupt)
+        {
+            TriggerBankrupt();
+        }
     }
     public void RecruitExplorer(string name)
     {
@@ -128,6 +137,13 @@ public class Guild : MonoBehaviour
     public void AddCred(float credAmount)
     {
         _cred += credAmount;
+
+        if (_cred < 0)
+        {
+            _isBankrupt  = true;
+            _cred = 0;
+        }
+
         MasterSingleton.Instance.UIManger.UpdateCredDisplay(_cred);
     }
 
@@ -161,5 +177,11 @@ public class Guild : MonoBehaviour
         }
 
         return isExhausted;
+    }
+
+    void TriggerBankrupt()
+    {
+        _bankruptNE.Trigger();
+        _isBankrupt = false;
     }
 }
