@@ -120,6 +120,7 @@ public class Guild : MonoBehaviour
         }
        
         OnEndCycle();
+        AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
         AudioManager.instance.PlayOneShot(FMODEvents.instance._endTurn);
         // tick clocks
     }

@@ -147,6 +147,20 @@ MonoBehaviour:
       Data3: 1460086719
       Data4: 1130336738
     Path: event:/Dice
+  <_endTurn>k__BackingField:
+    Guid:
+      Data1: -1065986171
+      Data2: 1272537600
+      Data3: -259793756
+      Data4: 989957201
+    Path: event:/End of turn
+  <_music>k__BackingField:
+    Guid:
+      Data1: -154684451
+      Data2: 1100474173
+      Data3: -100368471
+      Data4: 744999723
+    Path: event:/Level music
   <_uiClick>k__BackingField:
     Guid:
       Data1: -371938268
@@ -356,13 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f8d29b493a10c46b681a0d3e23d48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test:
-    Guid:
-      Data1: 1677055091
-      Data2: 1331791621
-      Data3: 1961388426
-      Data4: 672096126
-    Path: event:/Waterfall
   masterVolume: 1
   musicVolume: 1
   sfxVolume: 1
