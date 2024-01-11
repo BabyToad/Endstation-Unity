@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000028F7FB944E8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000028E63B6BA68 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -18,6 +18,148 @@
 [LOG] Manager::readBank                        : fileversion = 141, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 141, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSound                     : filename = Assets/Sound/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000028E59732258 : node = 0000028EB3F255D0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000028EB5788C78.  list count = 0
+[LOG] SystemI::createSound                     : filename = Assets/Sound/Desktop/Master.bank : mode 02010082
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000028E59732258
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Sound/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSound                     :     setdata soundi = 0000028E59732408 : node = 0000028EB3F25490
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 3553248
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000028EB5788C78.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 16640
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028EB3F256E0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='waterfall loop', format=5, channels=2, frequency=48000, lengthbytes=261632, lengthpcm=1011064, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.110919.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000028E59732258
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000028E59732408
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Sound/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 3553248
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 16640
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028EB3F255A0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='waterfall loop', format=5, channels=2, frequency=48000, lengthbytes=261632, lengthpcm=1011064, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.110919.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000028E59732408
+[LOG] SoundI::release                          : waterfall loop (0000028E5333EF18)
+[LOG] SoundI::release                          :     waterfall loop (0000028E59FA38F8)
+[LOG] SoundI::release                          :     waterfall loop (0000028EB2C9FC78)
+[LOG] SoundI::release                          : waterfall loop (0000028E5333EBB8)
+[LOG] SoundI::release                          :     waterfall loop (0000028E59FA0EB8)
+[LOG] SoundI::release                          :     waterfall loop (0000028EB2C9B3E8)
+[LOG] SystemI::createSound                     : filename = Assets/Sound/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000028E5A07DF28 : node = 0000028EB452CBE0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000028EB5788C78.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000028E5A07DF28
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Sound/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 3553248
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 16640
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028EB452CCF0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='wind loop', format=5, channels=2, frequency=48000, lengthbytes=352288, lengthpcm=1256170, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.021737.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000028E5A07DF28
+[LOG] SoundI::release                          : wind loop (0000028EB489E248)
+[LOG] SoundI::release                          :     wind loop (0000028E59FA09D8)
+[LOG] SoundI::release                          :     wind loop (0000028EB2C9F5B8)
+[LOG] SystemI::createSound                     : filename = Assets/Sound/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000028E5A07E438 : node = 0000028EB452C5A0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000028EB5788C78.  list count = 0
+[LOG] SystemI::createSound                     : filename = Assets/Sound/Desktop/Master.bank : mode 02010082
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000028E5A07E438
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Sound/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSound                     :     setdata soundi = 0000028E5A07E0D8 : node = 0000028EB452CD20
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 3553248
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000028EB5788C78.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 16640
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028EB452C6B0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='waterfall loop', format=5, channels=2, frequency=48000, lengthbytes=261632, lengthpcm=1011064, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.110919.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000028E5A07E438
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000028E5A07E0D8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Sound/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 3553248
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 16640
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028EB452CE30
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='waterfall loop', format=5, channels=2, frequency=48000, lengthbytes=261632, lengthpcm=1011064, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.110919.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000028E5A07E0D8
+[LOG] SoundI::release                          : waterfall loop (0000028E59732408)
+[LOG] SoundI::release                          :     waterfall loop (0000028E55C673F8)
+[LOG] SoundI::release                          :     waterfall loop (0000028EB24D66B8)
+[LOG] SoundI::release                          : waterfall loop (0000028E59732258)
+[LOG] SoundI::release                          :     waterfall loop (0000028E55C67258)
+[LOG] SoundI::release                          :     waterfall loop (0000028EB24D5AE8)
+[LOG] SystemI::createSound                     : filename = Assets/Sound/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000028E5A07E288 : node = 0000028EB452CAA0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000028EB5788C78.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000028E5A07E288
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Sound/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 3553248
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 16640
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000028EB452CBB0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='wind loop', format=5, channels=2, frequency=48000, lengthbytes=352288, lengthpcm=1256170, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.021737.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000028E5A07E288
+[LOG] SoundI::release                          : wind loop (0000028E5A07DF28)
+[LOG] SoundI::release                          :     wind loop (0000028E572F3C88)
+[LOG] SoundI::release                          :     wind loop (0000028EB24D6868)
+[LOG] SoundI::release                          : wind loop (0000028E5A07E288)
+[LOG] SoundI::release                          :     wind loop (0000028E572F44A8)
+[LOG] SoundI::release                          :     wind loop (0000028EB24D6358)
+[LOG] SoundI::release                          : waterfall loop (0000028E5A07E0D8)
+[LOG] SoundI::release                          :     waterfall loop (0000028E572F4308)
+[LOG] SoundI::release                          :     waterfall loop (0000028EB24D6508)
+[LOG] SoundI::release                          : waterfall loop (0000028E5A07E438)
+[LOG] SoundI::release                          :     waterfall loop (0000028E572F3948)
+[LOG] SoundI::release                          :     waterfall loop (0000028EB24D5C98)
+[LOG] SoundI::release                          : 2024 01 11 base layer (0000028E5333F788)
+[LOG] SoundI::release                          :     2024 01 11 base layer (0000028E59FA4118)
+[LOG] SoundI::release                          :     2024 01 11 base layer (0000028EB2C9C318)
+[LOG] SoundI::release                          : 2024 01 11 temple layer 2 (0000028E5333F0C8)
+[LOG] SoundI::release                          :     2024 01 11 temple layer 2 (0000028E59FA4FB8)
+[LOG] SoundI::release                          :     2024 01 11 temple layer 2 (0000028EB2C9FE28)
+[LOG] SoundI::release                          : 2024 01 11 temple layer 1 (0000028E5333ED68)
+[LOG] SoundI::release                          :     2024 01 11 temple layer 1 (0000028E59FA0B78)
+[LOG] SoundI::release                          :     2024 01 11 temple layer 1 (0000028EB2C9DFC8)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -25,3 +167,5 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
