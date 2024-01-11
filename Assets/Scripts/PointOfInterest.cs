@@ -202,6 +202,7 @@ public class PointOfInterest : MonoBehaviour
 
             IsSelected = true;
             Debug.Log("Selected " + this.name);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
         }
         
     }
