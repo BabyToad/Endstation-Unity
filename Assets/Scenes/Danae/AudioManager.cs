@@ -8,8 +8,6 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance {get; private set;}
 
-    public EventReference test;
-
      //Volume controls
 
     [Header("Volume")]
@@ -42,7 +40,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        //PlayOneShot(FMODEvents.instance._test, FMODEvents.instance._creditorTemple);
+        Play(FMODEvents.instance._musicEI);
     }
 
     //*****One shot***** //uses event references

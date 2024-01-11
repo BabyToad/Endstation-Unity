@@ -203,6 +203,37 @@ public class PointOfInterest : MonoBehaviour
             IsSelected = true;
             Debug.Log("Selected " + this.name);
             AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
+
+
+            switch(this.name)
+            {
+                case "Endstation POI" :
+                Debug.Log("play endstation layer");
+                
+                break;
+
+                case "Old Gods POI" :
+                Debug.Log("play temple layer");
+                AudioManager.instance.SetGlobalParameter("_state", 1.0f);
+                break;
+
+                case "Creditorium POI" :
+                Debug.Log("play creditorium layer");
+
+                break;
+
+                case "Oasis POI" :
+                Debug.Log("play oasis layer");
+                
+                break;
+            }
+
+/* 
+            if(this.name=="Old Gods POI")
+            {
+                Debug.Log("play temple layer");
+                AudioManager.instance.SetGlobalParameter("_state", 1.0f);
+            } */
         }
         
     }
@@ -213,6 +244,7 @@ public class PointOfInterest : MonoBehaviour
         DisplaySelectUI(false);
         IsSelected = false;
         Debug.Log("Deselected "+ this.name);
+        AudioManager.instance.SetGlobalParameter("_state", 0.0f);
     }
     private bool IsMouseOverUI() 
     {
