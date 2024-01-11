@@ -203,6 +203,12 @@ public class PointOfInterest : MonoBehaviour
             IsSelected = true;
             Debug.Log("Selected " + this.name);
             AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
+
+            if(this.name=="Old Gods POI")
+            {
+                Debug.Log("play temple layer");
+                AudioManager.instance.SetGlobalParameter("_state", 1.0f);
+            }
         }
         
     }
@@ -213,6 +219,7 @@ public class PointOfInterest : MonoBehaviour
         DisplaySelectUI(false);
         IsSelected = false;
         Debug.Log("Deselected "+ this.name);
+        AudioManager.instance.SetGlobalParameter("_state", 0.0f);
     }
     private bool IsMouseOverUI() 
     {
