@@ -12,6 +12,9 @@ public class FMODEvents : MonoBehaviour
     public EventReference _dice {get ; private set;}
 
     [field:SerializeField]
+    public EventReference _endTurn {get ; private set;}
+
+    [field:SerializeField]
     public EventReference _music {get ; private set;}
 
     public EventInstance _musicEI;
