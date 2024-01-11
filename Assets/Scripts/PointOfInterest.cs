@@ -439,6 +439,8 @@ public class PointOfInterest : MonoBehaviour
     {
         _animSprites.Shuffle();
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance._dice);
+
         foreach (Sprite sprite in _animSprites)
         {
             _diceImage.sprite = sprite;

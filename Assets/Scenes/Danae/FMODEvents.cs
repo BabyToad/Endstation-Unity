@@ -9,10 +9,11 @@ public class FMODEvents : MonoBehaviour
     public static FMODEvents instance {get; private set;}
 
     [field:SerializeField]
-    public EventReference _test {get ; private set;}
+    public EventReference _dice {get ; private set;}
 
-    public EventInstance _testEI; 
-    public GameObject _creditorTemple;
+    [field:SerializeField]
+    public EventReference _uiClick {get ; private set;}
+
 
 
     private void Awake()
@@ -24,14 +25,13 @@ public class FMODEvents : MonoBehaviour
         instance=this;
 
         CreateInstances();
-        _creditorTemple=GameObject.Find("CreditorTempleV1");
 
 
     }
 
     private void CreateInstances()
     {
-        _testEI=RuntimeManager.CreateInstance(_test);
+
     }
 
 }
