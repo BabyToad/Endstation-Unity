@@ -406,11 +406,11 @@ public class PointOfInterest : MonoBehaviour
 
         if (_mainAction.Fail.Hp > 0 || _mainAction.Partial.Hp > 0 )
         {
-            description += "HP+ ";
+            description += "Vigor+ ";
         }
         if (_mainAction.Fail.Hp < 0 || _mainAction.Partial.Hp < 0 )
         {
-            description += "HP- ";
+            description += "Vigor- ";
         }
 
         return description;
