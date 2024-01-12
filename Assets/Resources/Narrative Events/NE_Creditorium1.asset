@@ -12,39 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Creditorium1
   m_EditorClassIdentifier: 
-  _bodyText: 'After crossing the city, you reach a massive building. It''s facade
-    towers above the surroundings like a cathedral. A lot of different species are
-    passing by, entering, leaving and you have to take care not to get swept away
-    by the swarm. All of them dressed in fancy suits and armed with hungry looks.
-    It surely looks like the perfect place for paying off your debt.
-
-    
-
-    After
-    a while you sit in front of a scary looking shark, his shiny teeth almost blinding
-    you. He rises one eyebrow at you, a little grumble follows. His whole aura is
-    intimidating, the smoke of his cigar makes your eyes teary.
-
-    "Banjam. I
-    heard you are an adventurer. Well, everyone got their own way of making money,
-    hum." While he talks, every word is supported by a little rumbling. "I also heard
-    you have only been here for short while and already got a huge debt on your back?"
-    The shark smirks, his sharp teeth on full display. "I am glad to finance your
-    adventures, but I expect a return of my investment. Every four cycles you will
-    owe me interest."
-
-    The Shark leans forward and stretches out a hand in greeting.
-    "I am Uriah of the Guild of Creditors. Delighted to do be doing business with
-    you."'
+  _bodyText: 
   _text: {fileID: 4900000, guid: eaa0d64a4f350e148bf5098c2e6f0510, type: 3}
   _upperButtonText: Firmly shake his hand.
-  _uCred: 5
+  _uCred: -3
   _uStress: 1
   _uHp: 0
   _uAllExplorers: 0
   _uUnlockPoI: 
   _lowerButtonText: Swallow hard and nod in agreement.
-  _lCred: 5
+  _lCred: -3
   _lStress: 1
   _lHp: 0
   _lAllExplorers: 0

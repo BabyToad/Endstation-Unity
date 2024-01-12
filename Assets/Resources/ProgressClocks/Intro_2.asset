@@ -20,7 +20,7 @@ MonoBehaviour:
   filled:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: e20b939a73bd75d49b716c77b01dd26c, type: 2}
+      - m_Target: {fileID: 11400000, guid: e756b1cf04be69641bb020c52e993538, type: 2}
         m_TargetAssemblyTypeName: NarrativeEvent, Assembly-CSharp
         m_MethodName: Trigger
         m_Mode: 1

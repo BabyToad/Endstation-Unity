@@ -20,7 +20,7 @@ MonoBehaviour:
   filled:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 5b62f683656f4794e969a2b8bd594ef5, type: 2}
+      - m_Target: {fileID: 11400000, guid: 82e6741cca8b7f942be2d566e1701937, type: 2}
         m_TargetAssemblyTypeName: NarrativeEvent, Assembly-CSharp
         m_MethodName: Trigger
         m_Mode: 1
@@ -32,4 +32,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _description: Tseya, the stargazer, is waiting for you.
+  _description: Stress getting to you?

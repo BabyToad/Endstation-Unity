@@ -12,33 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Intro2
   m_EditorClassIdentifier: 
-  _bodyText: "Tseya's is waiting for you, her eyes twinkling with a knowing glint.
-    \"Ah, my dear traveler, it seems you're ready. But before you embark on this
-    journey, there's a crucial step you must take.\" She motioned for you to sit
-    beside her, her demeanor both warm and instructive.\r\n\"In this realm of exploration,
-    every step forward often requires a bit of backing\uFFFDfinancially, that is.\"
-    Tseya's words carried a hint of amusement as she observed your puzzled expression.
-    \"Yes, yes, my dear. You'll need funds to fuel your ventures\uFFFDa resource
-    known as Creds. And where do you acquire these, you ask?\"\r\nHer gaze shifted
-    towards the skyline, hinting at a place yet unseen. \"The Guild of Creditors,
-    a hub bustling with the business of exploration. There, amidst the labyrinthine
-    halls and bustling crowds, you'll find the means to finance your odyssey. Seek
-    out the master of finances. They hold the key to unlocking the resources you'll
-    require.\"\r\nTseya's smile was reassuring, her wrinkled face like the constellation
-    of stars. \"Remember, my dear one, exploring this vast expanse often demands
-    more than courage and curiosity\uFFFDit requires a practical understanding of
-    the currency that fuels these adventures.\"\r\nWith a pat on your shoulder, Tseya
-    encouraged, \"Off you go now, to the Guild of Creditors. Acquire what you need,
-    and when you return, we shall delve deeper into the mysteries that await you
-    on this path.\" Her eyes sparkled with anticipation, eagerly awaiting your return,
-    ready to guide you through the next chapter of your exploration."
+  _bodyText: "You are a stranger at the end of the known universe. Whatever were
+    before, you have left behind on your journey across the stars.\nYou are searching
+    for something. Perhaps it is wealth, fame or power. Perhaps, it is knowledge,
+    wisdom or love. Or perhaps, you will only know when you find it.\n\nAnd so, you
+    finally washed up on the far shores of the cloud sea. Endstation. That is what
+    the wizened old stargazing woman has called it. A remote island drifting above
+    the cloud sea, bearing only a few small houses and the stargazer's tower. They
+    are build around the relic of an ancient void faring vessel, that has found here
+    it's final resting place.\n\nYou have spend your last Cred to get to this place
+    and found Tseya waiting for you, almost as if she knew you were coming. \n\"Banjam,
+    my fellow adventurer. I have been waiting for you.\" The old woman speaks with
+    an almost grandmotherly familiarity. \"Well, someone like you anyway.\"\nShe
+    tilts her head to the side, her huge eyes focusing on you. \"Hum, you do seem
+    a bit lost my child. Banjam? Hah! It\uFFFDs our way of saying hello, you didn\uFFFDt
+    know that?\" You shake your head. She pats your knee, the only thing she is able
+    to reach with her height. \"There, there. That\uFFFDs fine, all of us have to
+    start somewhere. And I can promise you, I know exactly were.\" The small woman
+    gestures towards the towards the titanic shape breaking the horizon. \"You want
+    to go to the Old Gods of the Cloud Sea. Go and come back. Than we talk more.\""
   _text: {fileID: 4900000, guid: e93dfbf66a5edb745b4fc4049e3b6c3c, type: 3}
   _upperButtonText: Visit the Creditorium.
   _uCred: 0
   _uStress: 0
   _uHp: 0
   _uAllExplorers: 0
-  _uUnlockPoI: Creditorium POI
+  _uUnlockPoI: Guild of Creditors
   _lowerButtonText: 
   _lCred: 0
   _lStress: 0

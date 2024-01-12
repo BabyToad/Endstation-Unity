@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Interest Payment
   _isCountdown: 1
   _actionAttribute: 0
-  _segments: 6
+  _segments: 4
   _fill: 0
   filled:
     m_PersistentCalls:

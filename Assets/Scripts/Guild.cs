@@ -68,7 +68,11 @@ public class Guild : MonoBehaviour
         RecruitExplorer(name);
     }
 
-    
+    public void ReturnFromExpedition()
+    {
+        _downtimeActions += 2;
+        MasterSingleton.Instance.UIManger.DowntimeUI(true);
+    }
 
     public void Recover()
     {
@@ -112,16 +116,9 @@ public class Guild : MonoBehaviour
             _roster[i].Rest();
         }
         AddCred(-_upkeepPerExplorer * _roster.Count);
-        MasterSingleton.Instance.UIManger.HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
 
-        foreach (PointOfInterest poi in MasterSingleton.Instance.UIManger.PointsOfInterestList)
-        {
-            poi.DeSelect();
-        }
-       
         OnEndCycle();
-        AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
-        AudioManager.instance.PlayOneShot(FMODEvents.instance._endTurn);
+
         // tick clocks
     }
 

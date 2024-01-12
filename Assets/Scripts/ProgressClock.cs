@@ -40,7 +40,7 @@ public class ProgressClock : ScriptableObject
     {
         _fill += value;
         _fill = Mathf.Clamp(_fill, 0, _segments);
-        Debug.Log("Changed fill to " + _fill + ". Added " + value);
+        Debug.Log("Changed fill to" + _fill + ". Added " + value);
     }
 
     public void CompletionCheck()

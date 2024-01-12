@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Working as a Porter
   _isCountdown: 0
   _actionAttribute: 1
-  _segments: 0
+  _segments: 8
   _fill: 0
   filled:
     m_PersistentCalls:
@@ -32,4 +32,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _description: The Roots of the City...
+  _description: 

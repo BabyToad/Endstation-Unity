@@ -38,40 +38,21 @@ public class ExplorerCanvas : MonoBehaviour
     {
         _stress.value = (float)stress;
     }
-    public void SetInsight(int insight, bool isInjured, bool isTrauma)
+    public void SetInsight(string insight)
     {
-        SetStatColor(_insight, isInjured, isTrauma);
         _insight.text = "Insight: " + insight;
     }
-    public void SetProwess(int prowess, bool isInjured, bool isTrauma)
+    public void SetProwess(string prowess)
     {
-        SetStatColor(_prowess, isInjured, isTrauma);
-
         _prowess.text = "Prowess: " + prowess;
     }
-    public void SetResolve(int resolve, bool isInjured, bool isTrauma)
+    public void SetResolve(string resolve)
     {
-        SetStatColor(_resolve, isInjured, isTrauma);
-
         _resolve.text = "Resolve: " + resolve;
     }
 
+    
 
-    void SetStatColor(Text stat, bool isInjured, bool isTrauma)
-    {
-        if (isInjured && isTrauma)
-        {
-            stat.color = Color.red;
-        }
-        else if (isInjured || isTrauma)
-        {
-            stat.color = Color.yellow;
-        }
-        else if (!isInjured && !isTrauma)
-        {
-            stat.color = Color.white;
-        }
-    }
     public void DisplayExhaustion(bool value)
     {
         if (value)

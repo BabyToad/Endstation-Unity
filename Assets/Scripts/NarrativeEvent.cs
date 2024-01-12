@@ -108,13 +108,6 @@ public class NarrativeEvent : ScriptableObject
         MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(true);
         MasterSingleton.Instance.UIManger.DisplayOverworldUI(true);
         MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(true);
-        if (MasterSingleton.Instance.Guild.IsRosterExhausted())
-        {
-            foreach (PointOfInterest poi in MasterSingleton.Instance.UIManger.PointsOfInterestList)
-            {
-                poi.DeSelect();
-            }
-        }
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.FreePlay;
 
     }
@@ -146,13 +139,6 @@ public class NarrativeEvent : ScriptableObject
         MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(true);
         MasterSingleton.Instance.UIManger.DisplayOverworldUI(true);
         MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(true);
-        if (MasterSingleton.Instance.Guild.IsRosterExhausted())
-        {
-            foreach (PointOfInterest poi in MasterSingleton.Instance.UIManger.PointsOfInterestList)
-            {
-                poi.DeSelect();
-            }
-        }
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.FreePlay;
 
     }
@@ -160,6 +146,7 @@ public class NarrativeEvent : ScriptableObject
     public void Trigger()
     {
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.NarrativeEvent;
+
         MasterSingleton.Instance.EventCanvas.SetEventName(_name);
         MasterSingleton.Instance.EventCanvas.SetBodyText(_bodyText);
         MasterSingleton.Instance.EventCanvas.SetEventImage(_sprite);

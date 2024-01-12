@@ -6,7 +6,10 @@ public class Dungeon : MonoBehaviour
 {
 
 
-    
+    public void StartExpedition()
+    {
+        MasterSingleton.Instance.UIManger.ExpeditionUI(true);
+    }
 
     public void Explore()
     {

@@ -12,22 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Intro3
   m_EditorClassIdentifier: 
-  _bodyText: "\"Anyways, you have returned from the Creditorium. How was meeting
-    ruthless loan shark, Uriah. Must have been an experience, huh.\uFFFD The small
-    woman in front of you strokes her chin slowly. \uFFFDWell, well, he isn\uFFFDt
-    really keen on people like us. You know, these type of people who earn their
-    money through adventures\uFFFD\uFFFD\r\nThe guild master takes a deep breath,
-    it does almost sound like a sigh. \uFFFDI am getting stressed out just thinking
-    about it. But there is someone I know who could help you out. My little\uFFFD
-    hairy friend. You'll find him not far away from here, on another floating island.
-    His little oasis of calm is were we go to relieve our stress.\uFFFD"
-  _text: {fileID: 4900000, guid: dbc118372793b2b4fadf60d19598ada0, type: 3}
-  _upperButtonText: Sigh, deeply relieved.
+  _bodyText: "You are a stranger at the end of the known universe. Whatever were
+    before, you have left behind on your journey across the stars.\nYou are searching
+    for something. Perhaps it is wealth, fame or power. Perhaps, it is knowledge,
+    wisdom or love. Or perhaps, you will only know when you find it.\n\nAnd so, you
+    finally washed up on the far shores of the cloud sea. Endstation. That is what
+    the wizened old stargazing woman has called it. A remote island drifting above
+    the cloud sea, bearing only a few small houses and the stargazer's tower. They
+    are build around the relic of an ancient void faring vessel, that has found here
+    it's final resting place.\n\nYou have spend your last Cred to get to this place
+    and found Tseya waiting for you, almost as if she knew you were coming. \n\"Banjam,
+    my fellow adventurer. I have been waiting for you.\" The old woman speaks with
+    an almost grandmotherly familiarity. \"Well, someone like you anyway.\"\nShe
+    tilts her head to the side, her huge eyes focusing on you. \"Hum, you do seem
+    a bit lost my child. Banjam? Hah! It\uFFFDs our way of saying hello, you didn\uFFFDt
+    know that?\" You shake your head. She pats your knee, the only thing she is able
+    to reach with her height. \"There, there. That\uFFFDs fine, all of us have to
+    start somewhere. And I can promise you, I know exactly were.\" The small woman
+    gestures towards the towards the titanic shape breaking the horizon. \"You want
+    to go to the Old Gods of the Cloud Sea. Go and come back. Than we talk more.\""
+  _text: {fileID: 4900000, guid: 9bbdfbef24258974aa256f1c954a3ff0, type: 3}
+  _upperButtonText: Leave to visit the Creditorium.
   _uCred: 0
   _uStress: 0
   _uHp: 0
   _uAllExplorers: 0
-  _uUnlockPoI: Oasis POI
+  _uUnlockPoI: 
   _lowerButtonText: 
   _lCred: 0
   _lStress: 0
