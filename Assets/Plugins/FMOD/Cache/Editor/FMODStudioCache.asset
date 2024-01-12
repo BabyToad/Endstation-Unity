@@ -157,6 +157,30 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-5372579317763086660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/_Location
+  m_EditorClassIdentifier: 
+  Name: _Location
+  StudioPath: parameter:/_Location
+  Min: 0
+  Max: 5
+  Default: 0
+  ID:
+    data1: 2020702153
+    data2: 3522522374
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-4258228999003375857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +274,7 @@ MonoBehaviour:
   Path: Assets/Sound/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638406530208362159
+  lastModified: 638406628971701542
   FileSizes: []
   Exists: 1
 --- !u!114 &-659593165372507598
@@ -380,13 +404,15 @@ MonoBehaviour:
   - {fileID: -3112522186817994754}
   - {fileID: -659593165372507598}
   - {fileID: -7520613562644378791}
+  - {fileID: 6704829978624699173}
   EditorParameters:
   - {fileID: 1164996420418157054}
+  - {fileID: -5372579317763086660}
   MasterBanks:
   - {fileID: -1303860920012983882}
   StringsBanks:
   - {fileID: 1485201355316348225}
-  cacheTime: 638406530208392131
+  cacheTime: 638406628971711529
   cacheVersion: 131591
 --- !u!114 &65336542434897603
 MonoBehaviour:
@@ -415,6 +441,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5112
+--- !u!114 &281188068155163600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music layers/_Location
+  m_EditorClassIdentifier: 
+  Name: _Location
+  StudioPath: 
+  Min: 0
+  Max: 5
+  Default: 0
+  ID:
+    data1: 2020702153
+    data2: 3522522374
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &1024623810130387959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,10 +558,10 @@ MonoBehaviour:
   Path: Assets/Sound/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638406530208392131
+  lastModified: 638406628971711529
   FileSizes:
   - Name: 
-    Value: 1282
+    Value: 1376
   Exists: 1
 --- !u!114 &1551454935382063212
 MonoBehaviour:
@@ -647,6 +697,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+  Length: 0
+--- !u!114 &6704829978624699173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music layers
+  m_EditorClassIdentifier: 
+  Path: event:/Music layers
+  Guid:
+    Data1: 50178466
+    Data2: 1236852761
+    Data3: 480882864
+    Data4: -339918132
+  Banks:
+  - {fileID: -1303860920012983882}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 281188068155163600}
+  MinDistance: 1
+  MaxDistance: 20
   Length: 0
 --- !u!114 &7375380849363581648
 MonoBehaviour:
