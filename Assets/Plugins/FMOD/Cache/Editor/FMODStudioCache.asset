@@ -172,7 +172,7 @@ MonoBehaviour:
   Name: _Location
   StudioPath: 
   Min: 0
-  Max: 5
+  Max: 6
   Default: 0
   ID:
     data1: 2020702153
@@ -302,7 +302,7 @@ MonoBehaviour:
   Path: Assets/Sound/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638406616612321927
+  lastModified: 638406762628645541
   FileSizes: []
   Exists: 1
 --- !u!114 &-659593165372507598
@@ -433,6 +433,7 @@ MonoBehaviour:
   - {fileID: -659593165372507598}
   - {fileID: -7520613562644378791}
   - {fileID: -2210176624163443512}
+  - {fileID: 5106119053390832102}
   EditorParameters:
   - {fileID: 1164996420418157054}
   - {fileID: 4270533389243094923}
@@ -440,7 +441,7 @@ MonoBehaviour:
   - {fileID: -1303860920012983882}
   StringsBanks:
   - {fileID: 1485201355316348225}
-  cacheTime: 638406616612336941
+  cacheTime: 638406762628665906
   cacheVersion: 131591
 --- !u!114 &65336542434897603
 MonoBehaviour:
@@ -562,10 +563,10 @@ MonoBehaviour:
   Path: Assets/Sound/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638406616612336941
+  lastModified: 638406762628665906
   FileSizes:
   - Name: 
-    Value: 1376
+    Value: 1468
   Exists: 1
 --- !u!114 &1551454935382063212
 MonoBehaviour:
@@ -717,7 +718,7 @@ MonoBehaviour:
   Name: _Location
   StudioPath: parameter:/_Location
   Min: 0
-  Max: 5
+  Max: 6
   Default: 0
   ID:
     data1: 2020702153
@@ -726,6 +727,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &5106119053390832102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/Lower wind
+  m_EditorClassIdentifier: 
+  Path: snapshot:/Lower wind
+  Guid:
+    Data1: 295800495
+    Data2: 1254073032
+    Data3: 41304233
+    Data4: -472892242
+  Banks:
+  - {fileID: -1303860920012983882}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &7375380849363581648
 MonoBehaviour:
   m_ObjectHideFlags: 0
