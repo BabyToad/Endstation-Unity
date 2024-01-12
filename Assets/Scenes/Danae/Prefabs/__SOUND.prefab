@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 2765584404133570652}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.4, y: -19.1, z: -37.2}
+  m_LocalPosition: {x: -28.8, y: 56.3, z: -62.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -156,11 +156,11 @@ MonoBehaviour:
     Path: event:/End of turn
   <_music>k__BackingField:
     Guid:
-      Data1: -154684451
-      Data2: 1100474173
-      Data3: -100368471
-      Data4: 744999723
-    Path: event:/Level music
+      Data1: 50178466
+      Data2: 1236852761
+      Data3: 480882864
+      Data4: -339918132
+    Path: event:/Music layers
   <_uiClick>k__BackingField:
     Guid:
       Data1: -371938268
@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 3240898922193231161}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 56.3, y: 23, z: 22.3}
+  m_LocalPosition: {x: 18, y: 18.6, z: -7.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -227,9 +227,9 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 28
 --- !u!1 &5525270302909029685
 GameObject:
   m_ObjectHideFlags: 0
