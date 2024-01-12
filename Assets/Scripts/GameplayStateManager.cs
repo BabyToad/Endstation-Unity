@@ -8,7 +8,8 @@ public class GameplayStateManager : MonoBehaviour
     public enum GameplayState
     {
         NarrativeEvent,
-        FreePlay
+        FreePlay,
+        Cutscene
     }
     [SerializeField]
     GameplayState _currentState;

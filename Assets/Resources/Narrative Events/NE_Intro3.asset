@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: NE_Intro3
   m_EditorClassIdentifier: 
   _bodyText: "\"Anyways, you have returned from the Creditorium. How was meeting
-    ruthless loan shark, Uriah. Must have been an experience, huh.\uFFFD The small
+    that ruthless loan shark, Uriah. Must have been an experience, huh.\" The small
     woman in front of you strokes her chin slowly. \uFFFDWell, well, he isn\uFFFDt
     really keen on people like us. You know, these type of people who earn their
-    money through adventures\uFFFD\uFFFD\r\nThe guild master takes a deep breath,
-    it does almost sound like a sigh. \uFFFDI am getting stressed out just thinking
-    about it. But there is someone I know who could help you out. My little\uFFFD
-    hairy friend. You'll find him not far away from here, on another floating island.
-    His little oasis of calm is were we go to relieve our stress.\uFFFD"
+    money through adventures...\"\r\nTseya takes a deep breath, it almost sound like
+    a sigh. \"I am getting stressed out just thinking about it. But there is someone
+    I know who could help you out. My little... hairy friend. You'll find him not
+    far away from here, on another floating island. His little oasis of calm is were
+    we go to relieve our stress.\""
   _text: {fileID: 4900000, guid: dbc118372793b2b4fadf60d19598ada0, type: 3}
-  _upperButtonText: Sigh, deeply relieved.
+  _upperButtonText: Visibly relax.
   _uCred: 0
   _uStress: 0
   _uHp: 0
