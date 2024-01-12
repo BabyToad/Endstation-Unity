@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Building_Gradient Industry
   m_Shader: {fileID: -6465566751694194690, guid: 558d10a93276a9e4db452b9a95b3c83f, type: 3}
-  m_Parent: {fileID: 2100000, guid: c9071f434334bb4418eb62803cb763f3, type: 2}
+  m_Parent: {fileID: 2100000, guid: 2e4effdd0b14ae2469abcff3b624a59a, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -39,7 +39,7 @@ Material:
     m_Floats:
     - _Detail_Strengh: 100
     - _Gradient_Offset: 9.1
-    - _Metallic: 0
+    - _Metallic: 0.46
     - _Normal_Strength: 1
     - _Smoothness: 0
     - _Spread: 10.58
