@@ -125,7 +125,7 @@ Material:
     - _GlossyReflections: 1
     - _Gradient_Offfset: 0
     - _Gradient_Offset: 16.3
-    - _Metallic: 0.1
+    - _Metallic: 0
     - _Mode: 0
     - _Normal_Strength: 1
     - _OcclusionStrength: 1
@@ -134,7 +134,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Reflection_Strength: 0
-    - _Smoothness: 0.1
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Spread: 18.37
@@ -146,11 +146,11 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Bot_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Bot_Color: {r: 0.15896086, g: 0.027320892, b: 0.012286487, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Top_Color: {r: 0.4392157, g: 0.14901961, b: 0.05490196, a: 1}
+    - _Top_Color: {r: 0.318, g: 0.13721916, b: 0.056630127, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3078469770961294728
 MonoBehaviour:
