@@ -95,11 +95,13 @@ public class EventCanvas : MonoBehaviour
     {
         _upperButton.onClick.RemoveAllListeners();
         _upperButton.onClick.AddListener(action);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
     }
     public void AddLowerButtonAction(UnityAction action)
     {
         _lowerButton.onClick.RemoveAllListeners();
         _lowerButton.onClick.AddListener(action);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
     }
 
     public void ResizeScrollBar()

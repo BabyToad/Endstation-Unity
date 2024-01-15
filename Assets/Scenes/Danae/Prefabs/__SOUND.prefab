@@ -161,6 +161,20 @@ MonoBehaviour:
       Data3: 480882864
       Data4: -339918132
     Path: event:/Music/Music layers
+  <_shark>k__BackingField:
+    Guid:
+      Data1: -176391284
+      Data2: 1074199360
+      Data3: 741168817
+      Data4: 699245907
+    Path: event:/SFX/Environment/Punctual/Creditorium shark
+  <_rootsIntro>k__BackingField:
+    Guid:
+      Data1: 1546587078
+      Data2: 1199026424
+      Data3: 1372468100
+      Data4: -789840488
+    Path: event:/SFX/Environment/Punctual/Roots intro
   <_uiClick>k__BackingField:
     Guid:
       Data1: -371938268
