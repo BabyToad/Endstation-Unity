@@ -85,7 +85,7 @@ MonoBehaviour:
       Data2: 1331791621
       Data3: 1961388426
       Data4: 672096126
-    Path: event:/Waterfall
+    Path: event:/SFX/Environment/Ambient loops/Waterfall
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -93,9 +93,9 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   Params: []
-  OverrideAttenuation: 1
+  OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 115.46
+  OverrideMaxDistance: 20
 --- !u!1 &2925951635475669356
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
       Data2: 1331791621
       Data3: 1961388426
       Data4: 672096126
-    Path: event:/Waterfall
+    Path: event:/SFX/Environment/Ambient loops/Waterfall
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -227,9 +227,9 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   Params: []
-  OverrideAttenuation: 1
+  OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 28
+  OverrideMaxDistance: 20
 --- !u!1 &5525270302909029685
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ MonoBehaviour:
       Data2: 1331791621
       Data3: 1961388426
       Data4: 672096126
-    Path: event:/Waterfall
+    Path: event:/SFX/Environment/Ambient loops/Waterfall
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -324,9 +324,9 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   Params: []
-  OverrideAttenuation: 1
+  OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 28
+  OverrideMaxDistance: 20
 --- !u!1 &7827542148906886413
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +378,7 @@ MonoBehaviour:
       Data2: 1267235100
       Data3: -2035840082
       Data4: -1340446851
-    Path: event:/Wind
+    Path: event:/SFX/Environment/Ambient loops/Wind
   Event: 
   PlayEvent: 1
   StopEvent: 2
