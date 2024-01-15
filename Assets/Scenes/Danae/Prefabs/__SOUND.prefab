@@ -146,28 +146,28 @@ MonoBehaviour:
       Data2: 1332827847
       Data3: 1460086719
       Data4: 1130336738
-    Path: event:/Dice
+    Path: event:/SFX/UI/Dice
   <_endTurn>k__BackingField:
     Guid:
       Data1: -1065986171
       Data2: 1272537600
       Data3: -259793756
       Data4: 989957201
-    Path: event:/End of turn
+    Path: event:/Controllers/End of turn
   <_music>k__BackingField:
     Guid:
       Data1: 50178466
       Data2: 1236852761
       Data3: 480882864
       Data4: -339918132
-    Path: event:/Music layers
+    Path: event:/Music/Music layers
   <_uiClick>k__BackingField:
     Guid:
       Data1: -371938268
       Data2: 1150255232
       Data3: 1041002648
       Data4: 344437625
-    Path: event:/Ui click
+    Path: event:/SFX/UI/Ui click
 --- !u!1 &3240898922193231161
 GameObject:
   m_ObjectHideFlags: 0
