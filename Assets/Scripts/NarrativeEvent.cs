@@ -164,11 +164,19 @@ public class NarrativeEvent : ScriptableObject
         switch(name)
         {
             case ("NE_Creditorium1"):
-            AudioManager.instance.PlayOneShot(FMODEvents.instance._shark);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._creditoriumIntro);
             break;
 
             case("NE_Roots 1"):
             AudioManager.instance.PlayOneShot(FMODEvents.instance._rootsIntro);
+            break;
+
+            case("NE_Oasis1"):
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._oasisIntro);
+            break;
+
+            case("NE_OldGods_0"):
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._templeIntro);
             break;
         }
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.NarrativeEvent;

@@ -20,10 +20,16 @@ public class FMODEvents : MonoBehaviour
     public EventInstance _musicEI;
 
     [field:SerializeField]
-    public EventReference _shark {get ; private set;}
+    public EventReference _creditoriumIntro {get ; private set;}
 
     [field:SerializeField]
     public EventReference _rootsIntro {get ; private set;}
+
+    [field:SerializeField]
+    public EventReference _oasisIntro {get ; private set;}
+
+    [field:SerializeField]
+    public EventReference _templeIntro {get ; private set;}
 
     [field:SerializeField]
     public EventReference _uiClick {get ; private set;}
