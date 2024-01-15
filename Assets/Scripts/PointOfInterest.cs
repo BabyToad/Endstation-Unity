@@ -207,34 +207,39 @@ public class PointOfInterest : MonoBehaviour
 
             switch(this.name)
             {
-                case "Endstation POI" :
-                Debug.Log("play endstation layer");
-                
-                break;
 
                 case "Old Gods POI" :
                 Debug.Log("play temple layer");
-                AudioManager.instance.SetGlobalParameter("_Location", 1.0f);
+                AudioManager.instance.SetGlobalParameter("_Location", 3.0f);
+                break;
+
+                //_Location value of 4.0f for more action temple layer
+
+                case "Oasis POI" :
+                Debug.Log("play oasis layer");
+                AudioManager.instance.SetGlobalParameter("_Location", 5.0f);
+                
                 break;
 
                 case "Creditorium POI" :
                 Debug.Log("play creditorium layer");
+                AudioManager.instance.SetGlobalParameter("_Location", 2.0f);
 
                 break;
 
-                case "Oasis POI" :
-                Debug.Log("play oasis layer");
-                AudioManager.instance.SetGlobalParameter("_Location", 3.0f);
+                case "Roots POI" :
+                Debug.Log("play roots layer");
+                AudioManager.instance.SetGlobalParameter("_Location", 6.0f);
+
+                break;
+
+                case "Endstation POI" :
+                Debug.Log("play endstation layer");
+                AudioManager.instance.SetGlobalParameter("_Location", 1.0f);
                 
                 break;
             }
 
-/* 
-            if(this.name=="Old Gods POI")
-            {
-                Debug.Log("play temple layer");
-                AudioManager.instance.SetGlobalParameter("_state", 1.0f);
-            } */
         }
         
     }

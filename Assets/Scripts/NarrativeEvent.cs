@@ -160,6 +160,17 @@ public class NarrativeEvent : ScriptableObject
     public void Trigger()
     {
         Debug.Log("Triggered "  + name);
+
+        switch(name)
+        {
+            case ("NE_Creditorium1"):
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._shark);
+            break;
+
+            case("NE_Roots 1"):
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._rootsIntro);
+            break;
+        }
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.NarrativeEvent;
         MasterSingleton.Instance.EventCanvas.SetEventName(_name);
         MasterSingleton.Instance.EventCanvas.SetBodyText(_bodyText);
