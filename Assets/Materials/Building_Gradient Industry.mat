@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Building_Gradient Industry
   m_Shader: {fileID: -6465566751694194690, guid: 558d10a93276a9e4db452b9a95b3c83f, type: 3}
-  m_Parent: {fileID: 2100000, guid: c9071f434334bb4418eb62803cb763f3, type: 2}
+  m_Parent: {fileID: 2100000, guid: 2e4effdd0b14ae2469abcff3b624a59a, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -39,13 +39,13 @@ Material:
     m_Floats:
     - _Detail_Strengh: 100
     - _Gradient_Offset: 9.1
-    - _Metallic: 0
+    - _Metallic: 0.46
     - _Normal_Strength: 1
     - _Smoothness: 0
     - _Spread: 10.58
     m_Colors:
-    - _Bot_Color: {r: 0.3207547, g: 0.17035286, b: 0.14676042, a: 1}
-    - _Top_Color: {r: 0.2015563, g: 0.36130688, b: 0.30946895, a: 0}
+    - _Bot_Color: {r: 0.87136734, g: 0.27889434, b: 0.116970696, a: 1}
+    - _Top_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3078469770961294728
 MonoBehaviour:
