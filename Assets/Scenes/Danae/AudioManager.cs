@@ -75,4 +75,12 @@ public class AudioManager : MonoBehaviour
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName(parameterName, parameterValue);
     }
 
+        private void Update()
+    {
+        //assigns volume to respective busses
+        masterBus.setVolume(masterVolume);
+        musicBus.setVolume(musicVolume);
+        sfxBus.setVolume(sfxVolume);
+    }
+
 }
