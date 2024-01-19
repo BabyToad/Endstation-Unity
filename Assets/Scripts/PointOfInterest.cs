@@ -203,6 +203,7 @@ public class PointOfInterest : MonoBehaviour
             IsSelected = true;
             Debug.Log("Selected " + this.name);
             AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._cameraIn);
 
 
             switch(this.name)
@@ -250,7 +251,9 @@ public class PointOfInterest : MonoBehaviour
         DisplaySelectUI(false);
         IsSelected = false;
         Debug.Log("Deselected "+ this.name);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance._cameraOut);
         AudioManager.instance.SetGlobalParameter("_Location", 0.0f);
+        
     }
     private bool IsMouseOverUI() 
     {

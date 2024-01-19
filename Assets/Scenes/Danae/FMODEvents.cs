@@ -14,6 +14,13 @@ public class FMODEvents : MonoBehaviour
     public EventInstance _musicEI;
 
     [field: Header("UI")]
+
+    [field:SerializeField]
+    public EventReference _cameraIn {get ; private set;}
+
+    [field:SerializeField]
+    public EventReference _cameraOut {get ; private set;}
+
     [field:SerializeField]
     public EventReference _dice {get ; private set;}
 
