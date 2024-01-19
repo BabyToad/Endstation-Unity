@@ -34,6 +34,9 @@ public class FMODEvents : MonoBehaviour
     [field:SerializeField]
     public EventReference _templeIntro {get ; private set;}
 
+    
+    [field: Header("Narrative")]
+
     [field: Header("Controllers")]
     [field:SerializeField]
     public EventReference _endTurn {get ; private set;}
