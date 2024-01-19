@@ -160,6 +160,10 @@ public class NarrativeEvent : ScriptableObject
     public void Trigger()
     {
         Debug.Log("Triggered "  + name);
+        if(name.Contains("NE_Intro"))
+        {
+            Debug.Log("tseya");
+        }
 
         switch(name)
         {
