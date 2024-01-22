@@ -210,32 +210,32 @@ public class PointOfInterest : MonoBehaviour
             {
 
                 case "Old Gods POI" :
-                Debug.Log("play temple layer");
+                //Debug.Log("play temple layer");
                 AudioManager.instance.SetGlobalParameter("_Location", 3.0f);
                 break;
 
                 //_Location value of 4.0f for more action temple layer
 
                 case "Oasis POI" :
-                Debug.Log("play oasis layer");
+                //Debug.Log("play oasis layer");
                 AudioManager.instance.SetGlobalParameter("_Location", 5.0f);
                 
                 break;
 
                 case "Creditorium POI" :
-                Debug.Log("play creditorium layer");
+                //Debug.Log("play creditorium layer");
                 AudioManager.instance.SetGlobalParameter("_Location", 2.0f);
 
                 break;
 
                 case "Roots POI" :
-                Debug.Log("play roots layer");
+                //Debug.Log("play roots layer");
                 AudioManager.instance.SetGlobalParameter("_Location", 6.0f);
 
                 break;
 
                 case "Endstation POI" :
-                Debug.Log("play endstation layer");
+                //Debug.Log("play endstation layer");
                 AudioManager.instance.SetGlobalParameter("_Location", 1.0f);
                 
                 break;
