@@ -274,7 +274,7 @@ Material:
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
-    - _Gust_Strength: 2
+    - _Gust_Strength: 0
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
@@ -321,7 +321,7 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 4
     - _RequireSplitLighting: 0
-    - _Shiver_Strength: 0.001
+    - _Shiver_Strength: 0
     - _Smoothness: 0.246
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
