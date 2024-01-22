@@ -33,6 +33,9 @@ public class FMODEvents : MonoBehaviour
     public EventReference _creditoriumIntro {get ; private set;}
 
     [field:SerializeField]
+    public EventReference _endstationIntro {get ; private set;}
+
+    [field:SerializeField]
     public EventReference _oasisIntro {get ; private set;}
 
     [field:SerializeField]

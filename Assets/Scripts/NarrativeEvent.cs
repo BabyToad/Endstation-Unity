@@ -162,27 +162,31 @@ public class NarrativeEvent : ScriptableObject
         Debug.Log("Triggered "  + name);
         if(name.Contains("NE_Intro"))
         {
-            Debug.Log("tseya");
+            Debug.Log("play tseya");
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._endstationIntro);
         }
-
-        switch(name)
+        else if (name.Contains("NE_Creditorium"))
         {
-            case ("NE_Creditorium1"):
+            Debug.Log("play creditorium");
             AudioManager.instance.PlayOneShot(FMODEvents.instance._creditoriumIntro);
-            break;
-
-            case("NE_Roots 1"):
-            AudioManager.instance.PlayOneShot(FMODEvents.instance._rootsIntro);
-            break;
-
-            case("NE_Oasis1"):
-            AudioManager.instance.PlayOneShot(FMODEvents.instance._oasisIntro);
-            break;
-
-            case("NE_OldGods_0"):
-            AudioManager.instance.PlayOneShot(FMODEvents.instance._templeIntro);
-            break;
         }
+        else if (name.Contains("NE_Oasis"))
+        {
+            Debug.Log("play oasis");
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._oasisIntro);
+        }
+        else if (name.Contains("NE_OldGods"))
+        {
+            Debug.Log("play old gods");
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._templeIntro);
+        }
+        else if (name.Contains("NE_Roots"))
+        {
+            Debug.Log("play roots");
+            AudioManager.instance.PlayOneShot(FMODEvents.instance._rootsIntro);
+        }
+
+
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.NarrativeEvent;
         MasterSingleton.Instance.EventCanvas.SetEventName(_name);
         MasterSingleton.Instance.EventCanvas.SetBodyText(_bodyText);

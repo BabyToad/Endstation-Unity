@@ -140,20 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d169b3e8cfaf9c847869cc502ea7d5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <_dice>k__BackingField:
-    Guid:
-      Data1: -1369502224
-      Data2: 1332827847
-      Data3: 1460086719
-      Data4: 1130336738
-    Path: event:/SFX/UI/Dice
-  <_endTurn>k__BackingField:
-    Guid:
-      Data1: -1065986171
-      Data2: 1272537600
-      Data3: -259793756
-      Data4: 989957201
-    Path: event:/Controllers/End of turn
   <_music>k__BackingField:
     Guid:
       Data1: 50178466
@@ -161,34 +147,27 @@ MonoBehaviour:
       Data3: 480882864
       Data4: -339918132
     Path: event:/Music/Music layers
-  <_creditoriumIntro>k__BackingField:
+  <_cameraIn>k__BackingField:
     Guid:
-      Data1: -176391284
-      Data2: 1074199360
-      Data3: 741168817
-      Data4: 699245907
-    Path: event:/SFX/Environment/Punctual/Creditorium shark
-  <_rootsIntro>k__BackingField:
+      Data1: 1289022933
+      Data2: 1088671834
+      Data3: 621926042
+      Data4: -1224603073
+    Path: event:/SFX/UI/Camera in
+  <_cameraOut>k__BackingField:
     Guid:
-      Data1: 1546587078
-      Data2: 1199026424
-      Data3: 1372468100
-      Data4: -789840488
-    Path: event:/SFX/Environment/Punctual/Roots intro
-  <_oasisIntro>k__BackingField:
+      Data1: -1886119819
+      Data2: 1081199286
+      Data3: 732139938
+      Data4: -596659993
+    Path: event:/SFX/UI/Camera out
+  <_dice>k__BackingField:
     Guid:
-      Data1: 1079971654
-      Data2: 1257166066
-      Data3: -823631191
-      Data4: 2110965026
-    Path: event:/SFX/Environment/Punctual/Oasis intro
-  <_templeIntro>k__BackingField:
-    Guid:
-      Data1: -1534779234
-      Data2: 1299678465
-      Data3: -1003708267
-      Data4: -657185969
-    Path: event:/SFX/Environment/Punctual/Temple intro
+      Data1: -1369502224
+      Data2: 1332827847
+      Data3: 1460086719
+      Data4: 1130336738
+    Path: event:/SFX/UI/Dice
   <_uiClick>k__BackingField:
     Guid:
       Data1: -371938268
@@ -196,6 +175,48 @@ MonoBehaviour:
       Data3: 1041002648
       Data4: 344437625
     Path: event:/SFX/UI/Ui click
+  <_creditoriumIntro>k__BackingField:
+    Guid:
+      Data1: -176391284
+      Data2: 1074199360
+      Data3: 741168817
+      Data4: 699245907
+    Path: event:/SFX/Environment/Punctual/Creditorium intro
+  <_endstationIntro>k__BackingField:
+    Guid:
+      Data1: -1347121525
+      Data2: 1262488263
+      Data3: 1552873128
+      Data4: 1047375705
+    Path: event:/SFX/Environment/Punctual/Endstation intro
+  <_oasisIntro>k__BackingField:
+    Guid:
+      Data1: 1079971654
+      Data2: 1257166066
+      Data3: -823631191
+      Data4: 2110965026
+    Path: event:/SFX/Environment/Punctual/Oasis intro
+  <_rootsIntro>k__BackingField:
+    Guid:
+      Data1: 1546587078
+      Data2: 1199026424
+      Data3: 1372468100
+      Data4: -789840488
+    Path: event:/SFX/Environment/Punctual/Roots intro
+  <_templeIntro>k__BackingField:
+    Guid:
+      Data1: -1534779234
+      Data2: 1299678465
+      Data3: -1003708267
+      Data4: -657185969
+    Path: event:/SFX/Environment/Punctual/Temple intro
+  <_endTurn>k__BackingField:
+    Guid:
+      Data1: -1065986171
+      Data2: 1272537600
+      Data3: -259793756
+      Data4: 989957201
+    Path: event:/Controllers/End of turn
 --- !u!1 &3240898922193231161
 GameObject:
   m_ObjectHideFlags: 0
