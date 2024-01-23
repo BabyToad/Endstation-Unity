@@ -102,6 +102,7 @@ public class PointOfInterest : MonoBehaviour
     GraphicRaycaster _graphicsRaycasterWorldCanvas;
 
     public bool IsSelected { get => _isSelected; set => _isSelected = value; }
+    public bool Active { get => _active; set => _active = value; }
 
     private void OnEnable()
     {
