@@ -45,15 +45,11 @@ public class FMODEvents : MonoBehaviour
     public EventReference _templeIntro {get ; private set;}
 
     
-    //[field: Header("Narrative")]
+    [field: Header("Narrative")]
 
     [field: Header("Controllers")]
     [field:SerializeField]
     public EventReference _endTurn {get ; private set;}
-    [field:SerializeField]
-    public EventReference _menuStart {get ; private set;}
-    [field:SerializeField]
-    public EventReference _menuStop {get ; private set;}
 
 
     private void Awake()

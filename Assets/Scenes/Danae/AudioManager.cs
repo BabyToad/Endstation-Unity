@@ -41,7 +41,6 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         Play(FMODEvents.instance._musicEI);
-        //Play(FMODEvents.instance._menuStart);
     }
 
     //*****One shot***** //uses event references

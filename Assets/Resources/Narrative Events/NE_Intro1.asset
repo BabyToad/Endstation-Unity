@@ -44,7 +44,7 @@ MonoBehaviour:
   _lHp: 0
   _lAllExplorers: 0
   _name: Old Woman
-  _sprite: {fileID: 21300000, guid: 098e0ab14f3535b4288f743be2b4f8da, type: 3}
+  _sprite: {fileID: 0}
   _overrideAction: 0
   _pointOfInterest: 
   _newAction:

@@ -32,5 +32,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _description: This is a countdown clock. It will advance at the beginning of every
-    cycle.When it completes your 3 Cred of interest payment are due.
+  _description: In four cylces the Guild wants their interest.

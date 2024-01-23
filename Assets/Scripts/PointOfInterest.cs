@@ -1,4 +1,4 @@
-﻿using Cinemachine;
+using Cinemachine;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -102,7 +102,6 @@ public class PointOfInterest : MonoBehaviour
     GraphicRaycaster _graphicsRaycasterWorldCanvas;
 
     public bool IsSelected { get => _isSelected; set => _isSelected = value; }
-    public bool Active { get => _active; set => _active = value; }
 
     private void OnEnable()
     {
@@ -397,29 +396,29 @@ public class PointOfInterest : MonoBehaviour
         string description ="";
         if (_mainAction.Fail.Cred > 0 || _mainAction.Partial.Cred > 0 )
         {
-            description += "Cred↑ ";
+            description += "Cred+ ";
         }
         if (_mainAction.Fail.Cred < 0 || _mainAction.Partial.Cred < 0 )
         {
-            description += "Cred↓ ";
+            description += "Cred- ";
         }
 
         if (_mainAction.Fail.Stress > 0 || _mainAction.Partial.Stress > 0 )
         {
-            description += "Stress↑ ";
+            description += "Stress+ ";
         }
         if (_mainAction.Fail.Stress < 0 || _mainAction.Partial.Stress < 0 )
         {
-            description += "Stress↓ ";
+            description += "Stress- ";
         }
 
         if (_mainAction.Fail.Hp > 0 || _mainAction.Partial.Hp > 0 )
         {
-            description += "Vigor↑ ";
+            description += "Vigor+ ";
         }
         if (_mainAction.Fail.Hp < 0 || _mainAction.Partial.Hp < 0 )
         {
-            description += "Vigor↓ ";
+            description += "Vigor- ";
         }
 
         return description;

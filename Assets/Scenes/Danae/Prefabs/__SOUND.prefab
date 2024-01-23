@@ -217,20 +217,6 @@ MonoBehaviour:
       Data3: -259793756
       Data4: 989957201
     Path: event:/Controllers/End of turn
-  <_menuStart>k__BackingField:
-    Guid:
-      Data1: 63062913
-      Data2: 1133451796
-      Data3: 670777752
-      Data4: -1661089163
-    Path: event:/Controllers/MenuStart
-  <_menuStop>k__BackingField:
-    Guid:
-      Data1: -754527783
-      Data2: 1166246317
-      Data3: 111103659
-      Data4: 724805826
-    Path: event:/Controllers/MenuStop
 --- !u!1 &3240898922193231161
 GameObject:
   m_ObjectHideFlags: 0
