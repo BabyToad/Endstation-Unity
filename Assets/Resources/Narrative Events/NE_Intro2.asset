@@ -12,26 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Intro2
   m_EditorClassIdentifier: 
-  _bodyText: "Tseya's is waiting for you, her eyes twinkling with a knowing glint.
-    \"Ah, my dear traveler, it seems you're ready. But before you embark on this
-    journey, there's a crucial step you must take.\" She motioned for you to sit
-    beside her, her demeanor both warm and instructive.\r\n\"In this realm of exploration,
-    every step forward often requires a bit of backing\uFFFDfinancially, that is.\"
-    Tseya's words carried a hint of amusement as she observed your puzzled expression.
-    \"Yes, yes, my dear. You'll need funds to fuel your ventures\uFFFDa resource
-    known as Creds. And where do you acquire these, you ask?\"\r\nHer gaze shifted
-    towards the skyline, hinting at a place yet unseen. \"The Guild of Creditors,
-    a hub bustling with the business of exploration. There, amidst the labyrinthine
-    halls and bustling crowds, you'll find the means to finance your odyssey. Seek
-    out the master of finances. They hold the key to unlocking the resources you'll
-    require.\"\r\nTseya's smile was reassuring, her wrinkled face like the constellation
-    of stars. \"Remember, my dear one, exploring this vast expanse often demands
-    more than courage and curiosity\uFFFDit requires a practical understanding of
-    the currency that fuels these adventures.\"\r\nWith a pat on your shoulder, Tseya
-    encouraged, \"Off you go now, to the Guild of Creditors. Acquire what you need,
-    and when you return, we shall delve deeper into the mysteries that await you
-    on this path.\" Her eyes sparkled with anticipation, eagerly awaiting your return,
-    ready to guide you through the next chapter of your exploration."
+  _bodyText: 'Tseya is waiting for you, her eyes twinkling with a knowing glint.
+    "Ah, my dear traveler, it seems you''re ready. But before you embark on this
+    journey, there''s a crucial step you must take." She motions for you to sit beside
+    her, her demeanor both warm and instructive.
+
+    "In this realm of exploration,
+    every step forward often requires a bit of backing - financially, that is." Tseya''s
+    words carried a hint of amusement as she observed your puzzled expression. "Yes,
+    yes, my dear. You''ll need funds to fuel your ventures - a resource known as
+    Creds. And where do you acquire these, you ask?"
+
+    Her gaze shifted towards
+    the skyline, hinting at a place yet unseen. "The Guild of Creditors, a hub bustling
+    with the business of exploration. There, amidst the labyrinthine halls and bustling
+    crowds, you''ll find the means to finance your odyssey. Seek out the master of
+    finances. They hold the key to unlocking the resources you''ll require."
+
+    Tseya''s
+    smile is reassuring, her wrinkled face like the constellation of stars. "Remember,
+    my dear one, exploring this vast expanse often demands more than courage and
+    curiosity- it requires a practical understanding of the currency that fuels these
+    adventures."
+
+    She pats you on the back. "Off you go now, to the Guild of
+    Creditors. Acquire what you need, and when you return, we shall delve deeper
+    into the mysteries that await you on this path." Her eyes sparkle with anticipation,
+    eagerly awaiting your return, ready to guide you through the next chapter of
+    your journey.'
   _text: {fileID: 4900000, guid: e93dfbf66a5edb745b4fc4049e3b6c3c, type: 3}
   _upperButtonText: Visit the Creditorium.
   _uCred: 0
@@ -45,7 +53,7 @@ MonoBehaviour:
   _lHp: 0
   _lAllExplorers: 0
   _name: Tseya
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 098e0ab14f3535b4288f743be2b4f8da, type: 3}
   _overrideAction: 0
   _pointOfInterest: 
   _newAction:
