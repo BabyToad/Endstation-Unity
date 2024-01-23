@@ -32,4 +32,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _description: Your journey begins here...
+  _description: Select an explorer and interact to begin your adventure.
