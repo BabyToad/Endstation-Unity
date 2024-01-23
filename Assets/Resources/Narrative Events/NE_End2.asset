@@ -12,21 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_End2
   m_EditorClassIdentifier: 
-  _bodyText: "Today the Endstation seems crowded. Many adventurers streaming in and
-    out, some exhausted from their trips into the unkown, others excited for a new
-    challenge. Your Tseya is sitting on the stoop of her tower, her little feet dangling
-    down. She waves you towards her. \"Banjam, my child. A bird has whispered me
-    you have been spending some time with Junks. He is a nice hairy friend, isn\uFFFDt
-    he? Junks has been around for a long time, not as long as me though, hoho!\",
-    the old woman chuckles. \r\n\"I hope you were able to take a good rest at his
-    place, it's quite comforting right? Though, I can't wait till we can gossip about
-    the drama, hehe.\" You are not sure what she is hinting at.\r\nShe rocks her
-    feet back and forth, while a group of passing adventurers greet her with a respectful
-    bow. You wonder how someone strange like her is such a key figure. Her gaze wanders
-    towards you, cracking a smile. \uFFFDI hope you will find out more about our
-    little world and the connections. Here, let me heal you. Oh, and while you wait,
-    do you want something to eat?\uFFFD She proffers an antique tray, balancing a
-    whole potters shop worth of porcelain containing hot tea and other refreshments."
+  _bodyText: "\"Banjam! How have you been?\" Tseya approaches you as soon as she
+    is able to see you. You explain her what has been going on and about the people
+    you have met. She nods her head. \"I see, I see. So, you had the pleasure to
+    met Charlie. A silly little robot, too smart for its own being. Come with me.\"
+    The old lady leads you to a little table, decorated with two cups of tea. \"Have
+    a seat with me, my little adventurer.\"\r\nBoth of you talk for a while, she
+    explains you the critical situation between robots and the other species. Apparently,
+    robots were only used for a faster working process, but they adapted very quickly,
+    and something in them sparked a greater intelligence. People started to get scared
+    by the situation and tried to deactivate robots which have been suspicious. In
+    her opinion, it's a very foolish move. Every living being should be given a chance,
+    and that's what history has taught us. \r\n\"We are such a well-developed society,
+    it's a shame that we want to stay stubborn.\", the granny sighs. \"Anyway, how
+    is your tea?\""
   _text: {fileID: 4900000, guid: f3fa55b6eac5e2f44bb065114ae3214c, type: 3}
   _upperButtonText: Delicious.
   _uCred: 0
@@ -40,7 +39,7 @@ MonoBehaviour:
   _lHp: 0
   _lAllExplorers: 0
   _name: Tseya
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 098e0ab14f3535b4288f743be2b4f8da, type: 3}
   _overrideAction: 0
   _pointOfInterest: 
   _newAction:
