@@ -3,7 +3,27 @@ guid: 5335c728d5b303b40991e8e6b6b2c4b1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mesh
+    second: {fileID: 2100000, guid: 1e3da1f708808e94d90e89362c87ebe7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rusted Mettal1
+    second: {fileID: 2100000, guid: 9e85137ee054e0a47936f18bba89b43c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rusted Mettal2
+    second: {fileID: 2100000, guid: cf3c4b7edbb1c944b8422577e0f0366e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Side
+    second: {fileID: 2100000, guid: 2d34059afd7938e48ba0c07cd71fa5b7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
