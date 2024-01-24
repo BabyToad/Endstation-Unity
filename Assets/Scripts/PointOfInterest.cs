@@ -120,7 +120,7 @@ public class PointOfInterest : MonoBehaviour
             DeSelect();
         }
     }
-    private void Start()
+    private void Awake()
     {
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += Select_performed;
         _cmbrain = Camera.main.GetComponent<CinemachineBrain>();
@@ -148,7 +148,7 @@ public class PointOfInterest : MonoBehaviour
             }
         }
 
-
+        
         if (_cmbrain.ActiveVirtualCamera.Name == "WorldCam" && !_cmbrain.IsBlending)
         {
             DisplayWorldUI(true);
@@ -157,6 +157,8 @@ public class PointOfInterest : MonoBehaviour
         {
             DisplayWorldUI(false);
         }
+        
+        
     }
     void RegisterWithUIHandler()
     {
@@ -426,7 +428,10 @@ public class PointOfInterest : MonoBehaviour
     }
     public void DisplaySelectUI(bool value)
     {
-        _activeCanvas.gameObject.SetActive(value);
+        if (_activeCanvas!= null)
+        {
+            _activeCanvas.gameObject.SetActive(value);
+        }
     }
 
     void NextClock()

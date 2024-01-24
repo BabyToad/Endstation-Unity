@@ -44,9 +44,13 @@ public class Guild : MonoBehaviour
 
     private void Start()
     {
-        AddCred(6);
-        RecruitExplorer(3, 1, 1);
-        RecruitExplorer(1, 2, 2);
+        if (_roster.Count < 2)
+        {
+            AddCred(6);
+            RecruitExplorer(3, 1, 1);
+            RecruitExplorer(1, 2, 2);
+        }
+        
     }
 
     private void Update()

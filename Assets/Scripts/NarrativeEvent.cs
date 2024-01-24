@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -93,12 +94,17 @@ public class NarrativeEvent : ScriptableObject
             MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(_uStress);
             MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(_uHp);
         }
-
-        if (_uUnlockPoI != "")
+        if (_uUnlockPoI == "reload")
+        {
+            Destroy(MasterSingleton.Instance.gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else if (_uUnlockPoI != "")
         {
             GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().SetActive(true);
         }
-
+        
+       
         if (_overrideAction)
         {
             GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().OverideAction(_newAction);
