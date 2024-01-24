@@ -27,7 +27,7 @@ MonoBehaviour:
   _lHp: 3
   _lAllExplorers: 0
   _name: Tseya
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 98541bebda7ad5941a0ef02638d982d6, type: 3}
   _overrideAction: 0
   _pointOfInterest: 
   _newAction:
