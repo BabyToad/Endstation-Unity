@@ -25,6 +25,11 @@ public class Guild : MonoBehaviour
     [SerializeField]
     NarrativeEvent _bankruptNE;
     bool _isBankrupt;
+    [SerializeField]
+    NarrativeEvent _diceNE;
+    bool _diceNEHasTriggerd;
+
+
 
     public delegate void NewCycle();
     public static event NewCycle OnNewCycle;
@@ -36,6 +41,8 @@ public class Guild : MonoBehaviour
     public float Cred { get => _cred; set => _cred = value; }
     public ToggleGroup RosterTG { get => _rosterTG; set => _rosterTG = value; }
     public List<Explorer> Roster { get => _roster; set => _roster = value; }
+    public bool DiceNEHasTriggerd { get => _diceNEHasTriggerd; set => _diceNEHasTriggerd = value; }
+    public NarrativeEvent DiceNE { get => _diceNE; set => _diceNE = value; }
 
     private void Awake()
     {

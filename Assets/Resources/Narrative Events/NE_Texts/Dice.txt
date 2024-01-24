@@ -1,0 +1,6 @@
+When you use an Explorer to interact with a Point of Interest. The Explorer rolls dice equal to his most appropriate Attribute. You take the highest of these rolls as the result.
+1-3: Failure = 1 Tick.
+4-5: Partial Success = 2 Ticks.
+6: Success = 3 Ticks.
+
+Consequences of Success and Failure depend on the Action and Point of Interest. They usually effect Stress, Health or Cred.

@@ -106,7 +106,9 @@ public class NarrativeEvent : ScriptableObject
 
         if (_uLockPoI != "")
         {
-            GameObject.Find(_uLockPoI).GetComponent<PointOfInterest>().SetActive(false);
+            PointOfInterest poi = GameObject.Find(_uLockPoI).GetComponent<PointOfInterest>();
+            poi.DeSelect();
+            poi.SetActive(false);
         }
 
         if (_overrideAction)

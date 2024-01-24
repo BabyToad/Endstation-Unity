@@ -444,7 +444,7 @@ public class PointOfInterest : MonoBehaviour
 
     public void UseAction()
     {
-        if (_clocks[_activeClock].Segments == _clocks[_activeClock].Fill)
+        if (_clocks[_activeClock].Segments == _clocks[_activeClock].Fill && !MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted)
         {
             ExhaustSelectedExplorer();
             _clocks[_activeClock].CompletionCheck();
@@ -470,7 +470,7 @@ public class PointOfInterest : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Explorer is exhausted.");
+            Resources.Load<NarrativeEvent>("Narrative Events/NE_Exhausted").Trigger();
         }
 
         MasterSingleton.Instance.UIManger.HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
@@ -508,6 +508,11 @@ public class PointOfInterest : MonoBehaviour
         DeselectDueToExhaustionCheck();
 
         _rollingDice = false;
+        if (!MasterSingleton.Instance.Guild.DiceNEHasTriggerd)
+        {
+            MasterSingleton.Instance.Guild.DiceNE.Trigger();
+            MasterSingleton.Instance.Guild.DiceNEHasTriggerd = true;
+        }
     }
 
     void ApplyRoll(int diceResult)
@@ -581,10 +586,6 @@ public class PointOfInterest : MonoBehaviour
             NextClock();
         }
     }
-
-    
-
-   
 
     public void OverideAction(Action newAction)
     {

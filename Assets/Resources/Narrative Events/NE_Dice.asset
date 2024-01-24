@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
+  m_Name: NE_Dice
+  m_EditorClassIdentifier: 
+  _bodyText: 'When you use an Explorer to interact with a Point of Interest. The
+    Explorer rolls dice equal to his most appropriate Attribute. You take the highest
+    of these rolls as the result.
+
+    1-3: Failure = 1 Tick.
+
+    4-5: Partial
+    Success = 2 Ticks.
+
+    6: Success = 3 Ticks.
+
+    
+
+    Consequences of Success
+    and Failure depend on the Action and Point of Interest. They usually effect Stress,
+    Health or Cred.'
+  _text: {fileID: 4900000, guid: 96bb9840985af6b419d9ec47f78930dd, type: 3}
+  _upperButtonText: Confirm
+  _uCred: 0
+  _uStress: 0
+  _uHp: 0
+  _uAllExplorers: 0
+  _uUnlockPoI: 
+  _uLockPoI: 
+  _lowerButtonText: 
+  _lCred: 0
+  _lStress: 0
+  _lHp: 0
+  _lAllExplorers: 0
+  _name: 
+  _sprite: {fileID: 0}
+  _overrideAction: 0
+  _pointOfInterest: 
+  _newAction:
+    _fail:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _partial:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
+    _success:
+      _cred: 0
+      _stress: 0
+      _hp: 0
+      _xp: 0
