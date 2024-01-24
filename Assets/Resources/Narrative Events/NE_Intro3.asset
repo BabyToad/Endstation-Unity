@@ -29,6 +29,7 @@ MonoBehaviour:
   _uHp: 0
   _uAllExplorers: 0
   _uUnlockPoI: Oasis POI
+  _uLockPoI: Endstation POI
   _lowerButtonText: 
   _lCred: 0
   _lStress: 0

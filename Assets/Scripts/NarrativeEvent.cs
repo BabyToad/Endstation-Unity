@@ -30,7 +30,7 @@ public class NarrativeEvent : ScriptableObject
     [SerializeField]
     bool _uAllExplorers = false;
     [SerializeField]
-    string _uUnlockPoI;
+    string _uUnlockPoI, _uLockPoI;
     UnityAction _upperAction;
 
     [Header("Second Choice")]
@@ -103,8 +103,12 @@ public class NarrativeEvent : ScriptableObject
         {
             GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().SetActive(true);
         }
-        
-       
+
+        if (_uLockPoI != "")
+        {
+            GameObject.Find(_uLockPoI).GetComponent<PointOfInterest>().SetActive(false);
+        }
+
         if (_overrideAction)
         {
             GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().OverideAction(_newAction);

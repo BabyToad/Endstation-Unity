@@ -20,17 +20,21 @@ MonoBehaviour:
     stone countenances, their vacuous ocular apertures extending a tacit invitation
     into an past lost to collective memory.
 
-    This ingress exudes a foreboding
-    yet inescapably magnetic charm, beckoning you to delve the recesses of an antiquated
-    epoch wherein uncharted riddles, elusive riches, and the ancient anima of these
-    titans may lie dormant, whispering secrets across the aeons.'
+    Not once have you found something
+    so...  There are no words for it. Your feelings are more than can be expressed
+    in common language. This place is unlike anything you have experienced.
+
+    Whatever
+    it is you were searching for, you will find it here. But for now you do not find
+    a way to enter.'
   _text: {fileID: 4900000, guid: 8f6a5271c47e08741a56830821efaf74, type: 3}
   _upperButtonText: Return to Endstation
   _uCred: 0
   _uStress: 1
   _uHp: 0
   _uAllExplorers: 1
-  _uUnlockPoI: 
+  _uUnlockPoI: Endstation POI
+  _uLockPoI: 
   _lowerButtonText: 
   _lCred: 0
   _lStress: 0
