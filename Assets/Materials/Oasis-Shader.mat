@@ -113,7 +113,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _Detail_Glow: 0.62
-    - _Detail_Strengh: 1.17
+    - _Detail_Strengh: 1.65
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
@@ -121,7 +121,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _Gradient_Offfset: 0
-    - _Gradient_Offset: 2.43
+    - _Gradient_Offset: 3.32
     - _Metallic: 0
     - _Mode: 0
     - _Normal_Strength: 0.6
@@ -130,10 +130,10 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: -3.38
+    - _Smoothness: -2.21
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Spread: 2.22
+    - _Spread: 2.74
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
