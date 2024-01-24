@@ -40,6 +40,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        PlayMenu();
         Play(FMODEvents.instance._musicEI);
     }
 
@@ -73,6 +74,23 @@ public class AudioManager : MonoBehaviour
     public void SetGlobalParameter(string parameterName, float parameterValue)
     {
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName(parameterName, parameterValue);
+    }
+
+    public void PlayMenu()
+    {
+        PlayOneShot(FMODEvents.instance._startMenu);
+    }
+
+    public void StopMenu()
+    {
+        PlayOneShot(FMODEvents.instance._stopMenu);
+        PlayOneShot(FMODEvents.instance._uiClick);
+    }
+
+    public void Reload()
+    {
+        PlayMenu();
+        Play(FMODEvents.instance._musicEI);
     }
 
         private void Update()
