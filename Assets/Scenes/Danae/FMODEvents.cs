@@ -50,6 +50,10 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Controllers")]
     [field:SerializeField]
     public EventReference _endTurn {get ; private set;}
+    [field:SerializeField]
+    public EventReference _startMenu {get ; private set;}
+    [field:SerializeField]
+    public EventReference _stopMenu {get ; private set;}
 
 
     private void Awake()
