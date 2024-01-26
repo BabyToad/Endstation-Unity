@@ -120,7 +120,7 @@ public class PointOfInterest : MonoBehaviour
             DeSelect();
         }
     }
-    private void Awake()
+    private void Start()
     {
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += Select_performed;
         _cmbrain = Camera.main.GetComponent<CinemachineBrain>();
