@@ -18,8 +18,6 @@ public class InputManager : MonoBehaviour
 
     }
 
-   
-
     private void OnDisable()
     {
         InputActions.Disable();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -58,6 +59,22 @@ public class Guild : MonoBehaviour
             RecruitExplorer(1, 2, 2);
         }
         
+    }
+
+    private void OnEnable()
+    {
+        MasterSingleton.Instance.InputManager.InputActions.Debug.Restart.performed += Restart_performed;
+
+    }
+
+    private void OnDisable()
+    {
+        MasterSingleton.Instance.InputManager.InputActions.Debug.Restart.performed -= Restart_performed;
+    }
+    private void Restart_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        Destroy(MasterSingleton.Instance.gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void Update()
@@ -216,4 +233,6 @@ public class Guild : MonoBehaviour
         _bankruptNE.Trigger();
         _isBankrupt = false;
     }
+
+
 }
