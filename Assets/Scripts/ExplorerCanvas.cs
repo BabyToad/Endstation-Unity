@@ -15,6 +15,8 @@ public class ExplorerCanvas : MonoBehaviour
     [SerializeField]
     Button _selectExplorer;
     [SerializeField]
+    List<Button> _advancementButtons;
+    [SerializeField]
     Image _background, _backgroundSelected;
     [SerializeField]
     Color _normalColor, _selectedColor, _exhaustedColor, _selectedExhaustedColor;
@@ -24,6 +26,7 @@ public class ExplorerCanvas : MonoBehaviour
     {
         _normalColor = _background.color;
         _selectedColor = _backgroundSelected.color;
+        ShowAdvancementButtons(false);
     }
     public void SetName(string name)
     {
@@ -56,6 +59,14 @@ public class ExplorerCanvas : MonoBehaviour
         _resolve.text = "Resolve: " + resolve;
     }
 
+
+    public void ShowAdvancementButtons(bool value)
+    {
+        for (int i = 0; i < _advancementButtons.Count; i++)
+        {
+            _advancementButtons[i].gameObject.SetActive(value);
+        }
+    }
 
     void SetStatColor(Text stat, bool isInjured, bool isTrauma)
     {

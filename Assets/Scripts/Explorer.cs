@@ -23,11 +23,15 @@ public class Explorer
     [SerializeField]
     int _resolve;
     [SerializeField]
+    int _experience;
+    [SerializeField]
     bool _exhausted;
     [SerializeField]
     bool _isTrauma;
     [SerializeField]
     bool _isInjured;
+    [SerializeField]
+    bool _hasAdvancement;
 
     public enum Attribute
     {
@@ -51,6 +55,7 @@ public class Explorer
         Insight = insight;
         Prowess = prowess;
         Resolve = resolve;
+        Experience = 0;
         _guild = guild;
         AddExplorerToUI();
     }
@@ -58,6 +63,7 @@ public class Explorer
     public int Insight { get => _insight; set => _insight = value; }
     public int Prowess { get => _prowess; set => _prowess = value; }
     public int Resolve { get => _resolve; set => _resolve = value; }
+    public int Experience { get => _experience; set => _experience = value; }
     public int Health { get => _health; set => _health = value; }
     public int Stress { get => _stress; set => _stress = value; }
     public string Name { get => _name; set => _name = value; }
@@ -65,6 +71,7 @@ public class Explorer
     public bool Exhausted { get => _exhausted; set => _exhausted = value; }
     public bool IsTrauma { get => _isTrauma; set => _isTrauma = value; }
     public bool IsInjured { get => _isInjured; set => _isInjured = value; }
+    public bool HasAdvancement { get => _hasAdvancement; set => _hasAdvancement = value; }
 
     public void AddExplorerToUI()
     {
@@ -98,6 +105,7 @@ public class Explorer
         _explorerCanvas.SetInsight(insight, IsInjured, IsTrauma);
         _explorerCanvas.SetProwess(prowess, IsInjured, IsTrauma);
         _explorerCanvas.SetResolve(resolve, IsInjured, IsTrauma);
+        _explorerCanvas.ShowAdvancementButtons(_hasAdvancement);
     }
 
     int ApplyDicePenaltyAndReturn(int stat)
@@ -197,6 +205,39 @@ public class Explorer
         }
         UpdateExplorerCanvasStats();
         _explorerCanvas.SetStress(Stress);
+    }
+
+    public void AddExperience(int exp)
+    {
+        Experience += exp;
+        int maxExperience = 9;
+        Experience = Mathf.Clamp(Experience, 0, maxExperience);
+
+        if (_experience == maxExperience)
+        {
+            //implement level up
+            _hasAdvancement = true;
+        }
+        else
+        {
+            _hasAdvancement = false;
+        }
+        UpdateExplorerCanvasStats();
+        //implement setExp on Explorer Canvas
+    }
+
+    public void AddInsight()
+    {
+        _insight++;
+    }
+
+    public void AddProwess()
+    {
+        _prowess++;
+    }
+    public void AddResolve()
+    {
+        _resolve++;
     }
 
     public void SelectExplorer(bool value)

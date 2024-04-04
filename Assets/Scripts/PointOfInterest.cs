@@ -23,18 +23,19 @@ public class PointOfInterest : MonoBehaviour
             [SerializeField]
             int _hp;
             [SerializeField]
-            float _xp;
+            int _xp;
 
             public float Cred { get => _cred; set => _cred = value; }
             public int Stress { get => _stress; set => _stress = value; }
             public int Hp { get => _hp; set => _hp = value; }
-            public float Xp { get => _xp; set => _xp = value; }
+            public int Xp { get => _xp; set => _xp = value; }
 
             public void Apply()
             {
                 MasterSingleton.Instance.Guild.AddCred(Cred);
                 MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(Stress);
                 MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(Hp);
+                MasterSingleton.Instance.Guild.SelectedExplorer.AddExperience(Xp);
             }
 
             
