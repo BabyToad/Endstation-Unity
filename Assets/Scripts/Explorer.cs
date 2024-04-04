@@ -33,6 +33,8 @@ public class Explorer
     [SerializeField]
     bool _hasAdvancement;
 
+    UnityAction _advanceInsight;
+
     public enum Attribute
     {
         Insight,
@@ -73,6 +75,7 @@ public class Explorer
     public bool IsInjured { get => _isInjured; set => _isInjured = value; }
     public bool HasAdvancement { get => _hasAdvancement; set => _hasAdvancement = value; }
 
+
     public void AddExplorerToUI()
     {
         _uiTemplate = Resources.Load<GameObject>("Explorer Canvas");
@@ -92,6 +95,11 @@ public class Explorer
         toggle.group = _guild.RosterTG;
 
         toggle.onValueChanged.AddListener(SelectExplorer);
+
+        _explorerCanvas.AdvancementButtons[0].onClick.AddListener(AdvanceInsight);
+        _explorerCanvas.AdvancementButtons[1].onClick.AddListener(AdvanceProwess);
+        _explorerCanvas.AdvancementButtons[2].onClick.AddListener(AdvanceResolve);
+
     }
 
     void UpdateExplorerCanvasStats()
@@ -108,6 +116,8 @@ public class Explorer
         _explorerCanvas.ShowAdvancementButtons(_hasAdvancement);
     }
 
+    
+
     int ApplyDicePenaltyAndReturn(int stat)
     {
         if (_isTrauma)
@@ -118,7 +128,7 @@ public class Explorer
         {
             stat--;
         }
-        return Mathf.Clamp(stat, 0, 5);
+        return Mathf.Clamp(stat, 0, 10000);
     }
 
     public int RollDice(int dice)
@@ -226,18 +236,30 @@ public class Explorer
         //implement setExp on Explorer Canvas
     }
 
-    public void AddInsight()
+    public void AdvanceInsight()
     {
         _insight++;
+        _experience = 0;
+        _hasAdvancement = false;
+        UpdateExplorerCanvasStats();
     }
 
-    public void AddProwess()
+    public void AdvanceProwess()
     {
         _prowess++;
+        _experience = 0;
+        _hasAdvancement = false;
+
+        UpdateExplorerCanvasStats();
     }
-    public void AddResolve()
+    public void AdvanceResolve()
     {
         _resolve++;
+        _experience = 0;
+        _hasAdvancement = false;
+
+        UpdateExplorerCanvasStats();
+
     }
 
     public void SelectExplorer(bool value)

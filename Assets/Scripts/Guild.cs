@@ -55,8 +55,8 @@ public class Guild : MonoBehaviour
         if (_roster.Count < 2)
         {
             AddCred(6);
-            RecruitExplorer(3, 1, 1);
-            RecruitExplorer(1, 2, 2);
+            RecruitExplorer(2, 1, 1);
+            RecruitExplorer(1, 2, 1);
         }
         
     }
@@ -120,43 +120,12 @@ public class Guild : MonoBehaviour
         RecruitExplorer(name);
     }
 
+
+    public void AdvanceInsight()
+    {
+        _selectedExplorer.AdvanceInsight();
+    }
     
-
-    public void Recover()
-    {
-        if (_downtimeActions > 0)
-        {
-            foreach (Explorer exp in _roster)
-            {
-                exp.AddHealth(1);
-            }
-            _downtimeActions--;
-            Debug.Log("Explorers recovered 1 HP. Used 1 Downtime Action.");
-        }
-        else
-        {
-            Debug.LogWarning("No Downtime Actions left.");
-        }
-    }
-
-    public void IndulgeVice()
-    {
-        if (_downtimeActions > 0)
-        {
-            foreach (Explorer exp in _roster)
-            {
-                exp.AddStress(-1 * exp.RollDice(exp.GetLowestAttributeStat()));
-            }
-            _downtimeActions--;
-            Debug.Log("Indulged Vice. Used 1 Downtime Action.");
-        }
-        else
-        {
-            Debug.LogWarning("No Downtime Actions left.");
-
-        }
-    }
-
     public void EndCycleButton()
     {
         for (int i = 0; i < _roster.Count; i++)

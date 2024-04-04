@@ -21,6 +21,7 @@ public class ExplorerCanvas : MonoBehaviour
     [SerializeField]
     Color _normalColor, _selectedColor, _exhaustedColor, _selectedExhaustedColor;
     public Button SelectExplorer { get => _selectExplorer; set => _selectExplorer = value; }
+    public List<Button> AdvancementButtons { get => _advancementButtons; set => _advancementButtons = value; }
 
     private void Awake()
     {
@@ -62,11 +63,13 @@ public class ExplorerCanvas : MonoBehaviour
 
     public void ShowAdvancementButtons(bool value)
     {
-        for (int i = 0; i < _advancementButtons.Count; i++)
+        for (int i = 0; i < AdvancementButtons.Count; i++)
         {
-            _advancementButtons[i].gameObject.SetActive(value);
+            AdvancementButtons[i].gameObject.SetActive(value);
         }
     }
+
+   
 
     void SetStatColor(Text stat, bool isInjured, bool isTrauma)
     {
