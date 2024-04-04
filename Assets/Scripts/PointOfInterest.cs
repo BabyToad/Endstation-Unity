@@ -120,21 +120,31 @@ public class PointOfInterest : MonoBehaviour
             DeSelect();
         }
     }
+
+    private void OnDisable()
+    {
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= Select_performed;
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed -= Deselect_performed;
+
+        Guild.OnNewCycle -= CountDownClock;
+
+    }
     private void Start()
     {
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += Select_performed;
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed += Deselect_performed;
+
         _cmbrain = Camera.main.GetComponent<CinemachineBrain>();
         _graphicsRaycasterWorldCanvas = _worldCanvas.GetComponent<GraphicRaycaster>();
         RegisterWithUIHandler();
         SetActive(_active);
     }
 
+    
+
     private void Update()
     {
         _mouseIsOverUI = IsMouseOverUI();
-
-        
-
         if (_activeCanvas.gameObject.activeSelf)
         {
             
@@ -148,7 +158,6 @@ public class PointOfInterest : MonoBehaviour
             }
         }
 
-        
         if (_cmbrain.ActiveVirtualCamera.Name == "WorldCam" && !_cmbrain.IsBlending)
         {
             DisplayWorldUI(true);
@@ -157,8 +166,7 @@ public class PointOfInterest : MonoBehaviour
         {
             DisplayWorldUI(false);
         }
-        
-        
+
     }
     void RegisterWithUIHandler()
     {
@@ -188,11 +196,9 @@ public class PointOfInterest : MonoBehaviour
         GraphicRaycast();
     }
 
-    private void OnDisable()
+    private void Deselect_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= Select_performed;
-        Guild.OnNewCycle -= CountDownClock;
-
+        DeSelect();
     }
 
     public void Select()
