@@ -41,7 +41,7 @@ MonoBehaviour:
   _lStress: 0
   _lHp: 0
   _lAllExplorers: 0
-  _name: 
+  _name: Info
   _sprite: {fileID: 0}
   _overrideAction: 0
   _pointOfInterest: 

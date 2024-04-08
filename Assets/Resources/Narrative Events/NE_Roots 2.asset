@@ -12,21 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Roots 2
   m_EditorClassIdentifier: 
-  _bodyText: Something goes wrong and hurts you, but at least you get payed a little
-    extra.
+  _bodyText: 'On your way home from an exhausting day of work in the Roots you run
+    into Charlie.
+
+    "Oh friend. I''m happy to see you again!" Charlie''s robotic
+    voice sounds delighted. The little bird on his head chirps. "Birb agrees! How
+    have you been?" Both of you chat for a while, sipping on an herbal drink Charlie
+    produced from one of his many pockets.
+
+    After you finish the bottle, the
+    android speaks up." You are a very nice friend; your company makes my circuits
+    go faster." Charlie''s mechanic body rumbles a bit, louder than usually. "You
+    know, I don''t have many friends besides Birb. Usually, people don''t like robots
+    like me. They didn''t even give me a name, only called me XX87." Silence fills
+    the empty corridor in which you have been sitting around for a while now. "Although,
+    you are different, you are a nice friend. Maybe next time I can show you the
+    real part of the Roots."'
   _text: {fileID: 4900000, guid: e7ac7692e5f6b61489d826f5b21d097a, type: 3}
-  _upperButtonText: "Tell Charlie that you\u2019re happy to be his friend."
+  _upperButtonText: Happy to be your friend.
   _uCred: 1
   _uStress: 0
   _uHp: 0
   _uAllExplorers: 0
   _uUnlockPoI: 
-  _lowerButtonText: "Explain him that you are very excited and can\u2019t wait."
+  _uLockPoI: 
+  _lowerButtonText: I can't wait.
   _lCred: 1
   _lStress: 0
   _lHp: 0
   _lAllExplorers: 0
-  _name: Work
+  _name: Charlie
   _sprite: {fileID: 21300000, guid: 30457d4c9646fd24d97782d03ae27c52, type: 3}
   _overrideAction: 0
   _pointOfInterest: 

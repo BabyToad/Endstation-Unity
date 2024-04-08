@@ -52,7 +52,7 @@ MonoBehaviour:
   _lStress: 0
   _lHp: 0
   _lAllExplorers: 0
-  _name: Guild Master
+  _name: Tseya
   _sprite: {fileID: 21300000, guid: 98541bebda7ad5941a0ef02638d982d6, type: 3}
   _overrideAction: 0
   _pointOfInterest: 
