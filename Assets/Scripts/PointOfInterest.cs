@@ -199,7 +199,11 @@ public class PointOfInterest : MonoBehaviour
 
     private void Deselect_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        DeSelect();
+        if (MasterSingleton.Instance.StateManager.CurrentState != GameplayStateManager.GameplayState.NarrativeEvent)
+        {
+            DeSelect();
+        }
+        
     }
 
     public void Select()
