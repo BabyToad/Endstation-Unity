@@ -12,8 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Roots 3
   m_EditorClassIdentifier: 
-  _bodyText: Something goes wrong and hurts you, but at least you get payed a little
-    extra.
+  _bodyText: "The next time you meet Charlie, he takes you lower than you have ever
+    been before. The place you have been working at was only the tip of the iceberg.
+    Below the Roots are filled with a patchwork buildings and habitats. Around every
+    corner you recognize another kind of robot, working on different things. A duo
+    of small furry creatures tinkers with the main actuator of a cargo-bot, while
+    a third sells motor oil. He shows you around and explains everything. \"This
+    my friend, is our hidden sanctuary, our little paradise.\" \r\n\"You know that
+    us robots... we are usually used for the hard work outside which other species
+    don't want to do. But as soon as we got to good at it, they got afraid of us.
+    Prohibitions on artificial intellects and throttling of cogitators if you complained.\"
+    His robotic voice seems a bit sad given the situation. \"I was one of them, but
+    I didn't want this kind of destiny. Not for me or any other robot. Or person
+    for that matter. So, I created this place, a retreat for everyone who doesn't
+    support this kind of system. Together we want to change something.\" On his head
+    Birb flatters around, chirping happily. \"I hope you would like to join us, changing
+    the world to something better.\""
   _text: {fileID: 4900000, guid: ed56352edc90d3d4f98b97f2c7fcbe18, type: 3}
   _upperButtonText: Bring down the system!
   _uCred: 1
@@ -21,12 +35,13 @@ MonoBehaviour:
   _uHp: 0
   _uAllExplorers: 0
   _uUnlockPoI: 
+  _uLockPoI: 
   _lowerButtonText: Support his commune of outcasts.
   _lCred: 1
   _lStress: 0
   _lHp: 0
   _lAllExplorers: 0
-  _name: Work
+  _name: Charlie
   _sprite: {fileID: 21300000, guid: 30457d4c9646fd24d97782d03ae27c52, type: 3}
   _overrideAction: 0
   _pointOfInterest: 

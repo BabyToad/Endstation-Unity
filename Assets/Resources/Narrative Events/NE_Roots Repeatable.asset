@@ -20,12 +20,13 @@ MonoBehaviour:
   _uHp: 0
   _uAllExplorers: 0
   _uUnlockPoI: 
+  _uLockPoI: 
   _lowerButtonText: 
   _lCred: 0
   _lStress: 0
   _lHp: 0
   _lAllExplorers: 0
-  _name: Work
+  _name: Charlie
   _sprite: {fileID: 21300000, guid: 30457d4c9646fd24d97782d03ae27c52, type: 3}
   _overrideAction: 0
   _pointOfInterest: 

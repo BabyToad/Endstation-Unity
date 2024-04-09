@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,7 +22,7 @@ public class NarrativeEvent : ScriptableObject
     [SerializeField]
     string _upperButtonText;
     [SerializeField]
-    float _uCred;
+    int _uCred;
     [SerializeField]
     int _uStress;
     [SerializeField]
@@ -37,7 +37,7 @@ public class NarrativeEvent : ScriptableObject
     [SerializeField]
     string _lowerButtonText;
     [SerializeField]
-    float _lCred;
+    int _lCred;
     [SerializeField]
     int _lStress;
     [SerializeField]
@@ -203,23 +203,89 @@ public class NarrativeEvent : ScriptableObject
         MasterSingleton.Instance.EventCanvas.SetEventName(_name);
         MasterSingleton.Instance.EventCanvas.SetBodyText(_bodyText);
         MasterSingleton.Instance.EventCanvas.SetEventImage(_sprite);
-        
-        MasterSingleton.Instance.EventCanvas.SetUpperButtonText(_upperButtonText);
+       
+        string hoverInfo = EventEffectsToStringDescription(_uCred, _uStress, _uHp);
+        MasterSingleton.Instance.EventCanvas.SetUpperButtonText(_upperButtonText, hoverInfo);
         MasterSingleton.Instance.EventCanvas.AddUpperButtonAction(_upperAction);
 
         if (_lowerButtonText != "")
         {
-            MasterSingleton.Instance.EventCanvas.ShowLowerButton(true);
+            string lhoverInfo = EventEffectsToStringDescription(_lCred, _lStress, _lHp);
+            MasterSingleton.Instance.EventCanvas.ShowLowerButton(true, lhoverInfo);
+
             MasterSingleton.Instance.EventCanvas.SetLowerButtonText(_lowerButtonText);
             MasterSingleton.Instance.EventCanvas.AddLowerButtonAction(_lowerAction);
         }
         else
         {
-            MasterSingleton.Instance.EventCanvas.ShowLowerButton(false);
+            MasterSingleton.Instance.EventCanvas.ShowLowerButton(false, "");
         }
         MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(false);
         MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(false);
         MasterSingleton.Instance.UIManger.DisplayOverworldUI(false);
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(true);
+    }
+
+    string EventEffectsToStringDescription(int cred, int stress, int hp)
+    {
+        string description = "";
+
+        if (Mathf.Abs(cred) > 0)
+        {
+            description += "Cred" + DetermineChangeSymbol(cred);
+        }
+        if (Mathf.Abs(cred) > 1)
+        {
+            description += DetermineChangeSymbol(cred);
+        }
+        if (Mathf.Abs(cred) > 2)
+        {
+            description += DetermineChangeSymbol(cred);
+        }
+        description += " ";
+
+       
+        if (Mathf.Abs(stress) > 0)
+        {
+            description += "Stress" + DetermineChangeSymbol(stress);
+        }
+        if (Mathf.Abs(stress) > 1)
+        {
+            description += DetermineChangeSymbol(stress);
+        }
+        if (Mathf.Abs(stress) > 2)
+        {
+            description += DetermineChangeSymbol(stress);
+        }
+        description += " ";
+
+        if (Mathf.Abs(hp) > 0)
+        {
+            description += "Vigor" + DetermineChangeSymbol(hp);
+        }
+        if (Mathf.Abs(hp) > 1)
+        {
+            description += DetermineChangeSymbol(hp);
+        }
+        if (Mathf.Abs(hp) > 2)
+        {
+            description += DetermineChangeSymbol(hp);
+        }
+        return description;
+
+    }
+
+    string DetermineChangeSymbol(float changeValue)
+    {
+        string changeSymbol = "";
+        if (changeValue < 0)
+        {
+            changeSymbol = "↓";
+        }
+        else if (changeValue > 0)
+        {
+            changeSymbol = "↑";
+        }
+        return changeSymbol;
     }
 }

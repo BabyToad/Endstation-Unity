@@ -1,10 +1,10 @@
 ﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System.Collections;
 
 public class PointOfInterest : MonoBehaviour
 {
@@ -38,7 +38,7 @@ public class PointOfInterest : MonoBehaviour
                 MasterSingleton.Instance.Guild.SelectedExplorer.AddExperience(Xp);
             }
 
-            
+
         }
 
         [SerializeField]
@@ -77,8 +77,9 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField]
     List<Sprite> _diceSprites;
     [SerializeField]
-
     List<Sprite> _animSprites;
+    [SerializeField]
+    Button _interact;
 
     bool _isSelected;
 
@@ -89,7 +90,7 @@ public class PointOfInterest : MonoBehaviour
     List<Sprite> _clockSprites;
     [SerializeField]
     Image _activeClockImage, _activeClockFrame, _activeClockBackground, _worldClockImage, _worldClockFrame, _worldClockBackground;
-    
+
     Sprite _clockFrameSprite, _clockBackgroundSprite;
 
     [SerializeField]
@@ -97,8 +98,8 @@ public class PointOfInterest : MonoBehaviour
 
     [Header("Feedbacks")]
     [SerializeField]
-    MoreMountains.Feedbacks.MMF_Player _applyRollFeedback, _actionFailedFeedback; 
-    
+    MoreMountains.Feedbacks.MMF_Player _applyRollFeedback, _actionFailedFeedback;
+
     //UI Selection
     GraphicRaycaster _graphicsRaycasterWorldCanvas;
 
@@ -111,7 +112,7 @@ public class PointOfInterest : MonoBehaviour
         LoadDiceSprites();
         LoadClockSprites(_clocks[_activeClock].Segments);
         DisplayClock(_clocks[_activeClock].Fill);
-        
+
         if (IsSelected)
         {
             Select();
@@ -141,14 +142,14 @@ public class PointOfInterest : MonoBehaviour
         SetActive(_active);
     }
 
-    
+
 
     private void Update()
     {
         _mouseIsOverUI = IsMouseOverUI();
         if (_activeCanvas.gameObject.activeSelf)
         {
-            
+
             if (MasterSingleton.Instance.Guild.SelectedExplorer != null)
             {
                 _activeExplorerText.text = MasterSingleton.Instance.Guild.SelectedExplorer.Name;
@@ -199,7 +200,11 @@ public class PointOfInterest : MonoBehaviour
 
     private void Deselect_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        DeSelect();
+        if (MasterSingleton.Instance.StateManager.CurrentState != GameplayStateManager.GameplayState.NarrativeEvent)
+        {
+            DeSelect();
+        }
+
     }
 
     public void Select()
@@ -215,43 +220,43 @@ public class PointOfInterest : MonoBehaviour
             AudioManager.instance.PlayOneShot(FMODEvents.instance._cameraIn);
 
 
-            switch(this.name)
+            switch (this.name)
             {
 
-                case "Old Gods POI" :
-                //Debug.Log("play temple layer");
-                AudioManager.instance.SetGlobalParameter("_Location", 3.0f);
-                break;
+                case "Old Gods POI":
+                    //Debug.Log("play temple layer");
+                    AudioManager.instance.SetGlobalParameter("_Location", 3.0f);
+                    break;
 
                 //_Location value of 4.0f for more action temple layer
 
-                case "Oasis POI" :
-                //Debug.Log("play oasis layer");
-                AudioManager.instance.SetGlobalParameter("_Location", 5.0f);
-                
-                break;
+                case "Oasis POI":
+                    //Debug.Log("play oasis layer");
+                    AudioManager.instance.SetGlobalParameter("_Location", 5.0f);
 
-                case "Creditorium POI" :
-                //Debug.Log("play creditorium layer");
-                AudioManager.instance.SetGlobalParameter("_Location", 2.0f);
+                    break;
 
-                break;
+                case "Creditorium POI":
+                    //Debug.Log("play creditorium layer");
+                    AudioManager.instance.SetGlobalParameter("_Location", 2.0f);
 
-                case "Roots POI" :
-                //Debug.Log("play roots layer");
-                AudioManager.instance.SetGlobalParameter("_Location", 6.0f);
+                    break;
 
-                break;
+                case "Roots POI":
+                    //Debug.Log("play roots layer");
+                    AudioManager.instance.SetGlobalParameter("_Location", 6.0f);
 
-                case "Endstation POI" :
-                //Debug.Log("play endstation layer");
-                AudioManager.instance.SetGlobalParameter("_Location", 1.0f);
-                
-                break;
+                    break;
+
+                case "Endstation POI":
+                    //Debug.Log("play endstation layer");
+                    AudioManager.instance.SetGlobalParameter("_Location", 1.0f);
+
+                    break;
             }
 
         }
-        
+
     }
 
     public void DeSelect()
@@ -259,12 +264,12 @@ public class PointOfInterest : MonoBehaviour
         _vcam.Priority = 1;
         DisplaySelectUI(false);
         IsSelected = false;
-        Debug.Log("Deselected "+ this.name);
+        Debug.Log("Deselected " + this.name);
         AudioManager.instance.PlayOneShot(FMODEvents.instance._cameraOut);
         AudioManager.instance.SetGlobalParameter("_Location", 0.0f);
-        
+
     }
-    private bool IsMouseOverUI() 
+    private bool IsMouseOverUI()
     {
         return EventSystem.current.IsPointerOverGameObject();
     }
@@ -285,7 +290,7 @@ public class PointOfInterest : MonoBehaviour
             Debug.Log("Hit " + result.gameObject.name);
         }
     }
-    
+
     void LoadClockSprites(int segments)
     {
         _clockSprites.Clear();
@@ -293,7 +298,7 @@ public class PointOfInterest : MonoBehaviour
         if (segments == 0)
         {
             _clockFrameSprite = Resources.Load<Sprite>("UI/Progress Clocks/New0Clock/Frame/0Frame");
-            
+
             foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New0Clock"))
             {
                 _clockSprites.Add(sprite);
@@ -309,7 +314,7 @@ public class PointOfInterest : MonoBehaviour
             {
                 _clockSprites.Add(sprite);
             }
-            
+
         }
         if (segments == 6)
         {
@@ -366,7 +371,14 @@ public class PointOfInterest : MonoBehaviour
         _worldClockFrame.sprite = _clockFrameSprite;
         _description.text = _clocks[_activeClock].Description;
         RecolorClock();
-        _consequences.text = "Attribute: " + _clocks[_activeClock].ActionAttribute.ToString() + "\n" + ActionToStringDescription();
+        if (_clocks[_activeClock].Segments != 0)
+        {
+            _consequences.text = "Attribute: " + _clocks[_activeClock].ActionAttribute.ToString() + "\n" + ActionToStringDescription();
+        }
+        else
+        {
+            _consequences.text = "";
+        }
     }
 
     void RecolorClock()
@@ -393,7 +405,7 @@ public class PointOfInterest : MonoBehaviour
         _active = value;
         _activeCanvas.transform.parent.gameObject.SetActive(value);
         _worldCanvas.transform.parent.gameObject.SetActive(value);
-        
+
         if (value)
         {
             RegisterWithUIHandler();
@@ -402,40 +414,74 @@ public class PointOfInterest : MonoBehaviour
 
     string ActionToStringDescription()
     {
-        string description ="";
-        if (_mainAction.Fail.Cred > 0 || _mainAction.Partial.Cred > 0 )
-        {
-            description += "Cred↑ ";
-        }
-        if (_mainAction.Fail.Cred < 0 || _mainAction.Partial.Cred < 0 )
-        {
-            description += "Cred↓ ";
-        }
+        string description = "";
 
-        if (_mainAction.Fail.Stress > 0 || _mainAction.Partial.Stress > 0 )
+        float avgCred = (_mainAction.Fail.Cred + _mainAction.Partial.Cred + _mainAction.Success.Cred) / 3f;
+        if (Mathf.Abs(avgCred) > 0)
         {
-            description += "Stress↑ ";
+            description += "Cred" + DetermineChangeSymbol(avgCred);
         }
-        if (_mainAction.Fail.Stress < 0 || _mainAction.Partial.Stress < 0 )
+        if (Mathf.Abs(avgCred) > 1)
         {
-            description += "Stress↓ ";
+            description += DetermineChangeSymbol(avgCred);
         }
+        if (Mathf.Abs(avgCred) > 2)
+        {
+            description += DetermineChangeSymbol(avgCred);
+        }
+        description += " ";
 
-        if (_mainAction.Fail.Hp > 0 || _mainAction.Partial.Hp > 0 )
+        float avgStress = (_mainAction.Fail.Stress + _mainAction.Partial.Stress + _mainAction.Success.Stress) / 3f;
+        if (Mathf.Abs(avgStress) > 0)
         {
-            description += "Vigor↑ ";
+            description += "Stress"+DetermineChangeSymbol(avgStress);
         }
-        if (_mainAction.Fail.Hp < 0 || _mainAction.Partial.Hp < 0 )
+        if (Mathf.Abs(avgStress) > 1)
         {
-            description += "Vigor↓ ";
+            description += DetermineChangeSymbol(avgStress);
+        }
+        if (Mathf.Abs(avgStress) > 2)
+        {
+            description += DetermineChangeSymbol(avgStress);
+        }
+        description += " ";
+
+
+        float avgHp = (_mainAction.Fail.Hp + _mainAction.Partial.Hp + _mainAction.Success.Hp) / 3f;
+        if (Mathf.Abs(avgHp) > 0)
+        {
+            description += "Vigor" + DetermineChangeSymbol(avgHp);
+        }
+        if (Mathf.Abs(avgHp) > 1)
+        {
+            description += DetermineChangeSymbol(avgHp);
+        }
+        if (Mathf.Abs(avgHp) > 2)
+        {
+            description += DetermineChangeSymbol(avgHp);
         }
 
         return description;
-    
+
     }
+
+    string DetermineChangeSymbol(float avgChangeValue)
+    {
+        string changeSymbol = "";
+        if (avgChangeValue < 0)
+        {
+            changeSymbol = "↓";
+        }
+        else if (avgChangeValue > 0)
+        {
+            changeSymbol = "↑";
+        }
+        return changeSymbol;
+    }
+
     public void DisplaySelectUI(bool value)
     {
-        if (_activeCanvas!= null)
+        if (_activeCanvas != null)
         {
             _activeCanvas.gameObject.SetActive(value);
         }
@@ -446,7 +492,20 @@ public class PointOfInterest : MonoBehaviour
         _activeClock++;
         LoadClockSprites(_clocks[_activeClock].Segments);
         _clocks[_activeClock].Fill = 0;
+        DisplayInteractButton();
         DisplayClock(_clocks[_activeClock].Fill);
+    }
+
+    void DisplayInteractButton()
+    {
+        if (_clocks[_activeClock].IsCountdown)
+        {
+            _interact.gameObject.SetActive(false);
+        }
+        else
+        {
+            _interact.gameObject.SetActive(true);
+        }
     }
 
     public void UseAction()
@@ -503,7 +562,7 @@ public class PointOfInterest : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         _diceImage.sprite = _diceSprites[result - 1];
 
-        
+
         ApplyRoll(result);
         _applyRollFeedback.PlayFeedbacks();
 
@@ -559,7 +618,7 @@ public class PointOfInterest : MonoBehaviour
             _clocks[_activeClock].ChangeFill(1);
             _clocks[_activeClock].CompletionCheck();
             _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
-            
+
             if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
             {
                 NextClock();
@@ -601,5 +660,5 @@ public class PointOfInterest : MonoBehaviour
 }
 
 
-    
+
 
