@@ -77,8 +77,9 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField]
     List<Sprite> _diceSprites;
     [SerializeField]
-
     List<Sprite> _animSprites;
+    [SerializeField]
+    Button _interact;
 
     bool _isSelected;
 
@@ -450,7 +451,20 @@ public class PointOfInterest : MonoBehaviour
         _activeClock++;
         LoadClockSprites(_clocks[_activeClock].Segments);
         _clocks[_activeClock].Fill = 0;
+        DisplayInteractButton();
         DisplayClock(_clocks[_activeClock].Fill);
+    }
+
+    void DisplayInteractButton()
+    {
+        if (_clocks[_activeClock].IsCountdown)
+        {
+            _interact.gameObject.SetActive(false);
+        }
+        else
+        {
+            _interact.gameObject.SetActive(true);
+        }
     }
 
     public void UseAction()
