@@ -371,7 +371,14 @@ public class PointOfInterest : MonoBehaviour
         _worldClockFrame.sprite = _clockFrameSprite;
         _description.text = _clocks[_activeClock].Description;
         RecolorClock();
-        _consequences.text = "Attribute: " + _clocks[_activeClock].ActionAttribute.ToString() + "\n" + ActionToStringDescription();
+        if (_clocks[_activeClock].Segments != 0)
+        {
+            _consequences.text = "Attribute: " + _clocks[_activeClock].ActionAttribute.ToString() + "\n" + ActionToStringDescription();
+        }
+        else
+        {
+            _consequences.text = "";
+        }
     }
 
     void RecolorClock()
