@@ -12,26 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Creditorium2
   m_EditorClassIdentifier: 
-  _bodyText: "\"Banjam, my chum I see servicing your debt is going well. That's what
-    I want to hear! A person who can handle their money has a safe and stable future,
-    hoho!\" A cloud of smoke escapes his mouth, while he nods satisfied. This habit
-    of his almost, reminds you of the otter back at the Warm Whiskers Oasis. Overall,
-    you can't help but notice some similarities between those two individuals.\r\nThe
-    shark walks back towards his fancy office chair, taking a seat. \"I must admit
-    that I'm not very\uFFFD how should I say it\uFFFD I'm not very keen on your way
-    of living. You seem like a person who can handle their own. Why would you choose
-    to be an adventurer, if there are better ways to support yourself? For me it's
-    a waste of time and don't tell me it's a dream of yours. That sounds foolish.\"
-    His delighted voice changed back to his rumbling, while he studies your reaction. "
+  _bodyText: 'The carcharodon creditor, holding a fat cigar, is waiting for you at
+    his office window. "Banjam, my chum I see you can handle your payments. That''s
+    what I want to hear! A person who can handle their money has a safe and stable
+    future, hoho!" A cloud of smoke escapes his mouth, while he nods satisfied. This
+    habit of his almost, reminds you of the otter back at the Warm Whiskers Oasis.
+    Overall, you can''t help but notice some similarities between those two individuals.
+
+    The
+    shark walks back towards his fancy office chair, taking a seat. "I must admit
+    that I''m not very... how should I say it... I''m not very keen on your way of
+    living. You seem like a person who can handle their own. Why would you risk it
+    all on being an adventurer? It is a waste of time and don''t tell me it''s a
+    dream of yours. That sounds foolish." His delighted voice changed back to his
+    rumbling, while he studies your reaction. '
   _text: {fileID: 4900000, guid: 061afd543b9235e40a251dbc7bc31161, type: 3}
   _upperButtonText: Defend yourself
-  _uCred: -3
+  _uCred: -5
   _uStress: 1
   _uHp: 0
   _uAllExplorers: 0
   _uUnlockPoI: 
+  _uLockPoI: 
   _lowerButtonText: Defend your dream
-  _lCred: -3
+  _lCred: -5
   _lStress: 1
   _lHp: 0
   _lAllExplorers: 0

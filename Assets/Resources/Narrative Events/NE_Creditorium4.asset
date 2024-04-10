@@ -37,14 +37,14 @@ MonoBehaviour:
     Just keep in mind, everyone has their own weight to carry."'
   _text: {fileID: 4900000, guid: 5d01899076a58df4881e1adc1b64df25, type: 3}
   _upperButtonText: Nod in understanding.
-  _uCred: -3
+  _uCred: -5
   _uStress: 1
   _uHp: 0
   _uAllExplorers: 0
   _uUnlockPoI: 
   _uLockPoI: 
   _lowerButtonText: It is never to late to dream.
-  _lCred: -3
+  _lCred: -5
   _lStress: 1
   _lHp: 0
   _lAllExplorers: 0

@@ -15,11 +15,12 @@ MonoBehaviour:
   _bodyText: Once again you meet with Uriah to service the interest on your Debt.
   _text: {fileID: 0}
   _upperButtonText: Pay the Cred.
-  _uCred: -3
+  _uCred: -5
   _uStress: 1
   _uHp: 0
   _uAllExplorers: 0
   _uUnlockPoI: 
+  _uLockPoI: 
   _lowerButtonText: 
   _lCred: 0
   _lStress: 0
