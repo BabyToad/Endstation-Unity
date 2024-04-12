@@ -39,7 +39,7 @@ MonoBehaviour:
     business with you."'
   _text: {fileID: 4900000, guid: eaa0d64a4f350e148bf5098c2e6f0510, type: 3}
   _upperButtonText: Swallow hard and nod in agreement.
-  _uCred: 5
+  _uCred: 2
   _uStress: 1
   _uHp: 0
   _uAllExplorers: 0

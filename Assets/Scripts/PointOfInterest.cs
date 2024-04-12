@@ -183,7 +183,7 @@ public class PointOfInterest : MonoBehaviour
     }
     private void Select_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!_mouseIsOverUI)
+        if (!_mouseIsOverUI && MasterSingleton.Instance.StateManager.CurrentState != GameplayStateManager.GameplayState.NarrativeEvent)
         {
             Ray mouseClick = Camera.main.ScreenPointToRay(MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>());
             RaycastHit hit;
