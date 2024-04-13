@@ -23,6 +23,9 @@ public class ExplorerCanvas : MonoBehaviour
     public Button SelectExplorer { get => _selectExplorer; set => _selectExplorer = value; }
     public List<Button> AdvancementButtons { get => _advancementButtons; set => _advancementButtons = value; }
 
+    public float animationDuration = 0.5f;
+    private float currentValue;
+
     private void Awake()
     {
         _normalColor = _background.color;
@@ -36,11 +39,14 @@ public class ExplorerCanvas : MonoBehaviour
 
     public void SetHealth(int health)
     {
-        _health.value = (float)health;
+        //_health.value = (float)health;
+        StartCoroutine(AnimateSlider((float)health, _health));
     }
     public void SetStress(int stress)
     {
-        _stress.value = (float)stress;
+        //_stress.value = (float)stress;
+        StartCoroutine(AnimateSlider((float)stress, _stress));
+
     }
     public void SetInsight(int insight, bool isInjured, bool isTrauma)
     {
@@ -68,8 +74,6 @@ public class ExplorerCanvas : MonoBehaviour
             AdvancementButtons[i].gameObject.SetActive(value);
         }
     }
-
-   
 
     void SetStatColor(Text stat, bool isInjured, bool isTrauma)
     {
@@ -100,6 +104,24 @@ public class ExplorerCanvas : MonoBehaviour
 
         }
     }
-    
-    
+
+    private IEnumerator AnimateSlider(float targetValue, Slider slider)
+    {
+        float startTime = Time.time;
+        float startValue = slider.value;
+
+        // Briefly show afterimage of old value
+        yield return new WaitForSeconds(0.1f);
+
+        while (Time.time - startTime < animationDuration)
+        {
+            float elapsedTime = Time.time - startTime;
+            float newValue = Mathf.Lerp(startValue, targetValue, elapsedTime / animationDuration);
+            slider.value = newValue;
+            yield return null;
+        }
+
+        // Ensure final value is set correctly
+        slider.value = targetValue;
+    }
 }
