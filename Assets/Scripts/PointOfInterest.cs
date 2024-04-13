@@ -510,6 +510,15 @@ public class PointOfInterest : MonoBehaviour
 
     public void UseAction()
     {
+        Explorer selectedExplorer = MasterSingleton.Instance.Guild.SelectedExplorer;
+
+        if (selectedExplorer == null)
+        {
+            Debug.LogWarning("No explorer selected.");
+            MasterSingleton.Instance.Guild.SelectAvailableExplorer();
+            return;
+        }
+
         if (_clocks[_activeClock].Segments == _clocks[_activeClock].Fill && !MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted)
         {
             ExhaustSelectedExplorer();

@@ -10,7 +10,7 @@ public class Guild : MonoBehaviour
     [SerializeField]
     List<Explorer> _roster;
     ToggleGroup _rosterTG;
-    [SerializeField]
+    //[SerializeField]
     Explorer _selectedExplorer;
 
     [SerializeField]
@@ -120,7 +120,6 @@ public class Guild : MonoBehaviour
         RecruitExplorer(name);
     }
 
-
     public void AdvanceInsight()
     {
         _selectedExplorer.AdvanceInsight();
@@ -203,5 +202,15 @@ public class Guild : MonoBehaviour
         _isBankrupt = false;
     }
 
-
+    public void SelectAvailableExplorer()
+    {
+        foreach (Explorer explorer in Roster)
+        {
+            if (!explorer.Exhausted)
+            {
+                explorer.SelectExplorer(true);
+                return;
+            }
+        }
+    }
 }

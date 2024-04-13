@@ -16,7 +16,7 @@ MonoBehaviour:
   _isCountdown: 1
   _actionAttribute: 0
   _segments: 6
-  _fill: 6
+  _fill: 0
   filled:
     m_PersistentCalls:
       m_Calls:

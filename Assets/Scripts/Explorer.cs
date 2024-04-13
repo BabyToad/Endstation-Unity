@@ -267,6 +267,7 @@ public class Explorer
         if (value)
         {
             _guild.SelectedExplorer = this;
+            _explorerCanvas.GetComponent<Toggle>().isOn = value;
         }
         else
         {
