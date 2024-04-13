@@ -583,18 +583,26 @@ public class PointOfInterest : MonoBehaviour
 
     void ApplyRoll(int diceResult)
     {
+        int oldFill = _clocks[_activeClock].Fill;
 
         if (diceResult <= 3)
         {
+            
             _clocks[_activeClock].ChangeFill(1);
-            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+            
+            //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+
+            StartCoroutine(AnimateClock(_activeClockImage, oldFill, _clocks[_activeClock].Fill));
+
             _activeClockFrame.sprite = _clockFrameSprite;
             _mainAction.Fail.Apply();
         }
         else if (diceResult <= 5)
         {
             _clocks[_activeClock].ChangeFill(2);
-            _activeClockFrame.sprite = _clockFrameSprite;
+            //_activeClockFrame.sprite = _clockFrameSprite;
+            StartCoroutine(AnimateClock(_activeClockImage, oldFill, _clocks[_activeClock].Fill));
+
             _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
             _mainAction.Partial.Apply();
 
@@ -602,13 +610,23 @@ public class PointOfInterest : MonoBehaviour
         else if (diceResult == 6)
         {
             _clocks[_activeClock].ChangeFill(3);
-            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+            //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+            StartCoroutine(AnimateClock(_activeClockImage, oldFill, _clocks[_activeClock].Fill));
+
             _activeClockFrame.sprite = _clockFrameSprite;
             _mainAction.Success.Apply();
         }
+    }
 
+    private IEnumerator AnimateClock(Image clock, int oldFill, int newFill)
+    {
+        for (int i = oldFill; i < newFill+1 ; i++)
+        {
+            clock.sprite = _clockSprites[i];
+            yield return new WaitForSeconds(0.25f);
+        }
 
-
+        yield return null;
     }
 
     void CountDownClock()
