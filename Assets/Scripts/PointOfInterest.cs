@@ -37,8 +37,6 @@ public class PointOfInterest : MonoBehaviour
                 MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(Hp);
                 MasterSingleton.Instance.Guild.SelectedExplorer.AddExperience(Xp);
             }
-
-
         }
 
         [SerializeField]
@@ -102,6 +100,9 @@ public class PointOfInterest : MonoBehaviour
 
     //UI Selection
     GraphicRaycaster _graphicsRaycasterWorldCanvas;
+
+    [SerializeField]
+    List<GameObject> _modelDetails;
 
     public bool IsSelected { get => _isSelected; set => _isSelected = value; }
 
@@ -684,6 +685,27 @@ public class PointOfInterest : MonoBehaviour
     {
         _mainAction = newAction;
     }
+
+    public void SetGameDetailsActive(params int[] indices)
+    {
+        foreach (GameObject detail in _modelDetails)
+        {
+            detail.SetActive(false);
+        }
+
+        foreach (int index in indices)
+        {
+            if (index >= 0 && index < _modelDetails.Count)
+            {
+                _modelDetails[index].SetActive(true);
+            }
+            else
+            {
+                Debug.LogError("Index out of range: " + index);
+            }
+        }
+    }
+
 }
 
 
