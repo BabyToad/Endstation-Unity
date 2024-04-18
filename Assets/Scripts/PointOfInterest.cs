@@ -597,32 +597,26 @@ public class PointOfInterest : MonoBehaviour
 
         if (diceResult <= 3)
         {
-            
             _clocks[_activeClock].ChangeFill(1);
-            
-            //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
-
             StartCoroutine(AnimateClock(_activeClockImage, oldFill, _clocks[_activeClock].Fill));
-
+            //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
             _activeClockFrame.sprite = _clockFrameSprite;
             _mainAction.Fail.Apply();
         }
         else if (diceResult <= 5)
         {
             _clocks[_activeClock].ChangeFill(2);
-            //_activeClockFrame.sprite = _clockFrameSprite;
             StartCoroutine(AnimateClock(_activeClockImage, oldFill, _clocks[_activeClock].Fill));
-
-            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+            //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+            _activeClockFrame.sprite = _clockFrameSprite;
             _mainAction.Partial.Apply();
 
         }
         else if (diceResult == 6)
         {
             _clocks[_activeClock].ChangeFill(3);
-            //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
             StartCoroutine(AnimateClock(_activeClockImage, oldFill, _clocks[_activeClock].Fill));
-
+            //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
             _activeClockFrame.sprite = _clockFrameSprite;
             _mainAction.Success.Apply();
         }

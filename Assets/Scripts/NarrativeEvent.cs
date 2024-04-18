@@ -118,7 +118,7 @@ public class NarrativeEvent : ScriptableObject
             poi.SetActive(false);
         }
 
-        if (_POI != "")
+        if (_setDetails)
         {
             GameObject.Find(_POI).GetComponent<PointOfInterest>().SetGameDetailsActive(_details);
         }
