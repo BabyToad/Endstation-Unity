@@ -577,6 +577,7 @@ GameObject:
   - component: {fileID: 6506702686704554816}
   - component: {fileID: 5389219782937685904}
   - component: {fileID: 798693557138952591}
+  - component: {fileID: 6168759757105917287}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -603,7 +604,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 80}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4657518651597749435
 CanvasRenderer:
@@ -744,6 +745,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &6168759757105917287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805575894572532914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab893b4bdfe36234c8335bd5b9d97f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 6183447910768822366}
+  offset: {x: 40, y: 20, z: 0}
+  displayDelay: 0.2
+  movementThreshold: 0
 --- !u!1 &2387379435466367985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,7 +1144,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 600.44, y: 186.7639}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8419571846422838390
 Canvas:
@@ -1213,8 +1230,8 @@ MonoBehaviour:
   m_Spacing: 20
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -2632,6 +2649,7 @@ GameObject:
   - component: {fileID: 4361093329881009893}
   - component: {fileID: 2836512763125225585}
   - component: {fileID: 8554256293648477419}
+  - component: {fileID: 2073285547210426474}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2658,7 +2676,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 80}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6439910028980580615
 CanvasRenderer:
@@ -2799,6 +2817,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &2073285547210426474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8528968355509808695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab893b4bdfe36234c8335bd5b9d97f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 3788531528795720082}
+  offset: {x: 40, y: 20, z: 0}
+  displayDelay: 0.2
+  movementThreshold: 0
 --- !u!1 &8743766040115027309
 GameObject:
   m_ObjectHideFlags: 0

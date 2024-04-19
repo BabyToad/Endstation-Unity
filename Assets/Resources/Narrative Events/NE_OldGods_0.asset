@@ -35,6 +35,9 @@ MonoBehaviour:
   _uAllExplorers: 1
   _uUnlockPoI: Endstation POI
   _uLockPoI: 
+  _setDetails: 1
+  _POI: Old Gods POI
+  _details: 00000000
   _lowerButtonText: 
   _lCred: 0
   _lStress: 0

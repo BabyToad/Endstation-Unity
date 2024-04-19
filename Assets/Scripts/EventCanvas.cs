@@ -50,27 +50,27 @@ public class EventCanvas : MonoBehaviour
     {
         ResizeScrollBar();
 
-        if (_upperHover)
-        {
-            _upperHoverInfo.enabled = true;
-            Vector2 mousePos = MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>();
-            _upperHoverInfo.rectTransform.position = new Vector3(mousePos.x, mousePos.y, 0);
-        }
-        else
-        {
-            _upperHoverInfo.enabled = false;
-        }
+        //if (_upperHover)
+        //{
+        //    _upperHoverInfo.enabled = true;
+        //    Vector2 mousePos = MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>();
+        //    _upperHoverInfo.rectTransform.position = new Vector3(mousePos.x, mousePos.y, 0);
+        //}
+        //else
+        //{
+        //    _upperHoverInfo.enabled = false;
+        //}
 
-        if (_lowerHover)
-        {
-            _lowerHoverInfo.enabled = true;
-            Vector2 mousePos = MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>();
-            _lowerHoverInfo.rectTransform.position = new Vector3(mousePos.x, mousePos.y, 0);
-        }
-        else
-        {
-            _lowerHoverInfo.enabled = false;
-        }
+        //if (_lowerHover)
+        //{
+        //    _lowerHoverInfo.enabled = true;
+        //    Vector2 mousePos = MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>();
+        //    _lowerHoverInfo.rectTransform.position = new Vector3(mousePos.x, mousePos.y, 0);
+        //}
+        //else
+        //{
+        //    _lowerHoverInfo.enabled = false;
+        //}
 
     }
     public void ShowEventCanvas(bool value)
