@@ -1,0 +1,6 @@
+newmtl WhiteBox_3
+bump T_Ground_Grass_01_N.png
+map_Kd T_Ground_Grass_01_AO.tga
+Kd 0.9716981 0.9447405 0.8813302
+d 1
+
