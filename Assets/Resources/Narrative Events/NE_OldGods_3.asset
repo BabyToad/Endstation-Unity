@@ -12,20 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_OldGods_3
   m_EditorClassIdentifier: 
-  _bodyText: 'As you navigate the labyrinthine depths within the petrified remnants
-    of these titans, the atmosphere thickens with the redolence of ancient earth
-    and the musty embrace of aged moss. Streams of otherworldly luminescence pierce
-    the translucent canopy above, painting elaborate tapestries of light upon the
-    cavernous walls adorned with faded frescoes chronicling the storied saga of these
-    monumental beings.
+  _bodyText: 'At the apogee of the ancient giants'' stony sanctum, where the labyrinthine
+    passages converge into a celestial crucible, lies the sacred chamber that cradles
+    "The Eyes of Eternity".
 
-    Within this eerie expanse, the echoes of a time erased
-    by history reverberate faintly, haunting the silence as chambers reveal themselves,
-    adorned with relics and artifacts of colossal proportions, forgotten by the ebb
-    of time.
+    As you step into the heart of this hallowed space,
+    the very fabric of reality seems to undulate, and the crystalline ceiling above
+    refracts the ethereal light into a mesmerizing dance.
 
-    The path forward remains shrouded in uncertainty, where the past
-    intertwines with the present in enigmatic whispers.'
+    The chamber is a
+    tapestry of luminescence and shadow, with the Aetheric Prism resting upon a pedestal
+    of shimmering crystal at its center. The artifact itself, bathed in an ambient
+    glow, appears to capture the essence of celestial energies within its multifaceted
+    facets. The walls are adorned with luminous murals that seem to come alive, depicting
+    the giants'' transcendental journey through time and the cosmic dance that birthed
+    the Aetheric Prism.
+
+    As you approach, the air becomes charged with anticipation,
+    and the ancient echoes crescendo in a symphony of whispered secrets. The path
+    leading to this sanctum unfolds as a pilgrimage through the very veins of the
+    giants, each step a communion with the esoteric forces converging upon this sacred
+    nexus. Here, in this convergence of myth and reality, the Eyes of Eternity await,
+    a beacon of cosmic knowledge and untold power, its secrets entwined with the
+    destiny of those daring enough to reach for its transcendent brilliance.'
   _text: {fileID: 4900000, guid: f31a217b5ea55fa44be528dfd7f1803e, type: 3}
   _upperButtonText: Trust in the Lifeforce of the Deep Mystery
   _uCred: 2
@@ -33,6 +42,10 @@ MonoBehaviour:
   _uHp: 0
   _uAllExplorers: 0
   _uUnlockPoI: 
+  _uLockPoI: 
+  _setDetails: 0
+  _POI: 
+  _details: 000000000100000002000000
   _lowerButtonText: Embrace the Eyes of Eternity
   _lCred: 2
   _lStress: 2

@@ -12,18 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_OldGods_1
   m_EditorClassIdentifier: 
-  _bodyText: 'Nestled within the ethereal expanse of the celestial sea, the Old Gods
-    emerge like primeval guardians, their titanic presence shrouded in the mists
-    of time.
+  _bodyText: 'A clandestine entrance, elusive and camouflaged, defies the discerning
+    eye - a convergence of vaporous veils and atmospheric vagaries conspiring to
+    conceal its existence from all but the most astute wanderer. Within this amorphous
+    canvas, an interplay of meteorological phenomena serves as a riddle, a choreography
+    of swirling mists and capricious currents that obscure the path to the giants''
+    entrance.
 
-    As you draw nearer, an abyssal chasm unfurls amidst the monumental
-    stone countenances, their vacuous ocular apertures extending a tacit invitation
-    into an past lost to collective memory.
-
-    This ingress exudes a foreboding
-    yet inescapably magnetic charm, beckoning you to delve the recesses of an antiquated
-    epoch wherein uncharted riddles, elusive riches, and the ancient anima of these
-    titans may lie dormant, whispering secrets across the aeons.'
+    There you find a passage not of mere stone and mortar, but of
+    cloud currents and enigmatic vibrations, beckoning those intrepid enough to decipher
+    the symphony of the unseen and traverse the liminal boundary into the enshrouded
+    realm of the Old Gods.'
   _text: {fileID: 4900000, guid: 2cffef3cff624904e8e60e7dc7cd86f3, type: 3}
   _upperButtonText: Enter with force
   _uCred: 0
@@ -31,6 +30,10 @@ MonoBehaviour:
   _uHp: -1
   _uAllExplorers: 0
   _uUnlockPoI: 
+  _uLockPoI: 
+  _setDetails: 0
+  _POI: 
+  _details: 0000000001000000
   _lowerButtonText: Enter carefully
   _lCred: 0
   _lStress: 4

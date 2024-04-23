@@ -12,16 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_OldGods_2
   m_EditorClassIdentifier: 
-  _bodyText: As you navigate the labyrinthine depths within the petrified remnants
+  _bodyText: 'As you navigate the labyrinthine depths within the petrified remnants
     of these titans, the atmosphere thickens with the redolence of ancient earth
     and the musty embrace of aged moss. Streams of otherworldly luminescence pierce
     the translucent canopy above, painting elaborate tapestries of light upon the
     cavernous walls adorned with faded frescoes chronicling the storied saga of these
-    monumental beings. Within this eerie expanse, the echoes of a time erased by
-    history reverberate faintly, haunting the silence as chambers reveal themselves,
-    adorned with relics and artifacts of colossal proportions, forgotten by the ebb
-    of time. The path forward remains shrouded in uncertainty, where the past intertwines
-    with the present in enigmatic whispers.
+    monumental beings.
+
+    Yet after many forays into the twisting veins of the
+    giants, you have grown familiar with their winding ways. Their confounding topography
+    is suddenly clear to you and at last you can descend deeper than ever before,
+    into a quite realm of slumbering stone.
+
+    Within this eerie expanse, the
+    echoes of a time erased by history reverberate faintly, haunting the silence
+    as a chamber reveal itself, adorned with relics and artifacts of colossal proportions,
+    forgotten by the ebb of time. When you tread upon the hallowed ground, an otherworldly
+    hush befalls the surroundings, as if the very stone beneath your feet heeds the
+    weight of your presence. The colossal artifacts within, bearing the fingerprints
+    of epochs, stand silent witnesses to the eons they have endured.
+
+    As your
+    gaze sweeps across the chamber, you discern a subtle pattern within the monumental
+    relics - a sequence woven into the very fabric of the petrified giants'' legacy.
+    To access the inner sanctum you must first decipher the enigmatic history of
+    this place, were present and past intermingle.'
   _text: {fileID: 4900000, guid: 408ea930f74cc3b4b941cda864709a97, type: 3}
   _upperButtonText: Attune to the Memories
   _uCred: 2
@@ -29,6 +44,10 @@ MonoBehaviour:
   _uHp: 0
   _uAllExplorers: 0
   _uUnlockPoI: 
+  _uLockPoI: 
+  _setDetails: 0
+  _POI: 
+  _details: 000000000100000002000000
   _lowerButtonText: Search the Relics
   _lCred: 2
   _lStress: 2
