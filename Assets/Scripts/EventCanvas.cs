@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,6 +18,11 @@ public class EventCanvas : MonoBehaviour
     TextMeshProUGUI _nameText;
     [SerializeField]
     TextMeshProUGUI _bodyText;
+
+    int textSnippetIterator;
+    string[] _textSnippets;
+    
+
     [SerializeField]
     Button _upperButton;
     [SerializeField]
@@ -34,50 +40,42 @@ public class EventCanvas : MonoBehaviour
 
     [SerializeField]
     Scrollbar _scrollbar;
-
+    [SerializeField]
+    ScrollRect scrollRect;
     private void Start()
     {
         ShowEventCanvas(false);
         ResizeScrollBar();
+
     }
 
     private void OnEnable()
     {
         ResizeScrollBar();
         ResetScrollBar();
+
+        if (MasterSingleton.Instance != null)
+        {
+            MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += SelectWord;
+
+        }
+    }
+
+    private void OnDisable()
+    {
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= SelectWord;
+
     }
     private void Update()
     {
         ResizeScrollBar();
-
-        //if (_upperHover)
-        //{
-        //    _upperHoverInfo.enabled = true;
-        //    Vector2 mousePos = MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>();
-        //    _upperHoverInfo.rectTransform.position = new Vector3(mousePos.x, mousePos.y, 0);
-        //}
-        //else
-        //{
-        //    _upperHoverInfo.enabled = false;
-        //}
-
-        //if (_lowerHover)
-        //{
-        //    _lowerHoverInfo.enabled = true;
-        //    Vector2 mousePos = MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>();
-        //    _lowerHoverInfo.rectTransform.position = new Vector3(mousePos.x, mousePos.y, 0);
-        //}
-        //else
-        //{
-        //    _lowerHoverInfo.enabled = false;
-        //}
-
     }
     public void ShowEventCanvas(bool value)
     {
         ResizeScrollBar();
         ResetScrollBar();
         _mainCanvas.gameObject.SetActive(value);
+        HideButtons();
         _upperHover = false;
         _upperHoverInfo.enabled = false;
         _lowerHover = false;
@@ -109,7 +107,9 @@ public class EventCanvas : MonoBehaviour
 
     public void SetBodyText(string text)
     {
-        _bodyText.text = text;
+        SliceTextIntoSnippets(text);
+        textSnippetIterator = 0;
+        _bodyText.text = _textSnippets[textSnippetIterator] + "\nContinue...";
     }
     public void SetUpperButtonText(string text, string hoverInfo)
     {
@@ -121,7 +121,26 @@ public class EventCanvas : MonoBehaviour
     {
         _lowerButton.gameObject.SetActive(value);
         _lowerHoverInfo.text = hoverInfo;
+       
+        _lowerButton.interactable = value;
+        
 
+    }
+
+    public void HideButtons()
+    {
+        _upperButton.gameObject.SetActive(false);
+        _lowerButton.gameObject.SetActive(false);
+    }
+
+    public void ShowButtons()
+    {
+        _upperButton.gameObject.SetActive(true);
+        if (_lowerButton.interactable)
+        {
+            _lowerButton.gameObject.SetActive(true);
+        }
+        
     }
     public void SetLowerButtonText(string text)
     {
@@ -173,4 +192,91 @@ public class EventCanvas : MonoBehaviour
         _lowerHoverInfo.enabled = false;
     }
 
+    void SelectWord(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        Vector2 mousePos = MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>();
+        int clickedWordIndex = TMP_TextUtilities.FindIntersectingWord(_bodyText, new Vector3(mousePos.x, mousePos.y, 0), null);
+        Debug.Log("Tried to Select Word");
+        if (clickedWordIndex != -1)
+            {
+                string clickedWord = _bodyText.textInfo.wordInfo[clickedWordIndex].GetWord();
+                Debug.Log(clickedWord);
+                if (clickedWord == "Continue")
+                {
+                    textSnippetIterator++;
+                    ExpandText();
+                }
+            }
+    }
+
+    void SliceTextIntoSnippets(string text)
+    {
+        string[] unfilteredTextSnippets = text.Split("\n", System.StringSplitOptions.RemoveEmptyEntries);
+        foreach (var item in unfilteredTextSnippets)
+        {
+            Debug.Log(item.Length);
+            Debug.Log(item);
+        }
+        _textSnippets = unfilteredTextSnippets.Where(str => str.Length > 1).ToArray();
+
+    }
+
+
+    void ExpandText()
+    {
+        if (textSnippetIterator < _textSnippets.Length)
+        {
+            _bodyText.text += "\n" + _textSnippets[textSnippetIterator];
+            _bodyText.text = RemoveContinue(_bodyText.text);
+            if (textSnippetIterator + 1 < _textSnippets.Length)
+            {
+                _bodyText.text += "\nContinue...";
+            }
+            else
+            {
+                ShowButtons();
+            }
+            StartCoroutine(ScrollToBottomAfterUpdate());
+           
+        }
+
+    }
+
+    string RemoveContinue(string text)
+    {
+        string[] lines = text.Split('\n');
+        var filteredLines = new System.Text.StringBuilder();
+
+        foreach (string line in lines)
+        {
+            if (!line.EndsWith("Continue..."))
+            {
+                filteredLines.AppendLine(line);
+            }
+        }
+
+        return filteredLines.ToString();
+    }
+
+    IEnumerator ScrollToBottomAfterUpdate()
+    {
+        yield return null; // Wait for layout to be recalculated
+
+        // Configuration
+        float scrollDuration = 0.5f;  // Duration in seconds
+        int steps = 30;               // Number of steps for smoothness
+
+        // Calculate movement per step
+        float scrollStep = 1.0f / steps;
+
+        // Scroll over multiple frames
+        for (int i = 0; i < steps; i++)
+        {
+            scrollRect.verticalNormalizedPosition -= scrollStep;
+            yield return null; // Wait for the next frame
+        }
+
+        // Ensure exact final position
+        scrollRect.verticalNormalizedPosition = 0f;
+    }
 }

@@ -236,6 +236,8 @@ public class NarrativeEvent : ScriptableObject
         MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(false);
         MasterSingleton.Instance.UIManger.DisplayOverworldUI(false);
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(true);
+
+
     }
 
     string EventEffectsToStringDescription(int cred, int stress, int hp)

@@ -277,7 +277,6 @@ public class PointOfInterest : MonoBehaviour
 
     void GraphicRaycast()
     {
-        Debug.Log("Raycast!");
         PointerEventData m_PointerEventData = new PointerEventData(EventSystem.current);
         //Set the Pointer Event Position to that of the mouse position
         m_PointerEventData.position = MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>();
@@ -695,7 +694,7 @@ public class PointOfInterest : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Index out of range: " + index);
+                Debug.LogWarning("Index out of range: " + index);
             }
         }
     }
