@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 1339057104166607533}
   - component: {fileID: 4360319466186706126}
   - component: {fileID: 6364674966062306285}
+  - component: {fileID: 5739207666735529712}
   m_Layer: 5
   m_Name: Event Text
   m_TagString: Untagged
@@ -415,6 +416,49 @@ MonoBehaviour:
   - fade
   defaultBehaviorsTags: []
   defaultTagsMode: 0
+--- !u!114 &5739207666735529712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336700600034165268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useTypeWriter: 1
+  startTypewriterMode: 3
+  hideAppearancesOnSkip: 0
+  hideDisappearancesOnSkip: 0
+  triggerEventsOnSkip: 0
+  resetTypingSpeedAtStartup: 1
+  disappearanceOrientation: 0
+  onTextShowed:
+    m_PersistentCalls:
+      m_Calls: []
+  onTypewriterStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onTextDisappeared:
+    m_PersistentCalls:
+      m_Calls: []
+  onCharacterVisible:
+    m_PersistentCalls:
+      m_Calls: []
+  onMessage:
+    m_PersistentCalls:
+      m_Calls: []
+  waitForNormalChars: 0.03
+  waitLong: 0.6
+  waitMiddle: 0.2
+  avoidMultiplePunctuactionWait: 0
+  waitForNewLines: 1
+  waitForLastCharacter: 1
+  useTypewriterWaitForDisappearances: 1
+  disappearanceWaitTime: 0.015
+  disappearanceSpeedMultiplier: 1
 --- !u!1 &827725854494859556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,7 +1987,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8354974979226324473}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5911347
+  m_Size: 0.68752843
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
