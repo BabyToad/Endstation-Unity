@@ -224,7 +224,6 @@ public class NarrativeEvent : ScriptableObject
         {
             string lhoverInfo = EventEffectsToStringDescription(_lCred, _lStress, _lHp);
             MasterSingleton.Instance.EventCanvas.ShowLowerButton(true, lhoverInfo);
-
             MasterSingleton.Instance.EventCanvas.SetLowerButtonText(_lowerButtonText);
             MasterSingleton.Instance.EventCanvas.AddLowerButtonAction(_lowerAction);
         }

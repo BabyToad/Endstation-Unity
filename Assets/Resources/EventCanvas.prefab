@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 3346203111569868424}
   - component: {fileID: 1339057104166607533}
   - component: {fileID: 4360319466186706126}
+  - component: {fileID: 6364674966062306285}
   m_Layer: 5
   m_Name: Event Text
   m_TagString: Untagged
@@ -371,6 +372,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &6364674966062306285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336700600034165268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ace8ced0e81c847968cdca0aeda757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typewriterStartsAutomatically: 0
+  animationLoop: 0
+  timeScale: 0
+  _text: '"<shake>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+    accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+    inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+
+    Nemo
+    enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+    consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
+    quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
+    sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam
+    quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam
+    corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
+    autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae
+    consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"'
+  useDynamicScaling: 1
+  referenceFontSize: 10
+  isResettingTimeOnNewText: 1
+  useDefaultDatabases: 1
+  databaseBehaviors: {fileID: 11400000, guid: 8fb81b53929fd3a42a7c83f8395e83a2, type: 2}
+  databaseAppearances: {fileID: 11400000, guid: 9157e0dc7027a6a4a8372a78c8021fa3, type: 2}
+  useDefaultStyleSheet: 1
+  styleSheet: {fileID: 0}
+  databaseActions: {fileID: 11400000, guid: 70890823ec115f74ea1e8eec7f3879e6, type: 2}
+  defaultAppearancesTags:
+  - size
+  defaultDisappearancesTags:
+  - fade
+  defaultBehaviorsTags: []
+  defaultTagsMode: 0
 --- !u!1 &827725854494859556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,7 +1943,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8354974979226324473}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.68752843
+  m_Size: 0.5911347
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

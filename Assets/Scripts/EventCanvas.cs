@@ -42,11 +42,15 @@ public class EventCanvas : MonoBehaviour
     Scrollbar _scrollbar;
     [SerializeField]
     ScrollRect scrollRect;
+
+    
+
+    
+
     private void Start()
     {
         ShowEventCanvas(false);
         ResizeScrollBar();
-
     }
 
     private void OnEnable()
@@ -56,14 +60,14 @@ public class EventCanvas : MonoBehaviour
 
         if (MasterSingleton.Instance != null)
         {
-            MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += SelectWord;
+            MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += ExpandText;
 
         }
     }
 
     private void OnDisable()
     {
-        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= SelectWord;
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= ExpandText;
 
     }
     private void Update()
@@ -109,7 +113,7 @@ public class EventCanvas : MonoBehaviour
     {
         SliceTextIntoSnippets(text);
         textSnippetIterator = 0;
-        _bodyText.text = _textSnippets[textSnippetIterator] + "\nContinue...";
+        _bodyText.text = _textSnippets[textSnippetIterator] + "\n<clickme>Continue...</clickme>";
     }
     public void SetUpperButtonText(string text, string hoverInfo)
     {
@@ -198,7 +202,7 @@ public class EventCanvas : MonoBehaviour
         int clickedWordIndex = TMP_TextUtilities.FindIntersectingWord(_bodyText, new Vector3(mousePos.x, mousePos.y, 0), null);
         Debug.Log("Tried to Select Word");
         if (clickedWordIndex != -1)
-            {
+           {
                 string clickedWord = _bodyText.textInfo.wordInfo[clickedWordIndex].GetWord();
                 Debug.Log(clickedWord);
                 if (clickedWord == "Continue")
@@ -206,7 +210,17 @@ public class EventCanvas : MonoBehaviour
                     textSnippetIterator++;
                     ExpandText();
                 }
-            }
+        }
+    }
+
+    void ExpandText(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if (RectTransformUtility.RectangleContainsScreenPoint(_bodyText.transform.parent.GetComponent<RectTransform>(), MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>()))
+        {
+            textSnippetIterator++;
+            ExpandText();
+        }
+        
     }
 
     void SliceTextIntoSnippets(string text)
@@ -230,16 +244,15 @@ public class EventCanvas : MonoBehaviour
             _bodyText.text = RemoveContinue(_bodyText.text);
             if (textSnippetIterator + 1 < _textSnippets.Length)
             {
-                _bodyText.text += "\nContinue...";
+                _bodyText.text += "\n<clickme>Continue...</clickme>";
+
             }
             else
             {
                 ShowButtons();
             }
             StartCoroutine(ScrollToBottomAfterUpdate());
-           
         }
-
     }
 
     string RemoveContinue(string text)
@@ -263,11 +276,11 @@ public class EventCanvas : MonoBehaviour
         yield return null; // Wait for layout to be recalculated
 
         // Configuration
-        float scrollDuration = 0.5f;  // Duration in seconds
+        float scrollDuration = 1f;  // Duration in seconds
         int steps = 30;               // Number of steps for smoothness
 
         // Calculate movement per step
-        float scrollStep = 1.0f / steps;
+        float scrollStep = scrollDuration / steps;
 
         // Scroll over multiple frames
         for (int i = 0; i < steps; i++)
@@ -279,4 +292,10 @@ public class EventCanvas : MonoBehaviour
         // Ensure exact final position
         scrollRect.verticalNormalizedPosition = 0f;
     }
+
+
+   
+
+
+
 }
