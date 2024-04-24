@@ -31,8 +31,8 @@ MonoBehaviour:
   _uAllExplorers: 0
   _uUnlockPoI: 
   _uLockPoI: 
-  _setDetails: 0
-  _POI: 
+  _setDetails: 1
+  _POI: Old Gods POI
   _details: 0000000001000000
   _lowerButtonText: Enter carefully
   _lCred: 0

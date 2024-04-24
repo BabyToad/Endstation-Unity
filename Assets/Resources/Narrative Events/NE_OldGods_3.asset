@@ -43,8 +43,8 @@ MonoBehaviour:
   _uAllExplorers: 0
   _uUnlockPoI: 
   _uLockPoI: 
-  _setDetails: 0
-  _POI: 
+  _setDetails: 1
+  _POI: Old Gods POI
   _details: 000000000100000002000000
   _lowerButtonText: Embrace the Eyes of Eternity
   _lCred: 2
