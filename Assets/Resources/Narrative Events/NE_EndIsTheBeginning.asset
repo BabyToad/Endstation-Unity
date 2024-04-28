@@ -14,20 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bodyText: 'Because the End is Really the Beginning.
 
+    
 
-    Jonas Heinke - Programming
-    and Game Design
+    Jonas Heinke
+    - Programming and Game Design
 
-    Adriane Netscher - Writing and Narrative Design
+    Adriane Netscher - Writing and Narrative
+    Design
 
-    Laura
-    Schuetz - 2D Art and Concept Art
+    Laura Schuetz - 2D Art and Concept Art
 
     Lukas Krieg - 3D Art
 
-    Danae Le Guennic
-    - Music and Sound Design
+    Danae
+    Le Guennic - Music and Sound Design
 
+    
 
     Thank you for playing this game.'
   _text: {fileID: 4900000, guid: 0a0236f770f31ff489bad3eac8a20a0d, type: 3}
