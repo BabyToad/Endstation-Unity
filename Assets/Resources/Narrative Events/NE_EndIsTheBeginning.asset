@@ -37,6 +37,10 @@ MonoBehaviour:
   _uHp: 0
   _uAllExplorers: 0
   _uUnlockPoI: reload
+  _uLockPoI: 
+  _setDetails: 1
+  _POI: Old Gods POI
+  _details: 00000000010000000200000003000000
   _lowerButtonText: Keep exploring.
   _lCred: 0
   _lStress: 0
