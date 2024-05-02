@@ -21,18 +21,19 @@ public class ActionUI : MonoBehaviour
     [SerializeField]
     public List<Sprite> _animSprites;
     [SerializeField]
-    public Button _interact;
+    public Button _interact, _dice;
 
     [Header("Clock UI References")]
     [SerializeField]
     public List<Sprite> _clockSprites;
     [SerializeField]
-    public Image _activeClockImage, _activeClockFrame, _activeClockBackground  ;
+    public Image _activeClockImage, _activeClockFrame, _activeClockBackground;
     [SerializeField]
 
     public Sprite _clockFrameSprite, _clockBackgroundSprite;
     [SerializeField]
     public Color _baseColor, _filledColor, _countdownColor;
+
 
 
     public void LoadClockSprites(int segments)
@@ -95,5 +96,8 @@ public class ActionUI : MonoBehaviour
         }
     }
 
-
+    public void DisplayActionCanvas(bool value)
+    {
+        this.gameObject.SetActive(value);
+    }
 }
