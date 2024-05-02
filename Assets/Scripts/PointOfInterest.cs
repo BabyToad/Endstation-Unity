@@ -16,7 +16,6 @@ public class PointOfInterest : MonoBehaviour
         [System.Serializable]
         public class Result
         {
-
             [SerializeField]
             float _cred;
             [SerializeField]
@@ -39,15 +38,14 @@ public class PointOfInterest : MonoBehaviour
                 MasterSingleton.Instance.Guild.SelectedExplorer.AddExperience(Xp);
             }
         }
-        [SerializeField]
-        bool _enabled;
+
         [SerializeField]
         Result _fail, _partial, _success;
-
+        
         [SerializeField]
         List<ProgressClock> _clocks;
         int _activeClock;
-
+        
         [SerializeField]
         ActionUI _actionUI;
 
@@ -57,8 +55,6 @@ public class PointOfInterest : MonoBehaviour
         public List<ProgressClock> Clocks { get => _clocks; set => _clocks = value; }
         public int ActiveClock { get => _activeClock; set => _activeClock = value; }
         public ActionUI ActionUI { get => _actionUI; set => _actionUI = value; }
-        public bool Enabled { get => _enabled; set => _enabled = value; }
-
     }
     [SerializeField]
     Action _mainAction;
@@ -80,11 +76,7 @@ public class PointOfInterest : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField]
-    Canvas _actionsCanvas;
-    [SerializeField]
-    Canvas _activeCanvas;
-    [SerializeField]
-    Canvas _worldCanvas;
+    Canvas _activeCanvas, _worldCanvas;
     [SerializeField]
     TextMeshProUGUI _activeExplorerText;
     [SerializeField]
@@ -134,7 +126,6 @@ public class PointOfInterest : MonoBehaviour
         LoadDiceSprites();
         LoadClockSprites(_clocks[_activeClock].Segments);
         DisplayClock(_clocks[_activeClock].Fill);
-        AddActionUIs();
 
         if (IsSelected)
         {
@@ -170,6 +161,18 @@ public class PointOfInterest : MonoBehaviour
     private void Update()
     {
         _mouseIsOverUI = IsMouseOverUI();
+        if (_activeCanvas.gameObject.activeSelf)
+        {
+
+            if (MasterSingleton.Instance.Guild.SelectedExplorer != null)
+            {
+                _activeExplorerText.text = MasterSingleton.Instance.Guild.SelectedExplorer.Name;
+            }
+            else
+            {
+                _activeExplorerText.text = "";
+            }
+        }
 
         if (_cmbrain.ActiveVirtualCamera.Name == "WorldCam" && !_cmbrain.IsBlending)
         {
@@ -393,7 +396,7 @@ public class PointOfInterest : MonoBehaviour
 
     void DisplayClock(int fill, Action action)
     {
-
+        
         action.ActionUI._activeClockImage.sprite = action.ActionUI._clockSprites[fill];
         action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
         action.ActionUI._activeClockBackground.sprite = action.ActionUI._clockBackgroundSprite;
@@ -402,7 +405,7 @@ public class PointOfInterest : MonoBehaviour
         _worldClockFrame.sprite = _clockFrameSprite;
         action.ActionUI._description.text = action.Clocks[action.ActiveClock].Description;
         RecolorClock(action);
-
+        
         if (action.Clocks[action.ActiveClock].Segments != 0)
         {
             action.ActionUI._consequences.text = "Attribute: " + action.Clocks[action.ActiveClock].ActionAttribute.ToString() + "\n" + ActionToStringDescription();
@@ -433,7 +436,7 @@ public class PointOfInterest : MonoBehaviour
     }
     void RecolorClock(Action action)
     {
-
+        
         if (0 == action.Clocks[action.ActiveClock].Segments)
         {
             _worldClockImage.color = _filledColor;
@@ -485,7 +488,7 @@ public class PointOfInterest : MonoBehaviour
         float avgStress = (_mainAction.Fail.Stress + _mainAction.Partial.Stress + _mainAction.Success.Stress) / 3f;
         if (Mathf.Abs(avgStress) > 0)
         {
-            description += "Stress" + DetermineChangeSymbol(avgStress);
+            description += "Stress"+DetermineChangeSymbol(avgStress);
         }
         if (Mathf.Abs(avgStress) > 1)
         {
@@ -535,18 +538,6 @@ public class PointOfInterest : MonoBehaviour
         if (_activeCanvas != null)
         {
             _activeCanvas.gameObject.SetActive(value);
-            foreach (Action action in _actions)
-            {
-                if (action.Enabled)
-                {
-                    action.ActionUI.DisplayActionCanvas(value);
-                }
-                else
-                {
-                    action.ActionUI.DisplayActionCanvas(false);
-                }
-
-            }
         }
     }
 
@@ -641,7 +632,7 @@ public class PointOfInterest : MonoBehaviour
             MasterSingleton.Instance.Guild.SelectAvailableExplorer();
             return;
         }
-
+        
         if (action.Clocks[action.ActiveClock].Segments == action.Clocks[action.ActiveClock].Fill && !MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted)
         {
             ExhaustSelectedExplorer();
@@ -765,7 +756,6 @@ public class PointOfInterest : MonoBehaviour
             StartCoroutine(AnimateClock(_activeClockImage, oldFill, _clocks[_activeClock].Fill));
             //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
             _activeClockFrame.sprite = _clockFrameSprite;
-            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
             _mainAction.Partial.Apply();
 
         }
@@ -779,143 +769,117 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
+    void ApplyRoll(int diceResult, Action action)
+    {
+        int oldFill = action.Clocks[action.ActiveClock].Fill;
 
         if (diceResult <= 3)
         {
             action.Clocks[action.ActiveClock].ChangeFill(1);
-    StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill));
+            StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill));
             action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
             action.Fail.Apply();
         }
         else if (diceResult <= 5)
-{
-    action.Clocks[action.ActiveClock].ChangeFill(2);
-    StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill));
-    action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
-    action.Partial.Apply();
+        {
+            action.Clocks[action.ActiveClock].ChangeFill(2);
+            StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill));
+            action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
+            action.Partial.Apply();
 
-}
-else if (diceResult == 6)
-{
-    action.Clocks[action.ActiveClock].ChangeFill(3);
-    StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill));
-    action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
-    action.Success.Apply();
-}
+        }
+        else if (diceResult == 6)
+        {
+            action.Clocks[action.ActiveClock].ChangeFill(3);
+            StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill));
+            action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
+            action.Success.Apply();
+        }
     }
 
     private IEnumerator AnimateClock(Image clock, int oldFill, int newFill)
-{
-    for (int i = oldFill; i < newFill + 1; i++)
     {
-        clock.sprite = _clockSprites[i];
-        yield return new WaitForSeconds(0.25f);
+        for (int i = oldFill; i < newFill+1 ; i++)
+        {
+            clock.sprite = _clockSprites[i];
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        yield return null;
     }
 
-    yield return null;
-}
-
-void CountDownClock()
-{
-    if (_clocks[_activeClock].IsCountdown && _active)
+    void CountDownClock()
     {
-        _clocks[_activeClock].ChangeFill(1);
-        _clocks[_activeClock].CompletionCheck();
-        _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
+        if (_clocks[_activeClock].IsCountdown && _active)
+        {
+            _clocks[_activeClock].ChangeFill(1);
+            _clocks[_activeClock].CompletionCheck();
+            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
 
+            if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
+            {
+                NextClock();
+            }
+        }
+    }
+
+    void ExhaustSelectedExplorer()
+    {
+        MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
+    }
+
+    void DeselectDueToExhaustionCheck()
+    {
+        if (MasterSingleton.Instance.Guild.IsRosterExhausted() && MasterSingleton.Instance.StateManager.CurrentState == GameplayStateManager.GameplayState.FreePlay)
+        {
+            StartCoroutine(DeselectAfter(1f));
+        }
+    }
+
+    IEnumerator DeselectAfter(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        DeSelect();
+    }
+
+    void LoadNewClockCheck()
+    {
         if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
         {
             NextClock();
         }
     }
-}
-
-void ExhaustSelectedExplorer()
-{
-    MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
-}
-
-void DeselectDueToExhaustionCheck()
-{
-    if (MasterSingleton.Instance.Guild.IsRosterExhausted() && MasterSingleton.Instance.StateManager.CurrentState == GameplayStateManager.GameplayState.FreePlay)
+    void LoadNewClockCheck(Action action)
     {
-        StartCoroutine(DeselectAfter(1f));
-    }
-}
-
-IEnumerator DeselectAfter(float seconds)
-{
-    yield return new WaitForSeconds(seconds);
-    DeSelect();
-}
-
-void LoadNewClockCheck()
-{
-    if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
-    {
-        NextClock();
-    }
-}
-void LoadNewClockCheck(Action action)
-{
-    if (action.Clocks[action.ActiveClock].Fill >= action.Clocks[action.ActiveClock].Segments)
-    {
-        NextClock(action);
-    }
-}
-public void OverideAction(Action newAction)
-{
-    _mainAction = newAction;
-}
-
-void AddActionUIs()
-{
-    if (_actionsCanvas != null)
-    {
-        if (_actions.Length == 0)
+        if (action.Clocks[action.ActiveClock].Fill >= action.Clocks[action.ActiveClock].Segments)
         {
-            Debug.LogError(name + ": No Actions.");
-            return;
+            NextClock(action);
         }
-        if (_actionsCanvas.transform.childCount < 2)
+    }
+    public void OverideAction(Action newAction)
+    {
+        _mainAction = newAction;
+    }
+
+    public void SetGameDetailsActive(params int[] indices)
+    {
+        foreach (GameObject detail in _modelDetails)
         {
-            foreach (Action action in _actions)
+            detail.SetActive(false);
+        }
+
+        foreach (int index in indices)
+        {
+            if (index >= 0 && index < _modelDetails.Count)
             {
-                GameObject actionCanvas = Instantiate(Resources.Load<GameObject>("Action Canvas"), _actionsCanvas.transform);
-                action.ActionUI = actionCanvas.GetComponent<ActionUI>();
-                action.ActionUI.LoadClockSprites(action.Clocks[action.ActiveClock].Segments);
-                action.ActionUI.LoadDiceSprites();
-                action.ActionUI._interact.onClick.AddListener(() => UseAction(action));
-                action.ActionUI._dice.onClick.AddListener(() => UseAction(action));
-                DisplayClock(action.Clocks[action.ActiveClock].Fill, action);
+                _modelDetails[index].SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning("Index out of range: " + index);
             }
         }
-
     }
-
-}
-
-public void SetGameDetailsActive(params int[] indices)
-{
-    foreach (GameObject detail in _modelDetails)
-    {
-        detail.SetActive(false);
-    }
-
-    foreach (int index in indices)
-    {
-        if (index >= 0 && index < _modelDetails.Count)
-        {
-            _modelDetails[index].SetActive(true);
-        }
-        else
-        {
-            Debug.LogWarning("Index out of range: " + index);
-        }
-    }
-}
-
-
 
 }
 
