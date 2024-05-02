@@ -16,6 +16,7 @@ public class PointOfInterest : MonoBehaviour
         [System.Serializable]
         public class Result
         {
+
             [SerializeField]
             float _cred;
             [SerializeField]
@@ -38,14 +39,15 @@ public class PointOfInterest : MonoBehaviour
                 MasterSingleton.Instance.Guild.SelectedExplorer.AddExperience(Xp);
             }
         }
-
+        [SerializeField]
+        bool _enabled;
         [SerializeField]
         Result _fail, _partial, _success;
-        
+
         [SerializeField]
         List<ProgressClock> _clocks;
         int _activeClock;
-        
+
         [SerializeField]
         ActionUI _actionUI;
 
@@ -55,6 +57,8 @@ public class PointOfInterest : MonoBehaviour
         public List<ProgressClock> Clocks { get => _clocks; set => _clocks = value; }
         public int ActiveClock { get => _activeClock; set => _activeClock = value; }
         public ActionUI ActionUI { get => _actionUI; set => _actionUI = value; }
+        public bool Enabled { get => _enabled; set => _enabled = value; }
+
     }
     [SerializeField]
     Action _mainAction;
@@ -76,7 +80,11 @@ public class PointOfInterest : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField]
-    Canvas _activeCanvas, _worldCanvas;
+    Canvas _actionsCanvas;
+    [SerializeField]
+    Canvas _activeCanvas;
+    [SerializeField]
+    Canvas _worldCanvas;
     [SerializeField]
     TextMeshProUGUI _activeExplorerText;
     [SerializeField]
@@ -126,6 +134,7 @@ public class PointOfInterest : MonoBehaviour
         LoadDiceSprites();
         LoadClockSprites(_clocks[_activeClock].Segments);
         DisplayClock(_clocks[_activeClock].Fill);
+        AddActionUIs();
 
         if (IsSelected)
         {
@@ -155,24 +164,9 @@ public class PointOfInterest : MonoBehaviour
         RegisterWithUIHandler();
         SetActive(_active);
     }
-
-
-
     private void Update()
     {
         _mouseIsOverUI = IsMouseOverUI();
-        if (_activeCanvas.gameObject.activeSelf)
-        {
-
-            if (MasterSingleton.Instance.Guild.SelectedExplorer != null)
-            {
-                _activeExplorerText.text = MasterSingleton.Instance.Guild.SelectedExplorer.Name;
-            }
-            else
-            {
-                _activeExplorerText.text = "";
-            }
-        }
 
         if (_cmbrain.ActiveVirtualCamera.Name == "WorldCam" && !_cmbrain.IsBlending)
         {
@@ -396,7 +390,7 @@ public class PointOfInterest : MonoBehaviour
 
     void DisplayClock(int fill, Action action)
     {
-        
+
         action.ActionUI._activeClockImage.sprite = action.ActionUI._clockSprites[fill];
         action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
         action.ActionUI._activeClockBackground.sprite = action.ActionUI._clockBackgroundSprite;
@@ -405,7 +399,7 @@ public class PointOfInterest : MonoBehaviour
         _worldClockFrame.sprite = _clockFrameSprite;
         action.ActionUI._description.text = action.Clocks[action.ActiveClock].Description;
         RecolorClock(action);
-        
+
         if (action.Clocks[action.ActiveClock].Segments != 0)
         {
             action.ActionUI._consequences.text = "Attribute: " + action.Clocks[action.ActiveClock].ActionAttribute.ToString() + "\n" + ActionToStringDescription();
@@ -436,7 +430,7 @@ public class PointOfInterest : MonoBehaviour
     }
     void RecolorClock(Action action)
     {
-        
+
         if (0 == action.Clocks[action.ActiveClock].Segments)
         {
             _worldClockImage.color = _filledColor;
@@ -488,7 +482,7 @@ public class PointOfInterest : MonoBehaviour
         float avgStress = (_mainAction.Fail.Stress + _mainAction.Partial.Stress + _mainAction.Success.Stress) / 3f;
         if (Mathf.Abs(avgStress) > 0)
         {
-            description += "Stress"+DetermineChangeSymbol(avgStress);
+            description += "Stress" + DetermineChangeSymbol(avgStress);
         }
         if (Mathf.Abs(avgStress) > 1)
         {
@@ -538,6 +532,18 @@ public class PointOfInterest : MonoBehaviour
         if (_activeCanvas != null)
         {
             _activeCanvas.gameObject.SetActive(value);
+            foreach (Action action in _actions)
+            {
+                if (action.Enabled)
+                {
+                    action.ActionUI.DisplayActionCanvas(value);
+                }
+                else
+                {
+                    action.ActionUI.DisplayActionCanvas(false);
+                }
+
+            }
         }
     }
 
@@ -632,7 +638,7 @@ public class PointOfInterest : MonoBehaviour
             MasterSingleton.Instance.Guild.SelectAvailableExplorer();
             return;
         }
-        
+
         if (action.Clocks[action.ActiveClock].Segments == action.Clocks[action.ActiveClock].Fill && !MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted)
         {
             ExhaustSelectedExplorer();
@@ -756,6 +762,7 @@ public class PointOfInterest : MonoBehaviour
             StartCoroutine(AnimateClock(_activeClockImage, oldFill, _clocks[_activeClock].Fill));
             //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
             _activeClockFrame.sprite = _clockFrameSprite;
+            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
             _mainAction.Partial.Apply();
 
         }
@@ -795,18 +802,18 @@ public class PointOfInterest : MonoBehaviour
             action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
             action.Success.Apply();
         }
-    }
+            }
 
     private IEnumerator AnimateClock(Image clock, int oldFill, int newFill)
+{
+    for (int i = oldFill; i < newFill + 1; i++)
     {
-        for (int i = oldFill; i < newFill+1 ; i++)
-        {
-            clock.sprite = _clockSprites[i];
-            yield return new WaitForSeconds(0.25f);
-        }
-
-        yield return null;
+        clock.sprite = _clockSprites[i];
+        yield return new WaitForSeconds(0.25f);
     }
+
+    yield return null;
+}
 
     void CountDownClock()
     {
@@ -861,6 +868,33 @@ public class PointOfInterest : MonoBehaviour
         _mainAction = newAction;
     }
 
+    void AddActionUIs()
+    {
+        if (_actionsCanvas != null)
+        {
+            if (_actions.Length == 0)
+            {
+                Debug.LogError(name + ": No Actions.");
+                return;
+            }
+            if (_actionsCanvas.transform.childCount < 2)
+            {
+                foreach (Action action in _actions)
+                {
+                    GameObject actionCanvas = Instantiate(Resources.Load<GameObject>("Action Canvas"), _actionsCanvas.transform);
+                    action.ActionUI = actionCanvas.GetComponent<ActionUI>();
+                    action.ActionUI.LoadClockSprites(action.Clocks[action.ActiveClock].Segments);
+                    action.ActionUI.LoadDiceSprites();
+                    action.ActionUI._interact.onClick.AddListener(() => UseAction(action));
+                    action.ActionUI._dice.onClick.AddListener(() => UseAction(action));
+                    DisplayClock(action.Clocks[action.ActiveClock].Fill, action);
+                }
+            }
+
+        }
+
+    }
+
     public void SetGameDetailsActive(params int[] indices)
     {
         foreach (GameObject detail in _modelDetails)
@@ -880,6 +914,8 @@ public class PointOfInterest : MonoBehaviour
             }
         }
     }
+
+
 
 }
 
