@@ -191,7 +191,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4996890666281575529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,10 +253,13 @@ MonoBehaviour:
   _diceSprites: []
   _animSprites: []
   _interact: {fileID: 4198572877163823081}
+  _dice: {fileID: 5918338697778044170}
   _clockSprites: []
   _activeClockImage: {fileID: 1782988749699700038}
   _activeClockFrame: {fileID: 5470246087063073510}
   _activeClockBackground: {fileID: 3961673855589742791}
+  _clockFrameSprite: {fileID: 0}
+  _clockBackgroundSprite: {fileID: 0}
   _baseColor: {r: 1, g: 1, b: 1, a: 0}
   _filledColor: {r: 0.16798848, g: 1, b: 0.13836467, a: 0}
   _countdownColor: {r: 1, g: 0.14779866, b: 0.14779866, a: 0}
