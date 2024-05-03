@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bodyText: It is time to service your debt. Uriah waits for you in the spires of
     the Guild of Creditors.
-  _text: {fileID: 0}
+  _text: {fileID: 4900000, guid: 3c2237a3346d4da47af3ea6546faffbb, type: 3}
   _upperButtonText: Pay 5 Cred.
   _uCred: -5
   _uStress: 1
@@ -22,6 +22,9 @@ MonoBehaviour:
   _uAllExplorers: 1
   _uUnlockPoI: 
   _uLockPoI: 
+  _setDetails: 0
+  _POI: 
+  _details: 
   _lowerButtonText: 
   _lCred: 0
   _lStress: 0
