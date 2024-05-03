@@ -60,9 +60,9 @@ public class PointOfInterest : MonoBehaviour
         public bool Enabled { get => _enabled; set => _enabled = value; }
 
     }
+    
     [SerializeField]
-    Action _mainAction;
-    [SerializeField]
+
     Action[] _actions;
 
 
@@ -130,10 +130,9 @@ public class PointOfInterest : MonoBehaviour
     private void OnEnable()
     {
         Guild.OnNewCycle += CountDownClock;
-
         LoadDiceSprites();
-        LoadClockSprites(_clocks[_activeClock].Segments);
-        DisplayClock(_clocks[_activeClock].Fill);
+        LoadClockSprites(_actions[0].Clocks[_actions[0].ActiveClock].Segments);
+        
         AddActionUIs();
 
         if (IsSelected)
@@ -360,33 +359,16 @@ public class PointOfInterest : MonoBehaviour
 
     void DisplayWorldUI(bool value)
     {
-        _worldClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
-        _worldClockBackground.sprite = _clockBackgroundSprite;
-        _worldClockFrame.sprite = _clockFrameSprite;
-        RecolorClock();
+        
+        _worldClockImage.sprite = _actions[0].ActionUI._clockSprites[_actions[0].Clocks[_actions[0].ActiveClock].Fill];
+        _worldClockBackground.sprite = _actions[0].ActionUI._clockBackgroundSprite;
+        _worldClockFrame.sprite = _actions[0].ActionUI._clockFrameSprite;
+        
+        RecolorClock(_actions[0]);
 
         _worldCanvas.gameObject.SetActive(value);
     }
 
-    void DisplayClock(int fill)
-    {
-        _activeClockImage.sprite = _clockSprites[fill];
-        _activeClockFrame.sprite = _clockFrameSprite;
-        _activeClockBackground.sprite = _clockBackgroundSprite;
-        _worldClockImage.sprite = _clockSprites[fill];
-        _worldClockBackground.sprite = _clockBackgroundSprite;
-        _worldClockFrame.sprite = _clockFrameSprite;
-        _description.text = _clocks[_activeClock].Description;
-        RecolorClock();
-        if (_clocks[_activeClock].Segments != 0)
-        {
-            _consequences.text = "Attribute: " + _clocks[_activeClock].ActionAttribute.ToString() + "\n" + ActionToStringDescription();
-        }
-        else
-        {
-            _consequences.text = "";
-        }
-    }
 
     void DisplayClock(int fill, Action action)
     {
@@ -394,15 +376,15 @@ public class PointOfInterest : MonoBehaviour
         action.ActionUI._activeClockImage.sprite = action.ActionUI._clockSprites[fill];
         action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
         action.ActionUI._activeClockBackground.sprite = action.ActionUI._clockBackgroundSprite;
-        _worldClockImage.sprite = _clockSprites[fill];
-        _worldClockBackground.sprite = _clockBackgroundSprite;
-        _worldClockFrame.sprite = _clockFrameSprite;
+        _worldClockImage.sprite = _actions[0].ActionUI._clockSprites[fill];
+        _worldClockBackground.sprite = _actions[0].ActionUI._clockBackgroundSprite;
+        _worldClockFrame.sprite = _actions[0].ActionUI._clockFrameSprite;
         action.ActionUI._description.text = action.Clocks[action.ActiveClock].Description;
         RecolorClock(action);
 
         if (action.Clocks[action.ActiveClock].Segments != 0)
         {
-            action.ActionUI._consequences.text = "Attribute: " + action.Clocks[action.ActiveClock].ActionAttribute.ToString() + "\n" + ActionToStringDescription();
+            action.ActionUI._consequences.text = "Attribute: " + action.Clocks[action.ActiveClock].ActionAttribute.ToString() + "\n" + ActionToStringDescription(action);
         }
         else
         {
@@ -415,17 +397,14 @@ public class PointOfInterest : MonoBehaviour
         if (0 == _clocks[_activeClock].Segments)
         {
             _worldClockImage.color = _filledColor;
-            _activeClockImage.color = _filledColor;
         }
         else if (_clocks[_activeClock].IsCountdown)
         {
             _worldClockImage.color = _countdownColor;
-            _activeClockImage.color = _countdownColor;
         }
         else
         {
             _worldClockImage.color = _baseColor;
-            _activeClockImage.color = _baseColor;
         }
     }
     void RecolorClock(Action action)
@@ -451,7 +430,7 @@ public class PointOfInterest : MonoBehaviour
     public void SetActive(bool value)
     {
         _active = value;
-        _activeCanvas.transform.parent.gameObject.SetActive(value);
+        _actionsCanvas.transform.parent.gameObject.SetActive(value);
         _worldCanvas.transform.parent.gameObject.SetActive(value);
 
         if (value)
@@ -460,11 +439,11 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
-    string ActionToStringDescription()
+    string ActionToStringDescription(Action action)
     {
         string description = "";
 
-        float avgCred = (_mainAction.Fail.Cred + _mainAction.Partial.Cred + _mainAction.Success.Cred) / 3f;
+        float avgCred = (action.Fail.Cred + action.Partial.Cred + action.Success.Cred) / 3f;
         if (Mathf.Abs(avgCred) > 0)
         {
             description += "Cred" + DetermineChangeSymbol(avgCred);
@@ -479,7 +458,7 @@ public class PointOfInterest : MonoBehaviour
         }
         description += " ";
 
-        float avgStress = (_mainAction.Fail.Stress + _mainAction.Partial.Stress + _mainAction.Success.Stress) / 3f;
+        float avgStress = (action.Fail.Stress + action.Partial.Stress + action.Success.Stress) / 3f;
         if (Mathf.Abs(avgStress) > 0)
         {
             description += "Stress" + DetermineChangeSymbol(avgStress);
@@ -495,7 +474,7 @@ public class PointOfInterest : MonoBehaviour
         description += " ";
 
 
-        float avgHp = (_mainAction.Fail.Hp + _mainAction.Partial.Hp + _mainAction.Success.Hp) / 3f;
+        float avgHp = (action.Fail.Hp + action.Partial.Hp + action.Success.Hp) / 3f;
         if (Mathf.Abs(avgHp) > 0)
         {
             description += "Vigor" + DetermineChangeSymbol(avgHp);
@@ -529,9 +508,8 @@ public class PointOfInterest : MonoBehaviour
 
     public void DisplaySelectUI(bool value)
     {
-        if (_activeCanvas != null)
+        if (_actionsCanvas != null)
         {
-            _activeCanvas.gameObject.SetActive(value);
             foreach (Action action in _actions)
             {
                 if (action.Enabled)
@@ -547,14 +525,6 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
-    void NextClock()
-    {
-        _activeClock++;
-        LoadClockSprites(_clocks[_activeClock].Segments);
-        _clocks[_activeClock].Fill = 0;
-        DisplayInteractButton();
-        DisplayClock(_clocks[_activeClock].Fill);
-    }
     void NextClock(Action action)
     {
         action.ActiveClock++;
@@ -562,17 +532,6 @@ public class PointOfInterest : MonoBehaviour
         action.Clocks[action.ActiveClock].Fill = 0;
         DisplayInteractButton(action);
         DisplayClock(action.Clocks[action.ActiveClock].Fill, action);
-    }
-    void DisplayInteractButton()
-    {
-        if (_clocks[_activeClock].IsCountdown)
-        {
-            _interact.gameObject.SetActive(false);
-        }
-        else
-        {
-            _interact.gameObject.SetActive(true);
-        }
     }
     void DisplayInteractButton(Action action)
     {
@@ -586,48 +545,6 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
-    public void UseAction()
-    {
-        Explorer selectedExplorer = MasterSingleton.Instance.Guild.SelectedExplorer;
-
-        if (selectedExplorer == null)
-        {
-            Debug.LogWarning("No explorer selected.");
-            MasterSingleton.Instance.Guild.SelectAvailableExplorer();
-            return;
-        }
-
-        if (_clocks[_activeClock].Segments == _clocks[_activeClock].Fill && !MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted)
-        {
-            ExhaustSelectedExplorer();
-            _clocks[_activeClock].CompletionCheck();
-            LoadNewClockCheck();
-
-            DeselectDueToExhaustionCheck();
-        }
-        else if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !_clocks[_activeClock].IsCountdown && MasterSingleton.Instance.Guild.SelectedExplorer.Name != "" && !_rollingDice)
-        {
-            int diceResult = MasterSingleton.Instance.Guild.SelectedExplorer.RollDice(_clocks[_activeClock].ActionAttribute);
-
-            StartDiceRoll(diceResult);
-
-            Debug.Log(MasterSingleton.Instance.Guild.SelectedExplorer.Name + " used the Action at " + this.name);
-        }
-        else if (_clocks[_activeClock].IsCountdown)
-        {
-            Debug.LogWarning("This is a Countdown Clock.");
-        }
-        else if (_rollingDice)
-        {
-            Debug.LogWarning("Already rolling Dice.");
-        }
-        else
-        {
-            Resources.Load<NarrativeEvent>("Narrative Events/NE_Exhausted").Trigger();
-        }
-
-        MasterSingleton.Instance.UIManger.HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
-    }
     public void UseAction(Action action)
     {
         Explorer selectedExplorer = MasterSingleton.Instance.Guild.SelectedExplorer;
@@ -670,47 +587,10 @@ public class PointOfInterest : MonoBehaviour
         MasterSingleton.Instance.UIManger.HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
     }
 
-    void StartDiceRoll(int result)
-    {
-        _rollingDice = true;
-        StartCoroutine(DiceRoll(result));
-    }
     void StartDiceRoll(int result, Action action)
     {
         _rollingDice = true;
         StartCoroutine(DiceRoll(result, action));
-    }
-    IEnumerator DiceRoll(int result)
-    {
-        _animSprites.Shuffle();
-
-        AudioManager.instance.PlayOneShot(FMODEvents.instance._dice);
-
-        foreach (Sprite sprite in _animSprites)
-        {
-            _diceImage.sprite = sprite;
-            yield return new WaitForSeconds(.1f);
-        }
-        yield return new WaitForSeconds(.1f);
-        _diceImage.sprite = _diceSprites[result - 1];
-
-
-        ApplyRoll(result);
-        _applyRollFeedback.PlayFeedbacks();
-
-        ExhaustSelectedExplorer();
-        yield return new WaitForSeconds(.4f);
-        _clocks[_activeClock].CompletionCheck();
-        LoadNewClockCheck();
-
-        DeselectDueToExhaustionCheck();
-
-        _rollingDice = false;
-        if (!MasterSingleton.Instance.Guild.DiceNEHasTriggerd)
-        {
-            MasterSingleton.Instance.Guild.DiceNE.Trigger();
-            MasterSingleton.Instance.Guild.DiceNEHasTriggerd = true;
-        }
     }
     IEnumerator DiceRoll(int result, Action action)
     {
@@ -744,37 +624,6 @@ public class PointOfInterest : MonoBehaviour
             MasterSingleton.Instance.Guild.DiceNEHasTriggerd = true;
         }
     }
-    void ApplyRoll(int diceResult)
-    {
-        int oldFill = _clocks[_activeClock].Fill;
-
-        if (diceResult <= 3)
-        {
-            _clocks[_activeClock].ChangeFill(1);
-            StartCoroutine(AnimateClock(_activeClockImage, oldFill, _clocks[_activeClock].Fill));
-            //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
-            _activeClockFrame.sprite = _clockFrameSprite;
-            _mainAction.Fail.Apply();
-        }
-        else if (diceResult <= 5)
-        {
-            _clocks[_activeClock].ChangeFill(2);
-            StartCoroutine(AnimateClock(_activeClockImage, oldFill, _clocks[_activeClock].Fill));
-            //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
-            _activeClockFrame.sprite = _clockFrameSprite;
-            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
-            _mainAction.Partial.Apply();
-
-        }
-        else if (diceResult == 6)
-        {
-            _clocks[_activeClock].ChangeFill(3);
-            StartCoroutine(AnimateClock(_activeClockImage, oldFill, _clocks[_activeClock].Fill));
-            //_activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
-            _activeClockFrame.sprite = _clockFrameSprite;
-            _mainAction.Success.Apply();
-        }
-    }
 
     void ApplyRoll(int diceResult, Action action)
     {
@@ -783,14 +632,14 @@ public class PointOfInterest : MonoBehaviour
         if (diceResult <= 3)
         {
             action.Clocks[action.ActiveClock].ChangeFill(1);
-            StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill));
+            StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill, action));
             action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
             action.Fail.Apply();
         }
         else if (diceResult <= 5)
         {
             action.Clocks[action.ActiveClock].ChangeFill(2);
-            StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill));
+            StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill, action));
             action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
             action.Partial.Apply();
 
@@ -798,34 +647,39 @@ public class PointOfInterest : MonoBehaviour
         else if (diceResult == 6)
         {
             action.Clocks[action.ActiveClock].ChangeFill(3);
-            StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill));
+            StartCoroutine(AnimateClock(action.ActionUI._activeClockImage, oldFill, action.Clocks[action.ActiveClock].Fill, action));
             action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
             action.Success.Apply();
         }
             }
 
-    private IEnumerator AnimateClock(Image clock, int oldFill, int newFill)
+    private IEnumerator AnimateClock(Image clock, int oldFill, int newFill, Action action)
 {
     for (int i = oldFill; i < newFill + 1; i++)
     {
-        clock.sprite = _clockSprites[i];
+        clock.sprite = action.ActionUI._clockSprites[i];
         yield return new WaitForSeconds(0.25f);
     }
 
     yield return null;
 }
 
+    
+
     void CountDownClock()
     {
-        if (_clocks[_activeClock].IsCountdown && _active)
+        foreach (Action action in _actions)
         {
-            _clocks[_activeClock].ChangeFill(1);
-            _clocks[_activeClock].CompletionCheck();
-            _activeClockImage.sprite = _clockSprites[_clocks[_activeClock].Fill];
-
-            if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
+            if (action.Clocks[action.ActiveClock].IsCountdown && _active)
             {
-                NextClock();
+                action.Clocks[action.ActiveClock].ChangeFill(1);
+                action.Clocks[action.ActiveClock].CompletionCheck();
+                action.ActionUI._activeClockImage.sprite = action.ActionUI._clockSprites[action.Clocks[action.ActiveClock].Fill];
+
+                if (action.Clocks[action.ActiveClock].Fill >= action.Clocks[action.ActiveClock].Segments)
+                {
+                    NextClock(action);
+                }
             }
         }
     }
@@ -849,13 +703,7 @@ public class PointOfInterest : MonoBehaviour
         DeSelect();
     }
 
-    void LoadNewClockCheck()
-    {
-        if (_clocks[_activeClock].Fill >= _clocks[_activeClock].Segments)
-        {
-            NextClock();
-        }
-    }
+    
     void LoadNewClockCheck(Action action)
     {
         if (action.Clocks[action.ActiveClock].Fill >= action.Clocks[action.ActiveClock].Segments)
@@ -865,7 +713,8 @@ public class PointOfInterest : MonoBehaviour
     }
     public void OverideAction(Action newAction)
     {
-        _mainAction = newAction;
+        Debug.LogWarning("Override Action is not implemented");
+        //_actions[_] = newAction;
     }
 
     void AddActionUIs()
@@ -887,6 +736,7 @@ public class PointOfInterest : MonoBehaviour
                     action.ActionUI.LoadDiceSprites();
                     action.ActionUI._interact.onClick.AddListener(() => UseAction(action));
                     action.ActionUI._dice.onClick.AddListener(() => UseAction(action));
+                    action.ActionUI._return.onClick.AddListener(DeSelect);
                     DisplayClock(action.Clocks[action.ActiveClock].Fill, action);
                 }
             }

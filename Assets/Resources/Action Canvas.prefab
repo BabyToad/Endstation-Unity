@@ -191,7 +191,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4996890666281575529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
   _animSprites: []
   _interact: {fileID: 4198572877163823081}
   _dice: {fileID: 5918338697778044170}
+  _return: {fileID: 2256490098238289085}
   _clockSprites: []
   _activeClockImage: {fileID: 1782988749699700038}
   _activeClockFrame: {fileID: 5470246087063073510}
