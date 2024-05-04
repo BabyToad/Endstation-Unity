@@ -41,9 +41,12 @@ MonoBehaviour:
   _lAllExplorers: 0
   _name: Old Gods
   _sprite: {fileID: 21300000, guid: c71d30c7da6980c4aab86302a01627dc, type: 3}
+  _enableAction: 1
   _overrideAction: 0
-  _pointOfInterest: 
+  actionIndex: 1
+  _pointOfInterest: Old Gods POI
   _newAction:
+    _enabled: 0
     _fail:
       _cred: 0
       _stress: 0
@@ -59,3 +62,5 @@ MonoBehaviour:
       _stress: 0
       _hp: 0
       _xp: 0
+    _clocks: []
+    _actionUI: {fileID: 0}

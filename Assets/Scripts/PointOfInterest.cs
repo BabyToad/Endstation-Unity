@@ -711,10 +711,14 @@ public class PointOfInterest : MonoBehaviour
             NextClock(action);
         }
     }
-    public void OverideAction(Action newAction)
+    public void OverideAction(Action newAction, int actionIndex)
     {
-        Debug.LogWarning("Override Action is not implemented");
-        //_actions[_] = newAction;
+        _actions[actionIndex] = newAction;
+    }
+
+    public void EnableAction(int actionIndex, bool value)
+    {
+        _actions[actionIndex].Enabled = value;
     }
 
     void AddActionUIs()
