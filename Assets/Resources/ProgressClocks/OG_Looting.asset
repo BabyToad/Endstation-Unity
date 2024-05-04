@@ -16,17 +16,17 @@ MonoBehaviour:
   _isCountdown: 0
   _actionAttribute: 0
   _segments: 8
-  _fill: 8
+  _fill: 3
   filled:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 4cc767d709e79e24c8ff97d4458038f6, type: 2}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+        m_TargetAssemblyTypeName: NarrativeEvent, Assembly-CSharp
+        m_MethodName: Trigger
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
