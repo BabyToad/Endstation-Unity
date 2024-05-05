@@ -59,7 +59,12 @@ public class NarrativeEvent : ScriptableObject
     Sprite _sprite;
 
     [SerializeField]
+    [Header("Modify Action")]
+    bool _enableAction;
+    [SerializeField]
     bool _overrideAction;
+    [SerializeField]
+    int actionIndex;
     [SerializeField]
     string _pointOfInterest;
     [SerializeField]
@@ -125,7 +130,12 @@ public class NarrativeEvent : ScriptableObject
 
         if (_overrideAction)
         {
-            GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().OverideAction(_newAction);
+            GameObject.Find(_pointOfInterest).GetComponent<PointOfInterest>().OverideAction(_newAction, actionIndex);
+        }
+        if (_enableAction)
+        {
+            
+            GameObject.Find(_pointOfInterest).GetComponent<PointOfInterest>().EnableAction(actionIndex, _enableAction);
         }
 
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);
@@ -163,7 +173,12 @@ public class NarrativeEvent : ScriptableObject
 
         if (_overrideAction)
         {
-            GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().OverideAction(_newAction);
+            GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().OverideAction(_newAction, actionIndex);
+        }
+
+        if (_enableAction)
+        {
+            GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().EnableAction(actionIndex, _enableAction);
         }
 
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);

@@ -21,7 +21,7 @@ public class ActionUI : MonoBehaviour
     [SerializeField]
     public List<Sprite> _animSprites;
     [SerializeField]
-    public Button _interact, _dice;
+    public Button _interact, _dice, _return;
 
     [Header("Clock UI References")]
     [SerializeField]
