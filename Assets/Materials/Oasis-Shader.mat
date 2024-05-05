@@ -121,7 +121,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _Gradient_Offfset: 0
-    - _Gradient_Offset: 6.77
+    - _Gradient_Offset: 6.03
     - _Metallic: -0.44
     - _Mode: 0
     - _Normal_Strength: 0.5
@@ -133,7 +133,7 @@ Material:
     - _Smoothness: -0.68
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Spread: 5.92
+    - _Spread: 5.39
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
@@ -146,7 +146,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Top_Color: {r: 0.5707547, g: 0.6970157, b: 1, a: 1}
+    - _Top_Color: {r: 0.17087927, g: 0.6087037, b: 0.6792453, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3078469770961294728
 MonoBehaviour:
