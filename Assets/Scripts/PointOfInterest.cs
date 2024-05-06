@@ -558,16 +558,19 @@ public class PointOfInterest : MonoBehaviour
 
         if (action.Clocks[action.ActiveClock].Segments == action.Clocks[action.ActiveClock].Fill && !MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted)
         {
-            ExhaustSelectedExplorer();
+            //ExhaustSelectedExplorer();
             action.Clocks[action.ActiveClock].CompletionCheck();
             LoadNewClockCheck(action);
             DeselectDueToExhaustionCheck();
+            MasterSingleton.Instance.Guild.ContinueCycle(1);
+
         }
         else if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !action.Clocks[action.ActiveClock].IsCountdown && MasterSingleton.Instance.Guild.SelectedExplorer.Name != "" && !_rollingDice)
         {
             int diceResult = MasterSingleton.Instance.Guild.SelectedExplorer.RollDice(action.Clocks[action.ActiveClock].ActionAttribute);
 
             StartDiceRoll(diceResult, action);
+            MasterSingleton.Instance.Guild.ContinueCycle(1);
 
             Debug.Log(MasterSingleton.Instance.Guild.SelectedExplorer.Name + " used the Action at " + this.name);
         }
@@ -584,7 +587,7 @@ public class PointOfInterest : MonoBehaviour
             Resources.Load<NarrativeEvent>("Narrative Events/NE_Exhausted").Trigger();
         }
 
-        MasterSingleton.Instance.UIManger.HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
+        //MasterSingleton.Instance.UIManger.HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
     }
 
     void StartDiceRoll(int result, Action action)
@@ -610,13 +613,12 @@ public class PointOfInterest : MonoBehaviour
         ApplyRoll(result, action);
         _applyRollFeedback.PlayFeedbacks();
 
-        ExhaustSelectedExplorer();
-        yield return new WaitForSeconds(.4f);
+        //ExhaustSelectedExplorer();
+        yield return new WaitForSeconds(.25f *3 + .1f);
         action.Clocks[action.ActiveClock].CompletionCheck();
         LoadNewClockCheck(action);
 
         DeselectDueToExhaustionCheck();
-
         _rollingDice = false;
         if (!MasterSingleton.Instance.Guild.DiceNEHasTriggerd)
         {
@@ -651,7 +653,7 @@ public class PointOfInterest : MonoBehaviour
             action.ActionUI._activeClockFrame.sprite = action.ActionUI._clockFrameSprite;
             action.Success.Apply();
         }
-            }
+    }
 
     private IEnumerator AnimateClock(Image clock, int oldFill, int newFill, Action action)
 {

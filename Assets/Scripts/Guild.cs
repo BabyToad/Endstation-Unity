@@ -30,7 +30,9 @@ public class Guild : MonoBehaviour
     NarrativeEvent _diceNE;
     bool _diceNEHasTriggerd;
 
-
+    int _cycle = 0;
+    int _maxCycle = 3;
+    bool _endOfCycle = false;
 
     public delegate void NewCycle();
     public static event NewCycle OnNewCycle;
@@ -44,6 +46,9 @@ public class Guild : MonoBehaviour
     public List<Explorer> Roster { get => _roster; set => _roster = value; }
     public bool DiceNEHasTriggerd { get => _diceNEHasTriggerd; set => _diceNEHasTriggerd = value; }
     public NarrativeEvent DiceNE { get => _diceNE; set => _diceNE = value; }
+    public int Cycle { get => _cycle; set => _cycle = value; }
+    public int MaxCycle { get => _maxCycle; set => _maxCycle = value; }
+    public bool EndOfCycle { get => _endOfCycle; set => _endOfCycle = value; }
 
     private void Awake()
     {
@@ -132,7 +137,6 @@ public class Guild : MonoBehaviour
             _roster[i].Rest();
         }
         AddCred(-_upkeepPerExplorer * _roster.Count);
-        MasterSingleton.Instance.UIManger.HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
 
         foreach (PointOfInterest poi in MasterSingleton.Instance.UIManger.PointsOfInterestList)
         {
@@ -142,7 +146,10 @@ public class Guild : MonoBehaviour
         AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
         AudioManager.instance.PlayOneShot(FMODEvents.instance._endTurn);
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.Cutscene;
-        // tick clocks
+
+        MasterSingleton.Instance.UIManger.EnableEndCycleButton(false);
+        _cycle = 0;
+        _endOfCycle = false;
     }
 
     public void StartNewCycle()
@@ -210,6 +217,22 @@ public class Guild : MonoBehaviour
             {
                 explorer.SelectExplorer(true);
                 return;
+            }
+        }
+    }
+
+    public void ContinueCycle(int i)
+    {
+        Debug.Log("Continued Cycle");
+        _cycle += i;
+        if (_cycle > _maxCycle)
+        {
+            _endOfCycle = true;
+            MasterSingleton.Instance.UIManger.EnableEndCycleButton(_endOfCycle);
+            MasterSingleton.Instance.UIManger.HighlightEndCycle(true);
+            foreach (Explorer explorer in Roster)
+            {
+                explorer.Exhaust();
             }
         }
     }

@@ -59,4 +59,9 @@ public class UIManager : MonoBehaviour
     {
         _endCycle.GetComponent<Animator>().SetBool("RosterIsExhausted", value);
     }
+
+    public void EnableEndCycleButton(bool value)
+    {
+        _endCycle.interactable = value;
+    }
 }
