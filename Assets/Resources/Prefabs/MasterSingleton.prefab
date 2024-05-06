@@ -1679,7 +1679,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.94, y: 0.94, z: 0.94}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6723870477071458461}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2806,7 +2806,6 @@ GameObject:
   - component: {fileID: 1885288991800228349}
   - component: {fileID: 4597005450209983704}
   - component: {fileID: 1122171346002979834}
-  - component: {fileID: 2759343209830988330}
   m_Layer: 0
   m_Name: CycleClockFrame
   m_TagString: Untagged
@@ -2871,21 +2870,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2759343209830988330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7527497401249929705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.54509807}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!1 &7897170374334134014
 GameObject:
   m_ObjectHideFlags: 0
@@ -3166,7 +3150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3969357819831671410, guid: 58099e4c24a34e7419f475d68323e118, type: 3}
       propertyPath: m_Size
-      value: 0
+      value: 0.68752843
       objectReference: {fileID: 0}
     - target: {fileID: 4001211779241474474, guid: 58099e4c24a34e7419f475d68323e118, type: 3}
       propertyPath: m_AnchorMax.y
