@@ -21,8 +21,17 @@ public class UIManager : MonoBehaviour
     List<PointOfInterest> _pointsOfInterestList;
 
     public List<PointOfInterest> PointsOfInterestList { get => _pointsOfInterestList; set => _pointsOfInterestList = value; }
+    [SerializeField]
 
-    
+    List<Sprite> _clockSprites;
+    [SerializeField]
+    Image _cycleClock;
+    private void Start()
+    {
+        LoadClockSprites(4);
+        UpdateCycleClock();
+    }
+
 
     public void DisplayOverworldUI(bool value)
     {
@@ -63,5 +72,53 @@ public class UIManager : MonoBehaviour
     public void EnableEndCycleButton(bool value)
     {
         _endCycle.interactable = value;
+    }
+
+    public void UpdateCycleClock()
+    {
+        
+        _cycleClock.sprite = _clockSprites[MasterSingleton.Instance.Guild.Cycle];
+    }
+
+    void LoadClockSprites(int segments)
+    {
+        _clockSprites.Clear();
+
+        if (segments == 0)
+        {
+
+            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New0Clock"))
+            {
+                _clockSprites.Add(sprite);
+            }
+            _clockSprites.Reverse();
+        }
+
+        if (segments == 4)
+        {
+
+            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New4Clock"))
+            {
+                _clockSprites.Add(sprite);
+            }
+
+        }
+        if (segments == 6)
+        {
+
+            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New6Clock"))
+            {
+                _clockSprites.Add(sprite);
+            }
+
+        }
+        if (segments == 8)
+        {
+            foreach (Sprite sprite in Resources.LoadAll<Sprite>("UI/Progress Clocks/New8Clock"))
+            {
+                _clockSprites.Add(sprite);
+            }
+        }
+        _clockSprites.Reverse();
     }
 }

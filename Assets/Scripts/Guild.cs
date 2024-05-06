@@ -150,6 +150,7 @@ public class Guild : MonoBehaviour
         MasterSingleton.Instance.UIManger.EnableEndCycleButton(false);
         _cycle = 0;
         _endOfCycle = false;
+        MasterSingleton.Instance.UIManger.HighlightEndCycle(false);
     }
 
     public void StartNewCycle()
@@ -225,6 +226,7 @@ public class Guild : MonoBehaviour
     {
         Debug.Log("Continued Cycle");
         _cycle += i;
+        MasterSingleton.Instance.UIManger.UpdateCycleClock();
         if (_cycle > _maxCycle)
         {
             _endOfCycle = true;
