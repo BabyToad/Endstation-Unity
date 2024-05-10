@@ -16,15 +16,7 @@ public class ExplorerItem : MonoBehaviour
 
     public Explorer Explorer { get => _explorer; set => _explorer = value; }
 
-    private void OnEnable()
-    {
-        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed += DeselectExplorerItem;
-    }
-    private void OnDisable()
-    {
-        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed -= DeselectExplorerItem;
-
-    }
+    
     public void LinkExplorer(Explorer explorer)
     {
         _explorer = explorer;
@@ -32,12 +24,5 @@ public class ExplorerItem : MonoBehaviour
     }
 
 
-    public void DeselectExplorerItem(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        
-        if (RectTransformUtility.RectangleContainsScreenPoint(gameObject.GetComponent<RectTransform>(), MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>()))
-        {
-            Destroy(gameObject);
-        }
-    }
+   
 }

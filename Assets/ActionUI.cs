@@ -143,6 +143,7 @@ public class ActionUI : MonoBehaviour
                 if (RectTransformUtility.RectangleContainsScreenPoint(item.gameObject.GetComponent<RectTransform>(), MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>()))
                 {
                     _explorerItems.Remove(item);
+                    item.Explorer.SelectExplorer(false);
                     Destroy(item.gameObject);
                     return;
                 }

@@ -93,7 +93,7 @@ public class Explorer
         Toggle toggle = _explorerCanvas.GetComponent<Toggle>();
 
         _guild.RosterTG.RegisterToggle(toggle);
-        toggle.group = _guild.RosterTG;
+        //toggle.group = _guild.RosterTG;
 
         toggle.onValueChanged.AddListener(SelectExplorer);
 
@@ -272,6 +272,8 @@ public class Explorer
         }
         else
         {
+            _explorerCanvas.GetComponent<Toggle>().isOn = value;
+
             if (_guild.SelectedExplorer == this)
             {
                 _guild.SelectedExplorer = null;

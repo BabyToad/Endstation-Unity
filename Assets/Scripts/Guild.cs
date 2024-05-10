@@ -11,6 +11,7 @@ public class Guild : MonoBehaviour
     List<Explorer> _roster;
     ToggleGroup _rosterTG;
     //[SerializeField]
+    List<Explorer> _selectedExplorers;
     Explorer _selectedExplorer;
 
     [SerializeField]
@@ -36,9 +37,6 @@ public class Guild : MonoBehaviour
 
     public delegate void NewCycle();
     public static event NewCycle OnNewCycle;
-
-
-    int _downtimeActions = 2;
 
     public Explorer SelectedExplorer { get => _selectedExplorer; set => _selectedExplorer = value; }
     public float Cred { get => _cred; set => _cred = value; }
