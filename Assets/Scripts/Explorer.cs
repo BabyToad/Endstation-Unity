@@ -95,7 +95,7 @@ public class Explorer
         _guild.RosterTG.RegisterToggle(toggle);
         //toggle.group = _guild.RosterTG;
 
-        toggle.onValueChanged.AddListener(SelectExplorer);
+        //toggle.onValueChanged.AddListener(SelectExplorer);
 
         _explorerCanvas.AdvancementButtons[0].onClick.AddListener(AdvanceInsight);
         _explorerCanvas.AdvancementButtons[1].onClick.AddListener(AdvanceProwess);
