@@ -159,7 +159,6 @@ public class Explorer
 
             result = Mathf.Min(roll1, roll2);
         }
-        Debug.Log("Dice: " + result);
         return result;
     }
 
@@ -267,16 +266,16 @@ public class Explorer
     {
         if (value)
         {
-            _guild.SelectedExplorer = this;
+            _guild.SelectedExplorers.Add(this);
             _explorerCanvas.GetComponent<Toggle>().isOn = value;
         }
         else
         {
             _explorerCanvas.GetComponent<Toggle>().isOn = value;
 
-            if (_guild.SelectedExplorer == this)
+            if (_guild.SelectedExplorers.Contains(this))
             {
-                _guild.SelectedExplorer = null;
+                _guild.SelectedExplorers.Remove(this);
             }
         }
     }

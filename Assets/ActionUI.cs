@@ -150,4 +150,14 @@ public class ActionUI : MonoBehaviour
             }
         }
     }
+
+    public void RemoveExplorerItems()
+    {
+        foreach (ExplorerItem item in _explorerItems)
+        {
+                item.Explorer.SelectExplorer(false);
+                Destroy(item.gameObject);    
+        }
+        _explorerItems.Clear();
+    }
 }

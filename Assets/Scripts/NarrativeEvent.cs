@@ -103,8 +103,12 @@ public class NarrativeEvent : ScriptableObject
         }
         else
         {
-            MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(_uStress);
-            MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(_uHp);
+            foreach (Explorer explorer in MasterSingleton.Instance.Guild.SelectedExplorers)
+            {
+                explorer.AddStress(_uStress);
+                explorer.AddHealth(_uHp);
+            }
+           
         }
         if (_uUnlockPoI == "reload")
         {
@@ -167,8 +171,12 @@ public class NarrativeEvent : ScriptableObject
         }
         else
         {
-            MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(_lStress);
-            MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(_lHp);
+            foreach (Explorer explorer in MasterSingleton.Instance.Guild.SelectedExplorers)
+            {
+                explorer.AddStress(_lStress);
+                explorer.AddStress(_lHp);
+            }
+           
         }
 
         if (_overrideAction)

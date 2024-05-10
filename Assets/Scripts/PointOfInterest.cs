@@ -34,9 +34,12 @@ public class PointOfInterest : MonoBehaviour
             public void Apply()
             {
                 MasterSingleton.Instance.Guild.AddCred(Cred);
-                MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(Stress);
-                MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(Hp);
-                MasterSingleton.Instance.Guild.SelectedExplorer.AddExperience(Xp);
+                foreach (Explorer explorer in MasterSingleton.Instance.Guild.SelectedExplorers)
+                {
+                    explorer.AddStress(Stress);
+                    explorer.AddHealth(Hp);
+                    explorer.AddExperience(Xp);
+                }
             }
         }
         [SerializeField]
@@ -274,7 +277,10 @@ public class PointOfInterest : MonoBehaviour
         Debug.Log("Deselected " + this.name);
         AudioManager.instance.PlayOneShot(FMODEvents.instance._cameraOut);
         AudioManager.instance.SetGlobalParameter("_Location", 0.0f);
-
+        foreach (Action action in _actions)
+        {
+            action.ActionUI.RemoveExplorerItems();
+        }
     }
     private bool IsMouseOverUI()
     {
@@ -547,32 +553,51 @@ public class PointOfInterest : MonoBehaviour
 
     public void UseAction(Action action)
     {
-        Explorer selectedExplorer = MasterSingleton.Instance.Guild.SelectedExplorer;
+        Explorer[] selectedExplorers = MasterSingleton.Instance.Guild.SelectedExplorers.ToArray();
 
-        if (selectedExplorer == null)
+        if (selectedExplorers.Length < 1)
         {
             Debug.LogWarning("No explorer selected.");
             MasterSingleton.Instance.Guild.SelectAvailableExplorer();
             return;
         }
 
-        if (action.Clocks[action.ActiveClock].Segments == action.Clocks[action.ActiveClock].Fill && !MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted)
+        bool noExplorerExhausted = true;
+        foreach (Explorer explorer in selectedExplorers)
         {
-            //ExhaustSelectedExplorer();
+            if (explorer.Exhausted)
+            {
+                noExplorerExhausted = false;
+                return;
+            }   
+        }
+
+        if (action.Clocks[action.ActiveClock].Segments == action.Clocks[action.ActiveClock].Fill && noExplorerExhausted)
+        {
             action.Clocks[action.ActiveClock].CompletionCheck();
             LoadNewClockCheck(action);
             DeselectDueToExhaustionCheck();
             MasterSingleton.Instance.Guild.ContinueCycle(1);
 
         }
-        else if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !action.Clocks[action.ActiveClock].IsCountdown && MasterSingleton.Instance.Guild.SelectedExplorer.Name != "" && !_rollingDice)
+        else if (noExplorerExhausted && !action.Clocks[action.ActiveClock].IsCountdown && !_rollingDice)
         {
-            int diceResult = MasterSingleton.Instance.Guild.SelectedExplorer.RollDice(action.Clocks[action.ActiveClock].ActionAttribute);
 
+            int diceResult = 0;
+            foreach (Explorer explorer in selectedExplorers)
+            {
+                
+                int newDiceResult = explorer.RollDice(action.Clocks[action.ActiveClock].ActionAttribute);
+                Debug.Log(explorer.Name + " rolled a " + newDiceResult);
+                if (newDiceResult > diceResult)
+                {
+                    diceResult = newDiceResult;
+                }
+            }
+            Debug.Log("The final roll is a " + diceResult);
             StartDiceRoll(diceResult, action);
             MasterSingleton.Instance.Guild.ContinueCycle(1);
 
-            Debug.Log(MasterSingleton.Instance.Guild.SelectedExplorer.Name + " used the Action at " + this.name);
         }
         else if (action.Clocks[action.ActiveClock].IsCountdown)
         {
@@ -587,7 +612,10 @@ public class PointOfInterest : MonoBehaviour
             Resources.Load<NarrativeEvent>("Narrative Events/NE_Exhausted").Trigger();
         }
 
-        //MasterSingleton.Instance.UIManger.HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
+
+        action.ActionUI.RemoveExplorerItems();
+        //MasterSingleton.Instance.Guild.SelectedExplorers.Clear();
+        
     }
 
     void StartDiceRoll(int result, Action action)
@@ -686,9 +714,12 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
-    void ExhaustSelectedExplorer()
+    void ExhaustSelectedExplorers()
     {
-        MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
+        foreach (Explorer explorer in MasterSingleton.Instance.Guild.SelectedExplorers)
+        {
+            explorer.Exhaust();
+        }
     }
 
     void DeselectDueToExhaustionCheck()

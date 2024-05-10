@@ -10,9 +10,8 @@ public class Guild : MonoBehaviour
     [SerializeField]
     List<Explorer> _roster;
     ToggleGroup _rosterTG;
-    //[SerializeField]
+    [SerializeField]
     List<Explorer> _selectedExplorers;
-    Explorer _selectedExplorer;
 
     [SerializeField]
     float _cred;
@@ -38,7 +37,6 @@ public class Guild : MonoBehaviour
     public delegate void NewCycle();
     public static event NewCycle OnNewCycle;
 
-    public Explorer SelectedExplorer { get => _selectedExplorer; set => _selectedExplorer = value; }
     public float Cred { get => _cred; set => _cred = value; }
     public ToggleGroup RosterTG { get => _rosterTG; set => _rosterTG = value; }
     public List<Explorer> Roster { get => _roster; set => _roster = value; }
@@ -47,6 +45,7 @@ public class Guild : MonoBehaviour
     public int Cycle { get => _cycle; set => _cycle = value; }
     public int MaxCycle { get => _maxCycle; set => _maxCycle = value; }
     public bool EndOfCycle { get => _endOfCycle; set => _endOfCycle = value; }
+    public List<Explorer> SelectedExplorers { get => _selectedExplorers; set => _selectedExplorers = value; }
 
     private void Awake()
     {
@@ -123,10 +122,7 @@ public class Guild : MonoBehaviour
         RecruitExplorer(name);
     }
 
-    public void AdvanceInsight()
-    {
-        _selectedExplorer.AdvanceInsight();
-    }
+
     
     public void EndCycleButton()
     {
