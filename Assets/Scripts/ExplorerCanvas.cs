@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class ExplorerCanvas : MonoBehaviour
+
+public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     // Start is called before the first frame update
+    Explorer _explorer;
     [SerializeField]
     Text _name;
     [SerializeField]
@@ -20,17 +23,37 @@ public class ExplorerCanvas : MonoBehaviour
     Image _background, _backgroundSelected;
     [SerializeField]
     Color _normalColor, _selectedColor, _exhaustedColor, _selectedExhaustedColor;
+
+    //Drag Explorer Stuff
+    public Image characterImage; // The image representing the character
+    private GameObject characterUIElementPrefab; // The prefab for the draggable UI element
+    private GameObject currentDraggedObject;
+    private Canvas parentCanvas;
+
     public Button SelectExplorer { get => _selectExplorer; set => _selectExplorer = value; }
     public List<Button> AdvancementButtons { get => _advancementButtons; set => _advancementButtons = value; }
 
     public float animationDuration = 0.5f;
     private float currentValue;
 
+
     private void Awake()
     {
         _normalColor = _background.color;
         _selectedColor = _backgroundSelected.color;
         ShowAdvancementButtons(false);
+    }
+
+    private void Start()
+    {
+        characterUIElementPrefab = Resources.Load<GameObject>("Explorer UI Dragable"); // Replace "CharacterUI" with the path to your prefab
+        parentCanvas = transform.parent.gameObject.GetComponent<Canvas>();
+    }
+
+
+    public void ReferenceExplorer(Explorer explorer)
+    {
+        _explorer = explorer;
     }
     public void SetName(string name)
     {
@@ -123,5 +146,69 @@ public class ExplorerCanvas : MonoBehaviour
 
         // Ensure final value is set correctly
         slider.value = targetValue;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        currentDraggedObject = Instantiate(characterUIElementPrefab, parentCanvas.transform);
+        currentDraggedObject.GetComponent<ExplorerItem>().LinkExplorer(_explorer);
+        currentDraggedObject.AddComponent<LayoutElement>().ignoreLayout = true;
+        //currentDraggedObject.GetComponent<Image>().sprite = characterImage.sprite;
+
+
+
+        // Makes the dragged object follow the pointer
+        currentDraggedObject.transform.SetAsLastSibling(); // Ensures it's on top of UI
+        BlockRaycasts(true); // Temporarily prevent clicks through the dragged object
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (currentDraggedObject != null)
+        {
+            currentDraggedObject.transform.position = eventData.position;
+        }
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (currentDraggedObject != null)
+        {
+            Debug.Log(eventData.pointerCurrentRaycast.gameObject);
+            if (eventData.pointerCurrentRaycast.gameObject?.name == "Explorer Group Canvas")
+            {
+                // Successfully dropped on an Expedition Canvas
+
+                GameObject characterUIObject = Instantiate(characterUIElementPrefab, eventData.pointerCurrentRaycast.gameObject.transform);
+
+
+                ExplorerItem expItem = characterUIObject.GetComponent<ExplorerItem>();
+                expItem.LinkExplorer(_explorer);
+                bool wasAdded = eventData.pointerCurrentRaycast.gameObject.transform.parent.transform.parent.transform.parent.transform.parent.GetComponent<ActionUI>().AddExplorerItem(expItem);
+
+                if (wasAdded)
+                {
+                    
+                    _explorer.SelectExplorer(true);
+                }
+                else
+                {
+                    Destroy(characterUIObject);
+
+                }
+            }
+            Destroy(currentDraggedObject);
+        }
+        BlockRaycasts(false); // Re-enable clicks
+    }
+
+    private void BlockRaycasts(bool block)
+    {
+        // Use a graphic raycaster on the canvas
+        GraphicRaycaster raycaster = parentCanvas.GetComponent<GraphicRaycaster>();
+        if (raycaster != null)
+        {
+            raycaster.enabled = !block;
+        }
     }
 }

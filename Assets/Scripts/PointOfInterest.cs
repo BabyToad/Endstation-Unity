@@ -60,7 +60,7 @@ public class PointOfInterest : MonoBehaviour
         public bool Enabled { get => _enabled; set => _enabled = value; }
 
     }
-    
+
     [SerializeField]
 
     Action[] _actions;
@@ -132,7 +132,7 @@ public class PointOfInterest : MonoBehaviour
         Guild.OnNewCycle += CountDownClock;
         LoadDiceSprites();
         LoadClockSprites(_actions[0].Clocks[_actions[0].ActiveClock].Segments);
-        
+
         AddActionUIs();
 
         if (IsSelected)
@@ -359,11 +359,11 @@ public class PointOfInterest : MonoBehaviour
 
     void DisplayWorldUI(bool value)
     {
-        
+
         _worldClockImage.sprite = _actions[0].ActionUI._clockSprites[_actions[0].Clocks[_actions[0].ActiveClock].Fill];
         _worldClockBackground.sprite = _actions[0].ActionUI._clockBackgroundSprite;
         _worldClockFrame.sprite = _actions[0].ActionUI._clockFrameSprite;
-        
+
         RecolorClock(_actions[0]);
 
         _worldCanvas.gameObject.SetActive(value);
@@ -614,7 +614,7 @@ public class PointOfInterest : MonoBehaviour
         _applyRollFeedback.PlayFeedbacks();
 
         //ExhaustSelectedExplorer();
-        yield return new WaitForSeconds(.25f *3 + .1f);
+        yield return new WaitForSeconds(.25f * 3 + .1f);
         action.Clocks[action.ActiveClock].CompletionCheck();
         LoadNewClockCheck(action);
 
@@ -656,17 +656,17 @@ public class PointOfInterest : MonoBehaviour
     }
 
     private IEnumerator AnimateClock(Image clock, int oldFill, int newFill, Action action)
-{
-    for (int i = oldFill; i < newFill + 1; i++)
     {
-        clock.sprite = action.ActionUI._clockSprites[i];
-        yield return new WaitForSeconds(0.25f);
+        for (int i = oldFill; i < newFill + 1; i++)
+        {
+            clock.sprite = action.ActionUI._clockSprites[i];
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        yield return null;
     }
 
-    yield return null;
-}
 
-    
 
     void CountDownClock()
     {
@@ -705,7 +705,7 @@ public class PointOfInterest : MonoBehaviour
         DeSelect();
     }
 
-    
+
     void LoadNewClockCheck(Action action)
     {
         if (action.Clocks[action.ActiveClock].Fill >= action.Clocks[action.ActiveClock].Segments)

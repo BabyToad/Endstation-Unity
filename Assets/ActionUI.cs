@@ -33,8 +33,21 @@ public class ActionUI : MonoBehaviour
     public Sprite _clockFrameSprite, _clockBackgroundSprite;
     [SerializeField]
     public Color _baseColor, _filledColor, _countdownColor;
+    
+    [SerializeField]
+    List<ExplorerItem> _explorerItems;
 
+    public List<ExplorerItem> ExplorerItems { get => _explorerItems; set => _explorerItems = value; }
 
+    private void OnEnable()
+    {
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed += DeselectExplorerItem;
+    }
+    private void OnDisable()
+    {
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed -= DeselectExplorerItem;
+
+    }
 
     public void LoadClockSprites(int segments)
     {
@@ -99,5 +112,41 @@ public class ActionUI : MonoBehaviour
     public void DisplayActionCanvas(bool value)
     {
         this.gameObject.SetActive(value);
+    }
+
+    public bool AddExplorerItem(ExplorerItem explorerItem)
+    {
+        Debug.Log("Add Explorer Item");
+
+        foreach (ExplorerItem item in _explorerItems)
+        {
+            Debug.Log(item.Explorer.Name);
+            Debug.Log(explorerItem.Explorer.Name);
+            if (item.Explorer == explorerItem.Explorer)
+            {
+               
+
+                Debug.Log("Explorer already assigned");
+                return false;
+            }
+        }
+        _explorerItems.Add(explorerItem);
+        return true;
+    }
+
+    public void DeselectExplorerItem(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if (_explorerItems.Count > 0)
+        {
+            foreach (ExplorerItem item in _explorerItems)
+            {
+                if (RectTransformUtility.RectangleContainsScreenPoint(item.gameObject.GetComponent<RectTransform>(), MasterSingleton.Instance.InputManager.InputActions.Gameplay.Mouse.ReadValue<Vector2>()))
+                {
+                    _explorerItems.Remove(item);
+                    Destroy(item.gameObject);
+                    return;
+                }
+            }
+        }
     }
 }

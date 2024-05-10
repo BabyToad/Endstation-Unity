@@ -82,6 +82,7 @@ public class Explorer
         _ui = GameObject.Instantiate(_uiTemplate, GameObject.Find("Explorer Canvas").transform);
         _explorerCanvas = _ui.GetComponent<ExplorerCanvas>();
 
+        _explorerCanvas.ReferenceExplorer(this);
         _explorerCanvas.SetName(Name);
         _explorerCanvas.SetHealth(Health);
         _explorerCanvas.SetStress(Stress);
