@@ -8,6 +8,8 @@ using TMPro;
 
 public class ActionUI : MonoBehaviour
 {
+    PointOfInterest.Action _action;
+
     [Header("UI References")]
     //TextMeshProUGUI _activeExplorerText;
     [SerializeField]
@@ -36,16 +38,20 @@ public class ActionUI : MonoBehaviour
     
     [SerializeField]
     List<ExplorerItem> _explorerItems;
+    [SerializeField]
+    List<GameObject> _explorerFrames;
 
     public List<ExplorerItem> ExplorerItems { get => _explorerItems; set => _explorerItems = value; }
+    public List<GameObject> ExplorerFrames { get => _explorerFrames; set => _explorerFrames = value; }
+    public PointOfInterest.Action Action { get => _action; set => _action = value; }
 
     private void OnEnable()
     {
-        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed += DeselectExplorerItem;
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += DeselectExplorerItem;
     }
     private void OnDisable()
     {
-        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed -= DeselectExplorerItem;
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= DeselectExplorerItem;
 
     }
 
@@ -109,15 +115,35 @@ public class ActionUI : MonoBehaviour
         }
     }
 
-    public void DisplayActionCanvas(bool value)
+    public void DisplayActionCanvas(bool value, PointOfInterest.Action action)
     {
         this.gameObject.SetActive(value);
+        _action = action;
     }
 
-    public bool AddExplorerItem(ExplorerItem explorerItem)
+    public void DisplayExplorerSlots(int slots)
+    {
+        for (int i = 0; i < ExplorerFrames.Count; i++)
+        {
+            if (i < slots)
+            {
+                ExplorerFrames[i].SetActive(true);
+            }
+            else
+            {
+                ExplorerFrames[i].SetActive(false);
+            }
+        }
+    }
+
+    public bool AddExplorerItem(ExplorerItem explorerItem, PointOfInterest.Action action)
     {
         Debug.Log("Add Explorer Item");
 
+        if (action.ExplorerSlots <= _explorerItems.Count)
+        {
+            return false;
+        }
         foreach (ExplorerItem item in _explorerItems)
         {
             Debug.Log(item.Explorer.Name);
@@ -155,7 +181,6 @@ public class ActionUI : MonoBehaviour
     {
         foreach (ExplorerItem item in _explorerItems)
         {
-                item.Explorer.SelectExplorer(false);
                 Destroy(item.gameObject);    
         }
         _explorerItems.Clear();

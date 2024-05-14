@@ -43,11 +43,16 @@ public class ProgressClock : ScriptableObject
         Debug.Log("Changed fill to " + _fill + ". Added " + value);
     }
 
-    public void CompletionCheck()
+    public bool CompletionCheck()
     {
         if (_fill == _segments)
         {
             filled.Invoke();
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

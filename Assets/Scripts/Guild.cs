@@ -10,8 +10,7 @@ public class Guild : MonoBehaviour
     [SerializeField]
     List<Explorer> _roster;
     ToggleGroup _rosterTG;
-    [SerializeField]
-    List<Explorer> _selectedExplorers;
+    List<Explorer> _selectedExplorers = new List<Explorer>();
 
     [SerializeField]
     float _cred;
@@ -65,13 +64,13 @@ public class Guild : MonoBehaviour
 
     private void OnEnable()
     {
-        MasterSingleton.Instance.InputManager.InputActions.Debug.Restart.performed += Restart_performed;
+        //MasterSingleton.Instance.InputManager.InputActions.Debug.Restart.performed += Restart_performed;
 
     }
 
     private void OnDisable()
     {
-        MasterSingleton.Instance.InputManager.InputActions.Debug.Restart.performed -= Restart_performed;
+        //MasterSingleton.Instance.InputManager.InputActions.Debug.Restart.performed -= Restart_performed;
     }
     private void Restart_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
@@ -230,6 +229,15 @@ public class Guild : MonoBehaviour
             {
                 explorer.Exhaust();
             }
+        }
+    }
+
+    public void ClearSelectedExplorers()
+    {
+        // Iterate in reverse order
+        for (int i = _selectedExplorers.Count - 1; i >= 0; i--)
+        {
+            _selectedExplorers[i].SelectExplorer(false);
         }
     }
 }

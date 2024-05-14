@@ -48,6 +48,9 @@ public class PointOfInterest : MonoBehaviour
         Result _fail, _partial, _success;
 
         [SerializeField]
+        int _explorerSlots;
+
+        [SerializeField]
         List<ProgressClock> _clocks;
         int _activeClock;
 
@@ -61,7 +64,7 @@ public class PointOfInterest : MonoBehaviour
         public int ActiveClock { get => _activeClock; set => _activeClock = value; }
         public ActionUI ActionUI { get => _actionUI; set => _actionUI = value; }
         public bool Enabled { get => _enabled; set => _enabled = value; }
-
+        public int ExplorerSlots { get => _explorerSlots; set => _explorerSlots = value; }
     }
 
     [SerializeField]
@@ -277,10 +280,13 @@ public class PointOfInterest : MonoBehaviour
         Debug.Log("Deselected " + this.name);
         AudioManager.instance.PlayOneShot(FMODEvents.instance._cameraOut);
         AudioManager.instance.SetGlobalParameter("_Location", 0.0f);
+        
         foreach (Action action in _actions)
         {
             action.ActionUI.RemoveExplorerItems();
         }
+        MasterSingleton.Instance.Guild.ClearSelectedExplorers();
+
     }
     private bool IsMouseOverUI()
     {
@@ -520,11 +526,13 @@ public class PointOfInterest : MonoBehaviour
             {
                 if (action.Enabled)
                 {
-                    action.ActionUI.DisplayActionCanvas(value);
+                    action.ActionUI.DisplayActionCanvas(value, action);
+                    action.ActionUI.DisplayExplorerSlots(action.ExplorerSlots);
                 }
                 else
                 {
-                    action.ActionUI.DisplayActionCanvas(false);
+                    action.ActionUI.DisplayActionCanvas(false, action);
+                    action.ActionUI.DisplayExplorerSlots(action.ExplorerSlots);
                 }
 
             }
@@ -558,7 +566,7 @@ public class PointOfInterest : MonoBehaviour
         if (selectedExplorers.Length < 1)
         {
             Debug.LogWarning("No explorer selected.");
-            MasterSingleton.Instance.Guild.SelectAvailableExplorer();
+            //MasterSingleton.Instance.Guild.SelectAvailableExplorer();
             return;
         }
 
@@ -577,6 +585,9 @@ public class PointOfInterest : MonoBehaviour
             action.Clocks[action.ActiveClock].CompletionCheck();
             LoadNewClockCheck(action);
             DeselectDueToExhaustionCheck();
+            MasterSingleton.Instance.Guild.ClearSelectedExplorers();
+            action.ActionUI.RemoveExplorerItems();
+            
             MasterSingleton.Instance.Guild.ContinueCycle(1);
 
         }
@@ -643,11 +654,19 @@ public class PointOfInterest : MonoBehaviour
 
         //ExhaustSelectedExplorer();
         yield return new WaitForSeconds(.25f * 3 + .1f);
-        action.Clocks[action.ActiveClock].CompletionCheck();
+        bool clockComplete = action.Clocks[action.ActiveClock].CompletionCheck();
         LoadNewClockCheck(action);
 
-        DeselectDueToExhaustionCheck();
+        if (!clockComplete)
+        {
+            DeselectDueToExhaustionCheck();
+            MasterSingleton.Instance.Guild.ClearSelectedExplorers();
+            action.ActionUI.RemoveExplorerItems();
+        }
+
         _rollingDice = false;
+
+        //Tutorial PopUp
         if (!MasterSingleton.Instance.Guild.DiceNEHasTriggerd)
         {
             MasterSingleton.Instance.Guild.DiceNE.Trigger();

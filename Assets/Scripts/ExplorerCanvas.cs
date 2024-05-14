@@ -26,7 +26,9 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     //Drag Explorer Stuff
     public Image characterImage; // The image representing the character
-    private GameObject characterUIElementPrefab; // The prefab for the draggable UI element
+    [SerializeField]
+    GameObject characterUIElementPrefab; // The prefab for the draggable UI element
+ 
     private GameObject currentDraggedObject;
     private Canvas parentCanvas;
 
@@ -46,7 +48,7 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     private void Start()
     {
-        characterUIElementPrefab = Resources.Load<GameObject>("Explorer UI Dragable"); // Replace "CharacterUI" with the path to your prefab
+        characterUIElementPrefab = Resources.Load<GameObject>("Explorer UI Dragable");
         parentCanvas = transform.parent.gameObject.GetComponent<Canvas>();
     }
 
@@ -184,7 +186,10 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
                 ExplorerItem expItem = characterUIObject.GetComponent<ExplorerItem>();
                 expItem.LinkExplorer(_explorer);
-                bool wasAdded = eventData.pointerCurrentRaycast.gameObject.transform.parent.transform.parent.transform.parent.transform.parent.GetComponent<ActionUI>().AddExplorerItem(expItem);
+                ActionUI actionUI = eventData.pointerCurrentRaycast.gameObject.transform.parent.transform.parent.transform.parent.transform.parent.GetComponent<ActionUI>();
+                
+                
+                bool wasAdded = actionUI.AddExplorerItem(expItem, actionUI.Action);
 
                 if (wasAdded)
                 {
