@@ -76,6 +76,7 @@ public class Explorer
         _explorerCanvas.SetInsight(Insight, IsInjured, IsTrauma);
         _explorerCanvas.SetProwess(Prowess, IsInjured, IsTrauma);
         _explorerCanvas.SetResolve(Resolve, IsInjured, IsTrauma);
+        _explorerCanvas.SetTraits(_traits.ToArray());
 
         Toggle toggle = _explorerCanvas.GetComponent<Toggle>();
 
@@ -101,6 +102,7 @@ public class Explorer
         _explorerCanvas.SetInsight(insight, IsInjured, IsTrauma);
         _explorerCanvas.SetProwess(prowess, IsInjured, IsTrauma);
         _explorerCanvas.SetResolve(resolve, IsInjured, IsTrauma);
+        _explorerCanvas.SetTraits(_traits.ToArray());
         _explorerCanvas.ShowAdvancementButtons(_hasAdvancement);
     }
 

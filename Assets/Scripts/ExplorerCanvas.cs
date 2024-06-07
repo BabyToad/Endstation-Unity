@@ -3,31 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using TMPro;
 
 public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     // Start is called before the first frame update
     Explorer _explorer;
-    [SerializeField]
-    Text _name;
-    [SerializeField]
-    Slider _health, _stress;
-    [SerializeField]
-    Text _insight, _prowess, _resolve;
-    [SerializeField]
-    Button _selectExplorer;
-    [SerializeField]
-    List<Button> _advancementButtons;
-    [SerializeField]
-    Image _background, _backgroundSelected;
-    [SerializeField]
-    Color _normalColor, _selectedColor, _exhaustedColor, _selectedExhaustedColor;
+    [SerializeField] Text _name;
+    [SerializeField] Slider _health, _stress;
+    [SerializeField] Text _insight, _prowess, _resolve;
+    [SerializeField] TextMeshProUGUI _traits;
+    [SerializeField] Button _selectExplorer;
+    [SerializeField] List<Button> _advancementButtons;
+    [SerializeField] Image _background, _backgroundSelected;
+    [SerializeField] Color _normalColor, _selectedColor, _exhaustedColor, _selectedExhaustedColor;
 
     //Drag Explorer Stuff
     public Image characterImage; // The image representing the character
-    [SerializeField]
-    GameObject characterUIElementPrefab; // The prefab for the draggable UI element
+    [SerializeField] GameObject characterUIElementPrefab; // The prefab for the draggable UI element
  
     private GameObject currentDraggedObject;
     private Canvas parentCanvas;
@@ -90,7 +83,14 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
         _resolve.text = "Resolve: " + resolve;
     }
-
+    public void SetTraits(Trait[] traits)
+    {
+        _traits.text = "";
+        foreach (Trait t in traits)
+        {
+            _traits.text += t.name + " ";
+        }
+    }
 
     public void ShowAdvancementButtons(bool value)
     {
