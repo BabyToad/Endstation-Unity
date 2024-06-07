@@ -598,8 +598,6 @@ public class PointOfInterest : MonoBehaviour
 
             int diceResult = 0;
 
-            //To ChatGPT: I want to add a relationship trait to here.
-
             foreach (Explorer explorer in selectedExplorers)
             {
                 
@@ -612,29 +610,60 @@ public class PointOfInterest : MonoBehaviour
             }
 
             // Relationship trait addition
-            float relationshipChance = 1f; // 20% chance
             for (int i = 0; i < selectedExplorers.Length; i++)
             {
                 for (int j = i + 1; j < selectedExplorers.Length; j++)
                 {
-                    if (Random.value <= relationshipChance)
+                    if (Random.value <= Relationship.chance)
                     {
                         Explorer explorerA = selectedExplorers[i];
                         Explorer explorerB = selectedExplorers[j];
 
+                        // Ensure Traits lists are initialized
+                        if (explorerA.Traits == null)
+                        {
+                            explorerA.Traits = new List<Trait>();
+                        }
+                        if (explorerB.Traits == null)
+                        {
+                            explorerB.Traits = new List<Trait>();
+                        }
+
                         // Check if the relationship already exists
                         bool relationshipExists = false;
-                        
                         foreach (var trait in explorerA.Traits)
                         {
                             if (trait is Relationship relationship && relationship._explorer == explorerB)
                             {
+                                explorerA.AddStress(-relationship._strength ,false);
+                                if (Random.value < Relationship.decayChance)
+                                {
+                                    relationship.AddStrength(-1);
+                                }
+                                else
+                                {
+                                    relationship.AddStrength(1);
+                                }
                                 relationshipExists = true;
                                 break;
                             }
                         }
-                        
-                        
+                        foreach (var trait in explorerB.Traits)
+                        {
+                            if (trait is Relationship relationship && relationship._explorer == explorerA)
+                            {
+                                explorerB.AddStress(-relationship._strength, false);
+                                if (Random.value < Relationship.decayChance)
+                                {
+                                    relationship.AddStrength(-1);
+                                }
+                                else
+                                {
+                                    relationship.AddStrength(1);
+                                }
+                                break;
+                            }
+                        }
 
                         if (!relationshipExists)
                         {
@@ -646,6 +675,8 @@ public class PointOfInterest : MonoBehaviour
                     }
                 }
             }
+
+
             Debug.Log("The final roll is a " + diceResult);
             StartDiceRoll(diceResult, action);
             MasterSingleton.Instance.Guild.ContinueCycle(1);

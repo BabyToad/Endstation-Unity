@@ -190,6 +190,7 @@ public class Explorer
     }
     public void AddStress(int stress)
     {
+        Debug.Log("Stress was+ "+ Stress + ". Added "+ stress);
         Stress += stress;
         int maxStress = 9;
         Stress = Mathf.Clamp(Stress, 0, maxStress);
@@ -204,6 +205,29 @@ public class Explorer
         }
         UpdateExplorerCanvasStats();
         _explorerCanvas.SetStress(Stress);
+    }
+
+    public void AddStress(int stress, bool updateDisplay)
+    {
+        Debug.Log("Stress was+ " + Stress + ". Added " + stress);
+        Stress += stress;
+        int maxStress = 9;
+        Stress = Mathf.Clamp(Stress, 0, maxStress);
+
+        if (_stress == maxStress)
+        {
+            _isTrauma = true;
+        }
+        else
+        {
+            _isTrauma = false;
+        }
+        if (updateDisplay)
+        {
+            UpdateExplorerCanvasStats();
+            _explorerCanvas.SetStress(Stress);
+        }
+        
     }
 
     public void AddExperience(int exp)

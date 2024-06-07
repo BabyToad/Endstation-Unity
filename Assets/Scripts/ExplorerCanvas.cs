@@ -89,6 +89,10 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         foreach (Trait t in traits)
         {
             _traits.text += t.name + " ";
+            if (t is Relationship relationship)
+            {
+                _traits.text += relationship._strength + " ";
+            }
         }
     }
 

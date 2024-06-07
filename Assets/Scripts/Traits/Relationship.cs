@@ -6,11 +6,20 @@ public class Relationship : Trait
 {
     [SerializeField] public Explorer _explorer;
     [SerializeField] public int _strength;
-
+    [SerializeField] public int _maxStrength = 3;
+    static public float chance = 1f;
+    static public float decayChance = 0f;
     public Relationship(Explorer exp, int strength)
     {
         _explorer = exp;
         _strength = strength;
         name = "Relationship: " + _explorer.Name;
+    }
+
+    public void AddStrength(int strength)
+    { 
+        _strength += strength;
+        _strength = Mathf.Clamp(_strength, -_maxStrength, _maxStrength);
+        Debug.Log("New Relationship Strength: " + _strength);
     }
 }
