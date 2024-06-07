@@ -2,7 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Traits
+[System.Serializable]
+public class Trait
 {
-
+    public int id;
+    public string name;
+    public Trait()
+    {
+        id = -1;
+    }
 }

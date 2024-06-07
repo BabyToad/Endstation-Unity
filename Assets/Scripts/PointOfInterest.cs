@@ -560,6 +560,7 @@ public class PointOfInterest : MonoBehaviour
     {
         Explorer[] selectedExplorers = MasterSingleton.Instance.Guild.SelectedExplorers.ToArray();
 
+        //No Explorers
         if (selectedExplorers.Length < 1)
         {
             Debug.LogWarning("No explorer selected.");
@@ -567,6 +568,7 @@ public class PointOfInterest : MonoBehaviour
             return;
         }
 
+        //Check if selected Explorers are exhausted; possible obsolete
         bool noExplorerExhausted = true;
         foreach (Explorer explorer in selectedExplorers)
         {
@@ -577,6 +579,7 @@ public class PointOfInterest : MonoBehaviour
             }   
         }
 
+        //Check if Clock is complete already
         if (action.Clocks[action.ActiveClock].Segments == action.Clocks[action.ActiveClock].Fill && noExplorerExhausted)
         {
             action.Clocks[action.ActiveClock].CompletionCheck();
@@ -588,10 +591,15 @@ public class PointOfInterest : MonoBehaviour
             MasterSingleton.Instance.Guild.ContinueCycle(1);
 
         }
+
+        //Actual Action
         else if (noExplorerExhausted && !action.Clocks[action.ActiveClock].IsCountdown && !_rollingDice)
         {
 
             int diceResult = 0;
+
+            //To ChatGPT: I want to add a relationship trait to here.
+
             foreach (Explorer explorer in selectedExplorers)
             {
                 
@@ -600,6 +608,42 @@ public class PointOfInterest : MonoBehaviour
                 if (newDiceResult > diceResult)
                 {
                     diceResult = newDiceResult;
+                }
+            }
+
+            // Relationship trait addition
+            float relationshipChance = 1f; // 20% chance
+            for (int i = 0; i < selectedExplorers.Length; i++)
+            {
+                for (int j = i + 1; j < selectedExplorers.Length; j++)
+                {
+                    if (Random.value <= relationshipChance)
+                    {
+                        Explorer explorerA = selectedExplorers[i];
+                        Explorer explorerB = selectedExplorers[j];
+
+                        // Check if the relationship already exists
+                        bool relationshipExists = false;
+                        
+                        foreach (var trait in explorerA.Traits)
+                        {
+                            if (trait is Relationship relationship && relationship._explorer == explorerB)
+                            {
+                                relationshipExists = true;
+                                break;
+                            }
+                        }
+                        
+                        
+
+                        if (!relationshipExists)
+                        {
+                            // Add relationship trait to both explorers
+                            explorerA.Traits.Add(new Relationship(explorerB, 1)); // Initial strength 1
+                            explorerB.Traits.Add(new Relationship(explorerA, 1)); // Initial strength 1
+                            Debug.Log("New relationship formed between " + explorerA.Name + " and " + explorerB.Name);
+                        }
+                    }
                 }
             }
             Debug.Log("The final roll is a " + diceResult);
@@ -818,8 +862,7 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
-
-
+   
 }
 
 

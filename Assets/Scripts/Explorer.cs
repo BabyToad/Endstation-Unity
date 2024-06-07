@@ -10,30 +10,18 @@ public class Explorer
 {
     Guild _guild;
 
-    [SerializeField]
-    string _name;
-    [SerializeField]
-    int _health;
-    [SerializeField]
-    int _stress;
-    [SerializeField]
-    int _insight;
-    [SerializeField]
-    int _prowess;
-    [SerializeField]
-    int _resolve;
-    [SerializeField]
-    int _experience;
-    [SerializeField]
-    bool _exhausted;
-    [SerializeField]
-    bool _isTrauma;
-    [SerializeField]
-    bool _isInjured;
-    [SerializeField]
-    bool _hasAdvancement;
-
-    UnityAction _advanceInsight;
+    [SerializeField] string _name;
+    [SerializeField] int _health;
+    [SerializeField] int _stress;
+    [SerializeField] int _insight;
+    [SerializeField] int _prowess;
+    [SerializeField] int _resolve;
+    [SerializeField] List<Trait> _traits =  new();
+    [SerializeField] int _experience;
+    [SerializeField] bool _exhausted;
+    [SerializeField] bool _isTrauma;
+    [SerializeField] bool _isInjured;
+    [SerializeField] bool _hasAdvancement;
 
     public enum Attribute
     {
@@ -42,12 +30,10 @@ public class Explorer
         Resolve
     }
 
-    [SerializeField]
-    GameObject _ui;
+    [SerializeField] GameObject _ui;
     ExplorerCanvas _explorerCanvas;
 
-    [SerializeField]
-    GameObject _uiTemplate;
+    [SerializeField] GameObject _uiTemplate;
 
 
     public Explorer(string name, int health, int insight, int prowess, int resolve, Guild guild)
@@ -60,6 +46,7 @@ public class Explorer
         Experience = 0;
         _guild = guild;
         AddExplorerToUI();
+
     }
 
     public int Insight { get => _insight; set => _insight = value; }
@@ -74,7 +61,7 @@ public class Explorer
     public bool IsTrauma { get => _isTrauma; set => _isTrauma = value; }
     public bool IsInjured { get => _isInjured; set => _isInjured = value; }
     public bool HasAdvancement { get => _hasAdvancement; set => _hasAdvancement = value; }
-
+    public List<Trait> Traits { get => _traits; set => _traits = value; }
 
     public void AddExplorerToUI()
     {
@@ -295,5 +282,15 @@ public class Explorer
     {
         _exhausted = false;
         ExplorerCanvas.DisplayExhaustion(false);
+    }
+
+    public void AddTrait(Trait trait)
+    { 
+        Traits.Add(trait);
+    }
+
+    public void RemoveTrait(Trait trait)
+    {
+        Traits.Remove(trait);
     }
 }
