@@ -7,26 +7,22 @@ using UnityEngine.UI;
 
 public class Guild : MonoBehaviour
 {
-    [SerializeField]
-    List<Explorer> _roster;
+    [SerializeField] List<Explorer> _roster;
     ToggleGroup _rosterTG;
     List<Explorer> _selectedExplorers = new List<Explorer>();
 
-    [SerializeField]
-    float _cred;
-    [SerializeField]
-    float _rep;
-    [SerializeField]
-    float _upkeepPerExplorer = 1;
+    [SerializeField] float _cred;
+    [SerializeField] float _rep;
+    [SerializeField] float _scrap;
+    [SerializeField] float _artifacts;
 
-    [SerializeField]
-    int _recruitCost = 3;
+    [SerializeField] float _upkeepPerExplorer = 1;
 
-    [SerializeField]
-    NarrativeEvent _bankruptNE;
+    [SerializeField] int _recruitCost = 3;
+
+    [SerializeField] NarrativeEvent _bankruptNE;
     bool _isBankrupt;
-    [SerializeField]
-    NarrativeEvent _diceNE;
+    [SerializeField] NarrativeEvent _diceNE;
     bool _diceNEHasTriggerd;
 
     int _cycle = 0;
@@ -165,6 +161,23 @@ public class Guild : MonoBehaviour
         MasterSingleton.Instance.UIManger.UpdateCredDisplay(_cred);
     }
 
+    public void AddScrap(float amount)
+    { 
+        _scrap += amount;
+        if (_scrap < 0)
+        {
+            _scrap = 0;
+        }
+    }
+
+    public void AddArtifact(float amount)
+    {
+        _artifacts += amount;
+        if (_artifacts < 0)
+        {
+            _artifacts = 0;
+        }
+    }
 
     public static void AddEventCred(float credAmount)
     {

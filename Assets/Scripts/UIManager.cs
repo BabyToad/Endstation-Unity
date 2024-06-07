@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     Canvas _overworldUI;
     [SerializeField]
 
-    Text _cred, _reputation;
+    TextMeshProUGUI _cred, _reputation, _scrap, _artifact;
     [SerializeField]
     Canvas _explorerCanvas;
     [SerializeField]
@@ -42,6 +42,14 @@ public class UIManager : MonoBehaviour
     public void UpdateCredDisplay(float newValue)
     {
         _cred.text = newValue.ToString();
+    }
+    public void UpdateScrapDisplay(float newValue)
+    {
+        _scrap.text = newValue.ToString();
+    }
+    public void UpdateArtifactDisplay(float newValue)
+    {
+        _artifact.text = newValue.ToString();
     }
     public void UpdateReputationDisplay(float newValue)
     {

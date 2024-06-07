@@ -17,23 +17,28 @@ public class PointOfInterest : MonoBehaviour
         public class Result
         {
 
-            [SerializeField]
-            float _cred;
-            [SerializeField]
-            int _stress;
-            [SerializeField]
-            int _hp;
-            [SerializeField]
-            int _xp;
+            [SerializeField] float _cred;
+            [SerializeField] float _scrap;
+            [SerializeField] float _artefact;
+
+            [SerializeField] int _stress;
+            [SerializeField] int _hp;
+            [SerializeField] int _xp;
 
             public float Cred { get => _cred; set => _cred = value; }
+            public float Scrap { get => _scrap; set => _scrap = value; }
+            public float Artefact { get => _artefact; set => _artefact = value; }
             public int Stress { get => _stress; set => _stress = value; }
             public int Hp { get => _hp; set => _hp = value; }
             public int Xp { get => _xp; set => _xp = value; }
+            
 
             public void Apply()
             {
                 MasterSingleton.Instance.Guild.AddCred(Cred);
+                MasterSingleton.Instance.Guild.AddScrap(Scrap);
+                MasterSingleton.Instance.Guild.AddArtifact(Artefact);
+
                 foreach (Explorer explorer in MasterSingleton.Instance.Guild.SelectedExplorers)
                 {
                     explorer.AddStress(Stress);
@@ -42,20 +47,15 @@ public class PointOfInterest : MonoBehaviour
                 }
             }
         }
-        [SerializeField]
-        bool _enabled;
-        [SerializeField]
-        Result _fail, _partial, _success;
+        [SerializeField] bool _enabled;
+        [SerializeField] Result _fail, _partial, _success;
 
-        [SerializeField]
-        int _explorerSlots;
+        [SerializeField] int _explorerSlots;
 
-        [SerializeField]
-        List<ProgressClock> _clocks;
+        [SerializeField] List<ProgressClock> _clocks;
         int _activeClock;
 
-        [SerializeField]
-        ActionUI _actionUI;
+        [SerializeField] ActionUI _actionUI;
 
         public Result Fail { get => _fail; set => _fail = value; }
         public Result Partial { get => _partial; set => _partial = value; }
@@ -67,13 +67,10 @@ public class PointOfInterest : MonoBehaviour
         public int ExplorerSlots { get => _explorerSlots; set => _explorerSlots = value; }
     }
 
-    [SerializeField]
-
-    Action[] _actions;
+    [SerializeField] Action[] _actions;
 
 
-    [SerializeField]
-    List<ProgressClock> _clocks;
+    [SerializeField] List<ProgressClock> _clocks;
     int _activeClock;
 
     bool _rollingDice = false;
@@ -228,7 +225,7 @@ public class PointOfInterest : MonoBehaviour
             DisplaySelectUI(true);
 
             IsSelected = true;
-            Debug.Log("Selected " + this.name);
+            //Debug.Log("Selected " + this.name);
             AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
             AudioManager.instance.PlayOneShot(FMODEvents.instance._cameraIn);
 
@@ -277,7 +274,7 @@ public class PointOfInterest : MonoBehaviour
         _vcam.Priority = 1;
         DisplaySelectUI(false);
         IsSelected = false;
-        Debug.Log("Deselected " + this.name);
+        //Debug.Log("Deselected " + this.name);
         AudioManager.instance.PlayOneShot(FMODEvents.instance._cameraOut);
         AudioManager.instance.SetGlobalParameter("_Location", 0.0f);
         

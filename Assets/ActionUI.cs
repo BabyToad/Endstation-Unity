@@ -54,7 +54,10 @@ public class ActionUI : MonoBehaviour
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= DeselectExplorerItem;
 
     }
-
+    private void Update()
+    {
+        UpdateInteractButton();
+    }
     public void LoadClockSprites(int segments)
     {
         _clockSprites.Clear();
@@ -157,6 +160,7 @@ public class ActionUI : MonoBehaviour
             }
         }
         _explorerItems.Add(explorerItem);
+
         return true;
     }
 
@@ -175,6 +179,7 @@ public class ActionUI : MonoBehaviour
                 }
             }
         }
+
     }
 
     public void RemoveExplorerItems()
@@ -184,5 +189,17 @@ public class ActionUI : MonoBehaviour
                 Destroy(item.gameObject);    
         }
         _explorerItems.Clear();
+    }
+
+    public void UpdateInteractButton()
+    {
+        if (ExplorerItems.Count > 0)
+        {
+            _interact.gameObject.SetActive(true);
+        }
+        else
+        {
+            _interact.gameObject.SetActive(false);
+        }
     }
 }
