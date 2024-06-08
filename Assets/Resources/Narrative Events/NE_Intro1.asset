@@ -35,11 +35,13 @@ MonoBehaviour:
   upperChoice:
     buttonText: Leave to visit the Old Gods
     cred: 0
+    scrap: 0
+    artefacts: 0
     stress: 0
     hp: 0
     allExplorers: 0
     unlockPoI: Old Gods POI
-    lockPoI: 
+    lockPoI: Endstation POI
     setDetails: 0
     POI: 
     details: 
@@ -76,6 +78,8 @@ MonoBehaviour:
   lowerChoice:
     buttonText: 
     cred: 0
+    scrap: 0
+    artefacts: 0
     stress: 0
     hp: 0
     allExplorers: 0

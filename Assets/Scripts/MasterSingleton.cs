@@ -10,6 +10,7 @@ public class MasterSingleton : MonoBehaviour
     public UIManager UIManger { get => _uIManger; set => _uIManger = value; }
     public InputManager InputManager { get => _inputManager; set => _inputManager = value; }
     public EventCanvas EventCanvas { get => _eventCanvas; set => _eventCanvas = value; }
+    public PointsOfInterestManager PointsOfInterestManager { get => _pointsOfInterestManager; set => _pointsOfInterestManager = value; }
 
     [SerializeField]
     GameplayStateManager _stateManager;
@@ -21,7 +22,8 @@ public class MasterSingleton : MonoBehaviour
     InputManager _inputManager;
     [SerializeField]
     Guild _guild;
-
+    [SerializeField]
+    PointsOfInterestManager _pointsOfInterestManager;
 
 
 

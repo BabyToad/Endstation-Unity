@@ -7,8 +7,8 @@ public class Relationship : Trait
     [SerializeField] public Explorer _explorer;
     [SerializeField] public int _strength;
     [SerializeField] public int _maxStrength = 3;
-    static public float chance = 1f;
-    static public float decayChance = 0f;
+    static public float chance = 0.15f;
+    static public float decayChance = 0.1f;
     public Relationship(Explorer exp, int strength)
     {
         _explorer = exp;

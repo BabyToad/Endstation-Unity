@@ -41,6 +41,8 @@ public class Guild : MonoBehaviour
     public int MaxCycle { get => _maxCycle; set => _maxCycle = value; }
     public bool EndOfCycle { get => _endOfCycle; set => _endOfCycle = value; }
     public List<Explorer> SelectedExplorers { get => _selectedExplorers; set => _selectedExplorers = value; }
+    public float Scrap { get => _scrap; set => _scrap = value; }
+    public float Artifacts { get => _artifacts; set => _artifacts = value; }
 
     private void Awake()
     {
@@ -163,20 +165,24 @@ public class Guild : MonoBehaviour
 
     public void AddScrap(float amount)
     { 
-        _scrap += amount;
-        if (_scrap < 0)
+        Scrap += amount;
+        if (Scrap < 0)
         {
-            _scrap = 0;
+            Scrap = 0;
         }
+        MasterSingleton.Instance.UIManger.UpdateScrapDisplay(_scrap);
+
     }
 
     public void AddArtifact(float amount)
     {
-        _artifacts += amount;
-        if (_artifacts < 0)
+        Artifacts += amount;
+        if (Artifacts < 0)
         {
-            _artifacts = 0;
+            Artifacts = 0;
         }
+        MasterSingleton.Instance.UIManger.UpdateArtifactDisplay(_artifacts);
+
     }
 
     public static void AddEventCred(float credAmount)

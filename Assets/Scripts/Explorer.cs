@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.IO;
+using System.Linq;
 
 [System.Serializable]
 
@@ -173,8 +175,25 @@ public class Explorer
 
     public void AddHealth(int health)
     {
-        Health += health;
         int maxHealth = 3;
+        foreach (Trait trait in Traits)
+        {
+            if (trait.statChangeModifiers._hp == 0)
+            {
+                return;
+            }
+            //you should only be able to affect damage taken, not heal faster
+            if (health < 0)
+            {
+                health += trait.statChangeModifiers._hp;
+                health = Mathf.Clamp(health, 0, maxHealth);
+                Debug.Log("Modified health change by " + trait.statChangeModifiers._hp + " due to Trait " + trait.name);
+
+            }
+        }
+
+        Health += health;
+        
         Health = Mathf.Clamp(Health, 0, maxHealth);
         
         if (_health == 0)
@@ -191,8 +210,32 @@ public class Explorer
     public void AddStress(int stress)
     {
         Debug.Log("Stress was+ "+ Stress + ". Added "+ stress);
-        Stress += stress;
+
         int maxStress = 9;
+        Debug.Log("Stress was+ " + Stress + ". Added " + stress);
+        if (Traits != null)
+        {
+            foreach (Trait trait in Traits)
+            {
+                if (trait.statChangeModifiers._stress == 0)
+                {
+                    return;
+                }
+                //if you would be gaining stress, you should not be able to reduce it below 0
+                if (stress >= 0)
+                {
+                    stress += trait.statChangeModifiers._stress;
+                    stress = Mathf.Clamp(stress, 0, maxStress);
+                }
+                else
+                {
+                    stress += trait.statChangeModifiers._stress;
+                }
+                Debug.Log("Modified stress change by " + trait.statChangeModifiers._stress + " due to Trait " + trait.name);
+            }
+        }
+        
+        Stress += stress;
         Stress = Mathf.Clamp(Stress, 0, maxStress);
         
         if (_stress == maxStress)
@@ -209,9 +252,31 @@ public class Explorer
 
     public void AddStress(int stress, bool updateDisplay)
     {
-        Debug.Log("Stress was+ " + Stress + ". Added " + stress);
-        Stress += stress;
         int maxStress = 9;
+        Debug.Log("Stress was+ " + Stress + ". Added " + stress);
+        if (Traits != null)
+        {
+            foreach (Trait trait in Traits)
+            {
+                if (trait.statChangeModifiers._stress == 0)
+                {
+                    return;
+                }
+                //if you would be gaining stress, you should not be able to reduce it below 0
+                if (stress >= 0)
+                {
+                    stress += trait.statChangeModifiers._stress;
+                    stress = Mathf.Clamp(stress, 0, maxStress);
+                }
+                else
+                {
+                    stress += trait.statChangeModifiers._stress;
+                }
+                Debug.Log("Modified stress change by " + trait.statChangeModifiers._stress + " due to Trait " + trait.name);
+            }
+        }
+        Stress += stress;
+        
         Stress = Mathf.Clamp(Stress, 0, maxStress);
 
         if (_stress == maxStress)

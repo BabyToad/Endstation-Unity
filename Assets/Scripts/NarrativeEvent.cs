@@ -85,9 +85,21 @@ public class NarrativeEvent : ScriptableObject
             Destroy(MasterSingleton.Instance.gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        else if (choice.unlockPoI != "")
+        else if (!string.IsNullOrEmpty(choice.unlockPoI))
         {
-            GameObject.Find(choice.unlockPoI).GetComponent<PointOfInterest>().SetActive(true);
+            string[] poiNames = choice.unlockPoI.Split(';');
+            foreach (string poiName in poiNames)
+            {
+                GameObject poiObject = GameObject.Find(poiName.Trim());
+                if (poiObject != null)
+                {
+                    poiObject.GetComponent<PointOfInterest>().SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning($"PointOfInterest '{poiName.Trim()}' not found.");
+                }
+            }
         }
 
         if (choice.lockPoI != "")

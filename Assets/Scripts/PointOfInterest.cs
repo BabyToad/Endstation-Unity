@@ -163,6 +163,7 @@ public class PointOfInterest : MonoBehaviour
 
         _cmbrain = Camera.main.GetComponent<CinemachineBrain>();
         _graphicsRaycasterWorldCanvas = _worldCanvas.GetComponent<GraphicRaycaster>();
+        //MasterSingleton.Instance.PointsOfInterestManager.Register(this);
         RegisterWithUIHandler();
         SetActive(_active);
     }
@@ -531,7 +532,6 @@ public class PointOfInterest : MonoBehaviour
                     action.ActionUI.DisplayActionCanvas(false, action);
                     action.ActionUI.DisplayExplorerSlots(action.ExplorerSlots);
                 }
-
             }
         }
     }
@@ -577,6 +577,12 @@ public class PointOfInterest : MonoBehaviour
                 noExplorerExhausted = false;
                 return;
             }   
+        }
+
+        if (action.Fail.Scrap * -1 > MasterSingleton.Instance.Guild.Scrap && action.Fail.Scrap < 0)
+        {
+            Debug.Log("Not enough scrap for this action.");
+            return;
         }
 
         //Check if Clock is complete already
@@ -785,8 +791,6 @@ public class PointOfInterest : MonoBehaviour
         yield return null;
     }
 
-
-
     void CountDownClock()
     {
         foreach (Action action in _actions)
@@ -892,10 +896,4 @@ public class PointOfInterest : MonoBehaviour
             }
         }
     }
-
-   
 }
-
-
-
-
