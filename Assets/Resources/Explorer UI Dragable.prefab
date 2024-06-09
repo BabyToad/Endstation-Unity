@@ -260,8 +260,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Explorer Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cce09649e0c098d45a7d1b841aa2d4c7, type: 2}
+  m_sharedMaterial: {fileID: 136522585283198848, guid: cce09649e0c098d45a7d1b841aa2d4c7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -10,6 +10,7 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     // Start is called before the first frame update
     Explorer _explorer;
     [SerializeField] Text _name;
+    [SerializeField] Image _image, _draggableImage;
     [SerializeField] Slider _health, _stress, _xp;
     [SerializeField] Text _insight, _prowess, _resolve;
     [SerializeField] TextMeshProUGUI _traits;
@@ -53,6 +54,12 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public void SetName(string name)
     {
         _name.text = name;
+    }
+
+    public void SetImage(Sprite sprite)
+    { 
+        _image.sprite = sprite;
+        _draggableImage.sprite = sprite;
     }
 
     public void SetHealth(int health)
@@ -164,7 +171,9 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public void OnBeginDrag(PointerEventData eventData)
     {
         currentDraggedObject = Instantiate(characterUIElementPrefab, parentCanvas.transform);
-        currentDraggedObject.GetComponent<ExplorerItem>().LinkExplorer(_explorer);
+        ExplorerItem explorerItem = currentDraggedObject.GetComponent<ExplorerItem>();
+        explorerItem.LinkExplorer(_explorer);
+        explorerItem.SetImage(_image.sprite);
         currentDraggedObject.AddComponent<LayoutElement>().ignoreLayout = true;
         //currentDraggedObject.GetComponent<Image>().sprite = characterImage.sprite;
 
@@ -193,13 +202,14 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
                 // Successfully dropped on an Expedition Canvas
 
                 GameObject characterUIObject = Instantiate(characterUIElementPrefab, eventData.pointerCurrentRaycast.gameObject.transform);
-
+                characterUIObject.GetComponent<ExplorerItem>().SetImage(_image.sprite);
 
                 ExplorerItem expItem = characterUIObject.GetComponent<ExplorerItem>();
+
                 expItem.LinkExplorer(_explorer);
                 ActionUI actionUI = eventData.pointerCurrentRaycast.gameObject.transform.parent.transform.parent.transform.parent.transform.parent.GetComponent<ActionUI>();
                 
-                
+                ;
                 bool wasAdded = actionUI.AddExplorerItem(expItem, actionUI.Action);
 
                 if (wasAdded)

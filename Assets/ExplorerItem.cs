@@ -23,6 +23,9 @@ public class ExplorerItem : MonoBehaviour
         _explorerNameTextMesh.text = explorer.Name;
     }
 
-
+    public void SetImage(Sprite sprite)
+    {
+        _explorerImage.sprite = sprite;
+    }
    
 }

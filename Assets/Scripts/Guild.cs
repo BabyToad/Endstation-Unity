@@ -11,6 +11,8 @@ public class Guild : MonoBehaviour
     ToggleGroup _rosterTG;
     List<Explorer> _selectedExplorers = new List<Explorer>();
 
+    List<Sprite> _explorerPics = new List<Sprite>();
+
     [SerializeField] float _cred;
     [SerializeField] float _rep;
     [SerializeField] float _scrap;
@@ -51,6 +53,7 @@ public class Guild : MonoBehaviour
 
     private void Start()
     {
+        LoadExplorerSprites();
         if (_roster.Count < 2)
         {
             AddCred(6);
@@ -87,7 +90,8 @@ public class Guild : MonoBehaviour
     {
         if (_cred >= 3)
         {
-            Explorer explorer = new Explorer(name, 3, Random.Range(1, 3), Random.Range(1, 3), Random.Range(1, 3), this);         
+            Debug.Log(_explorerPics[0]);
+            Explorer explorer = new (name, 3, Random.Range(1, 3), Random.Range(1, 3), Random.Range(1, 3), this, ReturnExplorerSprite());
             _roster.Add(explorer);
             AddCred(-_recruitCost);
             Debug.Log("Recruited and Explorer. Spend " + _recruitCost + " Cred.");
@@ -103,7 +107,9 @@ public class Guild : MonoBehaviour
     {
         if (_cred >= 3)
         {
-            Explorer explorer = new Explorer(Resources.Load<ExplorerNameList>("NameList").GenerateName(), 3, insight, prowess, resolve, this);
+            Debug.Log(_explorerPics[0]);
+
+            Explorer explorer = new (Resources.Load<ExplorerNameList>("NameList").GenerateName(), 3, insight, prowess, resolve, this, ReturnExplorerSprite());
             _roster.Add(explorer);
             AddCred(-_recruitCost);
             Debug.Log("Recruited and Explorer. Spend " + _recruitCost + " Cred.");
@@ -258,5 +264,22 @@ public class Guild : MonoBehaviour
         {
             _selectedExplorers[i].SelectExplorer(false);
         }
+    }
+
+    void LoadExplorerSprites()
+    {
+        Sprite [] sprites = Resources.LoadAll<Sprite>("ExplorerPlaceholders");
+        foreach (Sprite sp in sprites)
+        {
+            _explorerPics.Add(sp);
+        }
+    }
+
+    public Sprite ReturnExplorerSprite()
+    {
+        Sprite image = _explorerPics[Random.Range(0, _explorerPics.Count - 1)];
+        _explorerPics.Remove(image);
+
+        return image;
     }
 }

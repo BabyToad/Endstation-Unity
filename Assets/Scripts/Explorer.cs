@@ -13,6 +13,7 @@ public class Explorer
     Guild _guild;
 
     [SerializeField] string _name;
+    [SerializeField] Sprite _sprite;
     [SerializeField] int _health;
     [SerializeField] int _stress;
     [SerializeField] int _insight;
@@ -38,7 +39,7 @@ public class Explorer
     [SerializeField] GameObject _uiTemplate;
 
 
-    public Explorer(string name, int health, int insight, int prowess, int resolve, Guild guild)
+    public Explorer(string name, int health, int insight, int prowess, int resolve, Guild guild, Sprite sprite)
     {
         Name = name;
         Health = health;
@@ -47,8 +48,9 @@ public class Explorer
         Resolve = resolve;
         Experience = 0;
         _guild = guild;
+        Sprite = sprite;
         AddExplorerToUI();
-
+        
     }
 
     public int Insight { get => _insight; set => _insight = value; }
@@ -64,6 +66,7 @@ public class Explorer
     public bool IsInjured { get => _isInjured; set => _isInjured = value; }
     public bool HasAdvancement { get => _hasAdvancement; set => _hasAdvancement = value; }
     public List<Trait> Traits { get => _traits; set => _traits = value; }
+    public Sprite Sprite { get => _sprite; set => _sprite = value; }
 
     public void AddExplorerToUI()
     {
@@ -73,6 +76,7 @@ public class Explorer
 
         _explorerCanvas.ReferenceExplorer(this);
         _explorerCanvas.SetName(Name);
+        _explorerCanvas.SetImage(Sprite);
         _explorerCanvas.SetHealth(Health);
         _explorerCanvas.SetStress(Stress);
         _explorerCanvas.SetInsight(Insight, IsInjured, IsTrauma);
