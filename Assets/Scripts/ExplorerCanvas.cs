@@ -10,7 +10,7 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     // Start is called before the first frame update
     Explorer _explorer;
     [SerializeField] Text _name;
-    [SerializeField] Slider _health, _stress;
+    [SerializeField] Slider _health, _stress, _xp;
     [SerializeField] Text _insight, _prowess, _resolve;
     [SerializeField] TextMeshProUGUI _traits;
     [SerializeField] Button _selectExplorer;
@@ -66,6 +66,13 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         StartCoroutine(AnimateSlider((float)stress, _stress));
 
     }
+
+    public void SetXP(int xp)
+    {
+        StartCoroutine(AnimateSlider((float)xp, _xp));
+    }
+
+
     public void SetInsight(int insight, bool isInjured, bool isTrauma)
     {
         SetStatColor(_insight, isInjured, isTrauma);

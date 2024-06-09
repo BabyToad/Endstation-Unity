@@ -311,7 +311,7 @@ public class Explorer
             _hasAdvancement = false;
         }
         UpdateExplorerCanvasStats();
-        //implement setExp on Explorer Canvas
+        _explorerCanvas.SetXP(exp);
     }
 
     public void AdvanceInsight()

@@ -845,6 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ae505e4ee057d46b3d214b11cfd74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointOfInterests: []
 --- !u!1 &2348258893921271413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2440,6 +2441,7 @@ MonoBehaviour:
   _eventCanvas: {fileID: 6566226269012123159}
   _inputManager: {fileID: 7296332294805646395}
   _guild: {fileID: 1779712622087443044}
+  _pointsOfInterestManager: {fileID: 0}
 --- !u!114 &80207869867309699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3091,7 +3093,7 @@ MonoBehaviour:
   m_ChildAlignment: 7
   m_StartCorner: 2
   m_StartAxis: 0
-  m_CellSize: {x: 300, y: 150}
+  m_CellSize: {x: 300, y: 180}
   m_Spacing: {x: 15, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
