@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System.Data;
 
 public class Guild : MonoBehaviour
 {
+    TimeOfDayManager timeOfDayManager;
     [SerializeField] List<Explorer> _roster;
     ToggleGroup _rosterTG;
     List<Explorer> _selectedExplorers = new List<Explorer>();
@@ -60,7 +62,12 @@ public class Guild : MonoBehaviour
             RecruitExplorer(2, 1, 1);
             RecruitExplorer(1, 2, 1);
         }
-        
+        timeOfDayManager = GameObject.Find("TimeOfDay").GetComponent<TimeOfDayManager>();
+
+        if (_cycle == 0)
+        {
+            timeOfDayManager.SetTime(timeOfDayManager.dawn);
+        }
     }
 
     private void OnEnable()
@@ -146,6 +153,7 @@ public class Guild : MonoBehaviour
 
         MasterSingleton.Instance.UIManger.EnableEndCycleButton(false);
         _cycle = 0;
+        timeOfDayManager.SetTime(timeOfDayManager.dawn);
         _endOfCycle = false;
         MasterSingleton.Instance.UIManger.HighlightEndCycle(false);
     }
@@ -244,6 +252,24 @@ public class Guild : MonoBehaviour
     {
         Debug.Log("Continued Cycle");
         _cycle += i;
+
+        if (_cycle == 1)
+        {
+            timeOfDayManager.SetTime(timeOfDayManager.morning);
+        }
+        if (_cycle == 2)
+        {
+            timeOfDayManager.SetTime(timeOfDayManager.noon);
+        }
+        if (_cycle == 3)
+        {
+            timeOfDayManager.SetTime(timeOfDayManager.dusk);
+        }
+        if (_cycle == 4)
+        {
+            timeOfDayManager.SetTime(timeOfDayManager.night);
+        }
+
         MasterSingleton.Instance.UIManger.UpdateCycleClock();
         if (_cycle > _maxCycle)
         {
