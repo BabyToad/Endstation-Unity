@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,8 +34,9 @@ public class TimeOfDayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         time = curve.Evaluate(timeTarget);
-        
+        //time = Mathf.Lerp(time, curve.Evaluate(timeTarget), speed* Time.deltaTime);
 
         SetSunIntensity();
         SetSkyboxIntensity();
