@@ -4,30 +4,29 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System.Data;
 
 public class Guild : MonoBehaviour
 {
-    [SerializeField]
-    List<Explorer> _roster;
+    TimeOfDayManager timeOfDayManager;
+    [SerializeField] List<Explorer> _roster;
     ToggleGroup _rosterTG;
-    //[SerializeField]
-    Explorer _selectedExplorer;
+    List<Explorer> _selectedExplorers = new List<Explorer>();
 
-    [SerializeField]
-    float _cred;
-    [SerializeField]
-    float _rep;
-    [SerializeField]
-    float _upkeepPerExplorer = 1;
+    List<Sprite> _explorerPics = new List<Sprite>();
 
-    [SerializeField]
-    int _recruitCost = 3;
+    [SerializeField] float _cred;
+    [SerializeField] float _rep;
+    [SerializeField] float _scrap;
+    [SerializeField] float _artifacts;
 
-    [SerializeField]
-    NarrativeEvent _bankruptNE;
+    [SerializeField] float _upkeepPerExplorer = 1;
+
+    [SerializeField] int _recruitCost = 3;
+
+    [SerializeField] NarrativeEvent _bankruptNE;
     bool _isBankrupt;
-    [SerializeField]
-    NarrativeEvent _diceNE;
+    [SerializeField] NarrativeEvent _diceNE;
     bool _diceNEHasTriggerd;
 
     int _cycle = 0;
@@ -37,10 +36,6 @@ public class Guild : MonoBehaviour
     public delegate void NewCycle();
     public static event NewCycle OnNewCycle;
 
-
-    int _downtimeActions = 2;
-
-    public Explorer SelectedExplorer { get => _selectedExplorer; set => _selectedExplorer = value; }
     public float Cred { get => _cred; set => _cred = value; }
     public ToggleGroup RosterTG { get => _rosterTG; set => _rosterTG = value; }
     public List<Explorer> Roster { get => _roster; set => _roster = value; }
@@ -49,6 +44,9 @@ public class Guild : MonoBehaviour
     public int Cycle { get => _cycle; set => _cycle = value; }
     public int MaxCycle { get => _maxCycle; set => _maxCycle = value; }
     public bool EndOfCycle { get => _endOfCycle; set => _endOfCycle = value; }
+    public List<Explorer> SelectedExplorers { get => _selectedExplorers; set => _selectedExplorers = value; }
+    public float Scrap { get => _scrap; set => _scrap = value; }
+    public float Artifacts { get => _artifacts; set => _artifacts = value; }
 
     private void Awake()
     {
@@ -57,24 +55,30 @@ public class Guild : MonoBehaviour
 
     private void Start()
     {
+        LoadExplorerSprites();
         if (_roster.Count < 2)
         {
             AddCred(6);
             RecruitExplorer(2, 1, 1);
             RecruitExplorer(1, 2, 1);
         }
-        
+        timeOfDayManager = GameObject.Find("TimeOfDay").GetComponent<TimeOfDayManager>();
+
+        if (_cycle == 0)
+        {
+            timeOfDayManager.SetTime(timeOfDayManager.dawn);
+        }
     }
 
     private void OnEnable()
     {
-        MasterSingleton.Instance.InputManager.InputActions.Debug.Restart.performed += Restart_performed;
+        //MasterSingleton.Instance.InputManager.InputActions.Debug.Restart.performed += Restart_performed;
 
     }
 
     private void OnDisable()
     {
-        MasterSingleton.Instance.InputManager.InputActions.Debug.Restart.performed -= Restart_performed;
+        //MasterSingleton.Instance.InputManager.InputActions.Debug.Restart.performed -= Restart_performed;
     }
     private void Restart_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
@@ -93,7 +97,8 @@ public class Guild : MonoBehaviour
     {
         if (_cred >= 3)
         {
-            Explorer explorer = new Explorer(name, 3, Random.Range(1, 3), Random.Range(1, 3), Random.Range(1, 3), this);         
+            Debug.Log(_explorerPics[0]);
+            Explorer explorer = new (name, 3, Random.Range(1, 3), Random.Range(1, 3), Random.Range(1, 3), this, ReturnExplorerSprite());
             _roster.Add(explorer);
             AddCred(-_recruitCost);
             Debug.Log("Recruited and Explorer. Spend " + _recruitCost + " Cred.");
@@ -109,7 +114,9 @@ public class Guild : MonoBehaviour
     {
         if (_cred >= 3)
         {
-            Explorer explorer = new Explorer(Resources.Load<ExplorerNameList>("NameList").GenerateName(), 3, insight, prowess, resolve, this);
+            Debug.Log(_explorerPics[0]);
+
+            Explorer explorer = new (Resources.Load<ExplorerNameList>("NameList").GenerateName(), 3, insight, prowess, resolve, this, ReturnExplorerSprite());
             _roster.Add(explorer);
             AddCred(-_recruitCost);
             Debug.Log("Recruited and Explorer. Spend " + _recruitCost + " Cred.");
@@ -125,10 +132,7 @@ public class Guild : MonoBehaviour
         RecruitExplorer(name);
     }
 
-    public void AdvanceInsight()
-    {
-        _selectedExplorer.AdvanceInsight();
-    }
+
     
     public void EndCycleButton()
     {
@@ -149,6 +153,7 @@ public class Guild : MonoBehaviour
 
         MasterSingleton.Instance.UIManger.EnableEndCycleButton(false);
         _cycle = 0;
+        timeOfDayManager.SetTime(timeOfDayManager.dawn);
         _endOfCycle = false;
         MasterSingleton.Instance.UIManger.HighlightEndCycle(false);
     }
@@ -172,6 +177,27 @@ public class Guild : MonoBehaviour
         MasterSingleton.Instance.UIManger.UpdateCredDisplay(_cred);
     }
 
+    public void AddScrap(float amount)
+    { 
+        Scrap += amount;
+        if (Scrap < 0)
+        {
+            Scrap = 0;
+        }
+        MasterSingleton.Instance.UIManger.UpdateScrapDisplay(_scrap);
+
+    }
+
+    public void AddArtifact(float amount)
+    {
+        Artifacts += amount;
+        if (Artifacts < 0)
+        {
+            Artifacts = 0;
+        }
+        MasterSingleton.Instance.UIManger.UpdateArtifactDisplay(_artifacts);
+
+    }
 
     public static void AddEventCred(float credAmount)
     {
@@ -226,6 +252,24 @@ public class Guild : MonoBehaviour
     {
         Debug.Log("Continued Cycle");
         _cycle += i;
+
+        if (_cycle == 1)
+        {
+            timeOfDayManager.SetTime(timeOfDayManager.morning);
+        }
+        if (_cycle == 2)
+        {
+            timeOfDayManager.SetTime(timeOfDayManager.noon);
+        }
+        if (_cycle == 3)
+        {
+            timeOfDayManager.SetTime(timeOfDayManager.dusk);
+        }
+        if (_cycle == 4)
+        {
+            timeOfDayManager.SetTime(timeOfDayManager.night);
+        }
+
         MasterSingleton.Instance.UIManger.UpdateCycleClock();
         if (_cycle > _maxCycle)
         {
@@ -237,5 +281,31 @@ public class Guild : MonoBehaviour
                 explorer.Exhaust();
             }
         }
+    }
+
+    public void ClearSelectedExplorers()
+    {
+        // Iterate in reverse order
+        for (int i = _selectedExplorers.Count - 1; i >= 0; i--)
+        {
+            _selectedExplorers[i].SelectExplorer(false);
+        }
+    }
+
+    void LoadExplorerSprites()
+    {
+        Sprite [] sprites = Resources.LoadAll<Sprite>("ExplorerPlaceholders");
+        foreach (Sprite sp in sprites)
+        {
+            _explorerPics.Add(sp);
+        }
+    }
+
+    public Sprite ReturnExplorerSprite()
+    {
+        Sprite image = _explorerPics[Random.Range(0, _explorerPics.Count - 1)];
+        _explorerPics.Remove(image);
+
+        return image;
     }
 }

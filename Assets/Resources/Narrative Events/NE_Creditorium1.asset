@@ -38,35 +38,91 @@ MonoBehaviour:
     in greeting. "I am Uriah of the Guild of Creditors. Delighted to do be doing
     business with you."'
   _text: {fileID: 4900000, guid: eaa0d64a4f350e148bf5098c2e6f0510, type: 3}
-  _upperButtonText: Swallow hard and nod in agreement.
-  _uCred: 2
-  _uStress: 1
-  _uHp: 0
-  _uAllExplorers: 0
-  _uUnlockPoI: Endstation POI
-  _uLockPoI: 
-  _lowerButtonText: 
-  _lCred: 0
-  _lStress: 0
-  _lHp: 0
-  _lAllExplorers: 0
+  upperChoice:
+    buttonText: Firmly shake his hand.
+    cred: 5
+    scrap: 0
+    artefacts: 0
+    stress: 1
+    hp: 0
+    allExplorers: 0
+    unlockPoI: Old Gods POI;Endstation POI
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
+  lowerChoice:
+    buttonText: Swallow hard and nod in agreement.
+    cred: 5
+    scrap: 0
+    artefacts: 0
+    stress: 1
+    hp: 0
+    allExplorers: 0
+    unlockPoI: Old Gods POI;Endstation POI
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
   _name: Uriah
   _sprite: {fileID: 21300000, guid: 4d227c2ec8d8d2a43a8dcf5c48d2b1f9, type: 3}
-  _overrideAction: 0
-  _pointOfInterest: 
-  _newAction:
-    _fail:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _partial:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _success:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0

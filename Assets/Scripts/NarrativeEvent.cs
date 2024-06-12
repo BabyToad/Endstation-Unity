@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-
 [CreateAssetMenu(fileName = "Narrative Event", menuName = "ScriptableObjects/Narrative Event", order = 1)]
 public class NarrativeEvent : ScriptableObject
 {
@@ -13,172 +12,116 @@ public class NarrativeEvent : ScriptableObject
 
     int _id;
     [SerializeField]
-
     string _bodyText;
     [SerializeField]
     TextAsset _text;
 
     [Header("First Choice")]
     [SerializeField]
-    string _upperButtonText;
-    [SerializeField]
-    int _uCred;
-    [SerializeField]
-    int _uStress;
-    [SerializeField]
-    int _uHp;
-    [SerializeField]
-    bool _uAllExplorers = false;
-    [SerializeField]
-    string _uUnlockPoI, _uLockPoI;
-    [SerializeField]
-    bool _setDetails;
-    [SerializeField]
-    string _POI;
-    [SerializeField]
-    int[] _details;
-
-    UnityAction _upperAction;
+    ChoiceModifiers upperChoice = new ChoiceModifiers();
 
     [Header("Second Choice")]
     [SerializeField]
-    string _lowerButtonText;
-    [SerializeField]
-    int _lCred;
-    [SerializeField]
-    int _lStress;
-    [SerializeField]
-    int _lHp;
-    [SerializeField]
-    bool _lAllExplorers = false;
-    UnityAction _lowerAction;
+    ChoiceModifiers lowerChoice = new ChoiceModifiers();
 
     [SerializeField]
     string _name;
     [SerializeField]
     Sprite _sprite;
 
-    [SerializeField]
-    [Header("Modify Action")]
-    bool _enableAction;
-    [SerializeField]
-    bool _overrideAction;
-    [SerializeField]
-    int actionIndex;
-    [SerializeField]
-    string _pointOfInterest;
-    [SerializeField]
-    PointOfInterest.Action _newAction;
-
     private void OnEnable()
     {
-        _upperAction += UpperEventMechanics;
-        _lowerAction += LowerEventMechanics;
+        upperChoice.action += UpperEventMechanics;
+        lowerChoice.action += LowerEventMechanics;
         if (_text != null)
         {
             _bodyText = _text.text;
-
         }
     }
 
     private void OnDisable()
     {
-        _upperAction -= UpperEventMechanics;
-        _lowerAction -= LowerEventMechanics;
-
-
+        upperChoice.action -= UpperEventMechanics;
+        lowerChoice.action -= LowerEventMechanics;
     }
+
     void UpperEventMechanics()
     {
-        Debug.Log(name + ": UpperEvent");
-
-        MasterSingleton.Instance.Guild.AddCred(_uCred);
-        if (_uAllExplorers)
-        {
-            for (int i = 0; i < MasterSingleton.Instance.Guild.Roster.Count; i++)
-            {
-                MasterSingleton.Instance.Guild.Roster[i].AddStress(_uStress);
-                MasterSingleton.Instance.Guild.Roster[i].AddHealth(_uHp);
-            }
-        }
-        else
-        {
-            MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(_uStress);
-            MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(_uHp);
-        }
-        if (_uUnlockPoI == "reload")
-        {
-            Destroy(MasterSingleton.Instance.gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        else if (_uUnlockPoI != "")
-        {
-            GameObject.Find(_uUnlockPoI).GetComponent<PointOfInterest>().SetActive(true);
-        }
-
-        if (_uLockPoI != "")
-        {
-            PointOfInterest poi = GameObject.Find(_uLockPoI).GetComponent<PointOfInterest>();
-            poi.DeSelect();
-            poi.SetActive(false);
-        }
-
-        if (_setDetails)
-        {
-            GameObject.Find(_POI).GetComponent<PointOfInterest>().SetGameDetailsActive(_details);
-        }
-
-        if (_overrideAction)
-        {
-            GameObject.Find(_pointOfInterest).GetComponent<PointOfInterest>().OverideAction(_newAction, actionIndex);
-        }
-        if (_enableAction)
-        {
-            
-            GameObject.Find(_pointOfInterest).GetComponent<PointOfInterest>().EnableAction(actionIndex, _enableAction);
-        }
-
-        MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);
-        MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(true);
-        MasterSingleton.Instance.UIManger.DisplayOverworldUI(true);
-        MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(true);
-        if (MasterSingleton.Instance.Guild.IsRosterExhausted())
-        {
-            foreach (PointOfInterest poi in MasterSingleton.Instance.UIManger.PointsOfInterestList)
-            {
-                poi.DeSelect();
-            }
-        }
-        MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.FreePlay;
-
+        ApplyChoiceModifiers(upperChoice);
     }
 
     void LowerEventMechanics()
     {
-        Debug.Log(name + ": LowerEvent" );
-        MasterSingleton.Instance.Guild.AddCred(_lCred);
-        if (_lAllExplorers)
+        ApplyChoiceModifiers(lowerChoice);
+    }
+
+    void ApplyChoiceModifiers(ChoiceModifiers choice)
+    {
+        Debug.Log(name + ": " + (choice == upperChoice ? "UpperEvent" : "LowerEvent"));
+
+        MasterSingleton.Instance.Guild.AddCred(choice.cred);
+        MasterSingleton.Instance.Guild.AddScrap(choice.scrap);
+        MasterSingleton.Instance.Guild.AddArtifact(choice.artefacts);
+
+        if (choice.allExplorers)
         {
             for (int i = 0; i < MasterSingleton.Instance.Guild.Roster.Count; i++)
             {
-                MasterSingleton.Instance.Guild.Roster[i].AddStress(_lStress);
-                MasterSingleton.Instance.Guild.Roster[i].AddHealth(_lHp);
+                MasterSingleton.Instance.Guild.Roster[i].AddStress(choice.stress);
+                MasterSingleton.Instance.Guild.Roster[i].AddHealth(choice.hp);
             }
         }
         else
         {
-            MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(_lStress);
-            MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(_lHp);
+            foreach (Explorer explorer in MasterSingleton.Instance.Guild.SelectedExplorers)
+            {
+                explorer.AddStress(choice.stress);
+                explorer.AddHealth(choice.hp);
+            }
         }
 
-        if (_overrideAction)
+        if (choice.unlockPoI == "reload")
         {
-            GameObject.Find(_pointOfInterest).GetComponent<PointOfInterest>().OverideAction(_newAction, actionIndex);
+            Destroy(MasterSingleton.Instance.gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else if (!string.IsNullOrEmpty(choice.unlockPoI))
+        {
+            string[] poiNames = choice.unlockPoI.Split(';');
+            foreach (string poiName in poiNames)
+            {
+                GameObject poiObject = GameObject.Find(poiName.Trim());
+                if (poiObject != null)
+                {
+                    poiObject.GetComponent<PointOfInterest>().SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning($"PointOfInterest '{poiName.Trim()}' not found.");
+                }
+            }
         }
 
-        if (_enableAction)
+        if (choice.lockPoI != "")
         {
-            GameObject.Find(_pointOfInterest).GetComponent<PointOfInterest>().EnableAction(actionIndex, _enableAction);
+            PointOfInterest poi = GameObject.Find(choice.lockPoI).GetComponent<PointOfInterest>();
+            poi.DeSelect();
+            poi.SetActive(false);
+        }
+
+        if (choice.setDetails)
+        {
+            GameObject.Find(choice.POI).GetComponent<PointOfInterest>().SetGameDetailsActive(choice.details);
+        }
+
+        if (choice.overrideAction)
+        {
+            GameObject.Find(choice.pointOfInterest).GetComponent<PointOfInterest>().OverideAction(choice.newAction, choice.actionIndex);
+        }
+
+        if (choice.enableAction)
+        {
+            GameObject.Find(choice.pointOfInterest).GetComponent<PointOfInterest>().EnableAction(choice.actionIndex, choice.enableAction);
         }
 
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);
@@ -193,54 +136,52 @@ public class NarrativeEvent : ScriptableObject
             }
         }
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.FreePlay;
-
     }
 
     public void Trigger()
     {
-        Debug.Log("Triggered "  + name);
-        if(name.Contains("NE_Intro"))
+        Debug.Log("Triggered " + _name);
+        if (_name.Contains("NE_Intro"))
         {
             Debug.Log("play tseya");
             AudioManager.instance.PlayOneShot(FMODEvents.instance._endstationIntro);
         }
-        else if (name.Contains("NE_Creditorium"))
+        else if (_name.Contains("NE_Creditorium"))
         {
             Debug.Log("play creditorium");
             AudioManager.instance.PlayOneShot(FMODEvents.instance._creditoriumIntro);
         }
-        else if (name.Contains("NE_Oasis"))
+        else if (_name.Contains("NE_Oasis"))
         {
             Debug.Log("play oasis");
             AudioManager.instance.PlayOneShot(FMODEvents.instance._oasisIntro);
         }
-        else if (name.Contains("NE_OldGods"))
+        else if (_name.Contains("NE_OldGods"))
         {
             Debug.Log("play old gods");
             AudioManager.instance.PlayOneShot(FMODEvents.instance._templeIntro);
         }
-        else if (name.Contains("NE_Roots"))
+        else if (_name.Contains("NE_Roots"))
         {
             Debug.Log("play roots");
             AudioManager.instance.PlayOneShot(FMODEvents.instance._rootsIntro);
         }
 
-
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.NarrativeEvent;
         MasterSingleton.Instance.EventCanvas.SetEventName(_name);
         MasterSingleton.Instance.EventCanvas.SetBodyText(_bodyText);
         MasterSingleton.Instance.EventCanvas.SetEventImage(_sprite);
-       
-        string hoverInfo = EventEffectsToStringDescription(_uCred, _uStress, _uHp);
-        MasterSingleton.Instance.EventCanvas.SetUpperButtonText(_upperButtonText, hoverInfo);
-        MasterSingleton.Instance.EventCanvas.AddUpperButtonAction(_upperAction);
 
-        if (_lowerButtonText != "")
+        string hoverInfo = EventEffectsToStringDescription(upperChoice.cred, upperChoice.scrap, upperChoice.artefacts, upperChoice.stress, upperChoice.hp);
+        MasterSingleton.Instance.EventCanvas.SetUpperButtonText(upperChoice.buttonText, hoverInfo);
+        MasterSingleton.Instance.EventCanvas.AddUpperButtonAction(upperChoice.action);
+
+        if (lowerChoice.buttonText != "")
         {
-            string lhoverInfo = EventEffectsToStringDescription(_lCred, _lStress, _lHp);
+            string lhoverInfo = EventEffectsToStringDescription(lowerChoice.cred, lowerChoice.scrap, lowerChoice.artefacts, lowerChoice.stress, lowerChoice.hp);
             MasterSingleton.Instance.EventCanvas.ShowLowerButton(true, lhoverInfo);
-            MasterSingleton.Instance.EventCanvas.SetLowerButtonText(_lowerButtonText);
-            MasterSingleton.Instance.EventCanvas.AddLowerButtonAction(_lowerAction);
+            MasterSingleton.Instance.EventCanvas.SetLowerButtonText(lowerChoice.buttonText);
+            MasterSingleton.Instance.EventCanvas.AddLowerButtonAction(lowerChoice.action);
         }
         else
         {
@@ -250,11 +191,9 @@ public class NarrativeEvent : ScriptableObject
         MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(false);
         MasterSingleton.Instance.UIManger.DisplayOverworldUI(false);
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(true);
-
-
     }
 
-    string EventEffectsToStringDescription(int cred, int stress, int hp)
+    string EventEffectsToStringDescription(int cred, int scrap, int artefacts, int stress, int hp)
     {
         string description = "";
 
@@ -272,7 +211,34 @@ public class NarrativeEvent : ScriptableObject
         }
         description += " ";
 
-       
+        if (Mathf.Abs(scrap) > 0)
+        {
+            description += "Scrap" + DetermineChangeSymbol(scrap);
+        }
+        if (Mathf.Abs(scrap) > 1)
+        {
+            description += DetermineChangeSymbol(scrap);
+        }
+        if (Mathf.Abs(scrap) > 2)
+        {
+            description += DetermineChangeSymbol(scrap);
+        }
+        description += " ";
+
+        if (Mathf.Abs(artefacts) > 0)
+        {
+            description += "Artefacts" + DetermineChangeSymbol(artefacts);
+        }
+        if (Mathf.Abs(artefacts) > 1)
+        {
+            description += DetermineChangeSymbol(artefacts);
+        }
+        if (Mathf.Abs(artefacts) > 2)
+        {
+            description += DetermineChangeSymbol(artefacts);
+        }
+        description += " ";
+
         if (Mathf.Abs(stress) > 0)
         {
             description += "Stress" + DetermineChangeSymbol(stress);
@@ -300,7 +266,6 @@ public class NarrativeEvent : ScriptableObject
             description += DetermineChangeSymbol(hp);
         }
         return description;
-
     }
 
     string DetermineChangeSymbol(float changeValue)

@@ -48,11 +48,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Details:
-        m_Texture: {fileID: 2800000, guid: 1c23b2ac98d920846873e0976840a824, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3fbea2447720a844f894513c5286df41, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emission_Map:
+        m_Texture: {fileID: 2800000, guid: 1c23b2ac98d920846873e0976840a824, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -112,8 +116,8 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Detail_Glow: 0.3
-    - _Detail_Strengh: 1
+    - _Detail_Glow: 0
+    - _Detail_Strengh: 0.41
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
@@ -121,7 +125,8 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _Gradient_Offfset: 0
-    - _Gradient_Offset: 2.36
+    - _Gradient_Offset: 3.73
+    - _Intensity: 1
     - _Metallic: 0
     - _Mode: 0
     - _Normal_Strength: 0.01
@@ -144,6 +149,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Bot_Color: {r: 0.57112503, g: 0.15292618, b: 0.06847818, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Emission: {r: 1, g: 0.68235296, b: 0.099056564, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Top_Color: {r: 0.6226415, g: 0.51250446, b: 0.46110716, a: 0}

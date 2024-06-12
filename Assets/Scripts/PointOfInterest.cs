@@ -17,39 +17,45 @@ public class PointOfInterest : MonoBehaviour
         public class Result
         {
 
-            [SerializeField]
-            float _cred;
-            [SerializeField]
-            int _stress;
-            [SerializeField]
-            int _hp;
-            [SerializeField]
-            int _xp;
+            [SerializeField] float _cred;
+            [SerializeField] float _scrap;
+            [SerializeField] float _artefact;
+
+            [SerializeField] int _stress;
+            [SerializeField] int _hp;
+            [SerializeField] int _xp;
 
             public float Cred { get => _cred; set => _cred = value; }
+            public float Scrap { get => _scrap; set => _scrap = value; }
+            public float Artefact { get => _artefact; set => _artefact = value; }
             public int Stress { get => _stress; set => _stress = value; }
             public int Hp { get => _hp; set => _hp = value; }
             public int Xp { get => _xp; set => _xp = value; }
+            
 
             public void Apply()
             {
                 MasterSingleton.Instance.Guild.AddCred(Cred);
-                MasterSingleton.Instance.Guild.SelectedExplorer.AddStress(Stress);
-                MasterSingleton.Instance.Guild.SelectedExplorer.AddHealth(Hp);
-                MasterSingleton.Instance.Guild.SelectedExplorer.AddExperience(Xp);
+                MasterSingleton.Instance.Guild.AddScrap(Scrap);
+                MasterSingleton.Instance.Guild.AddArtifact(Artefact);
+
+                foreach (Explorer explorer in MasterSingleton.Instance.Guild.SelectedExplorers)
+                {
+                    explorer.AddStress(Stress);
+                    explorer.AddHealth(Hp);
+                    explorer.AddExperience(Xp);
+                }
             }
         }
-        [SerializeField]
-        bool _enabled;
-        [SerializeField]
-        Result _fail, _partial, _success;
+        [SerializeField] bool _enabled;
+        [SerializeField] Result _fail, _partial, _success;
 
-        [SerializeField]
-        List<ProgressClock> _clocks;
+        [SerializeField] int _explorerSlots;
+
+        [SerializeField] List<ProgressClock> _clocks;
         int _activeClock;
 
-        [SerializeField]
-        ActionUI _actionUI;
+        [SerializeField] ActionUI _actionUI;
 
         public Result Fail { get => _fail; set => _fail = value; }
         public Result Partial { get => _partial; set => _partial = value; }
@@ -58,16 +64,13 @@ public class PointOfInterest : MonoBehaviour
         public int ActiveClock { get => _activeClock; set => _activeClock = value; }
         public ActionUI ActionUI { get => _actionUI; set => _actionUI = value; }
         public bool Enabled { get => _enabled; set => _enabled = value; }
-
+        public int ExplorerSlots { get => _explorerSlots; set => _explorerSlots = value; }
     }
-    
-    [SerializeField]
 
-    Action[] _actions;
+    [SerializeField] Action[] _actions;
 
 
-    [SerializeField]
-    List<ProgressClock> _clocks;
+    [SerializeField] List<ProgressClock> _clocks;
     int _activeClock;
 
     bool _rollingDice = false;
@@ -132,7 +135,7 @@ public class PointOfInterest : MonoBehaviour
         Guild.OnNewCycle += CountDownClock;
         LoadDiceSprites();
         LoadClockSprites(_actions[0].Clocks[_actions[0].ActiveClock].Segments);
-        
+
         AddActionUIs();
 
         if (IsSelected)
@@ -160,6 +163,7 @@ public class PointOfInterest : MonoBehaviour
 
         _cmbrain = Camera.main.GetComponent<CinemachineBrain>();
         _graphicsRaycasterWorldCanvas = _worldCanvas.GetComponent<GraphicRaycaster>();
+        //MasterSingleton.Instance.PointsOfInterestManager.Register(this);
         RegisterWithUIHandler();
         SetActive(_active);
     }
@@ -222,7 +226,7 @@ public class PointOfInterest : MonoBehaviour
             DisplaySelectUI(true);
 
             IsSelected = true;
-            Debug.Log("Selected " + this.name);
+            //Debug.Log("Selected " + this.name);
             AudioManager.instance.PlayOneShot(FMODEvents.instance._uiClick);
             AudioManager.instance.PlayOneShot(FMODEvents.instance._cameraIn);
 
@@ -271,9 +275,15 @@ public class PointOfInterest : MonoBehaviour
         _vcam.Priority = 1;
         DisplaySelectUI(false);
         IsSelected = false;
-        Debug.Log("Deselected " + this.name);
+        //Debug.Log("Deselected " + this.name);
         AudioManager.instance.PlayOneShot(FMODEvents.instance._cameraOut);
         AudioManager.instance.SetGlobalParameter("_Location", 0.0f);
+        
+        foreach (Action action in _actions)
+        {
+            action.ActionUI.RemoveExplorerItems();
+        }
+        MasterSingleton.Instance.Guild.ClearSelectedExplorers();
 
     }
     private bool IsMouseOverUI()
@@ -359,11 +369,11 @@ public class PointOfInterest : MonoBehaviour
 
     void DisplayWorldUI(bool value)
     {
-        
+
         _worldClockImage.sprite = _actions[0].ActionUI._clockSprites[_actions[0].Clocks[_actions[0].ActiveClock].Fill];
         _worldClockBackground.sprite = _actions[0].ActionUI._clockBackgroundSprite;
         _worldClockFrame.sprite = _actions[0].ActionUI._clockFrameSprite;
-        
+
         RecolorClock(_actions[0]);
 
         _worldCanvas.gameObject.SetActive(value);
@@ -514,13 +524,14 @@ public class PointOfInterest : MonoBehaviour
             {
                 if (action.Enabled)
                 {
-                    action.ActionUI.DisplayActionCanvas(value);
+                    action.ActionUI.DisplayActionCanvas(value, action);
+                    action.ActionUI.DisplayExplorerSlots(action.ExplorerSlots);
                 }
                 else
                 {
-                    action.ActionUI.DisplayActionCanvas(false);
+                    action.ActionUI.DisplayActionCanvas(false, action);
+                    action.ActionUI.DisplayExplorerSlots(action.ExplorerSlots);
                 }
-
             }
         }
     }
@@ -547,32 +558,135 @@ public class PointOfInterest : MonoBehaviour
 
     public void UseAction(Action action)
     {
-        Explorer selectedExplorer = MasterSingleton.Instance.Guild.SelectedExplorer;
+        Explorer[] selectedExplorers = MasterSingleton.Instance.Guild.SelectedExplorers.ToArray();
 
-        if (selectedExplorer == null)
+        //No Explorers
+        if (selectedExplorers.Length < 1)
         {
             Debug.LogWarning("No explorer selected.");
-            MasterSingleton.Instance.Guild.SelectAvailableExplorer();
+            //MasterSingleton.Instance.Guild.SelectAvailableExplorer();
             return;
         }
 
-        if (action.Clocks[action.ActiveClock].Segments == action.Clocks[action.ActiveClock].Fill && !MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted)
+        //Check if selected Explorers are exhausted; possible obsolete
+        bool noExplorerExhausted = true;
+        foreach (Explorer explorer in selectedExplorers)
         {
-            //ExhaustSelectedExplorer();
+            if (explorer.Exhausted)
+            {
+                noExplorerExhausted = false;
+                return;
+            }   
+        }
+
+        if (action.Fail.Scrap * -1 > MasterSingleton.Instance.Guild.Scrap && action.Fail.Scrap < 0)
+        {
+            Debug.Log("Not enough scrap for this action.");
+            return;
+        }
+
+        //Check if Clock is complete already
+        if (action.Clocks[action.ActiveClock].Segments == action.Clocks[action.ActiveClock].Fill && noExplorerExhausted)
+        {
             action.Clocks[action.ActiveClock].CompletionCheck();
             LoadNewClockCheck(action);
             DeselectDueToExhaustionCheck();
+            MasterSingleton.Instance.Guild.ClearSelectedExplorers();
+            action.ActionUI.RemoveExplorerItems();
+            
             MasterSingleton.Instance.Guild.ContinueCycle(1);
 
         }
-        else if (!MasterSingleton.Instance.Guild.SelectedExplorer.Exhausted && !action.Clocks[action.ActiveClock].IsCountdown && MasterSingleton.Instance.Guild.SelectedExplorer.Name != "" && !_rollingDice)
-        {
-            int diceResult = MasterSingleton.Instance.Guild.SelectedExplorer.RollDice(action.Clocks[action.ActiveClock].ActionAttribute);
 
+        //Actual Action
+        else if (noExplorerExhausted && !action.Clocks[action.ActiveClock].IsCountdown && !_rollingDice)
+        {
+
+            int diceResult = 0;
+
+            foreach (Explorer explorer in selectedExplorers)
+            {
+                
+                int newDiceResult = explorer.RollDice(action.Clocks[action.ActiveClock].ActionAttribute);
+                Debug.Log(explorer.Name + " rolled a " + newDiceResult);
+                if (newDiceResult > diceResult)
+                {
+                    diceResult = newDiceResult;
+                }
+            }
+
+            // Relationship trait addition
+            for (int i = 0; i < selectedExplorers.Length; i++)
+            {
+                for (int j = i + 1; j < selectedExplorers.Length; j++)
+                {
+                    if (Random.value <= Relationship.chance)
+                    {
+                        Explorer explorerA = selectedExplorers[i];
+                        Explorer explorerB = selectedExplorers[j];
+
+                        // Ensure Traits lists are initialized
+                        if (explorerA.Traits == null)
+                        {
+                            explorerA.Traits = new List<Trait>();
+                        }
+                        if (explorerB.Traits == null)
+                        {
+                            explorerB.Traits = new List<Trait>();
+                        }
+
+                        // Check if the relationship already exists
+                        bool relationshipExists = false;
+                        foreach (var trait in explorerA.Traits)
+                        {
+                            if (trait is Relationship relationship && relationship._explorer == explorerB)
+                            {
+                                explorerA.AddStress(-relationship._strength ,false);
+                                if (Random.value < Relationship.decayChance)
+                                {
+                                    relationship.AddStrength(-1);
+                                }
+                                else
+                                {
+                                    relationship.AddStrength(1);
+                                }
+                                relationshipExists = true;
+                                break;
+                            }
+                        }
+                        foreach (var trait in explorerB.Traits)
+                        {
+                            if (trait is Relationship relationship && relationship._explorer == explorerA)
+                            {
+                                explorerB.AddStress(-relationship._strength, false);
+                                if (Random.value < Relationship.decayChance)
+                                {
+                                    relationship.AddStrength(-1);
+                                }
+                                else
+                                {
+                                    relationship.AddStrength(1);
+                                }
+                                break;
+                            }
+                        }
+
+                        if (!relationshipExists)
+                        {
+                            // Add relationship trait to both explorers
+                            explorerA.Traits.Add(new Relationship(explorerB, 1)); // Initial strength 1
+                            explorerB.Traits.Add(new Relationship(explorerA, 1)); // Initial strength 1
+                            Debug.Log("New relationship formed between " + explorerA.Name + " and " + explorerB.Name);
+                        }
+                    }
+                }
+            }
+
+
+            Debug.Log("The final roll is a " + diceResult);
             StartDiceRoll(diceResult, action);
             MasterSingleton.Instance.Guild.ContinueCycle(1);
 
-            Debug.Log(MasterSingleton.Instance.Guild.SelectedExplorer.Name + " used the Action at " + this.name);
         }
         else if (action.Clocks[action.ActiveClock].IsCountdown)
         {
@@ -587,7 +701,10 @@ public class PointOfInterest : MonoBehaviour
             Resources.Load<NarrativeEvent>("Narrative Events/NE_Exhausted").Trigger();
         }
 
-        //MasterSingleton.Instance.UIManger.HighlightEndCycle(MasterSingleton.Instance.Guild.IsRosterExhausted());
+
+        action.ActionUI.RemoveExplorerItems();
+        //MasterSingleton.Instance.Guild.SelectedExplorers.Clear();
+        
     }
 
     void StartDiceRoll(int result, Action action)
@@ -614,12 +731,20 @@ public class PointOfInterest : MonoBehaviour
         _applyRollFeedback.PlayFeedbacks();
 
         //ExhaustSelectedExplorer();
-        yield return new WaitForSeconds(.25f *3 + .1f);
-        action.Clocks[action.ActiveClock].CompletionCheck();
+        yield return new WaitForSeconds(.25f * 3 + .1f);
+        bool clockComplete = action.Clocks[action.ActiveClock].CompletionCheck();
         LoadNewClockCheck(action);
 
-        DeselectDueToExhaustionCheck();
+        if (!clockComplete)
+        {
+            DeselectDueToExhaustionCheck();
+            MasterSingleton.Instance.Guild.ClearSelectedExplorers();
+            action.ActionUI.RemoveExplorerItems();
+        }
+
         _rollingDice = false;
+
+        //Tutorial PopUp
         if (!MasterSingleton.Instance.Guild.DiceNEHasTriggerd)
         {
             MasterSingleton.Instance.Guild.DiceNE.Trigger();
@@ -656,17 +781,15 @@ public class PointOfInterest : MonoBehaviour
     }
 
     private IEnumerator AnimateClock(Image clock, int oldFill, int newFill, Action action)
-{
-    for (int i = oldFill; i < newFill + 1; i++)
     {
-        clock.sprite = action.ActionUI._clockSprites[i];
-        yield return new WaitForSeconds(0.25f);
+        for (int i = oldFill; i < newFill + 1; i++)
+        {
+            clock.sprite = action.ActionUI._clockSprites[i];
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        yield return null;
     }
-
-    yield return null;
-}
-
-    
 
     void CountDownClock()
     {
@@ -686,9 +809,12 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
-    void ExhaustSelectedExplorer()
+    void ExhaustSelectedExplorers()
     {
-        MasterSingleton.Instance.Guild.SelectedExplorer.Exhaust();
+        foreach (Explorer explorer in MasterSingleton.Instance.Guild.SelectedExplorers)
+        {
+            explorer.Exhaust();
+        }
     }
 
     void DeselectDueToExhaustionCheck()
@@ -705,7 +831,7 @@ public class PointOfInterest : MonoBehaviour
         DeSelect();
     }
 
-    
+
     void LoadNewClockCheck(Action action)
     {
         if (action.Clocks[action.ActiveClock].Fill >= action.Clocks[action.ActiveClock].Segments)
@@ -770,11 +896,4 @@ public class PointOfInterest : MonoBehaviour
             }
         }
     }
-
-
-
 }
-
-
-
-

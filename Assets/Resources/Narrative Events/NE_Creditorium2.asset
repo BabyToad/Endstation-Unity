@@ -27,35 +27,91 @@ MonoBehaviour:
     dream of yours. That sounds foolish." His delighted voice changed back to his
     rumbling, while he studies your reaction. '
   _text: {fileID: 4900000, guid: 061afd543b9235e40a251dbc7bc31161, type: 3}
-  _upperButtonText: Defend yourself
-  _uCred: -5
-  _uStress: 1
-  _uHp: 0
-  _uAllExplorers: 0
-  _uUnlockPoI: 
-  _uLockPoI: 
-  _lowerButtonText: Defend your dream
-  _lCred: -5
-  _lStress: 1
-  _lHp: 0
-  _lAllExplorers: 0
+  upperChoice:
+    buttonText: Defend yourself.
+    cred: -5
+    scrap: 0
+    artefacts: 0
+    stress: 0
+    hp: 0
+    allExplorers: 0
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
+  lowerChoice:
+    buttonText: Ignore him.
+    cred: -5
+    scrap: 0
+    artefacts: 0
+    stress: 0
+    hp: 0
+    allExplorers: 0
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
   _name: Uriah
   _sprite: {fileID: 21300000, guid: 4d227c2ec8d8d2a43a8dcf5c48d2b1f9, type: 3}
-  _overrideAction: 0
-  _pointOfInterest: 
-  _newAction:
-    _fail:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _partial:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _success:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
