@@ -23,13 +23,13 @@ Material:
   m_Name: WIPWoody
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 2100000, guid: 1e3da1f708808e94d90e89362c87ebe7, type: 2}
-  m_ModifiedSerializedProperties: 16
+  m_ModifiedSerializedProperties: 24
   m_ValidKeywords:
   - _NORMALMAP
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
@@ -54,6 +54,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _Cull: 0
     - _Cutoff: 0.5
     - _Glossiness: 0.5
     - _ReceiveShadows: 1
