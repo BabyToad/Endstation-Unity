@@ -15,15 +15,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Mouse",
-                    "type": "Value",
-                    "id": "c64a80ef-de24-4c12-b7cf-7c8f04b0778e",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Deselect",
                     "type": "Button",
                     "id": "eb17585d-4870-4327-ae78-4aa89b30a336",
@@ -31,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Mouse",
+                    "type": "Value",
+                    "id": "c64a80ef-de24-4c12-b7cf-7c8f04b0778e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -47,23 +47,23 @@
                 },
                 {
                     "name": "",
-                    "id": "702823a8-a64d-4d7c-a2c9-08e78f695fe7",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "44f10da4-b8fc-4c81-bceb-d17f65ef52dc",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Deselect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "702823a8-a64d-4d7c-a2c9-08e78f695fe7",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

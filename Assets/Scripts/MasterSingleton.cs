@@ -40,7 +40,7 @@ public class MasterSingleton : MonoBehaviour
         {
             Instance = this;
         }
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this);
     }
 
 }

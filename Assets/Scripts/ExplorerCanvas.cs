@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    // Start is called before the first frame update
     Explorer _explorer;
     [SerializeField] Text _name;
     [SerializeField] Image _image, _draggableImage;
@@ -19,10 +19,9 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     [SerializeField] Image _background, _backgroundSelected;
     [SerializeField] Color _normalColor, _selectedColor, _exhaustedColor, _selectedExhaustedColor;
 
-    //Drag Explorer Stuff
-    public Image characterImage; // The image representing the character
-    [SerializeField] GameObject characterUIElementPrefab; // The prefab for the draggable UI element
- 
+    public Image characterImage;
+    [SerializeField] GameObject characterUIElementPrefab;
+
     private GameObject currentDraggedObject;
     private Canvas parentCanvas;
 
@@ -32,6 +31,7 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public float animationDuration = 0.5f;
     private float currentValue;
 
+    private bool isExplorerSelected = false;
 
     private void Awake()
     {
@@ -46,32 +46,51 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         parentCanvas = transform.parent.gameObject.GetComponent<Canvas>();
     }
 
+    private void OnEnable()
+    {
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += Select_performed;
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed += Deselect_performed;
+    }
+
+    private void OnDisable()
+    {
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= Select_performed;
+        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed -= Deselect_performed;
+    }
+
+    private void Update()
+    {
+        if (isExplorerSelected && currentDraggedObject != null)
+        {
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+            currentDraggedObject.transform.position = mousePosition;
+        }
+    }
 
     public void ReferenceExplorer(Explorer explorer)
     {
         _explorer = explorer;
     }
+
     public void SetName(string name)
     {
         _name.text = name;
     }
 
     public void SetImage(Sprite sprite)
-    { 
+    {
         _image.sprite = sprite;
         _draggableImage.sprite = sprite;
     }
 
     public void SetHealth(int health)
     {
-        //_health.value = (float)health;
         StartCoroutine(AnimateSlider((float)health, _health));
     }
+
     public void SetStress(int stress)
     {
-        //_stress.value = (float)stress;
         StartCoroutine(AnimateSlider((float)stress, _stress));
-
     }
 
     public void SetXP(int xp)
@@ -79,24 +98,24 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         StartCoroutine(AnimateSlider((float)xp, _xp));
     }
 
-
     public void SetInsight(int insight, bool isInjured, bool isTrauma)
     {
         SetStatColor(_insight, isInjured, isTrauma);
         _insight.text = "Insight: " + insight;
     }
+
     public void SetProwess(int prowess, bool isInjured, bool isTrauma)
     {
         SetStatColor(_prowess, isInjured, isTrauma);
-
         _prowess.text = "Prowess: " + prowess;
     }
+
     public void SetResolve(int resolve, bool isInjured, bool isTrauma)
     {
         SetStatColor(_resolve, isInjured, isTrauma);
-
         _resolve.text = "Resolve: " + resolve;
     }
+
     public void SetTraits(Trait[] traits)
     {
         _traits.text = "";
@@ -133,6 +152,7 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             stat.color = Color.white;
         }
     }
+
     public void DisplayExhaustion(bool value)
     {
         if (value)
@@ -144,7 +164,6 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         {
             _background.color = _normalColor;
             _backgroundSelected.color = _selectedColor;
-
         }
     }
 
@@ -153,7 +172,6 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         float startTime = Time.time;
         float startValue = slider.value;
 
-        // Briefly show afterimage of old value
         yield return new WaitForSeconds(0.1f);
 
         while (Time.time - startTime < animationDuration)
@@ -164,73 +182,141 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             yield return null;
         }
 
-        // Ensure final value is set correctly
         slider.value = targetValue;
+    }
+
+    private void Select_performed(InputAction.CallbackContext context)
+    {
+        
+        // Check if the click is on the ExplorerCanvas
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = mousePosition
+        };
+
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, raycastResults);
+
+        foreach (RaycastResult result in raycastResults)
+        {
+            Debug.Log(result.gameObject);
+            if (result.gameObject == _background.gameObject)
+            {
+                if (!isExplorerSelected)
+                {
+                    if (currentDraggedObject == null)
+                    {
+                        StartDragging();
+                        isExplorerSelected = true;
+                    }
+                    
+                }
+                return;
+            }
+            else
+            {
+                EndDragging();
+                isExplorerSelected = false;
+
+            }
+
+            if (currentDraggedObject != null)
+            {
+                if (result.gameObject?.name == "Explorer Group Canvas")
+                {
+                    GameObject characterUIObject = Instantiate(characterUIElementPrefab, result.gameObject.transform);
+                    characterUIObject.GetComponent<ExplorerItem>().SetImage(_image.sprite);
+                    ExplorerItem expItem = characterUIObject.GetComponent<ExplorerItem>();
+                    expItem.LinkExplorer(_explorer);
+                    ActionUI actionUI = result.gameObject.transform.parent.transform.parent.transform.parent.transform.parent.GetComponent<ActionUI>();
+
+                    bool wasAdded = actionUI.AddExplorerItem(expItem, actionUI.Action);
+                    if (wasAdded)
+                    {
+                        _explorer.SelectExplorer(true);
+                    }
+                    else
+                    {
+                        Destroy(characterUIObject);
+                    }
+                }
+                Destroy(currentDraggedObject);
+            }
+
+        }
+    }
+
+    private void Deselect_performed(InputAction.CallbackContext context)
+    {
+        if (isExplorerSelected)
+        {
+            EndDragging();
+            isExplorerSelected = false;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        currentDraggedObject = Instantiate(characterUIElementPrefab, parentCanvas.transform);
-        ExplorerItem explorerItem = currentDraggedObject.GetComponent<ExplorerItem>();
-        explorerItem.LinkExplorer(_explorer);
-        explorerItem.SetImage(_image.sprite);
-        currentDraggedObject.AddComponent<LayoutElement>().ignoreLayout = true;
-        //currentDraggedObject.GetComponent<Image>().sprite = characterImage.sprite;
-
-
-
-        // Makes the dragged object follow the pointer
-        currentDraggedObject.transform.SetAsLastSibling(); // Ensures it's on top of UI
-        BlockRaycasts(true); // Temporarily prevent clicks through the dragged object
+        StartDragging();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (currentDraggedObject != null)
-        {
-            currentDraggedObject.transform.position = eventData.position;
-        }
+       
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        EndDragging(eventData);
+    }
+
+    private void StartDragging()
+    {
+        if (currentDraggedObject == null)
+        {
+            currentDraggedObject = Instantiate(characterUIElementPrefab, parentCanvas.transform);
+            ExplorerItem explorerItem = currentDraggedObject.GetComponent<ExplorerItem>();
+            explorerItem.LinkExplorer(_explorer);
+            explorerItem.SetImage(_image.sprite);
+            currentDraggedObject.AddComponent<LayoutElement>().ignoreLayout = true;
+
+            currentDraggedObject.transform.SetAsLastSibling();
+            BlockRaycasts(true);
+        }
+        
+    }
+
+    private void EndDragging(PointerEventData eventData = null)
+    {
         if (currentDraggedObject != null)
         {
-            Debug.Log(eventData.pointerCurrentRaycast.gameObject);
-            if (eventData.pointerCurrentRaycast.gameObject?.name == "Explorer Group Canvas")
+            if (eventData != null && eventData.pointerCurrentRaycast.gameObject?.name == "Explorer Group Canvas")
             {
-                // Successfully dropped on an Expedition Canvas
-
                 GameObject characterUIObject = Instantiate(characterUIElementPrefab, eventData.pointerCurrentRaycast.gameObject.transform);
                 characterUIObject.GetComponent<ExplorerItem>().SetImage(_image.sprite);
 
                 ExplorerItem expItem = characterUIObject.GetComponent<ExplorerItem>();
-
                 expItem.LinkExplorer(_explorer);
                 ActionUI actionUI = eventData.pointerCurrentRaycast.gameObject.transform.parent.transform.parent.transform.parent.transform.parent.GetComponent<ActionUI>();
-                
-                ;
-                bool wasAdded = actionUI.AddExplorerItem(expItem, actionUI.Action);
 
+                bool wasAdded = actionUI.AddExplorerItem(expItem, actionUI.Action);
                 if (wasAdded)
                 {
-                    
                     _explorer.SelectExplorer(true);
                 }
                 else
                 {
                     Destroy(characterUIObject);
-
                 }
             }
             Destroy(currentDraggedObject);
         }
-        BlockRaycasts(false); // Re-enable clicks
+        BlockRaycasts(false);
     }
 
     private void BlockRaycasts(bool block)
     {
-        // Use a graphic raycaster on the canvas
         GraphicRaycaster raycaster = parentCanvas.GetComponent<GraphicRaycaster>();
         if (raycaster != null)
         {

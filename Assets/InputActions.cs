@@ -37,15 +37,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Mouse"",
-                    ""type"": ""Value"",
-                    ""id"": ""c64a80ef-de24-4c12-b7cf-7c8f04b0778e"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Deselect"",
                     ""type"": ""Button"",
                     ""id"": ""eb17585d-4870-4327-ae78-4aa89b30a336"",
@@ -53,6 +44,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""c64a80ef-de24-4c12-b7cf-7c8f04b0778e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -69,23 +69,23 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""702823a8-a64d-4d7c-a2c9-08e78f695fe7"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Mouse"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""44f10da4-b8fc-4c81-bceb-d17f65ef52dc"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Deselect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""702823a8-a64d-4d7c-a2c9-08e78f695fe7"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -142,8 +142,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Select = m_Gameplay.FindAction("Select", throwIfNotFound: true);
-        m_Gameplay_Mouse = m_Gameplay.FindAction("Mouse", throwIfNotFound: true);
         m_Gameplay_Deselect = m_Gameplay.FindAction("Deselect", throwIfNotFound: true);
+        m_Gameplay_Mouse = m_Gameplay.FindAction("Mouse", throwIfNotFound: true);
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_Restart = m_Debug.FindAction("Restart", throwIfNotFound: true);
@@ -209,15 +209,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Select;
-    private readonly InputAction m_Gameplay_Mouse;
     private readonly InputAction m_Gameplay_Deselect;
+    private readonly InputAction m_Gameplay_Mouse;
     public struct GameplayActions
     {
         private @InputActions m_Wrapper;
         public GameplayActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Select => m_Wrapper.m_Gameplay_Select;
-        public InputAction @Mouse => m_Wrapper.m_Gameplay_Mouse;
         public InputAction @Deselect => m_Wrapper.m_Gameplay_Deselect;
+        public InputAction @Mouse => m_Wrapper.m_Gameplay_Mouse;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -230,12 +230,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
-            @Mouse.started += instance.OnMouse;
-            @Mouse.performed += instance.OnMouse;
-            @Mouse.canceled += instance.OnMouse;
             @Deselect.started += instance.OnDeselect;
             @Deselect.performed += instance.OnDeselect;
             @Deselect.canceled += instance.OnDeselect;
+            @Mouse.started += instance.OnMouse;
+            @Mouse.performed += instance.OnMouse;
+            @Mouse.canceled += instance.OnMouse;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -243,12 +243,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
-            @Mouse.started -= instance.OnMouse;
-            @Mouse.performed -= instance.OnMouse;
-            @Mouse.canceled -= instance.OnMouse;
             @Deselect.started -= instance.OnDeselect;
             @Deselect.performed -= instance.OnDeselect;
             @Deselect.canceled -= instance.OnDeselect;
+            @Mouse.started -= instance.OnMouse;
+            @Mouse.performed -= instance.OnMouse;
+            @Mouse.canceled -= instance.OnMouse;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -324,8 +324,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnSelect(InputAction.CallbackContext context);
-        void OnMouse(InputAction.CallbackContext context);
         void OnDeselect(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
     }
     public interface IDebugActions
     {
