@@ -1,17 +1,13 @@
 using MoreMountains.Feedbacks;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
-using UnityEngineInternal;
 
 public class TimeOfDayManager : MonoBehaviour
 {
-    float time = 1;
+    float lightIntensity = 1;
     [SerializeField][Range(0, 1)] float timeTarget;
     [SerializeField] AnimationCurve curve;
-    [SerializeField][Range(0, 1)] public float dawn, morning, noon, dusk, night; 
+    [SerializeField][Range(0, 1)] public float dawn, morning, noon, dusk, night;
     [SerializeField] float sunIntensity;
     [SerializeField] float skyIntensity;
     Color ogSkyColor, ogEquatorColor, ogGroundColor;
@@ -19,9 +15,9 @@ public class TimeOfDayManager : MonoBehaviour
     [SerializeField] Material _skyboxMat;
     [SerializeField] List<Renderer> _cloudDisks;
 
-    [SerializeField] float speed =0.1f;
+    [SerializeField] float speed = 0.1f;
+    private float targetTime;
 
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -29,20 +25,24 @@ public class TimeOfDayManager : MonoBehaviour
         ogSkyColor = RenderSettings.ambientSkyColor;
         ogEquatorColor = RenderSettings.ambientEquatorColor;
         ogGroundColor = RenderSettings.ambientGroundColor;
+        targetTime = timeTarget; // Initialize targetTime with the initial timeTarget value
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Gradually move timeTarget towards targetTime
+        if (timeTarget != targetTime)
+        {
+            timeTarget = Mathf.MoveTowards(timeTarget, targetTime, speed * Time.deltaTime);
+        }
 
-        time = curve.Evaluate(timeTarget);
-        //time = Mathf.Lerp(time, curve.Evaluate(timeTarget), speed* Time.deltaTime);
+        lightIntensity = curve.Evaluate(timeTarget);
 
         SetSunIntensity();
         SetSkyboxIntensity();
         SetCloudIntensity();
         SetAmbientLight();
-
     }
 
     private void OnDestroy()
@@ -52,20 +52,18 @@ public class TimeOfDayManager : MonoBehaviour
 
     private void SetSunIntensity()
     {
-        _sun.intensity = Mathf.Lerp(0, sunIntensity, time) ;
+        _sun.intensity = Mathf.Lerp(0, sunIntensity, lightIntensity);
     }
 
     private void SetSkyboxIntensity()
     {
-        _skyboxMat.SetFloat("_Intensity", Mathf.Lerp(0, skyIntensity, time));
-
+        _skyboxMat.SetFloat("_Intensity", Mathf.Lerp(0, skyIntensity, lightIntensity));
     }
 
     private void SetCloudIntensity()
     {
-        
-        _cloudDisks[0].material.SetFloat("_DayTime", Mathf.Lerp(1, 0, time));
-        _cloudDisks[1].material.SetFloat("_DayTime", Mathf.Lerp(1, 0, time));
+        _cloudDisks[0].material.SetFloat("_DayTime", Mathf.Lerp(1, 0, lightIntensity));
+        _cloudDisks[1].material.SetFloat("_DayTime", Mathf.Lerp(1, 0, lightIntensity));
     }
 
     private void SetAmbientLight()
@@ -81,11 +79,10 @@ public class TimeOfDayManager : MonoBehaviour
         RenderSettings.ambientSkyColor = ogSkyColor;
         RenderSettings.ambientEquatorColor = ogEquatorColor;
         RenderSettings.ambientGroundColor = ogGroundColor;
-
-        
     }
+
     public void SetTime(float t)
     {
-        timeTarget = Mathf.Clamp(t, 0 ,1);
+        targetTime = Mathf.Clamp(t, 0, 1);
     }
 }
