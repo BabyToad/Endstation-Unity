@@ -126,7 +126,7 @@ Material:
     - _GlossyReflections: 1
     - _Gradient_Offfset: 0
     - _Gradient_Offset: 3.73
-    - _Intensity: 1
+    - _Intensity: 2
     - _Metallic: 0
     - _Mode: 0
     - _Normal_Strength: 0.01
@@ -149,7 +149,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Bot_Color: {r: 0.57112503, g: 0.15292618, b: 0.06847818, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Emission: {r: 1, g: 0.68235296, b: 0.099056564, a: 0}
+    - _Emission: {r: 0.9528302, g: 0.8073477, b: 0.5438323, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Top_Color: {r: 0.6226415, g: 0.51250446, b: 0.46110716, a: 0}
