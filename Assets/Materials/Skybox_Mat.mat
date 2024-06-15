@@ -101,12 +101,12 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Intensity: 6.05
+    - _Intensity: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Saturation: 1.02
+    - _Saturation: 1.17
     - _ScreenSpace: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

@@ -8,7 +8,7 @@ using System.Data;
 
 public class Guild : MonoBehaviour
 {
-    TimeOfDayManager timeOfDayManager;
+    DayTimeManager timeOfDayManager;
     [SerializeField] List<Explorer> _roster;
     ToggleGroup _rosterTG;
     List<Explorer> _selectedExplorers = new List<Explorer>();
@@ -62,7 +62,7 @@ public class Guild : MonoBehaviour
             RecruitExplorer(2, 1, 1);
             RecruitExplorer(1, 2, 1);
         }
-        timeOfDayManager = GameObject.Find("TimeOfDay").GetComponent<TimeOfDayManager>();
+        timeOfDayManager = GameObject.Find("TimeOfDay").GetComponent<DayTimeManager>();
 
         if (_cycle == 0)
         {

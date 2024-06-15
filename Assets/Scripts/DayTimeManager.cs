@@ -2,7 +2,7 @@ using MoreMountains.Feedbacks;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeOfDayManager : MonoBehaviour
+public class DayTimeManager : MonoBehaviour
 {
     float lightIntensity = 1;
     [SerializeField][Range(0, 1)] float timeTarget;
