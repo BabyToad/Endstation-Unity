@@ -142,7 +142,7 @@ public class Guild : MonoBehaviour
         }
         AddCred(-_upkeepPerExplorer * _roster.Count);
 
-        foreach (PointOfInterest poi in MasterSingleton.Instance.UIManger.PointsOfInterestList)
+        foreach (PointOfInterest poi in MasterSingleton.Instance.UIManager.PointsOfInterestList)
         {
             poi.DeSelect();
         }
@@ -151,11 +151,11 @@ public class Guild : MonoBehaviour
         AudioManager.instance.PlayOneShot(FMODEvents.instance._endTurn);
         MasterSingleton.Instance.StateManager.CurrentState = GameplayStateManager.GameplayState.Cutscene;
 
-        MasterSingleton.Instance.UIManger.EnableEndCycleButton(false);
+        MasterSingleton.Instance.UIManager.EnableEndCycleButton(false);
         _cycle = 0;
         timeOfDayManager.SetTime(timeOfDayManager.dawn);
         _endOfCycle = false;
-        MasterSingleton.Instance.UIManger.HighlightEndCycle(false);
+        MasterSingleton.Instance.UIManager.HighlightEndCycle(false);
     }
 
     public void StartNewCycle()
@@ -174,7 +174,7 @@ public class Guild : MonoBehaviour
             _cred = 0;
         }
 
-        MasterSingleton.Instance.UIManger.UpdateCredDisplay(_cred);
+        MasterSingleton.Instance.UIManager.UpdateCredDisplay(_cred);
     }
 
     public void AddScrap(float amount)
@@ -184,7 +184,7 @@ public class Guild : MonoBehaviour
         {
             Scrap = 0;
         }
-        MasterSingleton.Instance.UIManger.UpdateScrapDisplay(_scrap);
+        MasterSingleton.Instance.UIManager.UpdateScrapDisplay(_scrap);
 
     }
 
@@ -195,19 +195,19 @@ public class Guild : MonoBehaviour
         {
             Artifacts = 0;
         }
-        MasterSingleton.Instance.UIManger.UpdateArtifactDisplay(_artifacts);
+        MasterSingleton.Instance.UIManager.UpdateArtifactDisplay(_artifacts);
 
     }
 
     public static void AddEventCred(float credAmount)
     {
         MasterSingleton.Instance.Guild.Cred += credAmount;
-        MasterSingleton.Instance.UIManger.UpdateCredDisplay(MasterSingleton.Instance.Guild.Cred);
+        MasterSingleton.Instance.UIManager.UpdateCredDisplay(MasterSingleton.Instance.Guild.Cred);
     }
     public void AddRep(float repAmount)
     {
         _rep += repAmount;
-        MasterSingleton.Instance.UIManger.UpdateReputationDisplay(_rep);
+        MasterSingleton.Instance.UIManager.UpdateReputationDisplay(_rep);
     }
 
     public bool IsRosterExhausted()
@@ -270,12 +270,12 @@ public class Guild : MonoBehaviour
             timeOfDayManager.SetTime(timeOfDayManager.night);
         }
 
-        MasterSingleton.Instance.UIManger.UpdateCycleClock();
+        MasterSingleton.Instance.UIManager.UpdateCycleClock();
         if (_cycle > _maxCycle)
         {
             _endOfCycle = true;
-            MasterSingleton.Instance.UIManger.EnableEndCycleButton(_endOfCycle);
-            MasterSingleton.Instance.UIManger.HighlightEndCycle(true);
+            MasterSingleton.Instance.UIManager.EnableEndCycleButton(_endOfCycle);
+            MasterSingleton.Instance.UIManager.HighlightEndCycle(true);
             foreach (Explorer explorer in Roster)
             {
                 explorer.Exhaust();

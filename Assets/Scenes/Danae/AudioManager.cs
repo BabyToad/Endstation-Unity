@@ -27,10 +27,11 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log(name + " Awake");
         if (instance!= null)
-    {
-        Debug.LogError("Found more than one AudioManager instance in the scene.");
-    }
+        {
+            Debug.LogError("Found more than one AudioManager instance in the scene.");
+        }
         instance=this;
 
         masterBus = RuntimeManager.GetBus("bus:/");

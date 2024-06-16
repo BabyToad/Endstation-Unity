@@ -51,7 +51,10 @@ public class ActionUI : MonoBehaviour
     }
     private void OnDisable()
     {
-        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= DeselectExplorerItem;
+        if (MasterSingleton.Instance != null)
+        {
+            MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= DeselectExplorerItem;
+        }
 
     }
     private void Update()

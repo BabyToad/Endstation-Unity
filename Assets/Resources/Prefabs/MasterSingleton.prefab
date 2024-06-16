@@ -2437,7 +2437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateManager: {fileID: 6193896989133250826}
-  _uIManger: {fileID: 8243203303499463913}
+  _uiManager: {fileID: 8243203303499463913}
   _eventCanvas: {fileID: 6566226269012123159}
   _inputManager: {fileID: 7296332294805646395}
   _guild: {fileID: 1779712622087443044}

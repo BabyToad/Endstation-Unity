@@ -54,8 +54,12 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     private void OnDisable()
     {
-        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= Select_performed;
-        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed -= Deselect_performed;
+        if (MasterSingleton.Instance != null)
+        {
+            MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= Select_performed;
+            MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed -= Deselect_performed;
+        }
+       
     }
 
     private void Update()

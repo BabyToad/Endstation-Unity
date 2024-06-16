@@ -125,12 +125,12 @@ public class NarrativeEvent : ScriptableObject
         }
 
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(false);
-        MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(true);
-        MasterSingleton.Instance.UIManger.DisplayOverworldUI(true);
-        MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(true);
+        MasterSingleton.Instance.UIManager.DisplayExplorerCanvas(true);
+        MasterSingleton.Instance.UIManager.DisplayOverworldUI(true);
+        MasterSingleton.Instance.UIManager.DisplayPointOfInterestSelectedUI(true);
         if (MasterSingleton.Instance.Guild.IsRosterExhausted())
         {
-            foreach (PointOfInterest poi in MasterSingleton.Instance.UIManger.PointsOfInterestList)
+            foreach (PointOfInterest poi in MasterSingleton.Instance.UIManager.PointsOfInterestList)
             {
                 poi.DeSelect();
             }
@@ -187,9 +187,9 @@ public class NarrativeEvent : ScriptableObject
         {
             MasterSingleton.Instance.EventCanvas.ShowLowerButton(false, "");
         }
-        MasterSingleton.Instance.UIManger.DisplayPointOfInterestSelectedUI(false);
-        MasterSingleton.Instance.UIManger.DisplayExplorerCanvas(false);
-        MasterSingleton.Instance.UIManger.DisplayOverworldUI(false);
+        MasterSingleton.Instance.UIManager.DisplayPointOfInterestSelectedUI(false);
+        MasterSingleton.Instance.UIManager.DisplayExplorerCanvas(false);
+        MasterSingleton.Instance.UIManager.DisplayOverworldUI(false);
         MasterSingleton.Instance.EventCanvas.ShowEventCanvas(true);
     }
 

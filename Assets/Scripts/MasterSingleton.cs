@@ -4,43 +4,75 @@ using UnityEngine;
 
 public class MasterSingleton : MonoBehaviour
 {
-    public static MasterSingleton Instance { get; private set; }
+    private static MasterSingleton _instance;
+    private static readonly object _lock = new object();
+    private static bool _applicationIsQuitting = false;
+
+    public static MasterSingleton Instance
+    {
+        get
+        {
+            if (_applicationIsQuitting)
+            {
+                Debug.LogWarning("[MasterSingleton] Instance already destroyed. Returning null.");
+                return null;
+            }
+
+            lock (_lock)
+            {
+                if (_instance == null)
+                {
+                    _instance = FindFirstObjectByType<MasterSingleton>();
+                    if (_instance == null)
+                    {
+                        GameObject singletonObject = new GameObject();
+                        _instance = singletonObject.AddComponent<MasterSingleton>();
+                        singletonObject.name = typeof(MasterSingleton).ToString() + " (Singleton)";
+
+                        DontDestroyOnLoad(singletonObject);
+                    }
+                }
+                return _instance;
+            }
+        }
+    }
+
     public GameplayStateManager StateManager { get => _stateManager; set => _stateManager = value; }
     public Guild Guild { get => _guild; set => _guild = value; }
-    public UIManager UIManger { get => _uIManger; set => _uIManger = value; }
+    public UIManager UIManager { get => _uiManager; set => _uiManager = value; }
     public InputManager InputManager { get => _inputManager; set => _inputManager = value; }
     public EventCanvas EventCanvas { get => _eventCanvas; set => _eventCanvas = value; }
     public PointsOfInterestManager PointsOfInterestManager { get => _pointsOfInterestManager; set => _pointsOfInterestManager = value; }
 
     [SerializeField]
-    GameplayStateManager _stateManager;
+    private GameplayStateManager _stateManager;
     [SerializeField]
-    UIManager _uIManger;
+    private UIManager _uiManager;
     [SerializeField]
-    EventCanvas _eventCanvas;
+    private EventCanvas _eventCanvas;
     [SerializeField]
-    InputManager _inputManager;
+    private InputManager _inputManager;
     [SerializeField]
-    Guild _guild;
+    private Guild _guild;
     [SerializeField]
-    PointsOfInterestManager _pointsOfInterestManager;
-
-
+    private PointsOfInterestManager _pointsOfInterestManager;
 
     private void Awake()
     {
-        // If there is an instance, and it's not me, delete myself.
-
-        if (Instance != null && Instance != this)
+        if (_instance != null && _instance != this)
         {
-            Destroy(this);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
-            Instance = this;
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        DontDestroyOnLoad(this);
+        Debug.Log(name + " Awake");
     }
 
+    private void OnApplicationQuit()
+    {
+        _applicationIsQuitting = true;
+    }
 }

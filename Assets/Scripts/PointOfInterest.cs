@@ -84,8 +84,7 @@ public class PointOfInterest : MonoBehaviour
     [Header("UI References")]
     [SerializeField]
     Canvas _actionsCanvas;
-    [SerializeField]
-    Canvas _activeCanvas;
+   
     [SerializeField]
     Canvas _worldCanvas;
     [SerializeField]
@@ -130,8 +129,30 @@ public class PointOfInterest : MonoBehaviour
 
     public bool IsSelected { get => _isSelected; set => _isSelected = value; }
 
+    private void Awake()
+    {
+        Debug.Log(name + " Awake");
+
+        // Ensure components are initialized
+        if (_actions == null || _actions.Length == 0)
+        {
+            Debug.LogError(name + " has no actions assigned.");
+        }
+
+        if (_vcam == null)
+        {
+            Debug.LogError(name + " has no virtual camera assigned.");
+        }
+
+        // Add other necessary initializations
+        _cmbrain = Camera.main.GetComponent<CinemachineBrain>();
+        _graphicsRaycasterWorldCanvas = _worldCanvas.GetComponent<GraphicRaycaster>();
+    }
+
     private void OnEnable()
     {
+        Debug.Log(name + " enabled");
+
         Guild.OnNewCycle += CountDownClock;
         LoadDiceSprites();
         LoadClockSprites(_actions[0].Clocks[_actions[0].ActiveClock].Segments);
@@ -147,17 +168,46 @@ public class PointOfInterest : MonoBehaviour
             DeSelect();
         }
     }
-
+    
     private void OnDisable()
     {
-        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed -= Select_performed;
-        MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed -= Deselect_performed;
+
+
+        if (MasterSingleton.Instance == null)
+        {
+            Debug.LogWarning("MasterSingleton.Instance is null");
+            return;
+        }
+
+        if (MasterSingleton.Instance.InputManager == null)
+        {
+            Debug.LogWarning("InputManager is null");
+            return;
+        }
+
+        var inputManager = MasterSingleton.Instance.InputManager;
+        if (inputManager.InputActions == null)
+        {
+            Debug.LogWarning("Input actions are null");
+            return;
+        }
+
+        inputManager.InputActions.Gameplay.Select.performed -= Select_performed;
+        inputManager.InputActions.Gameplay.Deselect.performed -= Deselect_performed;
+
+        if (MasterSingleton.Instance.Guild == null)
+        {
+            Debug.LogWarning("Guild is null");
+            return;
+        }
 
         Guild.OnNewCycle -= CountDownClock;
 
     }
     private void Start()
     {
+        Debug.Log(name + " start");
+
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Select.performed += Select_performed;
         MasterSingleton.Instance.InputManager.InputActions.Gameplay.Deselect.performed += Deselect_performed;
 
@@ -183,9 +233,9 @@ public class PointOfInterest : MonoBehaviour
     }
     void RegisterWithUIHandler()
     {
-        if (!MasterSingleton.Instance.UIManger.PointsOfInterestList.Contains(this))
+        if (!MasterSingleton.Instance.UIManager.PointsOfInterestList.Contains(this))
         {
-            MasterSingleton.Instance.UIManger.PointsOfInterestList.Add(this);
+            MasterSingleton.Instance.UIManager.PointsOfInterestList.Add(this);
         }
         else
         {
