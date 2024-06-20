@@ -1,30 +1,49 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PointsOfInterestManager : MonoBehaviour
 {
-    [SerializeField] List<PointOfInterest> pointOfInterests;
+    [System.Serializable]
 
-    public List<PointOfInterest> PointOfInterests { get => pointOfInterests; set => pointOfInterests = value; }
-
-    public void Register(PointOfInterest poi)
+    public class Region
     {
-        if (pointOfInterests.Contains(poi))
-        {
-            Debug.LogWarning( poi.name + " is already registered.");
-            return;
-        }
-        pointOfInterests.Add(poi);
+        [SerializeField] public string name;
+        [SerializeField] public bool enabled;
+        [SerializeField] public GameObject ui;
+        [SerializeField] public CinemachineVirtualCamera virtualCamera;
+        [SerializeField] public List<PointOfInterest> pointOfInterests;
+
     }
 
-    public void Deregister(PointOfInterest poi)
+    [SerializeField] Region[] regions;
+
+    public void GoToRegion(int k)
     {
-        if (!pointOfInterests.Contains(poi))
+        for (int i = 0; i < regions.Length; i++)
         {
-            Debug.LogWarning(poi.name + " was already not registered.");
-            return;
+            regions[i].enabled = false;
+            regions[i].virtualCamera.Priority = 5;
+            regions[i].ui.SetActive(true);
+
+            for (int j = 0; j < regions[i].pointOfInterests.Count; j++)
+            {
+                regions[i].pointOfInterests[j].SetDisplay(false);
+            }
         }
-        pointOfInterests.Remove(poi);
+
+
+        regions[k].enabled = true;
+        regions[k].virtualCamera.Priority = 10;
+        regions[k].ui.SetActive(false);
+
+        for (int j = 0; j < regions[k].pointOfInterests.Count; j++)
+        {
+            if (regions[k].pointOfInterests[j].Active)
+            {
+                regions[k].pointOfInterests[j].SetDisplay(true);
+            }
+        }
     }
 }

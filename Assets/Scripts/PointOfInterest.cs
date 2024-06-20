@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class PointOfInterest : MonoBehaviour
 {
-    [SerializeField]
-    bool _active;
+    [SerializeField] bool _active;
+    [SerializeField] bool _display;
     [System.Serializable]
     public class Action
     {
@@ -82,52 +82,39 @@ public class PointOfInterest : MonoBehaviour
 
 
     [Header("UI References")]
-    [SerializeField]
-    Canvas _actionsCanvas;
+    [SerializeField] Canvas _actionsCanvas;
    
-    [SerializeField]
-    Canvas _worldCanvas;
-    [SerializeField]
-    TextMeshProUGUI _activeExplorerText;
-    [SerializeField]
-    TextMeshProUGUI _description;
-    [SerializeField]
-    TextMeshProUGUI _consequences;
-    [SerializeField]
-    Image _diceImage;
-    [SerializeField]
-    List<Sprite> _diceSprites;
-    [SerializeField]
-    List<Sprite> _animSprites;
-    [SerializeField]
-    Button _interact;
+    [SerializeField] Canvas _worldCanvas;
+    [SerializeField] TextMeshProUGUI _activeExplorerText;
+    [SerializeField] TextMeshProUGUI _description;
+    [SerializeField] TextMeshProUGUI _consequences;
+    [SerializeField] Image _diceImage;
+    [SerializeField] List<Sprite> _diceSprites;
+    [SerializeField] List<Sprite> _animSprites;
+    [SerializeField] Button _interact;
 
     bool _isSelected;
 
     bool _mouseIsOverUI;
 
     [Header("Clock UI References")]
-    [SerializeField]
-    List<Sprite> _clockSprites;
-    [SerializeField]
-    Image _activeClockImage, _activeClockFrame, _activeClockBackground, _worldClockImage, _worldClockFrame, _worldClockBackground;
+    [SerializeField] List<Sprite> _clockSprites;
+    [SerializeField] Image _activeClockImage, _activeClockFrame, _activeClockBackground, _worldClockImage, _worldClockFrame, _worldClockBackground;
 
     Sprite _clockFrameSprite, _clockBackgroundSprite;
 
-    [SerializeField]
-    Color _baseColor, _filledColor, _countdownColor;
+    [SerializeField] Color _baseColor, _filledColor, _countdownColor;
 
     [Header("Feedbacks")]
-    [SerializeField]
-    MoreMountains.Feedbacks.MMF_Player _applyRollFeedback, _actionFailedFeedback;
+    [SerializeField] MoreMountains.Feedbacks.MMF_Player _applyRollFeedback, _actionFailedFeedback;
 
     //UI Selection
     GraphicRaycaster _graphicsRaycasterWorldCanvas;
 
-    [SerializeField]
-    List<GameObject> _modelDetails;
+    [SerializeField] List<GameObject> _modelDetails;
 
     public bool IsSelected { get => _isSelected; set => _isSelected = value; }
+    public bool Active { get => _active; set => _active = value; }
 
     private void Awake()
     {
@@ -168,6 +155,7 @@ public class PointOfInterest : MonoBehaviour
             DeSelect();
         }
     }
+
     
     private void OnDisable()
     {
@@ -221,7 +209,7 @@ public class PointOfInterest : MonoBehaviour
     {
         _mouseIsOverUI = IsMouseOverUI();
 
-        if (_cmbrain.ActiveVirtualCamera.Name == "WorldCam" && !_cmbrain.IsBlending)
+        if (_cmbrain.ActiveVirtualCamera.VirtualCameraGameObject.CompareTag("Region Cam") && !_cmbrain.IsBlending)
         {
             DisplayWorldUI(true);
         }
@@ -497,6 +485,12 @@ public class PointOfInterest : MonoBehaviour
         {
             RegisterWithUIHandler();
         }
+    }
+
+    public void SetDisplay(bool value)
+    {
+        _actionsCanvas.transform.parent.gameObject.SetActive(value);
+        _worldCanvas.transform.parent.gameObject.SetActive(value);
     }
 
     string ActionToStringDescription(Action action)
@@ -912,14 +906,22 @@ public class PointOfInterest : MonoBehaviour
             {
                 foreach (Action action in _actions)
                 {
-                    GameObject actionCanvas = Instantiate(Resources.Load<GameObject>("Action Canvas"), _actionsCanvas.transform);
-                    action.ActionUI = actionCanvas.GetComponent<ActionUI>();
-                    action.ActionUI.LoadClockSprites(action.Clocks[action.ActiveClock].Segments);
-                    action.ActionUI.LoadDiceSprites();
-                    action.ActionUI._interact.onClick.AddListener(() => UseAction(action));
-                    action.ActionUI._dice.onClick.AddListener(() => UseAction(action));
-                    action.ActionUI._return.onClick.AddListener(DeSelect);
-                    DisplayClock(action.Clocks[action.ActiveClock].Fill, action);
+                    if (Resources.Load<GameObject>("Action Canvas") == null)
+                    {
+                        Debug.LogWarning("Couldnt load Action Canvas from Resources");
+                    }
+                    else
+                    {
+                        GameObject actionCanvas = Instantiate(Resources.Load<GameObject>("Action Canvas"), _actionsCanvas.transform);
+                        action.ActionUI = actionCanvas.GetComponent<ActionUI>();
+                        action.ActionUI.LoadClockSprites(action.Clocks[action.ActiveClock].Segments);
+                        action.ActionUI.LoadDiceSprites();
+                        action.ActionUI._interact.onClick.AddListener(() => UseAction(action));
+                        action.ActionUI._dice.onClick.AddListener(() => UseAction(action));
+                        action.ActionUI._return.onClick.AddListener(DeSelect);
+                        DisplayClock(action.Clocks[action.ActiveClock].Fill, action);
+                    }
+                   
                 }
             }
 
