@@ -7,29 +7,22 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    Button _endCycle;
-    [SerializeField]
-
-    Canvas _overworldUI;
-    [SerializeField]
-
-    TextMeshProUGUI _cred, _reputation, _scrap, _artifact;
-    [SerializeField]
-    Canvas _explorerCanvas;
-    [SerializeField]
-    List<PointOfInterest> _pointsOfInterestList;
+    [SerializeField] Button _endCycle;
+    [SerializeField] Canvas _overworldUI;
+    [SerializeField] TextMeshProUGUI _cred, _reputation, _scrap, _artifact;
+    [SerializeField] Canvas _explorerCanvas;
+    [SerializeField] List<PointOfInterest> _pointsOfInterestList;
 
     public List<PointOfInterest> PointsOfInterestList { get => _pointsOfInterestList; set => _pointsOfInterestList = value; }
-    [SerializeField]
+    [SerializeField] List<Sprite> _clockSprites;
+    [SerializeField] Image _cycleClock;
 
-    List<Sprite> _clockSprites;
-    [SerializeField]
-    Image _cycleClock;
+    [SerializeField] GameObject startScreen;
     private void Start()
     {
         LoadClockSprites(4);
         UpdateCycleClock();
+        EnableStartScreen();
     }
 
 
@@ -128,5 +121,10 @@ public class UIManager : MonoBehaviour
             }
         }
         _clockSprites.Reverse();
+    }
+
+    private void EnableStartScreen()
+    {
+        startScreen.SetActive(true);
     }
 }

@@ -69,10 +69,14 @@ public class MasterSingleton : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         Debug.Log(name + " Awake");
+
     }
 
     private void OnApplicationQuit()
     {
         _applicationIsQuitting = true;
     }
+
+
+    
 }

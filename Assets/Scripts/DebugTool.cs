@@ -5,11 +5,13 @@ using UnityEngine;
 public class DebugTool : MonoBehaviour
 {
 
-    [SerializeField]
-    bool _resetClocksOnPlay;
+    [SerializeField] bool _resetClocksOnPlay;
     
-    [SerializeField]
-    ProgressClock [] _progressClocks;
+    [SerializeField] ProgressClock [] _progressClocks;
+
+    [SerializeField] UIManager _uiManager;
+    [SerializeField] GameObject _startScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,7 @@ public class DebugTool : MonoBehaviour
         {
             ResetAllClocks();
         }
+
     }
 
 
@@ -29,5 +32,4 @@ public class DebugTool : MonoBehaviour
             _progressClocks[i].Fill = 0;
         }
     }
-
 }
