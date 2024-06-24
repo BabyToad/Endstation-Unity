@@ -154,8 +154,9 @@ public class Guild : MonoBehaviour
 
         MasterSingleton.Instance.UIManager.EnableEndCycleButton(false);
         _cycle = 0;
-        timeOfDayManager.ChangeTimeTo(timeOfDayManager.dawn);
         timeOfDayManager.SetTime(0);
+        timeOfDayManager.ChangeTimeTo(timeOfDayManager.dawn);
+        
         _endOfCycle = false;
         MasterSingleton.Instance.UIManager.HighlightEndCycle(false);
     }

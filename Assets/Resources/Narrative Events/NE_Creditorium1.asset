@@ -51,10 +51,10 @@ MonoBehaviour:
     setDetails: 0
     POI: 
     details: 
-    enableAction: 0
+    enableAction: 1
     overrideAction: 0
-    actionIndex: 0
-    pointOfInterest: 
+    actionIndex: 1
+    pointOfInterest: Creditorium POI
     newAction:
       _enabled: 0
       _fail:

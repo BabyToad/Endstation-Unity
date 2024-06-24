@@ -20,7 +20,7 @@ MonoBehaviour:
   filled:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11400000, guid: 87e62fed869e5744cb9f86e79d64f12e, type: 2}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 0
@@ -32,4 +32,5 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _description: 
+  _description: Crunching numbers and structuring spreadsheets is soul-sucking, but
+    it pays some Cred.

@@ -587,6 +587,12 @@ public class PointOfInterest : MonoBehaviour
             return;
         }
 
+        if (action.Fail.Artefact * -1 > MasterSingleton.Instance.Guild.Artifacts && action.Fail.Artefact < 0)
+        {
+            Debug.Log("Not enough Artefact for this action.");
+            return;
+        }
+
         //Check if Clock is complete already
         if (action.Clocks[action.ActiveClock].Segments == action.Clocks[action.ActiveClock].Fill && noExplorerExhausted)
         {
