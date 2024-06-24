@@ -16,7 +16,7 @@ MonoBehaviour:
     out, some exhausted from their trips into the unkown, others excited for a new
     challenge. Your Tseya is sitting on the stoop of her tower, her little feet dangling
     down. She waves you towards her. \"Banjam, my child. A bird has whispered me
-    you have been spending some time with Junks. He is a nice hairy friend, isn\uFFFDt
+    you have been spending some time with Junks. He is a nice hairy friend, isn't
     he? Junks has been around for a long time, not as long as me though, hoho!\",
     the old woman chuckles. \r\n\"I hope you were able to take a good rest at his
     place, it's quite comforting right? Though, I can't wait till we can gossip about
@@ -28,34 +28,91 @@ MonoBehaviour:
     wait, do you want something to eat?\" She proffers an antique tray, balancing
     a whole potters shop worth of porcelain containing hot tea and other refreshments."
   _text: {fileID: 4900000, guid: 1698947b68cd7fc47b5a6f689eeac566, type: 3}
-  _upperButtonText: Have some biscuits.
-  _uCred: 0
-  _uStress: 0
-  _uHp: 1
-  _uAllExplorers: 1
-  _uUnlockPoI: 
-  _lowerButtonText: Have some tea.
-  _lCred: 0
-  _lStress: -2
-  _lHp: 0
-  _lAllExplorers: 1
+  upperChoice:
+    buttonText: Have some biscuits.
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: 0
+    hp: 1
+    allExplorers: 1
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
+  lowerChoice:
+    buttonText: Have some tea.
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: -2
+    hp: 0
+    allExplorers: 1
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
   _name: Tseya
   _sprite: {fileID: 21300000, guid: 98541bebda7ad5941a0ef02638d982d6, type: 3}
-  _overrideAction: 0
-  _pointOfInterest: 
-  _newAction:
-    _fail:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _partial:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _success:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0

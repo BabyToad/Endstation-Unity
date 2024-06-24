@@ -30,7 +30,7 @@ MonoBehaviour:
     real part of the Roots."'
   _text: {fileID: 4900000, guid: e7ac7692e5f6b61489d826f5b21d097a, type: 3}
   upperChoice:
-    buttonText: 
+    buttonText: Happy to be your friend.
     cred: 0
     scrap: 0
     artefacts: 0

@@ -42,7 +42,7 @@ MonoBehaviour:
     your journey.'
   _text: {fileID: 4900000, guid: e93dfbf66a5edb745b4fc4049e3b6c3c, type: 3}
   upperChoice:
-    buttonText: Go to the Creditorium
+    buttonText: Visit the Creditorium.
     cred: 0
     scrap: 0
     artefacts: 0

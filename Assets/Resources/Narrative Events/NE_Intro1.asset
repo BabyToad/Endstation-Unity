@@ -33,7 +33,7 @@ MonoBehaviour:
     the Cloud Sea. Go, and come back. Then we talk more.\""
   _text: {fileID: 4900000, guid: 9bbdfbef24258974aa256f1c954a3ff0, type: 3}
   upperChoice:
-    buttonText: Leave to visit the Old Gods
+    buttonText: Enthusiastically answer the call of adventure.
     cred: 0
     scrap: 0
     artefacts: 0
