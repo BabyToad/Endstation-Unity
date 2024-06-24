@@ -189,14 +189,14 @@ Material:
     - _ColorGradient: {r: 0.020999968, g: 1, b: 0.7689055, a: 0.72156864}
     - _Color_1: {r: 0.4265204, g: 0.015686274, b: 1, a: 0}
     - _DetailMapColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FlatRimColor: {r: 0.1441285, g: 0.8148468, b: 0.9911022, a: 1}
     - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 0.41176474, g: 0.8980393, b: 0.9960785, a: 0.85056}
     - _RimColor: {r: 0.8018868, g: 0.31394622, b: 0.31394622, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
+    - _UnityShadowColor: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 0.85056}
   m_BuildTextureStacks: []
 --- !u!114 &6702928476277486095
 MonoBehaviour:

@@ -60,17 +60,16 @@ public class PointOfInterest : MonoBehaviour
         public Result Fail { get => _fail; set => _fail = value; }
         public Result Partial { get => _partial; set => _partial = value; }
         public Result Success { get => _success; set => _success = value; }
-        public List<ProgressClock> Clocks { get => _clocks; set => _clocks = value; }
         public int ActiveClock { get => _activeClock; set => _activeClock = value; }
         public ActionUI ActionUI { get => _actionUI; set => _actionUI = value; }
         public bool Enabled { get => _enabled; set => _enabled = value; }
         public int ExplorerSlots { get => _explorerSlots; set => _explorerSlots = value; }
+        public List<ProgressClock> Clocks { get => _clocks; set => _clocks = value; }
     }
 
     [SerializeField] Action[] _actions;
 
 
-    [SerializeField] List<ProgressClock> _clocks;
     int _activeClock;
 
     bool _rollingDice = false;
@@ -440,21 +439,7 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
-    void RecolorClock()
-    {
-        if (0 == _clocks[_activeClock].Segments)
-        {
-            _worldClockImage.color = _filledColor;
-        }
-        else if (_clocks[_activeClock].IsCountdown)
-        {
-            _worldClockImage.color = _countdownColor;
-        }
-        else
-        {
-            _worldClockImage.color = _baseColor;
-        }
-    }
+    
     void RecolorClock(Action action)
     {
 
@@ -920,6 +905,7 @@ public class PointOfInterest : MonoBehaviour
                         action.ActionUI._dice.onClick.AddListener(() => UseAction(action));
                         action.ActionUI._return.onClick.AddListener(DeSelect);
                         DisplayClock(action.Clocks[action.ActiveClock].Fill, action);
+                        DisplayInteractButton(action);
                     }
                    
                 }
