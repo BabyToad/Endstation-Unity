@@ -66,6 +66,7 @@ public class Guild : MonoBehaviour
 
         if (_cycle == 0)
         {
+            timeOfDayManager.ChangeTimeTo(timeOfDayManager.dawn);
             timeOfDayManager.SetTime(timeOfDayManager.dawn);
         }
     }
@@ -153,7 +154,8 @@ public class Guild : MonoBehaviour
 
         MasterSingleton.Instance.UIManager.EnableEndCycleButton(false);
         _cycle = 0;
-        timeOfDayManager.SetTime(timeOfDayManager.dawn);
+        timeOfDayManager.ChangeTimeTo(timeOfDayManager.dawn);
+        timeOfDayManager.SetTime(0);
         _endOfCycle = false;
         MasterSingleton.Instance.UIManager.HighlightEndCycle(false);
     }
@@ -255,19 +257,19 @@ public class Guild : MonoBehaviour
 
         if (_cycle == 1)
         {
-            timeOfDayManager.SetTime(timeOfDayManager.morning);
+            timeOfDayManager.ChangeTimeTo(timeOfDayManager.morning);
         }
         if (_cycle == 2)
         {
-            timeOfDayManager.SetTime(timeOfDayManager.noon);
+            timeOfDayManager.ChangeTimeTo(timeOfDayManager.noon);
         }
         if (_cycle == 3)
         {
-            timeOfDayManager.SetTime(timeOfDayManager.dusk);
+            timeOfDayManager.ChangeTimeTo(timeOfDayManager.dusk);
         }
         if (_cycle == 4)
         {
-            timeOfDayManager.SetTime(timeOfDayManager.night);
+            timeOfDayManager.ChangeTimeTo(timeOfDayManager.night);
         }
 
         MasterSingleton.Instance.UIManager.UpdateCycleClock();

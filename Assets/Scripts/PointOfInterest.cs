@@ -482,68 +482,41 @@ public class PointOfInterest : MonoBehaviour
     {
         string description = "";
 
-        float avgCred = (action.Fail.Cred + action.Partial.Cred + action.Success.Cred) / 3f;
-        if (Mathf.Abs(avgCred) > 0)
-        {
-            description += "Cred" + DetermineChangeSymbol(avgCred);
-        }
-        if (Mathf.Abs(avgCred) > 1)
-        {
-            description += DetermineChangeSymbol(avgCred);
-        }
-        if (Mathf.Abs(avgCred) > 2)
-        {
-            description += DetermineChangeSymbol(avgCred);
-        }
-        description += " ";
+        description += GenerateDescriptionSegment("Cred", action.Fail.Cred, action.Partial.Cred, action.Success.Cred);
+        description += GenerateDescriptionSegment("Scrap", action.Fail.Scrap, action.Partial.Scrap, action.Success.Scrap);
+        description += GenerateDescriptionSegment("Artefact", action.Fail.Artefact, action.Partial.Artefact, action.Success.Artefact);
+        description += GenerateDescriptionSegment("Stress", action.Fail.Stress, action.Partial.Stress, action.Success.Stress);
+        description += GenerateDescriptionSegment("Vigor", action.Fail.Hp, action.Partial.Hp, action.Success.Hp);
 
-        float avgStress = (action.Fail.Stress + action.Partial.Stress + action.Success.Stress) / 3f;
-        if (Mathf.Abs(avgStress) > 0)
-        {
-            description += "Stress" + DetermineChangeSymbol(avgStress);
-        }
-        if (Mathf.Abs(avgStress) > 1)
-        {
-            description += DetermineChangeSymbol(avgStress);
-        }
-        if (Mathf.Abs(avgStress) > 2)
-        {
-            description += DetermineChangeSymbol(avgStress);
-        }
-        description += " ";
+        return description.Trim();
+    }
 
+    string GenerateDescriptionSegment(string label, float failValue, float partialValue, float successValue)
+    {
+        float avgValue = (failValue + partialValue + successValue) / 3f;
+        if (Mathf.Abs(avgValue) <= 0) return "";
 
-        float avgHp = (action.Fail.Hp + action.Partial.Hp + action.Success.Hp) / 3f;
-        if (Mathf.Abs(avgHp) > 0)
+        string description = label + DetermineChangeSymbol(avgValue);
+
+        if (Mathf.Abs(avgValue) > 1)
         {
-            description += "Vigor" + DetermineChangeSymbol(avgHp);
+            description += DetermineChangeSymbol(avgValue);
         }
-        if (Mathf.Abs(avgHp) > 1)
+        if (Mathf.Abs(avgValue) > 2)
         {
-            description += DetermineChangeSymbol(avgHp);
-        }
-        if (Mathf.Abs(avgHp) > 2)
-        {
-            description += DetermineChangeSymbol(avgHp);
+            description += DetermineChangeSymbol(avgValue);
         }
 
-        return description;
-
+        return description + " ";
     }
 
     string DetermineChangeSymbol(float avgChangeValue)
     {
-        string changeSymbol = "";
-        if (avgChangeValue < 0)
-        {
-            changeSymbol = "↓";
-        }
-        else if (avgChangeValue > 0)
-        {
-            changeSymbol = "↑";
-        }
-        return changeSymbol;
+        if (avgChangeValue < 0) return "↓";
+        if (avgChangeValue > 0) return "↑";
+        return "";
     }
+
 
     public void DisplaySelectUI(bool value)
     {
@@ -905,7 +878,6 @@ public class PointOfInterest : MonoBehaviour
                         action.ActionUI._dice.onClick.AddListener(() => UseAction(action));
                         action.ActionUI._return.onClick.AddListener(DeSelect);
                         DisplayClock(action.Clocks[action.ActiveClock].Fill, action);
-                        DisplayInteractButton(action);
                     }
                    
                 }

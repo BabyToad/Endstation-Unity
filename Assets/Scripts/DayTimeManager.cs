@@ -81,8 +81,14 @@ public class DayTimeManager : MonoBehaviour
         RenderSettings.ambientGroundColor = ogGroundColor;
     }
 
+    public void ChangeTimeTo(float t)
+    {
+        targetTime = Mathf.Clamp(t, 0, 1);
+    }
+
     public void SetTime(float t)
     {
         targetTime = Mathf.Clamp(t, 0, 1);
+        timeTarget = targetTime;
     }
 }
