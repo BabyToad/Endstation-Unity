@@ -7,8 +7,10 @@ using UnityEngine;
 public class Trait: ScriptableObject
 {
     public int id;
-    public string name;
+    public string _name;
+    public Sprite icon;
     public string description;
+    
     //Action Modifiers
     [System.Serializable]
     public class StatChangeModifiers
