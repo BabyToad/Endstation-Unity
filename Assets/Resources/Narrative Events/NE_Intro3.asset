@@ -74,7 +74,7 @@ MonoBehaviour:
     stress: -1
     hp: 0
     allExplorers: 1
-    unlockPoI: 
+    unlockPoI: Oasis POI
     lockPoI: 
     setDetails: 0
     POI: 

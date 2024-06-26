@@ -15,7 +15,7 @@ MonoBehaviour:
   id: -1
   _name: Greedy
   icon: {fileID: -312768529563260625, guid: 3da05e9f66c9f254c8875335e7e9179e, type: 3}
-  description: 'Greedy: More Cred, more Stress.'
+  description: 'Greedy: This explorer earns more Cred, but also gains more Stress.'
   statChangeModifiers:
     _hp: 0
     _stress: 1

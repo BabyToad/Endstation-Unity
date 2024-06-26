@@ -64,6 +64,8 @@ public class Guild : MonoBehaviour
             RecruitExplorer(1, 2, 1);
 
             Roster[0].AddRandomTrait();
+            Roster[0].AddRandomTrait();
+            Roster[1].AddRandomTrait();
             Roster[1].AddRandomTrait();
         }
         timeOfDayManager = GameObject.Find("TimeOfDay").GetComponent<DayTimeManager>();

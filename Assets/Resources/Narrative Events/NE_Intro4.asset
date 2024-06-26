@@ -91,7 +91,7 @@ MonoBehaviour:
     stress: 0
     hp: 0
     allExplorers: 0
-    unlockPoI: 
+    unlockPoI: Roots POI
     lockPoI: 
     setDetails: 0
     POI: 

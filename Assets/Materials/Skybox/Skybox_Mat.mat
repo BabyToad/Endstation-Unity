@@ -34,7 +34,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Intensity: 0.646792
+    - _Intensity: 0.39825475
     - _NoiseIntensity: 0
     - _Parallax: 0.02
     m_Colors:

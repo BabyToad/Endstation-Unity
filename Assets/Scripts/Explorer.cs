@@ -213,18 +213,13 @@ public class Explorer
     }
     public void AddStress(int stress)
     {
-        Debug.Log("Stress was+ "+ Stress + ". Added "+ stress);
+        Debug.Log("Stress was "+ Stress + ". Added "+ stress);
 
         int maxStress = 9;
-        Debug.Log("Stress was+ " + Stress + ". Added " + stress);
         if (Traits != null)
         {
             foreach (Trait trait in Traits)
             {
-                if (trait.statChangeModifiers._stress == 0)
-                {
-                    return;
-                }
                 //if you would be gaining stress, you should not be able to reduce it below 0
                 if (stress >= 0)
                 {

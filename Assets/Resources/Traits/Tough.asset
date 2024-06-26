@@ -15,7 +15,7 @@ MonoBehaviour:
   id: -1
   _name: Tough
   icon: {fileID: -4594720345167028440, guid: fe42c8b526e77e54ab91d0590272d9e8, type: 3}
-  description: 'Tough: Take less Harm.'
+  description: 'Tough: This explorer loses less Vigor.'
   statChangeModifiers:
     _hp: 1
     _stress: 0
