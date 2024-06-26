@@ -25,13 +25,13 @@ MonoBehaviour:
     realm of the Old Gods.'
   _text: {fileID: 4900000, guid: 2cffef3cff624904e8e60e7dc7cd86f3, type: 3}
   upperChoice:
-    buttonText: Enter the domain of the Old Gods
+    buttonText: Brave the cloud currents
     cred: 0
     scrap: 0
     artefacts: 0
-    stress: 1
+    stress: 3
     hp: 0
-    allExplorers: 1
+    allExplorers: 0
     unlockPoI: 
     lockPoI: 
     setDetails: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
       _clocks: []
       _actionUI: {fileID: 0}
   lowerChoice:
-    buttonText: 
+    buttonText: Follow the vestigial vibrations
     cred: 0
     scrap: 0
     artefacts: 0

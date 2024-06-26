@@ -213,18 +213,13 @@ public class Explorer
     }
     public void AddStress(int stress)
     {
-        Debug.Log("Stress was+ "+ Stress + ". Added "+ stress);
+        Debug.Log("Stress was "+ Stress + ". Added "+ stress);
 
         int maxStress = 9;
-        Debug.Log("Stress was+ " + Stress + ". Added " + stress);
         if (Traits != null)
         {
             foreach (Trait trait in Traits)
             {
-                if (trait.statChangeModifiers._stress == 0)
-                {
-                    return;
-                }
                 //if you would be gaining stress, you should not be able to reduce it below 0
                 if (stress >= 0)
                 {
@@ -382,10 +377,43 @@ public class Explorer
     public void AddTrait(Trait trait)
     { 
         Traits.Add(trait);
+        UpdateExplorerCanvasStats();
+    }
+
+    private Trait[] cachedTraits;
+
+    public void AddRandomTrait()
+    {
+        if (cachedTraits == null || cachedTraits.Length == 0)
+        {
+            cachedTraits = Resources.LoadAll<Trait>("Traits");
+            if (cachedTraits.Length == 0)
+            {
+                Debug.LogWarning("No traits found in Resources/Traits folder.");
+                return;
+            }
+        }
+
+        Trait randomTrait;
+        do
+        {
+            randomTrait = cachedTraits[Random.Range(0, cachedTraits.Length)];
+        } while (Traits.Contains(randomTrait) && Traits.Count < cachedTraits.Length);
+
+        if (!Traits.Contains(randomTrait))
+        {
+            Traits.Add(randomTrait);
+        }
+        else
+        {
+            Debug.Log("All available traits have been added.");
+        }
+        UpdateExplorerCanvasStats();
     }
 
     public void RemoveTrait(Trait trait)
     {
         Traits.Remove(trait);
+        UpdateExplorerCanvasStats();
     }
 }

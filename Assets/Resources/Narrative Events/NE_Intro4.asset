@@ -41,7 +41,7 @@ MonoBehaviour:
     well as excellent biscuits and tea. You won''t regret it."'
   _text: {fileID: 4900000, guid: ece487d291bc56749b4b96ad3e161bd6, type: 3}
   upperChoice:
-    buttonText: Check out the Roots.
+    buttonText: Look for the Roots.
     cred: 0
     scrap: 0
     artefacts: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
     stress: 0
     hp: 0
     allExplorers: 0
-    unlockPoI: 
+    unlockPoI: Roots POI
     lockPoI: 
     setDetails: 0
     POI: 

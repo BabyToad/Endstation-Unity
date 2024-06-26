@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d5c83c3540609348aa7ab33a6b1aad4, type: 3}
-  m_Name: Chill
+  m_Name: Reckless
   m_EditorClassIdentifier: 
   id: -1
-  name: 
-  description: 
+  _name: Reckless
+  icon: {fileID: -4594720345167028440, guid: fe42c8b526e77e54ab91d0590272d9e8, type: 3}
+  description: 'Reckless: This explorer gains more Scrap and Cred, but loses more
+    Vigor and gains more Stress.'
   statChangeModifiers:
-    _hp: 0
-    _stress: -1
-    _scrap: 0
-    _cred: 0
+    _hp: -1
+    _stress: 2
+    _scrap: 2
+    _cred: 1

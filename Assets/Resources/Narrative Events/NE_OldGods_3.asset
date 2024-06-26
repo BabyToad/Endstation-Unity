@@ -36,38 +36,91 @@ MonoBehaviour:
     a beacon of cosmic knowledge and untold power, its secrets entwined with the
     destiny of those daring enough to reach for its transcendent brilliance.'
   _text: {fileID: 4900000, guid: f31a217b5ea55fa44be528dfd7f1803e, type: 3}
-  _upperButtonText: Trust in the Lifeforce of the Deep Mystery
-  _uCred: 2
-  _uStress: 4
-  _uHp: 0
-  _uAllExplorers: 0
-  _uUnlockPoI: 
-  _uLockPoI: 
-  _setDetails: 1
-  _POI: Old Gods POI
-  _details: 00000000010000000200000003000000
-  _lowerButtonText: Embrace the Eyes of Eternity
-  _lCred: 2
-  _lStress: 2
-  _lHp: -1
-  _lAllExplorers: 0
+  upperChoice:
+    buttonText: Trust in the Lifeforce of the Deep Mystery
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: 5
+    hp: 0
+    allExplorers: 0
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
+  lowerChoice:
+    buttonText: Embrace the Eyes of Eternity
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: 3
+    hp: -1
+    allExplorers: 0
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
   _name: Old Gods
   _sprite: {fileID: 0}
-  _overrideAction: 0
-  _pointOfInterest: 
-  _newAction:
-    _fail:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _partial:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _success:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0

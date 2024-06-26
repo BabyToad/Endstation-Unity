@@ -29,35 +29,91 @@ MonoBehaviour:
     and Failure depend on the Action and Point of Interest. They usually effect Stress,
     Health or Cred.'
   _text: {fileID: 4900000, guid: 96bb9840985af6b419d9ec47f78930dd, type: 3}
-  _upperButtonText: Confirm
-  _uCred: 0
-  _uStress: 0
-  _uHp: 0
-  _uAllExplorers: 0
-  _uUnlockPoI: 
-  _uLockPoI: 
-  _lowerButtonText: 
-  _lCred: 0
-  _lStress: 0
-  _lHp: 0
-  _lAllExplorers: 0
+  upperChoice:
+    buttonText: Continue
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: 0
+    hp: 0
+    allExplorers: 0
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
+  lowerChoice:
+    buttonText: 
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: 0
+    hp: 0
+    allExplorers: 0
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
   _name: Info
   _sprite: {fileID: 0}
-  _overrideAction: 0
-  _pointOfInterest: 
-  _newAction:
-    _fail:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _partial:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _success:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0

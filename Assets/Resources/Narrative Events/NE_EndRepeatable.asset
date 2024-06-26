@@ -15,34 +15,91 @@ MonoBehaviour:
   _bodyText: You spend some particularly pleasant time with Tseya. Once again she
     offers you fragrant tea and hearty biscuits.
   _text: {fileID: 0}
-  _upperButtonText: Delicious.
-  _uCred: 0
-  _uStress: 0
-  _uHp: 3
-  _uAllExplorers: 0
-  _uUnlockPoI: 
-  _lowerButtonText: Excellent.
-  _lCred: 0
-  _lStress: 0
-  _lHp: 3
-  _lAllExplorers: 0
+  upperChoice:
+    buttonText: Have some biscuits.
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: 0
+    hp: 1
+    allExplorers: 0
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
+  lowerChoice:
+    buttonText: Have some tea.
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: -2
+    hp: 0
+    allExplorers: 0
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
   _name: Tseya
   _sprite: {fileID: 21300000, guid: 98541bebda7ad5941a0ef02638d982d6, type: 3}
-  _overrideAction: 0
-  _pointOfInterest: 
-  _newAction:
-    _fail:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _partial:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _success:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0

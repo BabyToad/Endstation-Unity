@@ -13,11 +13,13 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - DR_GRADIENT_ON
+  - DR_OUTLINE_ON
   - _CELPRIMARYMODE_SINGLE
   - _DETAILMAPBLENDINGMODE_MULTIPLY
   - _GRADIENTSPACE_WORLD
   - _OUTLINESPACE_SCREEN
   - _TEXTUREBLENDINGMODE_MULTIPLY
+  - _UNITYSHADOW_OCCLUSION
   m_InvalidKeywords:
   - _UNITYSHADOWMODE_NONE
   m_LightmapFlags: 4
@@ -146,7 +148,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _OutlineDepthOffset: 0
-    - _OutlineEnabled: 0
+    - _OutlineEnabled: 1
     - _OutlineScale: 1
     - _OutlineSpace: 0
     - _OutlineWidth: 0.01
@@ -172,7 +174,7 @@ Material:
     - _TextureBlendingMode: 0
     - _TextureImpact: 1
     - _UnityShadowMode: 0
-    - _UnityShadowOcclusion: 0
+    - _UnityShadowOcclusion: 1
     - _UnityShadowPower: 0.2
     - _UnityShadowSharpness: 1
     - _VertexColorsEnabled: 0
@@ -180,7 +182,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.764151, g: 0.4114824, b: 0.10453011, a: 1}
+    - _BaseColor: {r: 0.73, g: 0.3930769, b: 0.10107692, a: 1}
     - _Color: {r: 0.9622642, g: 0.5582948, b: 0.80844295, a: 1}
     - _ColorDim: {r: 0.468, g: 0.16535997, b: 0.20904002, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
@@ -189,14 +191,14 @@ Material:
     - _ColorGradient: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 0.8862745}
     - _Color_1: {r: 0.4265204, g: 0.015686274, b: 1, a: 0}
     - _DetailMapColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FlatRimColor: {r: 0.14995982, g: 0.83879924, b: 0.9911022, a: 1}
     - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _RimColor: {r: 0.8018868, g: 0.31394622, b: 0.31394622, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
+    - _UnityShadowColor: {r: 1, g: 1, b: 1, a: 0.85056}
   m_BuildTextureStacks: []
 --- !u!114 &6702928476277486095
 MonoBehaviour:

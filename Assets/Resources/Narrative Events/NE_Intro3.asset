@@ -24,13 +24,13 @@ MonoBehaviour:
     island. His little oasis of calm is were we go to relieve our stress."'
   _text: {fileID: 4900000, guid: dbc118372793b2b4fadf60d19598ada0, type: 3}
   upperChoice:
-    buttonText: Sigh with relief.
+    buttonText: Visibly relax.
     cred: 0
     scrap: 0
     artefacts: 0
-    stress: 0
+    stress: -1
     hp: 0
-    allExplorers: 0
+    allExplorers: 1
     unlockPoI: Oasis POI
     lockPoI: 
     setDetails: 0
@@ -67,14 +67,14 @@ MonoBehaviour:
       _clocks: []
       _actionUI: {fileID: 0}
   lowerChoice:
-    buttonText: 
+    buttonText: Try not to show it.
     cred: 0
     scrap: 0
     artefacts: 0
-    stress: 0
+    stress: -1
     hp: 0
-    allExplorers: 0
-    unlockPoI: 
+    allExplorers: 1
+    unlockPoI: Oasis POI
     lockPoI: 
     setDetails: 0
     POI: 

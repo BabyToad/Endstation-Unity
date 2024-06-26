@@ -60,17 +60,16 @@ public class PointOfInterest : MonoBehaviour
         public Result Fail { get => _fail; set => _fail = value; }
         public Result Partial { get => _partial; set => _partial = value; }
         public Result Success { get => _success; set => _success = value; }
-        public List<ProgressClock> Clocks { get => _clocks; set => _clocks = value; }
         public int ActiveClock { get => _activeClock; set => _activeClock = value; }
         public ActionUI ActionUI { get => _actionUI; set => _actionUI = value; }
         public bool Enabled { get => _enabled; set => _enabled = value; }
         public int ExplorerSlots { get => _explorerSlots; set => _explorerSlots = value; }
+        public List<ProgressClock> Clocks { get => _clocks; set => _clocks = value; }
     }
 
     [SerializeField] Action[] _actions;
 
 
-    [SerializeField] List<ProgressClock> _clocks;
     int _activeClock;
 
     bool _rollingDice = false;
@@ -440,21 +439,7 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
-    void RecolorClock()
-    {
-        if (0 == _clocks[_activeClock].Segments)
-        {
-            _worldClockImage.color = _filledColor;
-        }
-        else if (_clocks[_activeClock].IsCountdown)
-        {
-            _worldClockImage.color = _countdownColor;
-        }
-        else
-        {
-            _worldClockImage.color = _baseColor;
-        }
-    }
+    
     void RecolorClock(Action action)
     {
 
@@ -497,68 +482,41 @@ public class PointOfInterest : MonoBehaviour
     {
         string description = "";
 
-        float avgCred = (action.Fail.Cred + action.Partial.Cred + action.Success.Cred) / 3f;
-        if (Mathf.Abs(avgCred) > 0)
-        {
-            description += "Cred" + DetermineChangeSymbol(avgCred);
-        }
-        if (Mathf.Abs(avgCred) > 1)
-        {
-            description += DetermineChangeSymbol(avgCred);
-        }
-        if (Mathf.Abs(avgCred) > 2)
-        {
-            description += DetermineChangeSymbol(avgCred);
-        }
-        description += " ";
+        description += GenerateDescriptionSegment("Cred", action.Fail.Cred, action.Partial.Cred, action.Success.Cred);
+        description += GenerateDescriptionSegment("Scrap", action.Fail.Scrap, action.Partial.Scrap, action.Success.Scrap);
+        description += GenerateDescriptionSegment("Artefact", action.Fail.Artefact, action.Partial.Artefact, action.Success.Artefact);
+        description += GenerateDescriptionSegment("Stress", action.Fail.Stress, action.Partial.Stress, action.Success.Stress);
+        description += GenerateDescriptionSegment("Vigor", action.Fail.Hp, action.Partial.Hp, action.Success.Hp);
 
-        float avgStress = (action.Fail.Stress + action.Partial.Stress + action.Success.Stress) / 3f;
-        if (Mathf.Abs(avgStress) > 0)
-        {
-            description += "Stress" + DetermineChangeSymbol(avgStress);
-        }
-        if (Mathf.Abs(avgStress) > 1)
-        {
-            description += DetermineChangeSymbol(avgStress);
-        }
-        if (Mathf.Abs(avgStress) > 2)
-        {
-            description += DetermineChangeSymbol(avgStress);
-        }
-        description += " ";
+        return description.Trim();
+    }
 
+    string GenerateDescriptionSegment(string label, float failValue, float partialValue, float successValue)
+    {
+        float avgValue = (failValue + partialValue + successValue) / 3f;
+        if (Mathf.Abs(avgValue) <= 0) return "";
 
-        float avgHp = (action.Fail.Hp + action.Partial.Hp + action.Success.Hp) / 3f;
-        if (Mathf.Abs(avgHp) > 0)
+        string description = label + DetermineChangeSymbol(avgValue);
+
+        if (Mathf.Abs(avgValue) > 1)
         {
-            description += "Vigor" + DetermineChangeSymbol(avgHp);
+            description += DetermineChangeSymbol(avgValue);
         }
-        if (Mathf.Abs(avgHp) > 1)
+        if (Mathf.Abs(avgValue) > 2)
         {
-            description += DetermineChangeSymbol(avgHp);
-        }
-        if (Mathf.Abs(avgHp) > 2)
-        {
-            description += DetermineChangeSymbol(avgHp);
+            description += DetermineChangeSymbol(avgValue);
         }
 
-        return description;
-
+        return description + " ";
     }
 
     string DetermineChangeSymbol(float avgChangeValue)
     {
-        string changeSymbol = "";
-        if (avgChangeValue < 0)
-        {
-            changeSymbol = "↓";
-        }
-        else if (avgChangeValue > 0)
-        {
-            changeSymbol = "↑";
-        }
-        return changeSymbol;
+        if (avgChangeValue < 0) return "↓";
+        if (avgChangeValue > 0) return "↑";
+        return "";
     }
+
 
     public void DisplaySelectUI(bool value)
     {
@@ -626,6 +584,12 @@ public class PointOfInterest : MonoBehaviour
         if (action.Fail.Scrap * -1 > MasterSingleton.Instance.Guild.Scrap && action.Fail.Scrap < 0)
         {
             Debug.Log("Not enough scrap for this action.");
+            return;
+        }
+
+        if (action.Fail.Artefact * -1 > MasterSingleton.Instance.Guild.Artifacts && action.Fail.Artefact < 0)
+        {
+            Debug.Log("Not enough Artefact for this action.");
             return;
         }
 

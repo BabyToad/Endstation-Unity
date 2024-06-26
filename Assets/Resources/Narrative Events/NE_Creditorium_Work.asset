@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
-  m_Name: Narrative Event
+  m_Name: NE_Creditorium_Work
   m_EditorClassIdentifier: 
-  _bodyText: Big business shit.
+  _bodyText: 'It''s time for your quarterly bonus. '
   _text: {fileID: 0}
   upperChoice:
-    buttonText: 
-    cred: 0
+    buttonText: Wow. Thanks.
+    cred: 1
     scrap: 0
     artefacts: 0
     stress: 0
@@ -100,5 +100,5 @@ MonoBehaviour:
       _explorerSlots: 0
       _clocks: []
       _actionUI: {fileID: 0}
-  _name: 
-  _sprite: {fileID: 0}
+  _name: Uriah
+  _sprite: {fileID: 21300000, guid: 4d227c2ec8d8d2a43a8dcf5c48d2b1f9, type: 3}

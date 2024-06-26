@@ -12,54 +12,107 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199c7d23df75ae42b35a0dfb6fe30be, type: 3}
   m_Name: NE_Oasis2
   m_EditorClassIdentifier: 
-  _bodyText: "After crossing a long bridge, you reach a floating isle, secluded from
-    the busy city. The island is enveloped by fluffy clouds, drifting up from the
-    immense sea below. A huge chunk of smoke steams out of the building it smells
-    a bit\uFFFD sweet, and with a hint of spices.\nWhile you stare at the wonders
-    of nature, you hear small footsteps approaching you. A small creature strolls
-    out of the main rotunda, waddling on tiny feet, the sound is a bit funny. Still,
-    the creature holds itself with grace, accompanied by a classy gown. In its right
-    hand it balances a pipe, from which it inhales spicy sweet smoke.\nThe creature
-    comes to a stop in front of you, stretches out it\uFFFDs little hand for a greeting.\n\uFFFDBanjam,
-    my choom!\uFFFD You take its hand, returning his greeting. \uFFFDIt\uFFFDs nice
-    to see a new face around here. My name\uFFFDs Junks, I\uFFFDm the main otter
-    of this house, yup yup.\uFFFD\nHe takes another deep drag from his pipe, blowing
-    it right into your face. Your senses get clouded, now it smells woody and herbal.
-    A little note of lemon follows. Holy smokes! This stuff seems strong.\n\uFFFDThis
-    place here, my little choom, is a place where you can leave behind all of your
-    worries. Welcome to the Warm Whiskers Oasis.\uFFFD The otter in front of you
-    makes a inviting gesture. \uFFFDFollow me, choomba, time for you to rest, what
-    would ya want to do first?\uFFFD Junks wiggles his eyebrows towards you before
-    he enters the building."
+  _bodyText: "After a long workday you take another visit the Warm Whiskers Oasis,
+    in pure need for some fresh energy.\r\n\"Oh damn. It's my choomie shroomie! Banjam!\"
+    At the top of the counter, you recognize Junks, sitting on it, legs crossed,
+    once again holding his pipe. The musky smell of herbs and wood seems to be even
+    stronger than last time. \"Wowkers, are you fine my choom? If I would try, I'm
+    sure I would be able to pick up your eyebags from the floor, yup yup.\" Junks
+    takes a long drag out of his pipe, spreading it into the air, while listening
+    to your troubles.\r\n\"The Loan Sharks of the Creditorium, huh? Not the best
+    company if you'd ask me.\" Junks leans into an even more comfortable pose. \"Have
+    been working with these buds since I was a youngster, mistakes were made.\" A
+    short silence follows Junks statement, he doesn't seem to be keen on explaining
+    anything further, at least not today. \r\n\"Listen. I know a place where you
+    can make better money out of your time. You should visit the Roots and look out
+    for a guy called Charlie. Just mention me and you should be fine, although you
+    might have to prove yourself first, my choom.\""
   _text: {fileID: 4900000, guid: 61bedd9de9c2e7b4bb86c96c620ee998, type: 3}
-  _upperButtonText: Join him and share a pipe.
-  _uCred: 0
-  _uStress: -2
-  _uHp: 0
-  _uAllExplorers: 0
-  _uUnlockPoI: 
-  _lowerButtonText: Just call it a day and take some time off.
-  _lCred: 0
-  _lStress: -2
-  _lHp: 0
-  _lAllExplorers: 0
+  upperChoice:
+    buttonText: Join him and share a pipe.
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: -2
+    hp: 0
+    allExplorers: 1
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
+  lowerChoice:
+    buttonText: Just call it a day and take some time off.
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: -2
+    hp: 0
+    allExplorers: 1
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
   _name: Junks
   _sprite: {fileID: 21300000, guid: 9a8eb5434a98fbf44a5f1ff727527ab9, type: 3}
-  _overrideAction: 0
-  _pointOfInterest: 
-  _newAction:
-    _fail:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _partial:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _success:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0

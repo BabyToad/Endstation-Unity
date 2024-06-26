@@ -29,35 +29,91 @@ MonoBehaviour:
     you are different, you are a nice friend. Maybe next time I can show you the
     real part of the Roots."'
   _text: {fileID: 4900000, guid: e7ac7692e5f6b61489d826f5b21d097a, type: 3}
-  _upperButtonText: Happy to be your friend.
-  _uCred: 1
-  _uStress: 0
-  _uHp: 0
-  _uAllExplorers: 0
-  _uUnlockPoI: 
-  _uLockPoI: 
-  _lowerButtonText: I can't wait.
-  _lCred: 1
-  _lStress: 0
-  _lHp: 0
-  _lAllExplorers: 0
+  upperChoice:
+    buttonText: Happy to be your friend.
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: 0
+    hp: 0
+    allExplorers: 0
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: Roots POI
+    details: 
+    enableAction: 1
+    overrideAction: 0
+    actionIndex: 1
+    pointOfInterest: Roots POI
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
+  lowerChoice:
+    buttonText: 
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: 0
+    hp: 0
+    allExplorers: 0
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
   _name: Charlie
   _sprite: {fileID: 21300000, guid: 30457d4c9646fd24d97782d03ae27c52, type: 3}
-  _overrideAction: 0
-  _pointOfInterest: 
-  _newAction:
-    _fail:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _partial:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _success:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0

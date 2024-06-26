@@ -41,35 +41,91 @@ MonoBehaviour:
     me, choomba, time for you to rest, what would ya want to do first?" Junks wiggles
     his eyebrows towards you before he enters the building.'
   _text: {fileID: 4900000, guid: 8422b821fb4639b438a1792b13b01c03, type: 3}
-  _upperButtonText: Have a smoke with Junks.
-  _uCred: 0
-  _uStress: -2
-  _uHp: 0
-  _uAllExplorers: 0
-  _uUnlockPoI: Endstation POI
-  _uLockPoI: 
-  _lowerButtonText: 
-  _lCred: 0
-  _lStress: 0
-  _lHp: 0
-  _lAllExplorers: 0
+  upperChoice:
+    buttonText: Have a smoke with Junks.
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: -1
+    hp: 0
+    allExplorers: 1
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
+  lowerChoice:
+    buttonText: Relax in the hot springs.
+    cred: 0
+    scrap: 0
+    artefacts: 0
+    stress: -1
+    hp: 0
+    allExplorers: 1
+    unlockPoI: 
+    lockPoI: 
+    setDetails: 0
+    POI: 
+    details: 
+    enableAction: 0
+    overrideAction: 0
+    actionIndex: 0
+    pointOfInterest: 
+    newAction:
+      _enabled: 0
+      _fail:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _partial:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _success:
+        _cred: 0
+        _scrap: 0
+        _artefact: 0
+        _stress: 0
+        _hp: 0
+        _xp: 0
+      _explorerSlots: 0
+      _clocks: []
+      _actionUI: {fileID: 0}
   _name: Junks
   _sprite: {fileID: 21300000, guid: 9a8eb5434a98fbf44a5f1ff727527ab9, type: 3}
-  _overrideAction: 0
-  _pointOfInterest: 
-  _newAction:
-    _fail:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _partial:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0
-    _success:
-      _cred: 0
-      _stress: 0
-      _hp: 0
-      _xp: 0

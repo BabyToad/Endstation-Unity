@@ -14,6 +14,7 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     [SerializeField] Slider _health, _stress, _xp;
     [SerializeField] Text _insight, _prowess, _resolve;
     [SerializeField] TextMeshProUGUI _traits;
+    [SerializeField] Canvas traitImageCanvas;
     [SerializeField] Button _selectExplorer;
     [SerializeField] List<Button> _advancementButtons;
     [SerializeField] Image _background, _backgroundSelected;
@@ -21,7 +22,7 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public Image characterImage;
     [SerializeField] GameObject characterUIElementPrefab;
-
+    [SerializeField] GameObject traitCanvas;
     private GameObject currentDraggedObject;
     private Canvas parentCanvas;
 
@@ -120,16 +121,21 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         _resolve.text = "Resolve: " + resolve;
     }
 
+    
+
     public void SetTraits(Trait[] traits)
     {
-        _traits.text = "";
+        foreach (Transform child in traitImageCanvas.transform)
+        {
+            Destroy(child.gameObject);
+        }
         foreach (Trait t in traits)
         {
-            _traits.text += t.name + " ";
-            if (t is Relationship relationship)
-            {
-                _traits.text += relationship._strength + " ";
-            }
+            GameObject obj = Instantiate(traitCanvas, traitImageCanvas.transform);
+            TraitCanvas tCanvas = obj.GetComponent<TraitCanvas>();
+            tCanvas.trait = t;
+            tCanvas.image.sprite = t.icon;
+            
         }
     }
 
