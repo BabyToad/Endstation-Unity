@@ -114,6 +114,7 @@ public class PointOfInterest : MonoBehaviour
 
     public bool IsSelected { get => _isSelected; set => _isSelected = value; }
     public bool Active { get => _active; set => _active = value; }
+    public bool Display { get => _display; set => _display = value; }
 
     private void Awake()
     {
@@ -406,14 +407,21 @@ public class PointOfInterest : MonoBehaviour
 
     void DisplayWorldUI(bool value)
     {
+        if (Display)
+        {
+            _worldClockImage.sprite = _actions[0].ActionUI._clockSprites[_actions[0].Clocks[_actions[0].ActiveClock].Fill];
+            _worldClockBackground.sprite = _actions[0].ActionUI._clockBackgroundSprite;
+            _worldClockFrame.sprite = _actions[0].ActionUI._clockFrameSprite;
 
-        _worldClockImage.sprite = _actions[0].ActionUI._clockSprites[_actions[0].Clocks[_actions[0].ActiveClock].Fill];
-        _worldClockBackground.sprite = _actions[0].ActionUI._clockBackgroundSprite;
-        _worldClockFrame.sprite = _actions[0].ActionUI._clockFrameSprite;
+            RecolorClock(_actions[0]);
 
-        RecolorClock(_actions[0]);
+            _worldCanvas.gameObject.SetActive(value);
+        }
+        else
+        {
+            _worldCanvas.gameObject.SetActive(false);
 
-        _worldCanvas.gameObject.SetActive(value);
+        }
     }
 
 
@@ -463,6 +471,7 @@ public class PointOfInterest : MonoBehaviour
     public void SetActive(bool value)
     {
         _active = value;
+        Display = value;
         _actionsCanvas.transform.parent.gameObject.SetActive(value);
         _worldCanvas.transform.parent.gameObject.SetActive(value);
 

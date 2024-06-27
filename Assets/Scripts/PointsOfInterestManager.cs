@@ -1,49 +1,135 @@
 using Cinemachine;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PointsOfInterestManager : MonoBehaviour
 {
     [System.Serializable]
-
     public class Region
     {
-        [SerializeField] public string name;
-        [SerializeField] public bool enabled;
-        [SerializeField] public GameObject ui;
-        [SerializeField] public CinemachineVirtualCamera virtualCamera;
-        [SerializeField] public List<PointOfInterest> pointOfInterests;
-
+        public string name;
+        public bool unlocked;
+        public GameObject ui;
+        public CinemachineVirtualCamera virtualCamera;
+        public List<PointOfInterest> pointOfInterests;
+        public List<int> connectedRegionIndexes;
+        public List<Region> connectedRegions;
     }
 
-    [SerializeField] Region[] regions;
+    public Region[] regions;
+    private CinemachineBrain _cmBrain;
+    private Region _activeRegion;
 
-    public void GoToRegion(int k)
+    private void Start()
     {
-        for (int i = 0; i < regions.Length; i++)
-        {
-            regions[i].enabled = false;
-            regions[i].virtualCamera.Priority = 5;
-            regions[i].ui.SetActive(true);
+        _cmBrain = Camera.main.GetComponent<CinemachineBrain>();
+        InitializeRegions();
 
-            for (int j = 0; j < regions[i].pointOfInterests.Count; j++)
+        foreach (Region rg in regions)
+        {
+            foreach (int index in rg.connectedRegionIndexes)
             {
-                regions[i].pointOfInterests[j].SetDisplay(false);
+                rg.connectedRegions.Add(regions[index]);
             }
         }
 
+        _activeRegion = regions[0];
+        UpdatePOIDisplay(); // Initialize POI display
+    }
 
-        regions[k].enabled = true;
-        regions[k].virtualCamera.Priority = 10;
-        regions[k].ui.SetActive(false);
+    private void Update()
+    {
+        UpdateRegionUI();
+    }
 
-        for (int j = 0; j < regions[k].pointOfInterests.Count; j++)
+    private void InitializeRegions()
+    {
+        foreach (Region region in regions)
         {
-            if (regions[k].pointOfInterests[j].Active)
+            region.ui.SetActive(false);
+        }
+    }
+
+    private void UpdateRegionUI()
+    {
+        if (_cmBrain.ActiveVirtualCamera.VirtualCameraGameObject.CompareTag("Region Cam") && !_cmBrain.IsBlending)
+        {
+            foreach (Region cReg in _activeRegion.connectedRegions)
             {
-                regions[k].pointOfInterests[j].SetDisplay(true);
+                if (cReg.unlocked)
+                {
+                    cReg.ui.SetActive(true);
+                }
             }
         }
+        else
+        {
+            foreach (Region reg in regions)
+            {
+                reg.ui.SetActive(false);
+            }
+        }
+    }
+
+    void UpdateRegionCam()
+    {
+        foreach (Region region in regions)
+        {
+            region.virtualCamera.m_Priority = 0;
+        }
+        _activeRegion.virtualCamera.m_Priority = 100;
+    }
+
+    void UpdatePOIDisplay()
+    {
+        foreach (Region region in regions)
+        {
+            bool isActiveRegion = region == _activeRegion;
+            foreach (PointOfInterest poi in region.pointOfInterests)
+            {
+                poi.Display = isActiveRegion && poi.Active;
+            }
+        }
+    }
+
+    public void GoToRegion(int index)
+    {
+        if (index < 0 || index >= regions.Length)
+        {
+            Debug.LogError($"Invalid region index: {index}");
+            return;
+        }
+
+        if (regions[index].unlocked)
+        {
+            _activeRegion = regions[index];
+        }
+        else
+        {
+            Debug.LogError($"Region locked");
+            return;
+        }
+
+        UpdateRegionCam();
+        UpdatePOIDisplay(); // Update POIs in a single frame
+    }
+
+    public void UnlockRegion(int index)
+    {
+        if (index >= 0 && index < regions.Length)
+        {
+            UnlockRegion(regions[index]);
+        }
+        else
+        {
+            Debug.LogError($"Invalid region index: {index}");
+        }
+    }
+
+    public void UnlockRegion(Region region)
+    {
+        region.unlocked = true;
+        // UI visibility is handled in UpdateRegionUI
     }
 }

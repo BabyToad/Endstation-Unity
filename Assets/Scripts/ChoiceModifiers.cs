@@ -14,7 +14,9 @@ public class ChoiceModifiers
     public int hp;
     public bool allExplorers = false;
     [Header("Lock/Unlock POIs")]
-    public string unlockPoI, lockPoI;
+    [SerializeField] public string unlockPoI, lockPoI;
+    [Header("Lock/Unlock Region")]
+    [SerializeField] public string unlockRegion, lockRegion;
     [Header("Change POI Details")]
     public bool setDetails;
     public string POI;

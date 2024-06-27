@@ -811,7 +811,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1924948363680895095}
-  - component: {fileID: 8691410008591954111}
   m_Layer: 0
   m_Name: Points of Interest
   m_TagString: Untagged
@@ -834,19 +833,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6921500160443595516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8691410008591954111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2150723101023445315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95ae505e4ee057d46b3d214b11cfd74b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  regions: []
 --- !u!1 &2348258893921271413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,7 +2972,7 @@ GameObject:
   - component: {fileID: 3699626180738219726}
   - component: {fileID: 1095974548388344791}
   - component: {fileID: 676790880959970004}
-  - component: {fileID: 1083582778230905818}
+  - component: {fileID: 7753648497174525692}
   m_Layer: 5
   m_Name: Explorer Canvas
   m_TagString: Untagged
@@ -3076,7 +3062,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1083582778230905818
+--- !u!114 &7753648497174525692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4097,7 +4083,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 265928020546173195, guid: 58099e4c24a34e7419f475d68323e118, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1068843924932893474, guid: 58099e4c24a34e7419f475d68323e118, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4161,7 +4147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3969357819831671410, guid: 58099e4c24a34e7419f475d68323e118, type: 3}
       propertyPath: m_Size
-      value: 0.36764705
+      value: 0.68752843
       objectReference: {fileID: 0}
     - target: {fileID: 4001211779241474474, guid: 58099e4c24a34e7419f475d68323e118, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4185,7 +4171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4067524524309897612, guid: 58099e4c24a34e7419f475d68323e118, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 8680
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4471554417787025425, guid: 58099e4c24a34e7419f475d68323e118, type: 3}
       propertyPath: m_AnchorMax.x

@@ -207,10 +207,10 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
         List<RaycastResult> raycastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerData, raycastResults);
-
+        
         foreach (RaycastResult result in raycastResults)
         {
-            Debug.Log(result.gameObject);
+            //Debug.Log(result.gameObject);
             if (result.gameObject == _background.gameObject)
             {
                 if (!isExplorerSelected)
@@ -228,7 +228,6 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             {
                 EndDragging();
                 isExplorerSelected = false;
-
             }
 
             if (currentDraggedObject != null)
@@ -251,9 +250,16 @@ public class ExplorerCanvas : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
                         Destroy(characterUIObject);
                     }
                 }
+                
                 Destroy(currentDraggedObject);
             }
 
+        }
+
+        if (currentDraggedObject != null)
+        {
+            Destroy(currentDraggedObject);
+            Debug.Log("Click");
         }
     }
 

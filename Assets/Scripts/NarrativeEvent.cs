@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Febucci.UI.Core.Parsing;
 
 [CreateAssetMenu(fileName = "Narrative Event", menuName = "ScriptableObjects/Narrative Event", order = 1)]
 public class NarrativeEvent : ScriptableObject
@@ -107,6 +108,18 @@ public class NarrativeEvent : ScriptableObject
             PointOfInterest poi = GameObject.Find(choice.lockPoI).GetComponent<PointOfInterest>();
             poi.DeSelect();
             poi.SetActive(false);
+        }
+
+        if (!string.IsNullOrEmpty(choice.unlockRegion))
+        {
+            PointsOfInterestManager poiManager = GameObject.Find("__POI").GetComponent<PointsOfInterestManager>();
+            foreach (PointsOfInterestManager.Region region in poiManager.regions)
+            {
+                if (region.name == choice.unlockRegion)
+                {
+                    poiManager.UnlockRegion(region);
+                }
+            }
         }
 
         if (choice.setDetails)
